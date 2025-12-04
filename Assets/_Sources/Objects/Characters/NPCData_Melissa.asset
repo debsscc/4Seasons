@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fddd006678a9fe41993ffccc940f505, type: 3}
   m_Name: NPCData_Melissa
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
-  _initialRelationshipScore: 10
+  _initialRelationshipScore: 9
   favoriteItems:
   - {fileID: 11400000, guid: fda602797eaea634888950379e772e38, type: 2}
+  - {fileID: 11400000, guid: 8881f83a1ec3d5b4889bf3d01e6b15de, type: 2}
   traits:
     isRebel: 0
     isCorrect: 1
+    isReckless: 0
     isBrave: 1
     isFearful: 0
     isCautious: 1
