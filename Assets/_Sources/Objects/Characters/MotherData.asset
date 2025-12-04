@@ -13,4 +13,15 @@ MonoBehaviour:
   m_Name: MotherData
   m_EditorClassIdentifier: Assembly-CSharp::MotherData
   _initialRelationshipScore: 10
-  favoriteItems: []
+  favoriteItems:
+  - {fileID: 11400000, guid: fda602797eaea634888950379e772e38, type: 2}
+  - {fileID: 11400000, guid: 0f1c3364bd77b1048a85ea27422a6b87, type: 2}
+  traits:
+    isRebel: 0
+    isCorrect: 1
+    isReckless: 0
+    isBrave: 1
+    isFearful: 0
+    isCautious: 1
+    isLeader: 1
+    isFollower: 0

@@ -15,7 +15,11 @@ MonoBehaviour:
   _initialRelationshipScore: 10
   favoriteItems:
   - {fileID: 11400000, guid: fda602797eaea634888950379e772e38, type: 2}
-  isRebel: 0
-  isBrave: 0
-  isCautious: 0
-  isLeader: 0
+  traits:
+    isRebel: 0
+    isCorrect: 1
+    isBrave: 1
+    isFearful: 0
+    isCautious: 1
+    isLeader: 1
+    isFollower: 0

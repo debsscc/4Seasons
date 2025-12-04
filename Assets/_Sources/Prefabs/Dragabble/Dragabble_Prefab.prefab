@@ -52,11 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22761e746c0a204d83d6ac567f478b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  dataAsset: {fileID: 0}
   pickSfx: {fileID: 8300000, guid: d7fe1426f9c779c4c850b6b5f0dde98e, type: 3}
   dropSfx: {fileID: 8300000, guid: 9df59ce22fa0ac243af929695446369e, type: 3}
-  returnSpeed: 800
-  isLocked: 0
   rectTransform: {fileID: 0}
 --- !u!225 &1427766234127222205
 CanvasGroup:
@@ -179,7 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3bbbc88cbb1904186820becaf722ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DVDInfo
-  genre: 0
+  dvdGenres: []
+  traits:
+    isRebel: 0
+    isBrave: 0
+    isCautious: 0
+    isLeader: 0
 --- !u!1 &5511082381287032711
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   _initialRelationshipScore: 10
   favoriteItems:
-  - {fileID: 11400000, guid: d78897a353719b040b94829b0ce3d332, type: 2}
-  isRebel: 0
-  isBrave: 0
-  isCautious: 0
-  isLeader: 0
+  - {fileID: 11400000, guid: 776759b684718914ba625cfccbb90ba9, type: 2}
+  - {fileID: 11400000, guid: 82da496df044d594f866590aa9e12314, type: 2}
+  traits:
+    isRebel: 1
+    isCorrect: 0
+    isReckless: 1
+    isBrave: 0
+    isFearful: 1
+    isCautious: 0
+    isLeader: 0
+    isFollower: 1

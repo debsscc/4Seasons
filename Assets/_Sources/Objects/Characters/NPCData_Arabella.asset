@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fddd006678a9fe41993ffccc940f505, type: 3}
+  m_Name: NPCData_Arabella
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  _initialRelationshipScore: 10
+  favoriteItems:
+  - {fileID: 11400000, guid: 5ff8438415546544a9b89e8a751e9f87, type: 2}
+  - {fileID: 11400000, guid: 0f1c3364bd77b1048a85ea27422a6b87, type: 2}
+  traits:
+    isRebel: 1
+    isCorrect: 0
+    isReckless: 1
+    isBrave: 1
+    isFearful: 0
+    isCautious: 0
+    isLeader: 1
+    isFollower: 0

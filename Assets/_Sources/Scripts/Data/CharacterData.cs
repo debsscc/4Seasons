@@ -25,8 +25,12 @@ public class CharacterData : ScriptableObject
 public class TraitsData
 {
     public bool isRebel;
+    public bool isCorrect;
+    public bool isReckless;
     public bool isBrave;
+    public bool isFearful;
     public bool isCautious;
     public bool isLeader;
+    public bool isFollower;
 }
 
