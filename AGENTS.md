@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, UI_A, a
 - Active game object:
-  - Name: ModalPanel
+  - Name: Hover_Bars
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
