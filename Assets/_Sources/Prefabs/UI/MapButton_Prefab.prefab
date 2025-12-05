@@ -63,6 +63,7 @@ MonoBehaviour:
   mapIcon: {fileID: 0}
   mapNameText: {fileID: 6533995661894812469}
   mapButton: {fileID: 7883121176635998112}
+  waitTimer: 1
   sceneName: 
 --- !u!114 &7760801102879234439
 MonoBehaviour:
@@ -424,4 +425,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 296374825491169530}
+        m_TargetAssemblyTypeName: MapButton, Assembly-CSharp
+        m_MethodName: OnMapButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -19,7 +19,7 @@ public class MiniGameController : MonoBehaviour
     public AudioClip successSfx;
     public AudioClip failSfx;
 
-    private bool _clared = false;
+    [SerializeField] private bool _clared = false;
 
     private readonly List<DraggablePrefab> spawnedDraggables = new();
     private List<Transform> SpawnPoints => objectStartParent.Cast<Transform>().ToList();
