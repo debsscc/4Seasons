@@ -26,12 +26,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: dvdGenres.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: 'dvdGenres.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: fc21452f5f8f8f042973b66747c70e24, type: 2}
+    - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: 'dvdGenres.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d78897a353719b040b94829b0ce3d332, type: 2}
     - target: {fileID: 8064730221010307260, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
