@@ -24,7 +24,7 @@ public class SceneLoaderYarn : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner NÃO encontrado!");
+            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner Nï¿½O encontrado!");
         }
     }
 

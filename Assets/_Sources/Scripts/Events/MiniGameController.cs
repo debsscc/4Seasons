@@ -49,8 +49,6 @@ public class MiniGameController : MonoBehaviour
         }
     }
 
-
-
     private void ClearDraggables(DraggablePrefab selectedOne)
     {
         if(_clared) return;

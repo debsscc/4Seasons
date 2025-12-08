@@ -1,30 +1,37 @@
 title: Feedback_Roda_Gigante
+position: 26,159
 ---
 Narrator: How was the Ferris wheel ride?
 -> Amazing!
     Narrator: I'm glad you enjoyed it!
 -> It was scary
     Narrator: Oh no, maybe next time it'll be better!
+    <<jump Feedback_Roda_Gigante>>
 ===
 
 title: Feedback_Roda_Gigante2
+position: -268,-119
 ---
 Narrator: Fuck, how was the Ferris wheel ride?
 ===
 
 title: Feedback_Roda_Gigante3
+position: 335,139
 ---
 Narrator: Wow! 
 ===
 
 title: Feedback_Roda_Gigante4
+position: -270,148
 ---
 Narrator: Shit it was scary
 ===
 
 title: Feedback_Roda_Gigante5
+position: 359,-12
 ---
 Narrator: I loved the view
+<<stop>>
 ===
 
 

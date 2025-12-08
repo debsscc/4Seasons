@@ -4,10 +4,9 @@ position: -85,-336
 Narrador: E aí, o que tu quer fazer agora?
 
 -> Ver um filme
-    <<jump Filme>>
-
+    <<stop>>
 -> Sair pra comer
-    <<jump Comer>>
+    <<stop>>
 ===
 
 title: Filme
@@ -19,9 +18,7 @@ Narrador: Boa! Qual gênero tu quer ver?
     Narrador: Show, comédia sempre funciona!
 -> Terror
     Narrador: Ihhh… prepara o coração então 
-
--> Voltar
-    <<jump Start>>
+<<stop>>
 ===
 
 title: Comer
