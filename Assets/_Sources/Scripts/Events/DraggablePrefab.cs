@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -19,7 +20,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private bool isDragging;
 
-    public SlotDraggable TargetSlot { get; set; } = null;
+    public List<SlotDraggable> TargetSlots { get; set; } = null;
 
     private IItemHolder _itemHolder;
 
@@ -57,14 +58,18 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (!isDragging) return;
 
         transform.position = Mouse.current.position.ReadValue();
-
-        if (IsNearSlot())
+        
+        var nearSlot = IsNearSlot();
+        if (nearSlot)
         {
-            TargetSlot.HighlightSlot(true);
+            nearSlot.HighlightSlot(true);
         }
         else
         {
-            TargetSlot.HighlightSlot(false);
+            foreach (var slot in TargetSlots)
+            {
+                slot.HighlightSlot(false);
+            }
         }
     }
 
@@ -74,10 +79,11 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
 
-        if (IsNearSlot())
+        var nearSlot = IsNearSlot();
+        if (nearSlot)
         {
             Destroy(gameObject);
-            TargetSlot.HighlightSlot(false);
+            nearSlot.HighlightSlot(false);
             CharactersManager.Instance.ApplyPointsByTrait(_itemHolder.Items);
             return;
         }
@@ -85,10 +91,14 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         transform.DOScale(Vector2.one, 0.25f);
     }
 
-    public bool IsNearSlot()
+    public SlotDraggable IsNearSlot()
     {
-        // transformar o centro do slot para coordenada anc
-        float dist = Vector2.Distance(transform.position, TargetSlot.transform.position);
-        return dist <= TargetSlot.acceptDistance;
+        foreach (var slot in TargetSlots)
+        {
+            float dist = Vector2.Distance(transform.position, slot.transform.position);
+            if (dist <= slot.acceptDistance)
+                return slot;
+        }
+        return null;
     }
 }

@@ -9,7 +9,7 @@ using Yarn.Unity;
 
 public class MiniGameController : MonoBehaviour
 {
-    public SlotDraggable targetSlot;
+    public List<SlotDraggable> targetSlots;
 
     [Header("Draggables")]
     public List<DraggablePrefab> draggablePrefabs = new();
@@ -44,7 +44,7 @@ public class MiniGameController : MonoBehaviour
 
             var instance = Instantiate(draggablePrefabs[i], sp[i]); 
             instance.OnBeginDragEvent += () => ClearDraggables(instance);
-            instance.TargetSlot = targetSlot;
+            instance.TargetSlots = targetSlots;
             spawnedDraggables.Add(instance);
         }
     }
