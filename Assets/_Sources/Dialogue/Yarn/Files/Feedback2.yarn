@@ -1,8 +1,11 @@
-﻿title: Feedback_Shopping
+﻿title: Feedback_Roubando_Event2
 ---
-Narrator: Can we get up and try to feel okay again?
--> OK
-    Narrator: OK.
--> Nah thx
-    Narrator: OK.
+Narrator: Dialogo quando rouba bebidas
+<<stop>>
+===
+
+title: Feedback_NRoubando_Event2
+---
+Narrator: Dialogo quando não roubou bebidas
+<<stop>>
 ===

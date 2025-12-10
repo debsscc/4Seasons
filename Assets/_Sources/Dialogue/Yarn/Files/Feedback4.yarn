@@ -1,35 +1,23 @@
-title: Feedback_Amigo_1
+title: Feedback_Amigos_Event4
 position: -85,-336
 ---
 Narrador: Que bom que você tirou foto do meu fogo de artifício!
 -> Claro!
     Narrador: Valeu!
+    <<stop>>
 -> Ah, foi sem querer
     Narrador: Tudo bem, acontece.
+    <<stop>>
 ===
 
-title: Feedback_Amigo_2
-position: -85,-336
----
-Narrador: E aí, curtiu os fogos de artifício?
--> Sim
-    Narrador: Que bom!
-===
-
-title: Feedback_Amigo_3
-position: -85,-336
----
-Narrador: Gostou da foto que tirei do seu fogo de artifício?
--> Sim
-    Narrador: Fico feliz que tenha gostado!
-===
-
-title: Feedback_Player
+title: Feedback_Player_Event4
 position: -85,-336
 ---
 Narrador: Meu deus tirei uma foto do meu fogo de artifício!
 -> Que legal!
     Narrador: Sim, né?
+    <<stop>>
 -> Que foto feia
     Narrador: Ah, que pena.
+    <<stop>>
 ===

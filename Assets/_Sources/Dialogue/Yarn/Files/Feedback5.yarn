@@ -1,33 +1,37 @@
-title: Feedback_Roda_Gigante
+title: Feedback_Amigo1_Event5
 position: 26,159
 ---
 Narrator: How was the Ferris wheel ride?
 -> Amazing!
     Narrator: I'm glad you enjoyed it!
+    <<stop>>
 -> It was scary
     Narrator: Oh no, maybe next time it'll be better!
-    <<jump Feedback_Roda_Gigante>>
+    <<stop>>
 ===
 
-title: Feedback_Roda_Gigante2
+title: Feedback_Amigo2_Event5
 position: -268,-119
 ---
 Narrator: Fuck, how was the Ferris wheel ride?
+<<stop>>
 ===
 
-title: Feedback_Roda_Gigante3
+title: Feedback_Amigo3_Event5
 position: 335,139
 ---
 Narrator: Wow! 
+<<stop>>
 ===
 
-title: Feedback_Roda_Gigante4
+title: Feedback_Amigo4_Event5
 position: -270,148
 ---
 Narrator: Shit it was scary
+<<stop>>
 ===
 
-title: Feedback_Roda_Gigante5
+title: Feedback_Amigo5_Event5
 position: 359,-12
 ---
 Narrator: I loved the view
