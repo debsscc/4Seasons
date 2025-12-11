@@ -189,6 +189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1758998001}
   - {fileID: 435186202}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -577,9 +578,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1758998001}
   - {fileID: 8653747088596978753}
-  - {fileID: 1714729844}
   m_Father: {fileID: 159909899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2061,7 +2060,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 435186202}
+    m_TransformParent: {fileID: 8653747088596978753}
     m_Modifications:
     - target: {fileID: 463511435045449562, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_text
@@ -2365,17 +2364,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758997997}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2014916746}
-  m_Father: {fileID: 435186202}
+  m_Father: {fileID: 159909899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1347.5125, y: 483.4378}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1867308397
@@ -2883,7 +2882,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4487996889247825270, guid: 6178a1a2da7739a45a8da558256d974a, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7247923705032120875, guid: 6178a1a2da7739a45a8da558256d974a, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1714729844}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6178a1a2da7739a45a8da558256d974a, type: 3}
 --- !u!224 &8653747088596978753 stripped
