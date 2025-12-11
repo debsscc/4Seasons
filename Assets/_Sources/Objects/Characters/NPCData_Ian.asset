@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: NPCData_Ian
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   _initialRelationshipScore: 10
+  _maxRelationshipScore: 15
+  _relationshipScore: 10
   favoriteItems:
   - {fileID: 11400000, guid: fc21452f5f8f8f042973b66747c70e24, type: 2}
   - {fileID: 11400000, guid: 82da496df044d594f866590aa9e12314, type: 2}
@@ -25,3 +27,4 @@ MonoBehaviour:
     isCautious: 1
     isLeader: 0
     isFollower: 1
+  _relationshipTresholds: 050000000d000000
