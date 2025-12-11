@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: NPCData_Melissa
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   _initialRelationshipScore: 10
+  _maxRelationshipScore: 15
+  _relationshipScore: 10
   favoriteItems:
   - {fileID: 11400000, guid: fda602797eaea634888950379e772e38, type: 2}
   traits:
     isRebel: 0
     isCorrect: 1
+    isReckless: 0
     isBrave: 1
     isFearful: 0
     isCautious: 1
     isLeader: 1
     isFollower: 0
+  _relationshipTresholds: 050000000d000000
