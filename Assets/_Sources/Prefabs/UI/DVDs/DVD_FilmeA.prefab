@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 284332891345676577, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 284332891345676577, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 1377875502970902689, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -15,7 +23,11 @@ PrefabInstance:
     - target: {fileID: 1568875060517252123, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8731086724884625406, guid: c29ae67deb3dc594d8ba4b1c13dc5126, type: 3}
+      objectReference: {fileID: 5304705805466989450, guid: 33803dc5785b79b4c84b6448fbaf595a, type: 3}
+    - target: {fileID: 1568875060517252123, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2963449268658772561, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Name
       value: DVD_FilmeA
@@ -62,11 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 140
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 140
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_LocalPosition.x
