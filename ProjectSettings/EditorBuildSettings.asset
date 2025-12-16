@@ -9,14 +9,17 @@ EditorBuildSettings:
     path: Assets/_Sources/Scenes/Boot/BootScene.unity
     guid: fe21c98f7fccfbb4791004898fc0cf56
   - enabled: 1
+    path: Assets/_Sources/Scenes/MainMenu/MainMenu.unity
+    guid: dba1cbbd657abad4494899a00ce4db06
+  - enabled: 1
+    path: Assets/_Sources/Scenes/Map/MapSeletor.unity
+    guid: 1506c3e889302d34eb052faf81181c6b
+  - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Casa/Event1.0.unity
     guid: acc77864d31a229439cf21ea4df630a8
   - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Casa/Event1.1.unity
     guid: 9be41b908131a344bb0aa1cf0b91b28c
-  - enabled: 0
-    path: Assets/_Sources/Scenes/EventScene/Casa/Event1.2.unity
-    guid: 8bdd130239a4b8c40baf11a355c4f3fe
   - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Casa/Event1.3(FEED).unity
     guid: 81b9935e58502a542a5c652c6d3e78e1
@@ -26,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Shopping/Event2.1.unity
     guid: 605e6c204a7c15a45b24ec9cadd17df7
-  - enabled: 1
-    path: Assets/_Sources/Scenes/EventScene/Shopping/Event2.3(FEED).unity
-    guid: bf4916e16d7fdbb4f96b5cca6d30a3d9
   - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Praia/Event3.0.unity
     guid: b2f16d931a1a1cd46b8d739ae5d51d40
@@ -45,26 +45,14 @@ EditorBuildSettings:
     path: Assets/_Sources/Scenes/EventScene/Praca/Event4.1.unity
     guid: d4e189fd85ff2b14889d2f995a025921
   - enabled: 1
-    path: Assets/_Sources/Scenes/EventScene/Praca/Event4.3.unity
-    guid: 6223b326267baf64f82304f1f77a4fd2
-  - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Parque/Event5.0.unity
     guid: b5ae9895ea5a5f344a9bdc72867425b1
   - enabled: 1
     path: Assets/_Sources/Scenes/EventScene/Parque/Event5.1.unity
     guid: 60dd39482cadeed478a250d92c85c7c6
   - enabled: 1
-    path: Assets/_Sources/Scenes/EventScene/Parque/Event5.3.unity
-    guid: b7c607ca5e629c74d92522855cd481ab
-  - enabled: 1
-    path: Assets/_Sources/Scenes/MainMenu/MainMenu.unity
-    guid: dba1cbbd657abad4494899a00ce4db06
-  - enabled: 1
-    path: Assets/_Sources/Scenes/Map/MapSeletor.unity
-    guid: 1506c3e889302d34eb052faf81181c6b
-  - enabled: 0
-    path: Assets/Scenes/DialogueTest.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/_Sources/Scenes/MainMenu/Credits.unity
+    guid: a69c9406ca0eba84fbf89a2c9b13f6f3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
