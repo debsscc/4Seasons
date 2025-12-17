@@ -6,8 +6,6 @@ using System.Collections;
 
 public class Button_Prefab : MonoBehaviour
 {
-    // --- VISUAL ---
-
     [FoldoutGroup("Visual"), Required, Tooltip("Imagem do botão na UI.")]
     public Image buttonImage;
 
@@ -20,9 +18,6 @@ public class Button_Prefab : MonoBehaviour
     [FoldoutGroup("Visual"), PreviewField(60), Tooltip("Sprite selecionado ou pressionado.")]
     public Sprite selectedSprite;
 
-
-    // --- AUDIO ---
-
     [FoldoutGroup("Audio"), Tooltip("Som reproduzido ao clicar no botão.")]
     public AudioClip clickSound;
 
@@ -33,16 +28,12 @@ public class Button_Prefab : MonoBehaviour
     public float clickVolume = 1f;
 
 
-    // --- ANIMAÇÃO ---
-
     [FoldoutGroup("Animation"), Tooltip("Animator no botão ou em objeto filho.")]
     public Animator animator;
 
     [FoldoutGroup("Animation"), ShowIf("@this.animator != null"), Tooltip("Trigger do Animator para clique.")]
     public string clickTrigger = "Click";
 
-
-    // --- NAVEGAÇÃO ---
 
     [FoldoutGroup("Navigation"), Tooltip("Modo especial: usa a seleção do MapSelectionManager ao invés de sceneToLoadName.")]
     public bool isMapConfirmButton = false;
@@ -53,8 +44,6 @@ public class Button_Prefab : MonoBehaviour
     [FoldoutGroup("Navigation"), Tooltip("Eventos customizados disparados após o clique.")]
     public UnityEngine.Events.UnityEvent onClick;
 
-
-    // --- PRIVATE ---
 
     private Button _button;
 
@@ -71,7 +60,6 @@ public class Button_Prefab : MonoBehaviour
 
         _button.onClick.AddListener(HandleClick);
 
-        // Garante sprite inicial
         if (buttonImage && defaultSprite)
             buttonImage.sprite = defaultSprite;
     }
@@ -79,27 +67,21 @@ public class Button_Prefab : MonoBehaviour
 
     private void HandleClick()
     {
-        // Som de Clique
         if (clickSound)
             AudioSource.PlayClipAtPoint(clickSound, Vector3.zero, clickVolume);
 
-        // Trigger no Animator
         if (animator && !string.IsNullOrEmpty(clickTrigger))
             animator.SetTrigger(clickTrigger);
 
-        // Troca de Cena
         if (isMapConfirmButton)
         {
-            // Modo especial: pega a cena do MapSelectionManager
             HandleMapConfirm();
         }
         else if (!string.IsNullOrEmpty(sceneToLoadName))
         {
-            // Modo normal: usa sceneToLoadName
             SceneTransition.Instance.ChangeScene(sceneToLoadName);
         }
 
-        // Eventos customizados
         onClick?.Invoke();
     }
 
@@ -123,8 +105,6 @@ public class Button_Prefab : MonoBehaviour
         MapSelectionManager.Instance.ConfirmSelection();
     }
 
-
-    // --- UI EVENTS (chamados via EventTrigger) ---
 
     public void OnHover()
         => SetSprite(hoverSprite, hoverSound);

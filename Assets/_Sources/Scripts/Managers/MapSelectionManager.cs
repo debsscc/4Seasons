@@ -79,29 +79,24 @@ public class MapSelectionManager : MonoBehaviour
             return;
         }
 
-        // Deseleciona o anterior
         if (currentSelectedButton != null && currentSelectedButton != mapButton)
             currentSelectedButton.SetSelected(false);
 
-        // Seleciona o novo
         currentSelectedButton = mapButton;
         currentSelectedButton.SetSelected(true);
         pendingSceneName = sceneName;
 
-        // Mostra o botão Confirmar
         if (confirmButtonGO != null)
         {
             confirmButtonGO.SetActive(true);
         }
     }
 
-    // Método público para o Button_Prefab pegar a cena pendente
     public string GetPendingSceneName()
     {
         return pendingSceneName;
     }
 
-    // Método público para o Button_Prefab confirmar a seleção
     public void ConfirmSelection()
     {
         if (string.IsNullOrEmpty(pendingSceneName) || currentSelectedButton == null)
