@@ -2,13 +2,13 @@
 - Project name: 4Seasons
 - Unity version: Unity 6000.2.10f1
 - Active scene:
-  - Name: Event2.1
+  - Name: Event5.0
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, UI_A, a
 - Active game object:
-  - Name: PAUSE
+  - Name: DataTime
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5078843663325402486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5324228718768043896
 CanvasRenderer:
@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 3591026465100201362}
   - component: {fileID: 2655293688310998210}
   - component: {fileID: 1498088652609980119}
-  - component: {fileID: 1272398828834988868}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -207,11 +206,11 @@ RectTransform:
   - {fileID: 8574765773318093372}
   m_Father: {fileID: 4003305795009721714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 609, y: -343}
-  m_SizeDelta: {x: 60, y: 60}
-  m_Pivot: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3591026465100201362
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -294,29 +293,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1272398828834988868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8758887492440035618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1302f9f79649dd4fbee6a092ed28ca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIButtonOdin
-  buttonImage: {fileID: 2655293688310998210}
-  defaultSprite: {fileID: 0}
-  hoverSprite: {fileID: 0}
-  selectedSprite: {fileID: 0}
-  clickSound: {fileID: 0}
-  hoverSound: {fileID: 0}
-  clickVolume: 1
-  animator: {fileID: 0}
-  clickTrigger: Click
-  sceneToLoadName: MainMenu
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
-  debugInfo: 0

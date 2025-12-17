@@ -35,10 +35,10 @@ public class SceneLoaderYarn : MonoBehaviour
     }
 
     void OnDialogueComplete()
-    {
+    {   
         if (!string.IsNullOrEmpty(sceneToLoad))
-            SceneManager.LoadScene(sceneToLoad);
+            SceneTransition.Instance.ChangeScene(sceneToLoad);
         else
             Debug.LogWarning("[SceneOnDialogueComplete] sceneToLoad vazio.");
-    }
+    }   
 }

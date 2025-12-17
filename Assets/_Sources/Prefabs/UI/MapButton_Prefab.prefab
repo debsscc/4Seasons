@@ -65,6 +65,7 @@ MonoBehaviour:
   mapButton: {fileID: 7883121176635998112}
   waitTimer: 1
   sceneName: 
+  outline: {fileID: 6715805574822280727}
 --- !u!114 &7760801102879234439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +296,7 @@ GameObject:
   - component: {fileID: 5068271324359581643}
   - component: {fileID: 8585458770799179764}
   - component: {fileID: 6769145760750892102}
+  - component: {fileID: 6715805574822280727}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -359,6 +361,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6715805574822280727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565591110014093969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 5.54, y: -5.54}
+  m_UseGraphicAlpha: 1
 --- !u!1 &7189273249376690010
 GameObject:
   m_ObjectHideFlags: 0

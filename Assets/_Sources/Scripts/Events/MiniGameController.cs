@@ -24,30 +24,38 @@ public class MiniGameController : MonoBehaviour
     private readonly List<DraggablePrefab> spawnedDraggables = new();
     private List<Transform> SpawnPoints => objectStartParent.Cast<Transform>().ToList();
 
+    private IMiniGameScoring _scoringStrategy;    
+
+    private void Awake()
+    {
+        _scoringStrategy = GetComponent<IMiniGameScoring>();
+    }
     private void Start()
     {
         SpawnAllDraggables();
     }
 
     private void SpawnAllDraggables()
+{
+    List<Transform> sp = SpawnPoints;
+    int spawnPointsAmount = sp.Count;
+
+    for (int i = 0; i < draggablePrefabs.Count; i++)
     {
-        List<Transform> sp = SpawnPoints;
-        int spawnPointsAmount = sp.Count;
-
-        for (int i = 0; i < draggablePrefabs.Count; i++)
+        if(i >= spawnPointsAmount)
         {
-            if(i >= spawnPointsAmount)
-            {
-                Debug.LogWarning("Not enough spawn points for all draggables!");
-                break;
-            }
-
-            var instance = Instantiate(draggablePrefabs[i], sp[i]); 
-            instance.OnBeginDragEvent += () => ClearDraggables(instance);
-            instance.TargetSlots = targetSlots;
-            spawnedDraggables.Add(instance);
+            break;
         }
+
+        var instance = Instantiate(draggablePrefabs[i], sp[i]); 
+        instance.OnBeginDragEvent += () => ClearDraggables(instance);
+        instance.TargetSlots = targetSlots;
+        instance.MiniGameController = this; 
+
+
+        spawnedDraggables.Add(instance);
     }
+}
 
     private void ClearDraggables(DraggablePrefab selectedOne)
     {
@@ -67,4 +75,26 @@ public class MiniGameController : MonoBehaviour
             });
         }
     }
+
+    public void OnObjectDroppedInSlot(SlotDraggable slot, ItemsSO[] items)
+{
+    
+    if (slot == null)
+    {
+        Debug.LogWarning("[MiniGameController] Slot nulo!");
+        return;
+    }
+
+    Debug.Log($"[MiniGameController] _scoringStrategy é {(_scoringStrategy != null ? "não nulo" : "NULO")}");
+
+    if (_scoringStrategy != null)
+    {
+        _scoringStrategy.OnObjectDropped(slot, items);
+    } 
+    else
+    {
+        Debug.Log("[MiniGameController] Usando lógica padrão (ApplyPointsByTrait)");
+        CharactersManager.Instance.ApplyPointsByTrait(items);
+    }
+}
 }

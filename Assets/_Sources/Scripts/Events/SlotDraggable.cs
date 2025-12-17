@@ -10,7 +10,9 @@ public class SlotDraggable : MonoBehaviour
     public AudioClip successSfx;
     public float acceptDistance = 80f;
     private AudioSource audioSource;
-    
+    [Header("Dados opcionais p/ minigames específicos")]
+    public int specialId;
+    public CharacterData associatedCharacter;
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();

@@ -6,9 +6,6 @@ using System;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-
-//o botao so leva o nome dos locais
-
 public class MapButton : MonoBehaviour
 {
     [Header("Map Button Settings")]
@@ -18,25 +15,63 @@ public class MapButton : MonoBehaviour
     [SerializeField] public float waitTimer;
 
     [Header("Map Scenes")]
-    //[ValueDropdown ("GetSceneNames")] //completar
     [SerializeField] private string sceneName;
-    public event Action<string> OnMapSelected;
+    
+    [Header("Selection Visual")]
+    [SerializeField] private Outline outline; 
+    
+    public event Action<MapButton, string> OnMapSelected;
+    
+    private bool isSelected = false;
+
+    private void Awake()
+    {
+        if (outline == null)
+            outline = GetComponent<Outline>();
+        
+        SetSelected(false);
+    }
 
     public void PointerEnterFeedback()
     {
-        transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+        if (!isSelected)
+        {
+            transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+        }
     }
 
     public void PointerOutFeedback()
     {
-        transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+        if (!isSelected)
+        {
+            transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+        }
     }
 
     public async void OnMapButtonClick()
+{
+    Debug.Log("Map Button Clicked: " + sceneName);
+    await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
+    OnMapSelected?.Invoke(this, sceneName);
+}
+    
+    public void SetSelected(bool selected)
     {
-        Debug.Log("Map Button Clicked: " + sceneName);
-        // await transform.DOShakePosition(waitTimer, 10f, 20, 90f, false, true);
-        await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
-        OnMapSelected?.Invoke(sceneName);
+        isSelected = selected;
+        
+        if (outline != null)
+        {
+            outline.enabled = selected;
+            
+            if (selected)
+            {
+                outline.effectColor = Color.white;
+                transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+            }
+            else
+            {
+                transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+            }
+        }
     }
 }

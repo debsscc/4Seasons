@@ -21,6 +21,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private bool isDragging;
 
     public List<SlotDraggable> TargetSlots { get; set; } = null;
+    public MiniGameController MiniGameController {get; set;}
 
     private IItemHolder _itemHolder;
 
@@ -74,31 +75,65 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
-        isDragging = false;
-        canvasGroup.blocksRaycasts = true;
-        canvasGroup.alpha = 1f;
+{
+    isDragging = false;
+    canvasGroup.blocksRaycasts = true;
+    canvasGroup.alpha = 1f;
 
-        var nearSlot = IsNearSlot();
-        if (nearSlot)
+    var nearSlot = IsNearSlot();
+    if (nearSlot)
+    {
+        Debug.Log($"[DraggablePrefab] Slot detectado: {nearSlot.name}.");
+
+        Destroy(gameObject);
+        nearSlot.HighlightSlot(false);
+
+        ItemsSO[] items = Array.Empty<ItemsSO>();
+        if (_itemHolder != null)
         {
-            Destroy(gameObject);
-            nearSlot.HighlightSlot(false);
-            CharactersManager.Instance.ApplyPointsByTrait(_itemHolder.Items);
-            return;
+            items = _itemHolder.Items;
         }
 
-        transform.DOScale(Vector2.one, 0.25f);
+        if (MiniGameController != null)
+        {
+            MiniGameController.OnObjectDroppedInSlot(nearSlot, items);
+        }
+        else
+        {
+            if (items.Length > 0)
+            {
+                CharactersManager.Instance.ApplyPointsByTrait(items);
+            }
+
+        }
+
+        return;
+    }
+    else
+    {
+        Debug.Log($"[DraggablePrefab] Nenhum slot detectado perto de {gameObject.name}.");
     }
 
+    transform.DOScale(Vector2.one, 0.25f);
+}
     public SlotDraggable IsNearSlot()
+{
+    if (TargetSlots == null)
     {
-        foreach (var slot in TargetSlots)
-        {
-            float dist = Vector2.Distance(transform.position, slot.transform.position);
-            if (dist <= slot.acceptDistance)
-                return slot;
-        }
         return null;
     }
+
+    foreach (var slot in TargetSlots)
+    {
+        if (slot == null) continue;
+
+        float dist = Vector2.Distance(transform.position, slot.transform.position);
+
+        if (dist <= slot.acceptDistance)
+        {
+            return slot;
+        }
+    }
+    return null;
+}
 }

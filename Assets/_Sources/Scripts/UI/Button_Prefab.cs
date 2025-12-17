@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using Sirenix.OdinInspector;
 using System.Collections;
 
-public class UIButtonOdin : MonoBehaviour
+public class Button_Prefab : MonoBehaviour
 {
     // --- VISUAL ---
 
@@ -44,7 +44,10 @@ public class UIButtonOdin : MonoBehaviour
 
     // --- NAVEGAÇÃO ---
 
-    [FoldoutGroup("Navigation"), ValueDropdown("SceneDropdown")]
+    [FoldoutGroup("Navigation"), Tooltip("Modo especial: usa a seleção do MapSelectionManager ao invés de sceneToLoadName.")]
+    public bool isMapConfirmButton = false;
+
+    [FoldoutGroup("Navigation"), HideIf("isMapConfirmButton"), ValueDropdown("SceneDropdown")]
     public string sceneToLoadName;
 
     [FoldoutGroup("Navigation"), Tooltip("Eventos customizados disparados após o clique.")]
@@ -62,7 +65,7 @@ public class UIButtonOdin : MonoBehaviour
 
         if (_button == null)
         {
-            Debug.LogError("UIButtonOdin: Nenhum Button encontrado no GameObject.");
+            Debug.LogError("Button_Prefab: Nenhum Button encontrado no GameObject.");
             return;
         }
 
@@ -85,11 +88,39 @@ public class UIButtonOdin : MonoBehaviour
             animator.SetTrigger(clickTrigger);
 
         // Troca de Cena
-        if (!string.IsNullOrEmpty(sceneToLoadName))
-            SceneManager.LoadScene(sceneToLoadName);
+        if (isMapConfirmButton)
+        {
+            // Modo especial: pega a cena do MapSelectionManager
+            HandleMapConfirm();
+        }
+        else if (!string.IsNullOrEmpty(sceneToLoadName))
+        {
+            // Modo normal: usa sceneToLoadName
+            SceneTransition.Instance.ChangeScene(sceneToLoadName);
+        }
 
         // Eventos customizados
         onClick?.Invoke();
+    }
+
+    private void HandleMapConfirm()
+    {
+        if (MapSelectionManager.Instance == null)
+        {
+            Debug.LogError("Button_Prefab: MapSelectionManager.Instance não encontrado!");
+            return;
+        }
+
+        string selectedScene = MapSelectionManager.Instance.GetPendingSceneName();
+
+        if (string.IsNullOrEmpty(selectedScene))
+        {
+            Debug.LogWarning("Button_Prefab: Nenhum mapa selecionado para confirmar.");
+            return;
+        }
+
+        Debug.Log($"Button_Prefab: Confirmando seleção do mapa: {selectedScene}");
+        MapSelectionManager.Instance.ConfirmSelection();
     }
 
 
@@ -114,15 +145,6 @@ public class UIButtonOdin : MonoBehaviour
             AudioSource.PlayClipAtPoint(sound, Vector3.zero);
     }
 
-
-    // --- ODIN DEBUG ---
-    [FoldoutGroup("Debug"), InfoBox("⚠ buttonImage não foi atribuído!", InfoMessageType.Error, VisibleIf = "ButtonImageMissing")]
-    public bool debugInfo;
-
-    private bool ButtonImageMissing() => buttonImage == null;
-
-
-    // --- ODIN DROPDOWN ---
     private static IEnumerable SceneDropdown()
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
