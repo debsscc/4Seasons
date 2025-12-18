@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fddd006678a9fe41993ffccc940f505, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  _initialRelationshipScore: 15
+  _initialRelationshipScore: 10
   _maxRelationshipScore: 25
   _relationshipScore: 15
   favoriteItems:
@@ -27,4 +27,4 @@ MonoBehaviour:
     isCautious: 0
     isLeader: 1
     isFollower: 0
-  _relationshipTresholds: 0b00000015000000
+  _relationshipTresholds: 0800000011000000

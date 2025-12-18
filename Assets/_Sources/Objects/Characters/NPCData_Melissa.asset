@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fddd006678a9fe41993ffccc940f505, type: 3}
   m_Name: NPCData_Melissa
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
-  _initialRelationshipScore: 10
+  _initialRelationshipScore: 9
   _maxRelationshipScore: 15
   _relationshipScore: 10
   favoriteItems:
@@ -26,4 +26,4 @@ MonoBehaviour:
     isCautious: 1
     isLeader: 1
     isFollower: 0
-  _relationshipTresholds: 050000000d000000
+  _relationshipTresholds: 050000000c000000

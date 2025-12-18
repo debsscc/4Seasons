@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fddd006678a9fe41993ffccc940f505, type: 3}
   m_Name: NPCData_Lucas
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
-  _initialRelationshipScore: 10
+  _initialRelationshipScore: 9
   _maxRelationshipScore: 15
   _relationshipScore: 4
   favoriteItems:
@@ -27,4 +27,4 @@ MonoBehaviour:
     isCautious: 1
     isLeader: 0
     isFollower: 1
-  _relationshipTresholds: 00000000050000000d000000
+  _relationshipTresholds: 00000000050000000c000000

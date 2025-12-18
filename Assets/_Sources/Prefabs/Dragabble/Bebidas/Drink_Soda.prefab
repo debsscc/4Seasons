@@ -9,8 +9,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4859424954539852837, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
-      propertyPath: traits.isCautious
+      propertyPath: traits.isCorrect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4859424954539852837, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: traits.isCautious
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4859424954539852837, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: drinkTypes.Array.size

@@ -30,20 +30,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963449268658772561, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Name
-      value: DVD_FilmeC
+      value: DVD_AlienigenaOUltimoPassageiro
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: genre
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
-      propertyPath: dvdGenres.Array.size
+      propertyPath: traits.isBrave
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: dvdGenres.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: 'dvdGenres.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: fc21452f5f8f8f042973b66747c70e24, type: 2}
+    - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: 'dvdGenres.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fda602797eaea634888950379e772e38, type: 2}
     - target: {fileID: 8064730221010307260, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
