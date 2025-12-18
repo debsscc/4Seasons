@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Yarn.Unity;
 
 public class MiniGameController : MonoBehaviour
 {
+    [Header("Slots de Alvo")]
     public List<SlotDraggable> targetSlots;
 
-    [Header("Draggables")]
+    [Header("Draggables (Spawn automático)")]
+    public bool useSceneDraggables = false;         
     public List<DraggablePrefab> draggablePrefabs = new();
     public Transform objectStartParent;
 
@@ -22,51 +21,62 @@ public class MiniGameController : MonoBehaviour
     [SerializeField] private bool _clared = false;
 
     private readonly List<DraggablePrefab> spawnedDraggables = new();
-    private List<Transform> SpawnPoints => objectStartParent.Cast<Transform>().ToList();
+    private List<Transform> SpawnPoints => objectStartParent
+        ? objectStartParent.Cast<Transform>().ToList()
+        : new List<Transform>();
 
-    private IMiniGameScoring _scoringStrategy;    
+    private IMiniGameScoring _scoringStrategy;
 
     private void Awake()
     {
         _scoringStrategy = GetComponent<IMiniGameScoring>();
     }
+
     private void Start()
     {
-        SpawnAllDraggables();
+        if (useSceneDraggables)
+        {
+            RegisterSceneDraggables();
+        }
+        else
+        {
+            SpawnAllDraggables();
+        }
     }
 
     private void SpawnAllDraggables()
-{
-    List<Transform> sp = SpawnPoints;
-    int spawnPointsAmount = sp.Count;
-
-    for (int i = 0; i < draggablePrefabs.Count; i++)
     {
-        if(i >= spawnPointsAmount)
+        if (objectStartParent == null)
         {
-            break;
+            Debug.LogWarning("[MiniGameController] objectStartParent não definido.");
+            return;
         }
 
-        var instance = Instantiate(draggablePrefabs[i], sp[i]); 
-        instance.OnBeginDragEvent += () => ClearDraggables(instance);
-        instance.TargetSlots = targetSlots;
-        instance.MiniGameController = this; 
+        List<Transform> sp = SpawnPoints;
+        int spawnPointsAmount = sp.Count;
 
+        for (int i = 0; i < draggablePrefabs.Count; i++)
+        {
+            if (i >= spawnPointsAmount)
+                break;
 
-        spawnedDraggables.Add(instance);
+            var instance = Instantiate(draggablePrefabs[i], sp[i]);
+            instance.OnBeginDragEvent += () => ClearDraggables(instance);
+            instance.TargetSlots = targetSlots;
+            instance.MiniGameController = this;
+
+            spawnedDraggables.Add(instance);
+        }
     }
-}
 
     private void ClearDraggables(DraggablePrefab selectedOne)
     {
-        if(_clared) return;
+        if (_clared) return;
         _clared = true;
 
         foreach (var draggable in spawnedDraggables)
         {
             if (draggable == selectedOne) continue;
-
-            // Destroy(draggable.gameObject);
 
             float timer = UnityEngine.Random.Range(0.1f, 0.6f);
             draggable.transform.DOScale(Vector2.zero, timer).OnComplete(() =>
@@ -76,25 +86,49 @@ public class MiniGameController : MonoBehaviour
         }
     }
 
-    public void OnObjectDroppedInSlot(SlotDraggable slot, ItemsSO[] items)
-{
-    
-    if (slot == null)
+    private void RegisterSceneDraggables()
     {
-        Debug.LogWarning("[MiniGameController] Slot nulo!");
-        return;
+        var sceneDraggables = FindObjectsByType<DraggablePrefab>(FindObjectsSortMode.None);
+
+        foreach (var drag in sceneDraggables)
+        {
+            drag.TargetSlots = targetSlots;
+            drag.MiniGameController = this;
+
+            Debug.Log($"[MiniGameController] Drag '{drag.name}' recebeu {targetSlots.Count} TargetSlots.");
+        }
+
+        Debug.Log($"[MiniGameController] Registrados {sceneDraggables.Length} DraggablePrefabs via FindObjectsByType.");
     }
 
-    Debug.Log($"[MiniGameController] _scoringStrategy é {(_scoringStrategy != null ? "não nulo" : "NULO")}");
+    public void ShowNPCReactions(ItemsSO[] items)
+    {
+        foreach (var npc in CharactersManager.Instance.npcs)
+        {
+            bool isFavorite = false;
+            foreach (var item in items)
+            {
+                if (npc.favoriteItems.Contains(item))
+                {
+                    isFavorite = true;
+                    break;
+                }
+            }
 
+            Debug.Log($"{npc.name} reage: {(isFavorite ? "FELIZ" : "TRISTE")}");
+        }
+    }
+
+    public void OnObjectDroppedInSlot(SlotDraggable slot, ItemsSO[] items)
+{
     if (_scoringStrategy != null)
     {
         _scoringStrategy.OnObjectDropped(slot, items);
-    } 
+    }
     else
     {
-        Debug.Log("[MiniGameController] Usando lógica padrão (ApplyPointsByTrait)");
         CharactersManager.Instance.ApplyPointsByTrait(items);
+        ShowNPCReactions(items); 
     }
 }
 }

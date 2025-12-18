@@ -8,7 +8,7 @@ public class SlotDraggable : MonoBehaviour
 {
     public Image outlineImage;    
     public AudioClip successSfx;
-    public float acceptDistance = 80f;
+    public float acceptDistance = 200f;
     private AudioSource audioSource;
     [Header("Dados opcionais p/ minigames específicos")]
     public int specialId;
@@ -21,6 +21,7 @@ public class SlotDraggable : MonoBehaviour
 
     public void OnSuccessfulDrop()
     {
+        Debug.Log($"[SlotDraggable] OnSuccessfulDrop em '{name}'");
         if (successSfx) audioSource.PlayOneShot(successSfx);
         if (outlineImage) StartCoroutine(FlashOutline());
     }

@@ -21,7 +21,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private bool isDragging;
 
     public List<SlotDraggable> TargetSlots { get; set; } = null;
-    public MiniGameController MiniGameController {get; set;}
+    public MiniGameController MiniGameController { get; set; }
 
     private IItemHolder _itemHolder;
 
@@ -58,82 +58,138 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (!isDragging) return;
 
-        transform.position = Mouse.current.position.ReadValue();
-        
-        var nearSlot = IsNearSlot();
-        if (nearSlot)
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
+
+        // Movimento usando o PointerEventData (funciona com input antigo e novo)
+        if (parentCanvas != null && parentCanvas.renderMode != RenderMode.WorldSpace)
         {
-            nearSlot.HighlightSlot(true);
+            // Canvas em Screen Space (Overlay ou Camera)
+            rectTransform.position = eventData.position;
         }
         else
         {
+            // World Space ou fallback
+            Camera cam = eventData.pressEventCamera ?? Camera.main;
+            if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                rectTransform,
+                eventData.position,
+                cam,
+                out var worldPos))
+            {
+                rectTransform.position = worldPos;
+            }
+        }
+
+        // Tenta achar o MiniGame3Scoring, se existir
+        var miniGame3 = MiniGameController != null
+            ? MiniGameController.GetComponent<MiniGame3Scoring>()
+            : null;
+
+        // Hover do isqueiro (só para minigame 3)
+        if (miniGame3 != null)
+        {
+            miniGame3.OnIsqueiroHover(true);
+        }
+
+        var nearSlot = IsNearSlot();
+        if (nearSlot != null)
+        {
+            nearSlot.HighlightSlot(true);
+
+            // Hover do slot (só para minigame 3)
+            if (miniGame3 != null)
+            {
+                miniGame3.OnSlotHover(nearSlot, true);
+            }
+        }
+        else if (TargetSlots != null)
+        {
             foreach (var slot in TargetSlots)
             {
-                slot.HighlightSlot(false);
+                if (slot != null)
+                {
+                    slot.HighlightSlot(false);
+
+                    // Remove hover dos slots (só para minigame 3)
+                    if (miniGame3 != null)
+                    {
+                        miniGame3.OnSlotHover(slot, false);
+                    }
+                }
             }
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
-{
-    isDragging = false;
-    canvasGroup.blocksRaycasts = true;
-    canvasGroup.alpha = 1f;
-
-    var nearSlot = IsNearSlot();
-    if (nearSlot)
     {
-        Debug.Log($"[DraggablePrefab] Slot detectado: {nearSlot.name}.");
+        isDragging = false;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.alpha = 1f;
 
-        Destroy(gameObject);
-        nearSlot.HighlightSlot(false);
+        var nearSlot = IsNearSlot();
+        Debug.Log($"[DraggablePrefab] OnEndDrag - nearSlot: {(nearSlot != null ? nearSlot.name : "NENHUM")}");
 
-        ItemsSO[] items = Array.Empty<ItemsSO>();
-        if (_itemHolder != null)
+        var miniGame3 = MiniGameController != null
+            ? MiniGameController.GetComponent<MiniGame3Scoring>()
+            : null;
+
+        // Remove hover do isqueiro (só minigame 3)
+        if (miniGame3 != null)
         {
-            items = _itemHolder.Items;
+            miniGame3.OnIsqueiroHover(false);
         }
 
-        if (MiniGameController != null)
+        if (nearSlot)
         {
-            MiniGameController.OnObjectDroppedInSlot(nearSlot, items);
-        }
-        else
-        {
-            if (items.Length > 0)
+            nearSlot.HighlightSlot(false);
+
+            // Remove hover do slot (só minigame 3)
+            if (miniGame3 != null)
             {
-                CharactersManager.Instance.ApplyPointsByTrait(items);
+                miniGame3.OnSlotHover(nearSlot, false);
             }
 
+            // CASO ESPECIAL: Minigame 3
+            if (miniGame3 != null)
+            {
+                // Deixa o fluxo visual/pontuação/confirmar na mão do MiniGame3Scoring
+                miniGame3.OnSlotSelected(nearSlot);
+                return; // NÃO destrói o draggable aqui
+            }
+
+            // CASO PADRÃO: qualquer outro minigame
+            nearSlot.OnSuccessfulDrop();
+            
+            if (MiniGameController != null && _itemHolder != null)
+            {
+                MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
+            }
+            else if (_itemHolder != null)
+            {
+                CharactersManager.Instance.ApplyPointsByTrait(_itemHolder.Items);
+            }
+
+            Destroy(gameObject);
+            return;
         }
 
-        return;
-    }
-    else
-    {
-        Debug.Log($"[DraggablePrefab] Nenhum slot detectado perto de {gameObject.name}.");
+        transform.DOScale(Vector2.one, 0.25f);
     }
 
-    transform.DOScale(Vector2.one, 0.25f);
-}
     public SlotDraggable IsNearSlot()
-{
-    if (TargetSlots == null)
     {
+        if (TargetSlots == null || TargetSlots.Count == 0)
+            return null;
+
+        foreach (var slot in TargetSlots)
+        {
+            if (slot == null) continue;
+
+            float dist = Vector2.Distance(transform.position, slot.transform.position);
+            if (dist <= slot.acceptDistance)
+                return slot;
+        }
         return null;
     }
-
-    foreach (var slot in TargetSlots)
-    {
-        if (slot == null) continue;
-
-        float dist = Vector2.Distance(transform.position, slot.transform.position);
-
-        if (dist <= slot.acceptDistance)
-        {
-            return slot;
-        }
-    }
-    return null;
-}
 }
