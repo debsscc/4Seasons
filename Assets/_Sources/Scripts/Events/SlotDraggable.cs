@@ -11,6 +11,9 @@ public class SlotDraggable : MonoBehaviour
     public float acceptDistance = 200f;
     private AudioSource audioSource;
 
+    [HideInInspector]
+    public GameObject lastDroppedObject;
+
     [Header("Visual Feedback (Minigame 5)")]
     [Tooltip("Outline do NPC (hover e seleção)")]
     public UnityEngine.UI.Outline npcOutline;
@@ -24,6 +27,11 @@ public class SlotDraggable : MonoBehaviour
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
         if (outlineImage) outlineImage.enabled = false;
     }
+    public void OnSuccessfulDrop(GameObject droppedObject)
+    {
+        lastDroppedObject = droppedObject;
+        OnSuccessfulDrop();
+    }
 
     public void OnSuccessfulDrop()
     {
@@ -31,6 +39,7 @@ public class SlotDraggable : MonoBehaviour
         if (successSfx) audioSource.PlayOneShot(successSfx);
         if (outlineImage) StartCoroutine(FlashOutline());
     }
+
 
     System.Collections.IEnumerator FlashOutline()
     {

@@ -8,6 +8,9 @@ public class DrinksINFO : MonoBehaviour, IItemHolder
 
     public TraitsData traits;
 
+    [HideInInspector]
+    public bool isInBasket = false;
+
 public interface IItemHolder
 {
     public ItemsSO[] Items { get; }

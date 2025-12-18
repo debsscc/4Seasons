@@ -37,7 +37,7 @@ public class MiniGameController : MonoBehaviour
     }
 
     private void Start()
-    {
+    {   
         if (useSceneDraggables)
         {
             RegisterSceneDraggables();
@@ -59,6 +59,8 @@ public class MiniGameController : MonoBehaviour
         List<Transform> sp = SpawnPoints;
         int spawnPointsAmount = sp.Count;
 
+        var miniGame2 = GetComponent<MiniGame2Scoring>();
+
         for (int i = 0; i < draggablePrefabs.Count; i++)
         {
             if (i >= spawnPointsAmount)
@@ -70,7 +72,17 @@ public class MiniGameController : MonoBehaviour
             instance.MiniGameController = this;
 
             spawnedDraggables.Add(instance);
+
+            if (miniGame2 != null)
+        {
+            var drink = instance.GetComponent<DrinksINFO>();
+            if (drink != null)
+            {
+                miniGame2.RegisterDrink(drink);
+            }
         }
+        }
+
     }
 
     private void ClearDraggables(DraggablePrefab selectedOne)
@@ -94,12 +106,23 @@ public class MiniGameController : MonoBehaviour
     {
         var sceneDraggables = FindObjectsByType<DraggablePrefab>(FindObjectsSortMode.None);
 
+        var miniGame2 = GetComponent<MiniGame2Scoring>();
+
         foreach (var drag in sceneDraggables)
         {
             drag.TargetSlots = targetSlots;
             drag.MiniGameController = this;
 
             Debug.Log($"[MiniGameController] Drag '{drag.name}' recebeu {targetSlots.Count} TargetSlots.");
+
+            if (miniGame2 != null)
+        {
+            var drink = drag.GetComponent<DrinksINFO>();
+            if (drink != null)
+            {
+                miniGame2.RegisterDrink(drink);
+            }
+        }
         }
 
         Debug.Log($"[MiniGameController] Registrados {sceneDraggables.Length} DraggablePrefabs via FindObjectsByType.");
