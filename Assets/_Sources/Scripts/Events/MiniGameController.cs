@@ -30,6 +30,10 @@ public class MiniGameController : MonoBehaviour
     private void Awake()
     {
         _scoringStrategy = GetComponent<IMiniGameScoring>();
+        if (_scoringStrategy == null)
+        {
+            _scoringStrategy = FindFirstObjectByType<MonoBehaviour>() as IMiniGameScoring;
+        }
     }
 
     private void Start()

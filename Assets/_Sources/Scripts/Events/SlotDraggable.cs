@@ -10,7 +10,13 @@ public class SlotDraggable : MonoBehaviour
     public AudioClip successSfx;
     public float acceptDistance = 200f;
     private AudioSource audioSource;
-    [Header("Dados opcionais p/ minigames específicos")]
+
+    [Header("Visual Feedback (Minigame 5)")]
+    [Tooltip("Outline do NPC (hover e seleção)")]
+    public UnityEngine.UI.Outline npcOutline;
+
+
+    [Header("Dados opcionais")]
     public int specialId;
     public CharacterData associatedCharacter;
     private void Awake()

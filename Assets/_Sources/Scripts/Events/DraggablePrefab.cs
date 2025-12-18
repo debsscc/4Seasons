@@ -35,7 +35,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         parentCanvas = GetComponentInParent<Canvas>();
         if (parentCanvas == null)
-            Debug.LogError("DraggablePrefab precisa estar dentro de um Canvas!");
+            Debug.LogError("DraggablePrefab precisa ta dentro de um componente canvas");
 
         audioSource = gameObject.AddComponent<AudioSource>();
     }
@@ -61,15 +61,12 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (rectTransform == null)
             rectTransform = GetComponent<RectTransform>();
 
-        // Movimento usando o PointerEventData (funciona com input antigo e novo)
         if (parentCanvas != null && parentCanvas.renderMode != RenderMode.WorldSpace)
         {
-            // Canvas em Screen Space (Overlay ou Camera)
             rectTransform.position = eventData.position;
         }
         else
         {
-            // World Space ou fallback
             Camera cam = eventData.pressEventCamera ?? Camera.main;
             if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
                 rectTransform,
@@ -81,23 +78,44 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
         }
 
-        // Tenta achar o MiniGame3Scoring, se existir
+        var nearSlot = IsNearSlot();
+
+        // ----- MINIGAME 3  -----
         var miniGame3 = MiniGameController != null
             ? MiniGameController.GetComponent<MiniGame3Scoring>()
             : null;
 
-        // Hover do isqueiro (só para minigame 3)
         if (miniGame3 != null)
         {
             miniGame3.OnIsqueiroHover(true);
         }
+        // -----------------------------------------
 
-        var nearSlot = IsNearSlot();
+        // ----- MINIGAME 4.1  -----
+        var miniGame41 = MiniGameController != null
+            ? MiniGameController.GetComponent<MiniGame41Scoring>()
+            : null;
+
+        if (miniGame41 != null)
+        {
+            miniGame41.OnDragOverSlot(this, nearSlot);
+        }
+        
+        // ----- MINIGAME 5.1  -----
+        var miniGame5 = MiniGameController != null
+            ? MiniGameController.GetComponent<MiniGame5Scoring>()
+            : null;
+
+        if (miniGame5 != null)
+        {
+            miniGame5.OnDragOverSlot(this, nearSlot);
+        }
+
+
         if (nearSlot != null)
         {
             nearSlot.HighlightSlot(true);
 
-            // Hover do slot (só para minigame 3)
             if (miniGame3 != null)
             {
                 miniGame3.OnSlotHover(nearSlot, true);
@@ -111,7 +129,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 {
                     slot.HighlightSlot(false);
 
-                    // Remove hover dos slots (só para minigame 3)
                     if (miniGame3 != null)
                     {
                         miniGame3.OnSlotHover(slot, false);
@@ -128,13 +145,21 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 1f;
 
         var nearSlot = IsNearSlot();
-        Debug.Log($"[DraggablePrefab] OnEndDrag - nearSlot: {(nearSlot != null ? nearSlot.name : "NENHUM")}");
+        Debug.Log($"OnEndDrag - nearSlot: {(nearSlot != null ? nearSlot.name : "NONE")}");
 
         var miniGame3 = MiniGameController != null
             ? MiniGameController.GetComponent<MiniGame3Scoring>()
             : null;
 
-        // Remove hover do isqueiro (só minigame 3)
+        var miniGame41 = MiniGameController != null
+            ? MiniGameController.GetComponent<MiniGame41Scoring>()
+            : null;
+
+        var miniGame5 = MiniGameController != null
+            ? MiniGameController.GetComponent<MiniGame5Scoring>()
+            : null;
+
+        // Remove hover do isqueiro (minigame 3)
         if (miniGame3 != null)
         {
             miniGame3.OnIsqueiroHover(false);
@@ -144,21 +169,32 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             nearSlot.HighlightSlot(false);
 
-            // Remove hover do slot (só minigame 3)
+            // Remove hover do slot (minigame 3)
             if (miniGame3 != null)
             {
                 miniGame3.OnSlotHover(nearSlot, false);
             }
 
-            // CASO ESPECIAL: Minigame 3
+            // Minigame 3
             if (miniGame3 != null)
             {
-                // Deixa o fluxo visual/pontuação/confirmar na mão do MiniGame3Scoring
                 miniGame3.OnSlotSelected(nearSlot);
                 return; // NÃO destrói o draggable aqui
             }
 
-            // CASO PADRÃO: qualquer outro minigame
+            // Minigame 4.1
+            if (miniGame41 != null)
+            {
+                miniGame41.OnSlotDropped(nearSlot);
+                return; //jogador ainda pode mexer câmera antes de confirmar
+            }
+            //Minigame 5.1
+            if (miniGame5 != null)
+            {
+                miniGame5.OnSlotDropped(nearSlot);
+                return;
+            }
+            // Padronized
             nearSlot.OnSuccessfulDrop();
             
             if (MiniGameController != null && _itemHolder != null)
