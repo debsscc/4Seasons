@@ -14,7 +14,7 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     [Header("Actions Buttons")]
     public Button actionButton;
-    public TextMeshProUGUI actionButtonText; // <--- MUDOU AQUI
+    public TextMeshProUGUI actionButtonText;
 
     [Header("Feedback Modals")]
     public GameObject modalRobbed;
@@ -54,7 +54,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
             basketOutline.enabled = false;
         }
 
-        // Preenche automaticamente a lista de bebidas da cena
         if (drinkItems.Count == 0)
         {
             var allDrinks = FindObjectsByType<DrinksINFO>(FindObjectsSortMode.None);
@@ -62,14 +61,12 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
             Debug.Log($"[MiniGame2] {drinkItems.Count} bebidas encontradas na cena.");
         }
 
-        // Pega os NPCs do CharactersManager se não foram setados manualmente
         if (eventNpcs.Count == 0 && CharactersManager.Instance != null)
         {
             eventNpcs = CharactersManager.Instance.npcs;
             Debug.Log($"[MiniGame2] {eventNpcs.Count} NPCs carregados do CharactersManager.");
         }
 
-        // Pega o player do CharactersManager se não foi setado manualmente
         if (playerCharacter == null && CharactersManager.Instance != null)
         {
             playerCharacter = CharactersManager.Instance.playerCharacter;
@@ -346,7 +343,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     private DrinksINFO GetDrinkFromSlot(SlotDraggable slot)
     {
-        // Tenta pegar do lastDroppedObject
         if (slot.lastDroppedObject != null)
         {
             var drink = slot.lastDroppedObject.GetComponent<DrinksINFO>();

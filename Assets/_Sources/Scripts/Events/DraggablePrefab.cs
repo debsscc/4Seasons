@@ -180,7 +180,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             ? MiniGameController.GetComponent<MiniGame5Scoring>()
             : null;
 
-        // Remove hover do isqueiro (minigame 3)
         if (miniGame3 != null)
         {
             miniGame3.OnIsqueiroHover(false);

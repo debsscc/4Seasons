@@ -133,7 +133,6 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
             }
             else
             {
-                Debug.LogWarning("[MiniGame3] playerCharacter não foi atribuído no Inspector!");
             }
         }
         else if (slot.specialId == rejectId)

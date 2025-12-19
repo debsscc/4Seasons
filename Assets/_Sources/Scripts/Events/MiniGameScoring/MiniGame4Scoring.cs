@@ -96,7 +96,6 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         }
         if (_centeredSlot != _selectedSlot)
         {
-            Debug.LogWarning("[MiniGame4.1] Confirmar só é permitido quando o draggable estava centralizado no fogo.");
             return;
         }
 
@@ -162,7 +161,6 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         if (index >= 0 && index < modalsByID.Count && modalsByID[index] != null)
         {
             modalsByID[index].SetActive(true);
-            Debug.Log($"[MiniGame4.1] Modal ID {id} ativado.");
         }
         else
         {

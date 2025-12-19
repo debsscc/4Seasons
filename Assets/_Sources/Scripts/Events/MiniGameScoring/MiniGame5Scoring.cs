@@ -97,20 +97,17 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         if (_confirmed) return;
         if (slot == null) return;
 
-        // Desativa hover do slot anterior
         if (_hoveredSlot != null)
         {
             SetOutline(_hoveredSlot, false, hoverOutlineColor);
             _hoveredSlot = null;
         }
 
-        // Desselecionou o anterior (se houver)
         if (_selectedSlot != null)
         {
             SetOutline(_selectedSlot, false, selectedOutlineColor);
         }
 
-        // Seleciona o novo slot
         _selectedSlot = slot;
         SetOutline(_selectedSlot, true, selectedOutlineColor);
 
@@ -125,11 +122,6 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
 
         Debug.Log($"[MiniGame5] NPC selecionado: {slot.name} (char = {slot.associatedCharacter?.name ?? "null"}, specialId = {slot.specialId})");
     }
-
-    /// <summary>
-    /// Chamado quando o jogador clica no NPC selecionado (para desselecionar).
-    /// Você pode chamar isso via OnClick no próprio slot ou via Raycast.
-    /// </summary>
     public void OnSelectedNPCClicked()
     {
         if (_confirmed) return;
@@ -137,11 +129,9 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
 
         Debug.Log($"[MiniGame5] NPC desselecionado: {_selectedSlot.name}");
 
-        // Desativa outline do selecionado
         SetOutline(_selectedSlot, false, selectedOutlineColor);
         _selectedSlot = null;
 
-        // Mostra o ticket novamente
         if (ticketObject != null)
         {
             ticketObject.SetActive(true);
@@ -170,7 +160,6 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         // Aplica pontos
         ApplyScoring(_selectedSlot);
 
-        // Aguarda 6 segundos e mostra o modal
         StartCoroutine(ShowModalAfterDelay(_selectedSlot.specialId));
     }
 
@@ -203,7 +192,6 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
     {
         yield return new WaitForSeconds(waitBeforeModal);
 
-        // ID começa em 1, mas lista começa em 0
         int index = id - 1;
 
         if (index >= 0 && index < modalsByID.Count && modalsByID[index] != null)

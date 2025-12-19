@@ -12,21 +12,17 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
     public GameObject confirmButton;
 
     [Header("Feedbacks (Modais)")]
-    [Tooltip("Modal de feedback quando a escolha é considerada 'corajosa' (terror/suspense).")]
     public GameObject feedbackCorajoso;
 
-    [Tooltip("Modal de feedback quando a escolha NÃO é corajosa.")]
     public GameObject feedbackNaoCorajoso;
 
     [Header("Config de Gênero")]
     [Tooltip("Quais DVDs contam como Terror ou Suspense (corajosos).")]
     public ItemsSO[] terrorOuSuspenseItems;
 
-    // Estado interno: o que caiu no slot e está aguardando confirmação
     private SlotDraggable _pendingSlot;
     private ItemsSO[] _pendingItems;
 
-    // Chamado pelo MiniGameController assim que o DVD é dropado no slot
     public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
     {
         if (slot == null)
@@ -40,11 +36,9 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         Debug.Log($"[MiniGame1] Drop registrado no slot '{slot.name}'. Aguardando confirmação do jogador.");
 
-        // Garante que os modais começam desligados
         if (feedbackCorajoso != null)    feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
-        // Ativa o botão de confirmar
         if (confirmButton != null)
         {
             confirmButton.SetActive(true);
@@ -55,7 +49,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         }
     }
 
-    // Esse método deve ser chamado pelo OnClick do botão de confirmar
     public void OnConfirmButtonClicked()
     {
         if (_pendingItems == null || _pendingItems.Length == 0)
@@ -71,20 +64,14 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         bool escolheuCorajoso = ApplyScores(_pendingItems);
 
-        // (Opcional) Mostrar reações dos NPCs, se você quiser manter:
         if (miniGameController != null)
         {
             miniGameController.ShowNPCReactions(_pendingItems);
         }
 
-        // Mostra o modal correto
         ShowFeedbackModal(escolheuCorajoso);
     }
 
-    /// <summary>
-    /// Aplica TODAS as regras de pontuação e retorna true se pelo menos
-    /// um dos itens for considerado "corajoso" (terror/suspense).
-    /// </summary>
     private bool ApplyScores(ItemsSO[] items)
     {
         var charsManager = CharactersManager.Instance;
@@ -124,25 +111,20 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             Debug.Log($"[MiniGame1][NPC] {npc.name}: {antes} → {npc.RelationshipScore} (Δ {delta})");
         }
 
-        // ------------- Protagonista (pontuação própria) -------------
         var player = charsManager.playerCharacter;
         if (player != null)
         {
             int deltaSelf = 0;
 
-            // Favorito da protagonista
             bool escolheuFavoritoSelf = items.Any(i => player.favoriteItems.Contains(i));
             deltaSelf += escolheuFavoritoSelf ? 2 : -1;
 
-            // Traços da protagonista
             if (escolheuTerrorOuSuspense && player.traits.isFearful)
             {
-                // Terror/suspense e protagonista medrosa
                 deltaSelf += -2;
             }
             else if (!escolheuTerrorOuSuspense && player.traits.isFearful)
             {
-                // Não é terror/suspense e protagonista medrosa
                 deltaSelf += +3;
             }
 
@@ -160,7 +142,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
     private void ShowFeedbackModal(bool escolheuCorajoso)
     {
-        // Desliga ambos antes de ligar o correto
         if (feedbackCorajoso != null)    feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
