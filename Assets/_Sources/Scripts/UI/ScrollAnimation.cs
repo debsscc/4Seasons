@@ -6,8 +6,8 @@ public class ScrollAnimation : MonoBehaviour
 {
     public Action OnScrollFinished; 
 
-    public float scrollSpeed = 50f; //game designer pode alterar
-    public float scrollDuration = 20f; // game designer pode alterar
+    public float scrollSpeed = 50f; 
+    public float scrollDuration = 20f; 
 
     private RectTransform rectTransform;
 
@@ -39,16 +39,13 @@ public class ScrollAnimation : MonoBehaviour
             yield return null; 
         }
 
-        // Garante que o objeto chegue à posição final
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, finalY);
 
-        // A animação terminou! Notifica o CreditsManager.
         if (OnScrollFinished != null)
         {
             OnScrollFinished.Invoke();
         }
         
-        // Desativa o próprio objeto se não for mais necessário
         gameObject.SetActive(false); 
     }
 }

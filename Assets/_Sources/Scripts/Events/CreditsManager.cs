@@ -1,66 +1,85 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class CreditsManager : MonoBehaviour
 {
-    public ScrollAnimation scrollAnimation; 
-    public GameObject imagemAnuario;
-    public GameObject fadePrefab; 
+    [Header("Scrolls")]
+    public ScrollAnimation imagemAnuarioScroll;  
+    public ScrollAnimation creditosScroll;       
 
-    public float tempoDeEspera = 5f; 
-    public float duracaoDoFade = 1.5f; 
-    public string nomeDaCenaMenu = "MenuPrincipal"; 
+    [Header("Referências")]
+    public GameObject imagemAnuario;         
+    public GameObject fadePrefab;
+
+    [Header("Config")]
+    public float duracaoDoFade = 1.5f;
+    public string nomeDaCenaMenu = "MenuPrincipal";
 
     private FadeController fadeControllerInstance;
 
     void Start()
     {
         if (imagemAnuario != null) imagemAnuario.SetActive(false);
-        if (scrollAnimation != null) scrollAnimation.gameObject.SetActive(false);
+        if (imagemAnuarioScroll != null) imagemAnuarioScroll.gameObject.SetActive(false);
+        if (creditosScroll != null) creditosScroll.gameObject.SetActive(false);
+
         IniciarSequenciaDeCreditos();
     }
-    
+
     public void IniciarSequenciaDeCreditos()
     {
-
-        if (scrollAnimation != null)
+        // 1) Quando o SCROLL da imagem acabar, começa o SCROLL dos créditos
+        if (imagemAnuarioScroll != null)
         {
-            scrollAnimation.OnScrollFinished += IniciarTransicaoParaMenu; 
+            imagemAnuarioScroll.OnScrollFinished += OnScrollImagemFinalizado;
         }
-        if (imagemAnuario != null) 
+
+        if (creditosScroll != null)
+        {
+            creditosScroll.OnScrollFinished += IniciarTransicaoParaMenu;
+        }
+
+        if (imagemAnuario != null)
         {
             imagemAnuario.SetActive(true);
         }
-        StartCoroutine(SincronizarCreditos());
+
+        if (imagemAnuarioScroll != null)
+        {
+            imagemAnuarioScroll.StartScroll();
+        }
     }
 
-    private IEnumerator SincronizarCreditos()
+    private void OnScrollImagemFinalizado()
     {
-        yield return new WaitForSeconds(tempoDeEspera);
+        if (imagemAnuarioScroll != null)
+        {
+            imagemAnuarioScroll.OnScrollFinished -= OnScrollImagemFinalizado;
+        }
+
         if (imagemAnuario != null)
         {
             imagemAnuario.SetActive(false);
         }
 
-        if (scrollAnimation != null)
+        if (creditosScroll != null)
         {
-            scrollAnimation.StartScroll();
+            creditosScroll.StartScroll();
         }
-
     }
 
     public void IniciarTransicaoParaMenu()
     {
-        if (scrollAnimation != null)
+        if (creditosScroll != null)
         {
-            scrollAnimation.OnScrollFinished -= IniciarTransicaoParaMenu;
+            creditosScroll.OnScrollFinished -= IniciarTransicaoParaMenu;
         }
 
         if (fadePrefab != null)
         {
             GameObject fadeObject = Instantiate(fadePrefab);
-            DontDestroyOnLoad(fadeObject); 
+            DontDestroyOnLoad(fadeObject);
 
             fadeControllerInstance = fadeObject.GetComponent<FadeController>();
 
@@ -70,20 +89,18 @@ public class CreditsManager : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(nomeDaCenaMenu); // Fallback
+                SceneManager.LoadScene(nomeDaCenaMenu);
             }
         }
         else
         {
-            SceneManager.LoadScene(nomeDaCenaMenu); // Fallback
+            SceneManager.LoadScene(nomeDaCenaMenu);
         }
     }
 
     private IEnumerator TransicionarParaMenu()
     {
-
         yield return StartCoroutine(fadeControllerInstance.FadeOut(duracaoDoFade));
-
         SceneManager.LoadScene(nomeDaCenaMenu);
     }
 }
