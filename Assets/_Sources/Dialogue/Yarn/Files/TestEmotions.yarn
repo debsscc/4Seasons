@@ -1,0 +1,19 @@
+title: Test_Emotions
+---
+
+<<declare $current_character = "">>
+<<declare $current_emotion = "Normal">>
+
+// Seta a emoção antes de cada fala
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: Oi! Que bom te ver.
+
+<<set $current_emotion = "Happy">>
+Iris: Hoje eu tô muito animada!
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Worried">>
+Ian: Você viu a Melissa por aí?
+
+===
