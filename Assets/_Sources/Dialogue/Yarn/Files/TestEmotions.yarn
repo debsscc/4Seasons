@@ -16,4 +16,35 @@ Iris: Hoje eu tô muito animada!
 <<set $current_emotion = "Worried">>
 Ian: Você viu a Melissa por aí?
 
+<<jump EscolhaTeste>>
+
+===
+
+title: EscolhaTeste
+---
+
+Iris: E aí, o que você quer fazer?
+
+-> Ir para o shopping.
+    // consequência da opção 0
+    Iris: Boa, vamos gastar um pouco!
+    <<jump DepoisDaEscolha>>
+
+-> Ficar em casa.
+    // consequência da opção 1
+    Iris: Tudo bem, às vezes é bom descansar.
+    <<jump DepoisDaEscolha>>
+
+-> Ir pra praça.
+    // consequência da opção 2
+    Iris: Adoro a praça nessa época!
+    <<jump DepoisDaEscolha>>
+
+===
+
+title: DepoisDaEscolha
+---
+
+Iris: Então tá combinado!
+
 ===
