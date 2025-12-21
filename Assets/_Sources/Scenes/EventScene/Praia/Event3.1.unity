@@ -274,6 +274,8 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 100
+  lastDroppedObject: {fileID: 0}
+  npcOutline: {fileID: 0}
   specialId: 1
   associatedCharacter: {fileID: 0}
 --- !u!114 &357284045
@@ -2603,6 +2605,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 969469935}
     m_Modifications:
+    - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 78ddb6d5177d4f84eae70af65c988781, type: 3}
     - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2867,6 +2873,8 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 80
+  lastDroppedObject: {fileID: 0}
+  npcOutline: {fileID: 0}
   specialId: 2
   associatedCharacter: {fileID: 0}
 --- !u!114 &1564191223

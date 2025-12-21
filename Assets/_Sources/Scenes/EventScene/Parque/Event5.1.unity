@@ -1260,6 +1260,7 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 80
+  lastDroppedObject: {fileID: 0}
   npcOutline: {fileID: 280532492}
   specialId: 3
   associatedCharacter: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
@@ -1740,6 +1741,7 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 80
+  lastDroppedObject: {fileID: 0}
   npcOutline: {fileID: 433474801}
   specialId: 2
   associatedCharacter: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
@@ -1850,6 +1852,7 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 80
+  lastDroppedObject: {fileID: 0}
   npcOutline: {fileID: 444157984}
   specialId: 4
   associatedCharacter: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
@@ -3220,6 +3223,7 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 80
+  lastDroppedObject: {fileID: 0}
   npcOutline: {fileID: 774446264}
   specialId: 5
   associatedCharacter: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
@@ -9718,6 +9722,7 @@ MonoBehaviour:
   outlineImage: {fileID: 0}
   successSfx: {fileID: 0}
   acceptDistance: 80
+  lastDroppedObject: {fileID: 0}
   npcOutline: {fileID: 2060857815}
   specialId: 0
   associatedCharacter: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
@@ -9732,7 +9737,7 @@ PrefabInstance:
     - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 511203189cbc98b4bb67cf8960dd310b, type: 3}
     - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1118.6959
