@@ -14,13 +14,13 @@ public class MapButton : MonoBehaviour
     [SerializeField] private Button mapButton;
     [SerializeField] public float waitTimer;
 
-    [Header("Map Scenes")]
-    [SerializeField] private string sceneName;
+    [Header("Map Data")]
+    [SerializeField] private MapData mapData;
     
     [Header("Selection Visual")]
     [SerializeField] private Outline outline; 
     
-    public event Action<MapButton, string> OnMapSelected;
+    public event Action<MapButton, MapData> OnMapSelected; // Mudou de string para MapData
     
     private bool isSelected = false;
 
@@ -49,11 +49,17 @@ public class MapButton : MonoBehaviour
     }
 
     public async void OnMapButtonClick()
-{
-    Debug.Log("Map Button Clicked: " + sceneName);
-    await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
-    OnMapSelected?.Invoke(this, sceneName);
-}
+    {
+        if (mapData == null)
+        {
+            Debug.LogError("MapData não está configurado no MapButton!");
+            return;
+        }
+
+        Debug.Log("Map Button Clicked: " + mapData.sceneName);
+        await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
+        OnMapSelected?.Invoke(this, mapData); // Passa o MapData, não string
+    }
     
     public void SetSelected(bool selected)
     {

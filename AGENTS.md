@@ -2,13 +2,13 @@
 - Project name: 4Seasons
 - Unity version: Unity 6000.2.10f1
 - Active scene:
-  - Name: Test_Dialogue
+  - Name: GameOverScene
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, UI_A, a
 - Active game object:
-  - Name: Dialogue System_1
+  - Name: TransitioningScreen
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

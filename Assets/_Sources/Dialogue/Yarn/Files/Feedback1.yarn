@@ -1,12 +1,89 @@
 ﻿title: Feedback_Corajoso_Event1
 ---
-Aqui você escolheu o resultado corajoso
-<<stop>>
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Happy">>
+Lucas: Foi tão legal, que bom que a gente viu esse.
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Excited">>
+Ian: Pois é, gostei também.
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Excited">>
+Ian: Aprendeu comigo a escolher um bom filme, né Brina?
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Happy">>
+Sabrina: Viu? Cê não é o único que sabe de filme
+
+<<set $current_character = "Melissa">>
+<<set $current_emotion = "Normal">>
+Melissa: Foi legal, mas podia ser mais empolgante.
+
+<<set $current_character = "Melissa">>
+<<set $current_emotion = "Normal">>
+Melissa: Próxima vez eu que escolho.
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Angry">>
+Lucas: Não não, você vai escolher um que dá medo!
+
+<<set $current_character = "Melissa">>
+<<set $current_emotion = "Happy">>
+Melissa: Tu pode segurar minha mão durante o filme.
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Normal">>
+Ian: Sendo um filme bom, você escolhe o que quiser.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Sad">>
+Sabrina: Só não algo super assustador.
+
+<<set $current_character = "Melissa">>
+<<set $current_emotion = "Happy">>
+Melissa: Fechou então! Próxima vez a gente vê um filme meu.
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Sad">>
+Lucas: Vou ter que me esconder embaixo das cobertas.
+
 ===
 
 title: Feedback_NCorajoso_Event1
 ---
-Aqui você não escolheu o resultado corajoso
-<<stop>>
-===
 
+<<set $current_character = "Melissa">>
+<<set $current_emotion = "Happy">>
+Melissa: Foi incrível! Ótima escolha, Sabrina!
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Excited">>
+Ian: Os efeitos especiais desse filme são muito bons!
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Sad">>
+Lucas: A gente podia ter visto um filme mais leve né gente?
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Desculpa Luke, mas o filme até que foi legal.
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Flirty">>
+Ian: Você apertou meu braço uma hora porque levou susto, sua medrosa!
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Surprised">>
+Sabrina: Eu não fiz isso! Eu não lembro, não aconteceu!
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Normal">>
+Lucas: Na próxima vamos ver algo mais tranquilo, por favor.
+
+<<set $current_character = "Melissa">>
+<<set $current_emotion = "Normal">>
+Melissa: A gente não assistindo Madre Mia pela milésima vez por mim tá tudo certo.
+
+===

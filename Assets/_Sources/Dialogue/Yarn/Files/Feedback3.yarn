@@ -1,22 +1,93 @@
 ﻿title: Feedback_Praia_1
 ---
-Narrator: Que bom que você aceitou um pega
--> Hm...
-    Narrator: Eu sei que vc queria .
--> é bem bão
-    Narrator: Hehe.
-    <<jump Feedback_Amigo3_Event5>>
-===
 
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Happy">>
+Sabrina: O que de pior pode acontecer?
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Tu vai ver que é de boa, só vai ficar mais relaxada.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Talvez falar umas besteiras, mas é legal.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Eu tô fazendo isso certo?
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Não, é assim, ó
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Happy">>
+Sabrina: Tá, acho que entendi.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: Eventualmente tu pega o jeito da coisa.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Como eu sei se bateu?
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Tu vai saber, confia em mim.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Shy">>
+Sabrina: Fico feliz de a gente estar fazendo isso juntas.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Eu também.
+
+===
 
 title: Feedback_Praia_2
 ---
-Narrator: E aí, curtiu a praia?
--> Sim
-    Narrator: Que bom!
--> Não
-    Narrator: Poxa, que pena.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Não me leva a mal, mas não é pra mim.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: Ei, tá de boa, não precisa se justificar pra mim. Eu entendo.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Como é?
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: Ah é legal.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: Tu se sente mais leve, parece que a cabeça desacelera um pouco.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Quem sabe algum dia eu não experimente.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Se quiser, eu tô aqui.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Não é um bicho de sete cabeças.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Shy">>
+Sabrina: Se eu for fumar, espero que seja contigo.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Fico feliz que tu confie em mim assim.
+
 ===
-
-
-//esqueço que alguém vai ler esses placeholder me perdoe to com sono digitando 

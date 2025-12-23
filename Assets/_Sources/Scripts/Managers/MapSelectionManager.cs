@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +8,15 @@ public class MapSelectionManager : MonoBehaviour
     public static MapSelectionManager Instance { get; private set; }
     
     [Header("Map Data")]
-    [SerializeField] private MapData[] allMaps;
+    public MapData[] allMaps;
     [SerializeField] private MapButton[] SceneButtons;
     private MapData[] availableMaps;
     private List<MapData> selectedMaps = new List<MapData>();
+    private MapButton currentSelectedButton;
+    private MapData pendingMap;
 
     [Header("UI")]
     [SerializeField] private GameObject confirmButtonGO;
-
-    [Header("Selection State")]
-    private MapButton currentSelectedButton;
-    private string pendingSceneName;
 
     private void Awake()
     {
@@ -33,22 +30,26 @@ public class MapSelectionManager : MonoBehaviour
             return;
         }
 
-        availableMaps = allMaps;
+        if (GameSessionManager.Instance != null)
+        {
+            availableMaps = allMaps
+                .Where(m => !GameSessionManager.Instance.IsCompleted(m))
+                .ToArray();
+        }
+        else
+        {
+            availableMaps = allMaps;
+        }
 
         if (confirmButtonGO != null)
-        {
             confirmButtonGO.SetActive(false);
-        }
     }
 
     private void OnEnable()
     {
-        Debug.Log("MapSelectionManager OnEnable");
         for (int i = 0; i < SceneButtons.Length; i++)
         {
             if (SceneButtons[i] == null) continue;
-            
-            Debug.Log("Subscribing to MapButton: " + SceneButtons[i].name);
             SceneButtons[i].OnMapSelected += OnMapButtonClicked;
         }
     }
@@ -62,20 +63,11 @@ public class MapSelectionManager : MonoBehaviour
         }
     }
 
-    public void OnMapButtonClicked(MapButton mapButton, string sceneName)
+    public void OnMapButtonClicked(MapButton mapButton, MapData mapData)
     {
-        Debug.Log($"OnMapButtonClicked: {sceneName} via {mapButton.name}");
-
-        var mapData = System.Array.Find(allMaps, map => map.sceneName == sceneName);
-        if (mapData == null)
-        {
-            Debug.LogWarning("MapData não encontrado para: " + sceneName);
-            return;
-        }
-
         if (!availableMaps.Contains(mapData))
         {
-            Debug.Log("Mapa já foi completado: " + sceneName);
+            Debug.Log("Mapa já foi completado: " + mapData.sceneName);
             return;
         }
 
@@ -84,49 +76,62 @@ public class MapSelectionManager : MonoBehaviour
 
         currentSelectedButton = mapButton;
         currentSelectedButton.SetSelected(true);
-        pendingSceneName = sceneName;
+        pendingMap = mapData;
 
         if (confirmButtonGO != null)
-        {
             confirmButtonGO.SetActive(true);
-        }
     }
 
     public string GetPendingSceneName()
     {
-        return pendingSceneName;
+        if (pendingMap != null)
+        {
+            return pendingMap.sceneName;
+        }
+        
+        return null;
     }
 
     public void ConfirmSelection()
     {
-        if (string.IsNullOrEmpty(pendingSceneName) || currentSelectedButton == null)
+        if (pendingMap == null || currentSelectedButton == null)
         {
-            Debug.LogWarning("MapSelectionManager: Nenhum mapa selecionado ao confirmar");
+            Debug.LogWarning("Nenhum mapa selecionado ao confirmar");
             return;
         }
 
-        Debug.Log($"MapSelectionManager: Confirmando seleção: {pendingSceneName}");
-        SelectMap(pendingSceneName);
+        Debug.Log($"Confirmando seleção: {pendingMap.sceneName}");
+
+        ScoreManager.Instancia?.ApplyScoreForMapSelection(pendingMap);
+
+        SelectMap(pendingMap);
     }
 
-    public void SelectMap(string sceneName)
+    public void SelectMap(MapData mapData)
     {
-        Debug.Log("Selecting Map: " + sceneName);
-        MapData mapData = System.Array.Find(allMaps, map => map.sceneName == sceneName);
         if (mapData == null) return;
         
         if (availableMaps.Contains(mapData))
         {
-            Debug.Log("Map is still in availableMaps list.");
-            ChangeSceneMap(mapData);
+            if (GameSessionManager.Instance != null)
+            {
+                GameSessionManager.Instance.SetCurrentMap(mapData);
+            }
+
             removeMapFromAvailable(mapData);
             AddMapToSelection(mapData);
-            return;
+            ChangeSceneMap(mapData);
         }
         else
         {
-            Debug.Log("Map has already been completed." + sceneName);
+            Debug.Log("Map already completed: " + mapData.sceneName);
         }
+    }
+
+    private void ChangeSceneMap(MapData mapData)
+    {
+        Debug.Log("Changing Scene to: " + mapData.sceneName);
+        SceneManager.LoadScene(mapData.sceneName);
     }
 
     public void removeMapFromAvailable(MapData mapData)
@@ -140,14 +145,7 @@ public class MapSelectionManager : MonoBehaviour
     {
         if (selectedMaps.Contains(mapData)) return;
         if (selectedMaps.Count >= 5) return;
-        
         selectedMaps.Add(mapData);
-    }
-
-    private void ChangeSceneMap(MapData mapData)
-    {
-        Debug.Log(">>> Changing Scene via MapSelectionManager to: " + mapData.sceneAsset.name);
-        SceneManager.LoadScene(mapData.sceneAsset.name);
     }
 
     public MapData[] GetSelectedMaps()

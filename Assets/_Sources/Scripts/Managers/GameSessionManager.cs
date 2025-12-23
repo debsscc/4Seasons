@@ -1,13 +1,15 @@
 using UnityEngine;
-
-// codigo p pesquisa.
+using System.Collections.Generic;
 
 public class GameSessionManager : MonoBehaviour
 {
     public static GameSessionManager Instance { get; private set; }
     
-    private MapData[] currentMapSequence;
-    private int currentMapIndex = 0;
+    private HashSet<MapData> completedMaps = new HashSet<MapData>();
+    private MapData currentMap;
+    
+    [Header("Map Selection Scene")]
+    [SerializeField] private string mapSelectionSceneName = "MapSelectionScene";
     
     private void Awake()
     {
@@ -15,6 +17,7 @@ public class GameSessionManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("GameSessionManager criado e persistente");
         }
         else
         {
@@ -22,41 +25,40 @@ public class GameSessionManager : MonoBehaviour
         }
     }
     
-    public void SetMapSequence(MapData[] sequence)
+    public void SetCurrentMap(MapData map)
     {
-        currentMapSequence = sequence;
-        currentMapIndex = 0;
+        currentMap = map;
+        Debug.Log($"GameSessionManager: Mapa atual = {map.sceneName}");
     }
     
     public MapData GetCurrentMap()
     {
-        if (currentMapSequence == null || currentMapIndex >= currentMapSequence.Length)
-            return null;
-            
-        return currentMapSequence[currentMapIndex];
+        return currentMap;
     }
     
-    public void CompleteCurrentMap()
+    public bool IsCompleted(MapData map)
     {
-        currentMapIndex++;
-        
-        if (currentMapIndex < currentMapSequence.Length)
+        return map != null && completedMaps.Contains(map);
+    }
+    
+    public void MarkCurrentMapAsCompleted()
+    {
+        if (currentMap != null)
         {
-            // Carrega o próximo mapa
-            UnityEngine.SceneManagement.SceneManager.LoadScene(
-                currentMapSequence[currentMapIndex].sceneName
-            );
+            completedMaps.Add(currentMap);
+            Debug.Log($"Mapa completado: {currentMap.sceneName}. Total completados: {completedMaps.Count}");
         }
         else
         {
-            // Todos os mapas completados
-            ReturnToMapSelection();
+            Debug.LogWarning("Tentou marcar mapa como completado, mas currentMap é null");
         }
     }
     
     public void ReturnToMapSelection()
     {
-        Destroy(gameObject);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MapSelectionScene");
+        Debug.Log("Voltando para cena de seleção de mapas...");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(mapSelectionSceneName);
     }
+
+    public IEnumerable<MapData> GetCompletedMaps() => completedMaps;
 }

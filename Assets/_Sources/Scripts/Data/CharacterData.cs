@@ -12,6 +12,7 @@ public class CharacterData : ScriptableObject
     [SerializeField] private int _relationshipScore;
 
     public List<ItemsSO> favoriteItems;
+    public MapData favoritePlace; 
     public TraitsData traits;
     public List<int> _relationshipTresholds;
 
