@@ -21,7 +21,7 @@ public enum LugarFavorito
     Casa,
     Shopping,
     Praia,
-    Parque,
+    Praca,
     ParqueDeDiversao
 }
 
