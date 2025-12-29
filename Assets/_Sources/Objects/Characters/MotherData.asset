@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MotherData
   m_EditorClassIdentifier: Assembly-CSharp::MotherData
   _initialRelationshipScore: 9
+  _maxRelationshipScore: 15
+  _relationshipScore: 9
   favoriteItems:
   - {fileID: 11400000, guid: fda602797eaea634888950379e772e38, type: 2}
   - {fileID: 11400000, guid: 0f1c3364bd77b1048a85ea27422a6b87, type: 2}
@@ -25,3 +27,4 @@ MonoBehaviour:
     isCautious: 1
     isLeader: 1
     isFollower: 0
+  _relationshipTresholds: 050000000d000000

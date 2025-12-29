@@ -1,35 +1,85 @@
-title: Feedback_Amigo_1
-position: -85,-336
+title: Feedback_Amigos_Event4
 ---
-Narrador: Que bom que você tirou foto do meu fogo de artifício!
--> Claro!
-    Narrador: Valeu!
--> Ah, foi sem querer
-    Narrador: Tudo bem, acontece.
+
+<<set $current_character = "Arabella">>
+<<set $current_emotion = "Happy">>
+Arabella: Deixa eu ver como ficou.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Happy">>
+Sabrina: Calma ai Bella!
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Tá abrindo a foto.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Olha só, ficou muito show.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: A câmera valorizou as cores.
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Happy">>
+Lucas: Pessoalmente era mais bonito, mas que bom que a gente tem registro.
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Happy">>
+Lucas: Eu adorei a foto.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Shy">>
+Sabrina: Ah, obrigada gente.
+
+<<set $current_character = "Arabella">>
+<<set $current_emotion = "Flirty">>
+Arabella: Logo logo cê pode me substituir como fotógrafa do grupo.
+
 ===
 
-title: Feedback_Amigo_2
-position: -85,-336
+title: Feedback_Player_Event4
 ---
-Narrador: E aí, curtiu os fogos de artifício?
--> Sim
-    Narrador: Que bom!
-===
 
-title: Feedback_Amigo_3
-position: -85,-336
----
-Narrador: Gostou da foto que tirei do seu fogo de artifício?
--> Sim
-    Narrador: Fico feliz que tenha gostado!
-===
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: E ai? Ficou boa?
 
-title: Feedback_Player
-position: -85,-336
----
-Narrador: Meu deus tirei uma foto do meu fogo de artifício!
--> Que legal!
-    Narrador: Sim, né?
--> Que foto feia
-    Narrador: Ah, que pena.
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Happy">>
+Lucas: É, deixa a gente ver.
+
+<<set $current_character = "Arabella">>
+<<set $current_emotion = "Happy">>
+Arabella: Po ficou bem daora.
+
+<<set $current_character = "Arabella">>
+<<set $current_emotion = "Flirty">>
+Arabella: Mas lógico que cê ia tirar foto do seu.
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Normal">>
+Lucas: Deixa ela, Arabella!
+
+<<set $current_character = "Lucas">>
+<<set $current_emotion = "Happy">>
+Lucas: A foto ficou muito incrível Brina, parabéns.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Flirty">>
+Iris: A Bella só tá com invejinha.
+
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Ficou bem legal mesmo.
+
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Happy">>
+Sabrina: É, ela não se aguenta, tem que me perturbar.
+
+<<set $current_character = "Arabella">>
+<<set $current_emotion = "Flirty">>
+Arabella: Olha quem fala.
+
 ===

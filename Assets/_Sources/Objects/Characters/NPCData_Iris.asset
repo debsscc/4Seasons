@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: NPCData_Iris
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   _initialRelationshipScore: 9
+  _maxRelationshipScore: 15
+  _relationshipScore: 9
   favoriteItems:
   - {fileID: 11400000, guid: 776759b684718914ba625cfccbb90ba9, type: 2}
   - {fileID: 11400000, guid: 82da496df044d594f866590aa9e12314, type: 2}
@@ -25,3 +27,4 @@ MonoBehaviour:
     isCautious: 0
     isLeader: 0
     isFollower: 1
+  _relationshipTresholds: 050000000d000000

@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: 'drinkTypes.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 92c0609ca2aae1647855ab3038e0e32b, type: 2}
+    - target: {fileID: 284332891345676577, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 284332891345676577, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1568875060517252123, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -62,11 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 140
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 140
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,0 +1,50 @@
+title: Variables_Yarn
+---
+
+<<declare $current_character = "">>
+<<declare $current_emotion = "Normal">>
+
+// Seta a emoção antes de cada fala
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Normal">>
+Iris: Oi! Que bom te ver.
+
+<<set $current_emotion = "Happy">>
+Iris: Hoje eu tô muito animada!
+
+<<set $current_character = "Ian">>
+<<set $current_emotion = "Worried">>
+Ian: Você viu a Melissa por aí?
+
+<<jump EscolhaTeste>>
+
+===
+
+title: EscolhaTeste
+---
+
+Iris: E aí, o que você quer fazer?
+
+-> Ir para o shopping.
+    // consequência da opção 0
+    Iris: Boa, vamos gastar um pouco!
+    <<jump DepoisDaEscolha>>
+
+-> Ficar em casa.
+    // consequência da opção 1
+    Iris: Tudo bem, às vezes é bom descansar.
+    <<jump DepoisDaEscolha>>
+
+-> Ir pra praça.
+    // consequência da opção 2
+    Iris: Adoro a praça nessa época!
+    <<jump DepoisDaEscolha>>
+
+===
+
+title: DepoisDaEscolha
+---
+
+Iris: Então tá combinado!
+
+===

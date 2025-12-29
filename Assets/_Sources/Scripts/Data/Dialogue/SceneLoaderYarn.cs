@@ -24,7 +24,7 @@ public class SceneLoaderYarn : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner NÃO encontrado!");
+            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner Nï¿½O encontrado!");
         }
     }
 
@@ -35,10 +35,10 @@ public class SceneLoaderYarn : MonoBehaviour
     }
 
     void OnDialogueComplete()
-    {
+    {   
         if (!string.IsNullOrEmpty(sceneToLoad))
-            SceneManager.LoadScene(sceneToLoad);
+            SceneTransition.Instance.ChangeScene(sceneToLoad);
         else
             Debug.LogWarning("[SceneOnDialogueComplete] sceneToLoad vazio.");
-    }
+    }   
 }

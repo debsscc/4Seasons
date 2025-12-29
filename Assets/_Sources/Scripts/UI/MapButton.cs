@@ -1,13 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using Sirenix.OdinInspector;
+using Cysharp.Threading.Tasks;
 using System;
-
-
-//o botao so leva o nome dos locais
+using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class MapButton : MonoBehaviour
 {
@@ -15,23 +12,72 @@ public class MapButton : MonoBehaviour
     [SerializeField] private Image mapIcon;
     [SerializeField] private TMP_Text mapNameText;
     [SerializeField] private Button mapButton;
+    [SerializeField] public float waitTimer;
+
+    [Header("Map Data")]
+    [SerializeField] private MapData mapData;
     
-    [Header("Map Scenes")]
-    //[ValueDropdown ("GetSceneNames")] //completar
-    [SerializeField] private string sceneName;
-    public event Action<string> OnMapSelected;
+    [Header("Selection Visual")]
+    [SerializeField] private Outline outline; 
     
-    private void Start()
+    public event Action<MapButton, MapData> OnMapSelected; // Mudou de string para MapData
+    
+    private bool isSelected = false;
+
+    private void Awake()
     {
-        if (mapButton == null)
-            mapButton = GetComponent<Button>();
-            
-        mapButton.onClick.AddListener(OnMapButtonClick);
+        if (outline == null)
+            outline = GetComponent<Outline>();
+        
+        SetSelected(false);
     }
 
-    public void OnMapButtonClick()
+    public void PointerEnterFeedback()
     {
-        Debug.Log("Map Button Clicked: " + sceneName);
-        OnMapSelected?.Invoke(sceneName);
+        if (!isSelected)
+        {
+            transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+        }
+    }
+
+    public void PointerOutFeedback()
+    {
+        if (!isSelected)
+        {
+            transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+        }
+    }
+
+    public async void OnMapButtonClick()
+    {
+        if (mapData == null)
+        {
+            Debug.LogError("MapData não está configurado no MapButton!");
+            return;
+        }
+
+        Debug.Log("Map Button Clicked: " + mapData.sceneName);
+        await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
+        OnMapSelected?.Invoke(this, mapData); // Passa o MapData, não string
+    }
+    
+    public void SetSelected(bool selected)
+    {
+        isSelected = selected;
+        
+        if (outline != null)
+        {
+            outline.enabled = selected;
+            
+            if (selected)
+            {
+                outline.effectColor = Color.white;
+                transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+            }
+            else
+            {
+                transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+            }
+        }
     }
 }

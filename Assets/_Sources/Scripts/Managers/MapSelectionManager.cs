@@ -1,99 +1,157 @@
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using System.Linq;
-
-//permitir ir pra cena, tranca os que ja foram completados
-//troca de cena e mantém o controle do progresso do jogador no mapa
 
 public class MapSelectionManager : MonoBehaviour
 {
     public static MapSelectionManager Instance { get; private set; }
     
     [Header("Map Data")]
-    [SerializeField] private MapData[] allMaps;
+    public MapData[] allMaps;
     [SerializeField] private MapButton[] SceneButtons;
     private MapData[] availableMaps;
     private List<MapData> selectedMaps = new List<MapData>();
-    
+    private MapButton currentSelectedButton;
+    private MapData pendingMap;
+
+    [Header("UI")]
+    [SerializeField] private GameObject confirmButtonGO;
+
     private void Awake()
     {
         Debug.Log("MapSelectionManager Awake");
         if (Instance == null)
         {
-            Debug.Log("Setting Instance");
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.Log("Destroying duplicate MapSelectionManager");
-            //Destroy(gameObject);
-        }
-        availableMaps = allMaps;
-    }
-    
-    public void SelectMap(string sceneName)
-    {
-        Debug.Log("Selecting Map: " + sceneName);
-        MapData mapData = System.Array.Find(allMaps, map => map.sceneName == sceneName);
-        if (mapData == null) return;
-        
-        if (availableMaps.Contains(mapData))
-        {
-            Debug.Log("Map is still in availableMaps list.");
-            ChangeSceneMap(mapData);
-            removeMapFromAvailable(mapData);
-            AddMapToSelection(mapData);
             return;
         }
+
+        if (GameSessionManager.Instance != null)
+        {
+            availableMaps = allMaps
+                .Where(m => !GameSessionManager.Instance.IsCompleted(m))
+                .ToArray();
+        }
         else
         {
-            Debug.Log("Map has already been completed." + sceneName);
+            availableMaps = allMaps;
         }
-    }
-    public void removeMapFromAvailable(MapData mapData)
-    {
-        List<MapData> tempList = new List<MapData>(availableMaps);
-        tempList.Remove(mapData);
-        availableMaps = tempList.ToArray();
-    }
-    private void AddMapToSelection(MapData mapData)
-    {
-        if (selectedMaps.Contains(mapData)) return;
-        if (selectedMaps.Count >= 5) return;
-        
-        selectedMaps.Add(mapData);
-    }
-    private void ChangeSceneMap(MapData mapData)
-    {
-        Debug.Log("Changing Scene to: " + mapData.sceneName);
-        SceneManager.LoadScene(mapData.sceneAsset.name);
+
+        if (confirmButtonGO != null)
+            confirmButtonGO.SetActive(false);
     }
 
     private void OnEnable()
     {
-        Debug.Log("MapSelectionManager OnEnable");
         for (int i = 0; i < SceneButtons.Length; i++)
         {
-            Debug.Log("Subscribing to MapButton: " + SceneButtons[i].name);
-            SceneButtons[i].OnMapSelected += SelectMap;
+            if (SceneButtons[i] == null) continue;
+            SceneButtons[i].OnMapSelected += OnMapButtonClicked;
         }
     }
+
     private void OnDisable()
     {
-      for (int i = 0; i < SceneButtons.Length; i++)
+        for (int i = 0; i < SceneButtons.Length; i++)
         {
-            SceneButtons[i].OnMapSelected -= SelectMap;
-        }  
+            if (SceneButtons[i] == null) continue;
+            SceneButtons[i].OnMapSelected -= OnMapButtonClicked;
+        }
+    }
+
+    public void OnMapButtonClicked(MapButton mapButton, MapData mapData)
+    {
+        if (!availableMaps.Contains(mapData))
+        {
+            Debug.Log("Mapa já foi completado: " + mapData.sceneName);
+            return;
+        }
+
+        if (currentSelectedButton != null && currentSelectedButton != mapButton)
+            currentSelectedButton.SetSelected(false);
+
+        currentSelectedButton = mapButton;
+        currentSelectedButton.SetSelected(true);
+        pendingMap = mapData;
+
+        if (confirmButtonGO != null)
+            confirmButtonGO.SetActive(true);
+    }
+
+    public string GetPendingSceneName()
+    {
+        if (pendingMap != null)
+        {
+            return pendingMap.sceneName;
+        }
+        
+        return null;
+    }
+
+    public void ConfirmSelection()
+    {
+        if (pendingMap == null || currentSelectedButton == null)
+        {
+            Debug.LogWarning("Nenhum mapa selecionado ao confirmar");
+            return;
+        }
+
+        Debug.Log($"Confirmando seleção: {pendingMap.sceneName}");
+
+        ScoreManager.Instancia?.ApplyScoreForMapSelection(pendingMap);
+
+        SelectMap(pendingMap);
+    }
+
+    public void SelectMap(MapData mapData)
+    {
+        if (mapData == null) return;
+        
+        if (availableMaps.Contains(mapData))
+        {
+            if (GameSessionManager.Instance != null)
+            {
+                GameSessionManager.Instance.SetCurrentMap(mapData);
+            }
+
+            removeMapFromAvailable(mapData);
+            AddMapToSelection(mapData);
+            ChangeSceneMap(mapData);
+        }
+        else
+        {
+            Debug.Log("Map already completed: " + mapData.sceneName);
+        }
+    }
+
+    private void ChangeSceneMap(MapData mapData)
+    {
+        Debug.Log("Changing Scene to: " + mapData.sceneName);
+        SceneManager.LoadScene(mapData.sceneName);
+    }
+
+    public void removeMapFromAvailable(MapData mapData)
+    {
+        var tempList = new List<MapData>(availableMaps);
+        tempList.Remove(mapData);
+        availableMaps = tempList.ToArray();
+    }
+
+    private void AddMapToSelection(MapData mapData)
+    {
+        if (selectedMaps.Contains(mapData)) return;
+        if (selectedMaps.Count >= 5) return;
+        selectedMaps.Add(mapData);
     }
 
     public MapData[] GetSelectedMaps()
     {
         MapData[] result = new MapData[3];
-        for (int i = 0; i < selectedMaps.Count; i++)
+        for (int i = 0; i < selectedMaps.Count && i < result.Length; i++)
         {
             result[i] = selectedMaps[i];
         }

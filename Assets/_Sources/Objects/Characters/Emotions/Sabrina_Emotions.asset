@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e031a74961fd11a42b0bb934466c524c, type: 3}
+  m_Name: Sabrina_Emotions
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterEmotionProfile
+  characterId: Sabrina
+  emotions:
+  - type: 0
+    useAnimation: 0
+    sprite: {fileID: 21300000, guid: dfc6bd7005ea7404e8e4d0da4623e5d9, type: 3}
+    animationClip: {fileID: 0}
+  - type: 1
+    useAnimation: 0
+    sprite: {fileID: 0}
+    animationClip: {fileID: 0}
+  - type: 2
+    useAnimation: 0
+    sprite: {fileID: 0}
+    animationClip: {fileID: 0}
+  - type: 3
+    useAnimation: 0
+    sprite: {fileID: 0}
+    animationClip: {fileID: 0}
+  - type: 4
+    useAnimation: 0
+    sprite: {fileID: 0}
+    animationClip: {fileID: 0}
+  - type: 8
+    useAnimation: 0
+    sprite: {fileID: 0}
+    animationClip: {fileID: 0}

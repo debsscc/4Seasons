@@ -14,10 +14,8 @@ public class NamedClip
     public bool Loop = false;
 }
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance;
-
     [FoldoutGroup("Sources"), ReadOnly]
     public AudioSource MusicSource;
 
@@ -49,20 +47,13 @@ public class AudioManager : MonoBehaviour
     [FoldoutGroup("Libraries")]
     public List<NamedClip> SFXLibrary = new();
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         AutoSetup();
         ApplyMixer();
     }
+
+
     [FoldoutGroup("Setup Tools")]
     [Button("Gerar AudioSources Automaticamente")]
     private void AutoSetup()
@@ -105,14 +96,14 @@ public class AudioManager : MonoBehaviour
     public string DebugMusic;
 
     [FoldoutGroup("Debug")]
-    [Button("Tocar Música (Debug)")]
+    [Button("Tocar Mï¿½sica (Debug)")]
     private void DebugPlayMusic()
     {
         PlayMusic(DebugMusic);
     }
 
     [FoldoutGroup("Debug")]
-    [Button("Pausar/Despausar Música")]
+    [Button("Pausar/Despausar Mï¿½sica")]
     private void DebugTogglePause()
     {
         if (MusicSource.isPlaying)
@@ -122,7 +113,7 @@ public class AudioManager : MonoBehaviour
     }
 
     [FoldoutGroup("Debug")]
-    [Button("Parar Música")]
+    [Button("Parar Mï¿½sica")]
     private void DebugStopMusic()
     {
         MusicSource.Stop();
@@ -163,7 +154,7 @@ public class AudioManager : MonoBehaviour
         var entry = FindClip(MusicLibrary, name);
         if (entry == null || entry.Clip == null)
         {
-            Debug.LogWarning($"[AudioManager] Música '{name}' não encontrada.");
+            Debug.LogWarning($"[AudioManager] Mï¿½sica '{name}' nï¿½o encontrada.");
             return;
         }
 
@@ -178,7 +169,7 @@ public class AudioManager : MonoBehaviour
         var entry = FindClip(SFXLibrary, name);
         if (entry == null || entry.Clip == null)
         {
-            Debug.LogWarning($"[AudioManager] SFX '{name}' não encontrado.");
+            Debug.LogWarning($"[AudioManager] SFX '{name}' nï¿½o encontrado.");
             return;
         }
 
@@ -190,7 +181,7 @@ public class AudioManager : MonoBehaviour
         var entry = FindClip(SFXLibrary, name);
         if (entry == null || entry.Clip == null)
         {
-            Debug.LogWarning($"[AudioManager] UI '{name}' não encontrado.");
+            Debug.LogWarning($"[AudioManager] UI '{name}' nï¿½o encontrado.");
             return;
         }
 

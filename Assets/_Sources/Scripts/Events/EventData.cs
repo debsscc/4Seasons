@@ -5,7 +5,6 @@ using Yarn.Unity;
 public class EventData : ScriptableObject
 {
     public string EventID;
-    // public NPCData mainNPC;
     public YarnProject yarnFile;
 
     public int selfPointsChange;
@@ -15,6 +14,5 @@ public class EventData : ScriptableObject
 [System.Serializable]
 public class RelationshipImpactNPC
 {
-    // public NPCData npc;
     public int pointsChange;
 }

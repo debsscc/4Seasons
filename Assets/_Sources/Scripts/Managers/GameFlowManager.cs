@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameFlowManager : Singleton<GameFlowManager>
 {
@@ -19,12 +20,33 @@ public class GameFlowManager : Singleton<GameFlowManager>
         currentEventIndex++;
         if (currentEventIndex >= currentSchedule.Count)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
+            // Mapa finalizado!
+            if (GameSessionManager.Instance != null)
+            {
+                GameSessionManager.Instance.MarkCurrentMapAsCompleted();
+            }
+            
+            CheckForGameOver();
         }
         else
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("EventScene");
         }
-
+    }
+    private void CheckForGameOver()
+    {
+        if (MapSelectionManager.Instance == null) return;
+        
+        var totalMaps = MapSelectionManager.Instance.allMaps.Length;
+        var completedCount = GameSessionManager.Instance.GetCompletedMaps().Count();
+        
+        if (completedCount >= totalMaps)
+        {
+            SceneTransition.Instance.ChangeScene("GameOverScene");
+        }
+        else
+        {
+            GameSessionManager.Instance.ReturnToMapSelection();
+        }
     }
 }

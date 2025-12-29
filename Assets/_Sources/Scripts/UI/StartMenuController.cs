@@ -5,9 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuController : MonoBehaviour
 {
+    public GameObject optionsModal;
+
+    void Start()
+    {
+        if (optionsModal != null) {
+            optionsModal.SetActive(false);
+        }
+    }
+
     public void OnStartClick()
     {
-        SceneManager.LoadScene("MapSeletor");
+        SceneTransition.Instance.ChangeScene("MapSeletor");
+    }
+    public void onOptionsClick()
+    {
+        if (optionsModal != null)
+        {
+            optionsModal.SetActive(true);
+        }
+    }
+    public void onCloseOptionsModal()
+    {
+        if (optionsModal != null)
+        {
+            optionsModal.SetActive(false);
+        }
     }
 
     public void onExitClick()
@@ -18,5 +41,3 @@ public class StartMenuController : MonoBehaviour
         Application.Quit();
     }
 }
-
-
