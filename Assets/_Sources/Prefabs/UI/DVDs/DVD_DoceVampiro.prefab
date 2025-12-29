@@ -32,13 +32,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: DVD_DoceVampiro
       objectReference: {fileID: 0}
+    - target: {fileID: 2963449268658772561, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: genre
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: dvdGenres.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: 'dvdGenres.Array.data[0]'
@@ -47,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 7028068766902073871, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: 'dvdGenres.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5ff8438415546544a9b89e8a751e9f87, type: 2}
+      objectReference: {fileID: 11400000, guid: d78897a353719b040b94829b0ce3d332, type: 2}
     - target: {fileID: 8064730221010307260, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
