@@ -29,6 +29,12 @@ public class SceneTransition : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine((DelayedFadeIn()));
+    }
+
+        IEnumerator DelayedFadeIn()
+    {
+        yield return null; // espera um frame
         StartCoroutine(FadeIn());
     }
 
