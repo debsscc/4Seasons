@@ -4,153 +4,110 @@ title: Praia
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Cara, eu adoro a praia, a vibe aqui é muito boa, tu não acha?
-
-// OPÇÃO 1
 -> Sabrina: Não sou a maior fã.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
-    Sabrina: Não sou a maior fã.
-
-// OPÇÃO 2
 -> Sabrina: Pior que eu gosto bastante.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
-    Sabrina: Pior que eu gosto bastante.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
 Iris: Eu sinto que sou uma só com o mar às vezes, bizarro.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: É meio estranho, mas acho que te entendo.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Tem uma beleza tão grande na natureza.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Tipo é muito incrível como tudo se conecta e funciona.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: Cê tá bem, Íris? Que papo é esse.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
 Iris: Tô pensativa nos últimos dias.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
 Iris: A bruxaria vem me deixando mais introspectiva, sabe?
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
 Iris: É como se eu estivesse mais atenta às coisas ao meu redor também.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: Faz quanto tempo mesmo que cê tá praticando?
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Um ano e pouquinho, comecei só de curiosa, mas faz sentido.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Parece que eu finalmente achei meu lugar no mundo.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: Como assim?
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Sad">>
 Iris: Difícil de explicar, mas eu me sinto muito deslocada.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
 Iris: Parece que agora eu vejo que o universo é grande demais.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Ficou mais leve, sinto que eu posso só existir sem tanta pressão.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
 Sabrina: Queria conseguir me sentir assim, mas com a vida adulta chegando.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
 Sabrina: Acho impossível não sentir a pressão.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
 Sabrina: Como cê consegue?
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Eu não tô imune de inseguranças, Brina.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Só percebi que tem coisas que eu não controlo.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Que não vale a pena me desgastar a toa.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
 Sabrina: Cê fala como se fosse fácil.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
 Iris: Não é, mas a gente precisa ver as coisas mais leves.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
 Iris: Se a gente levar tudo à sério, fica doido.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Essa fase que a gente tá vivendo é difícil, mas a gente sobrevive.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: Tenho minhas dúvidas.
-
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: Cê não tá com medo não?
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Com certeza, mas quero acreditar que vai dar certo.
-
-// OPÇÃO 3
 -> Sabrina: É difícil se manter positiva.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Sad">>
-    Sabrina: É difícil se manter positiva.
-
-// OPÇÃO 4
 -> Sabrina: Uma hora tem que dar certo.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
-    Sabrina: Uma hora tem que dar certo.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Pra tudo se tem um jeito, Brina.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Por agora, vamo relaxar.
-
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
 Iris: Quer fumar um?
-
+<<stop>>
 ===

@@ -42,7 +42,7 @@ public class SliderSample : MonoBehaviour
         Image fillImage = _slider.fillRect?.GetComponent<Image>();
         if (fillImage == null)
         {
-            Debug.LogError("O Slider não possui um componente Image no Fill Rect. Verifique a configuração.");
+            Debug.LogError("O Slider nï¿½o possui um componente Image no Fill Rect. Verifique a configuraï¿½ï¿½o.");
             return;
         }
 
