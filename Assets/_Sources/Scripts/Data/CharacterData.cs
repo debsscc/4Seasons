@@ -9,7 +9,7 @@ public class CharacterData : ScriptableObject
     [SerializeField] public int _initialRelationshipScore = 10;
     [SerializeField] public int _maxRelationshipScore;
     [ShowInInspector, ReadOnly]
-    [SerializeField] private int _relationshipScore;
+    [SerializeField] private int _relationshipScore = 0;
 
     public List<ItemsSO> favoriteItems;
     public MapData favoritePlace; 
@@ -26,6 +26,11 @@ public class CharacterData : ScriptableObject
             _relationshipScore = value;
             OnRelationshipChanged?.Invoke(value);
         }
+    }
+
+    public void Onable()
+    {
+        _relationshipScore = _initialRelationshipScore;
     }
 }
 

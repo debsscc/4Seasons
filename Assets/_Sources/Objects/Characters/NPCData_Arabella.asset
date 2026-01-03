@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   _initialRelationshipScore: 9
   _maxRelationshipScore: 15
-  _relationshipScore: 9
+  _relationshipScore: 7
   favoriteItems:
   - {fileID: 11400000, guid: 5ff8438415546544a9b89e8a751e9f87, type: 2}
   - {fileID: 11400000, guid: 0f1c3364bd77b1048a85ea27422a6b87, type: 2}
+  favoritePlace: {fileID: 0}
   traits:
     isRebel: 1
     isCorrect: 0
