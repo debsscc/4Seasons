@@ -19,6 +19,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private AudioSource audioSource;
 
     private bool isDragging;
+    private SlotDraggable currentSlot; // Armazena o slot atual
 
     public List<SlotDraggable> TargetSlots { get; set; } = null;
     public MiniGameController MiniGameController { get; set; }
@@ -47,10 +48,9 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.blocksRaycasts = false;
 
         if (pickSfx) audioSource.PlayOneShot(pickSfx);
-        var miniGame2 = MiniGameController != null
-        ? MiniGameController.GetComponent<MiniGame2Scoring>()
-        : null;
 
+        // Verifica se o item está em um slot (para MiniGame2)
+        var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
         if (miniGame2 != null)
         {
             var drink = GetComponent<DrinksINFO>();
@@ -59,6 +59,9 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 miniGame2.OnDrinkRemovedFromBasket(drink);
             }
         }
+
+        // Armazena o slot atual (caso esteja dentro de um)
+        currentSlot = GetComponentInParent<SlotDraggable>();
 
         OnBeginDragEvent?.Invoke();
     }
@@ -88,47 +91,34 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
 
         var nearSlot = IsNearSlot();
-        // ----- MINIGAME 2  -----
-        var miniGame2 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame2Scoring>()
-            : null;
-        
+
+        // ----- MINIGAME 2 -----
+        var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
         if (miniGame2 != null)
         {
             miniGame2.OnDragOverSlot(this, nearSlot);
         }
 
-        // ----- MINIGAME 3  -----
-        var miniGame3 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame3Scoring>()
-            : null;
-
+        // ----- MINIGAME 3 -----
+        var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
         if (miniGame3 != null)
         {
             miniGame3.OnIsqueiroHover(true);
         }
-        // -----------------------------------------
 
-        // ----- MINIGAME 4.1  -----
-        var miniGame41 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame41Scoring>()
-            : null;
-
+        // ----- MINIGAME 4.1 -----
+        var miniGame41 = MiniGameController?.GetComponent<MiniGame41Scoring>();
         if (miniGame41 != null)
         {
             miniGame41.OnDragOverSlot(this, nearSlot);
         }
-        
-        // ----- MINIGAME 5.1  -----
-        var miniGame5 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame5Scoring>()
-            : null;
 
+        // ----- MINIGAME 5.1 -----
+        var miniGame5 = MiniGameController?.GetComponent<MiniGame5Scoring>();
         if (miniGame5 != null)
         {
             miniGame5.OnDragOverSlot(this, nearSlot);
         }
-
 
         if (nearSlot != null)
         {
@@ -164,21 +154,11 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var nearSlot = IsNearSlot();
         Debug.Log($"OnEndDrag - nearSlot: {(nearSlot != null ? nearSlot.name : "NONE")}");
 
-        var miniGame2 = MiniGameController != null 
-                ? MiniGameController.GetComponent<MiniGame2Scoring>()
-                : null;
-
-        var miniGame3 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame3Scoring>()
-            : null;
-
-        var miniGame41 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame41Scoring>()
-            : null;
-
-        var miniGame5 = MiniGameController != null
-            ? MiniGameController.GetComponent<MiniGame5Scoring>()
-            : null;
+        var miniGame1 = MiniGameController?.GetComponent<MiniGame1Scoring>();
+        var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
+        var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
+        var miniGame41 = MiniGameController?.GetComponent<MiniGame41Scoring>();
+        var miniGame5 = MiniGameController?.GetComponent<MiniGame5Scoring>();
 
         if (miniGame3 != null)
         {
@@ -199,36 +179,46 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             if (miniGame2 != null && nearSlot == miniGame2.basketSlot)
             {
                 nearSlot.lastDroppedObject = gameObject;
-
                 if (MiniGameController != null && _itemHolder != null)
                 {
                     MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
                 }
-                //dai não destroi o draggable, p se quiser, tirar da cesta 
                 return;
             }
+
             // Minigame 3
             if (miniGame3 != null)
             {
                 miniGame3.OnSlotSelected(nearSlot);
-                return; // NÃO destrói o draggable aqui
+                return;
             }
 
             // Minigame 4.1
             if (miniGame41 != null)
             {
                 miniGame41.OnSlotDropped(nearSlot);
-                return; //jogador ainda pode mexer câmera antes de confirmar
+                return;
             }
-            //Minigame 5.1
+
+            // Minigame 5.1
             if (miniGame5 != null)
             {
                 miniGame5.OnSlotDropped(nearSlot);
                 return;
             }
-            // Padronized
+
+            // Minigame 1
+            if (miniGame1 != null)
+            {
+                nearSlot.lastDroppedObject = gameObject; // Armazena o objeto no slot
+                if (MiniGameController != null && _itemHolder != null)
+                {
+                    MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
+                }
+                return; 
+            }
+
             nearSlot.OnSuccessfulDrop();
-            
             if (MiniGameController != null && _itemHolder != null)
             {
                 MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
@@ -239,7 +229,19 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
 
             Destroy(gameObject);
-            return;
+        }
+        else
+        {
+            if (currentSlot != null)
+            {
+                if (miniGame1 != null)
+                {
+                    miniGame1.OnItemRemovedFromSlot();
+                }
+
+                currentSlot.lastDroppedObject = null;
+                currentSlot = null;
+            }
         }
     }
 

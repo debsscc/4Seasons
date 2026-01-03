@@ -13,7 +13,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
     [Header("Feedbacks (Modais)")]
     public GameObject feedbackCorajoso;
-
     public GameObject feedbackNaoCorajoso;
 
     [Header("Config de Gênero")]
@@ -36,7 +35,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         Debug.Log($"[MiniGame1] Drop registrado no slot '{slot.name}'. Aguardando confirmação do jogador.");
 
-        if (feedbackCorajoso != null)    feedbackCorajoso.SetActive(false);
+        if (feedbackCorajoso != null) feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
         if (confirmButton != null)
@@ -47,6 +46,18 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         {
             Debug.LogWarning("[MiniGame1] confirmButton não foi atribuído no Inspector.");
         }
+    }
+    public void OnItemDraggedOutOfSlot()
+    {
+        _pendingSlot = null;
+        _pendingItems = null;
+
+        if (confirmButton != null)
+        {
+            confirmButton.SetActive(false);
+        }
+
+        Debug.Log("[MiniGame1] Item arrastado para fora do slot. Escolha cancelada.");
     }
 
     public void OnConfirmButtonClicked()
@@ -71,6 +82,19 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         ShowFeedbackModal(escolheuCorajoso);
     }
+
+    public void OnItemRemovedFromSlot()
+{
+    _pendingSlot = null;
+    _pendingItems = null;
+
+    if (confirmButton != null)
+    {
+        confirmButton.SetActive(false);
+    }
+
+    Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
+}
 
     private bool ApplyScores(ItemsSO[] items)
     {
@@ -142,7 +166,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
     private void ShowFeedbackModal(bool escolheuCorajoso)
     {
-        if (feedbackCorajoso != null)    feedbackCorajoso.SetActive(false);
+        if (feedbackCorajoso != null) feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
         if (escolheuCorajoso)

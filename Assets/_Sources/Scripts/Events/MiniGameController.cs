@@ -26,6 +26,7 @@ public class MiniGameController : MonoBehaviour
         : new List<Transform>();
 
     private IMiniGameScoring _scoringStrategy;
+    
 
     private void Awake()
     {

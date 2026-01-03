@@ -89,6 +89,10 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
         }
     }
 
+    public void OnItemRemovedFromSlot()
+    {
+    }
+
     public void OnConfirmButtonClicked()
     {
         if (selectedSlot == null) return;

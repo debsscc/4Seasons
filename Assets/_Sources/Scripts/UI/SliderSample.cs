@@ -35,7 +35,6 @@ public class SliderSample : MonoBehaviour
 
     void ChangeSliderValue(int newValue)
     {
-        Debug.Log($"ChangeSliderValue called with newValue: {newValue}");
         _slider.DOValue(newValue, 0.3f).SetEase(Ease.OutCubic);
         ApplyColorBasedOnValue(newValue);
     }
@@ -50,11 +49,6 @@ public class SliderSample : MonoBehaviour
             return;
         }
 
-        Debug.Log("Current relationship thresholds:");
-        for (int i = 0; i < _character._relationshipTresholds.Count; i++)
-        {
-            Debug.Log($"Threshold[{i}]: {_character._relationshipTresholds[i]}");
-        }
 
         for (int i = _character._relationshipTresholds.Count - 1; i >= 0; i--)
         {
@@ -68,8 +62,6 @@ public class SliderSample : MonoBehaviour
 
         int colorId = colorTresholds.Count - 1 - colorDenied;
         colorId = Mathf.Clamp(colorId, 0, colorTresholds.Count - 1);
-
-        Debug.Log($"Value: {value}, ColorId: {colorId}");
 
         _slider.fillRect.GetComponent<Image>().DOKill(); // Cancela tweens anteriores
         _slider.fillRect.GetComponent<Image>().DOColor(colorTresholds[colorId], 1f);

@@ -58,20 +58,21 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         {
             var allDrinks = FindObjectsByType<DrinksINFO>(FindObjectsSortMode.None);
             drinkItems.AddRange(allDrinks);
-            Debug.Log($"[MiniGame2] {drinkItems.Count} bebidas encontradas na cena.");
         }
 
         if (eventNpcs.Count == 0 && CharactersManager.Instance != null)
         {
             eventNpcs = CharactersManager.Instance.npcs;
-            Debug.Log($"[MiniGame2] {eventNpcs.Count} NPCs carregados do CharactersManager.");
         }
 
         if (playerCharacter == null && CharactersManager.Instance != null)
         {
             playerCharacter = CharactersManager.Instance.playerCharacter;
-            Debug.Log($"[MiniGame2] Player carregado do CharactersManager.");
         }
+    }
+
+        public void OnItemRemovedFromSlot()
+    {
     }
 
     public void OnDragOverSlot(DraggablePrefab draggable, SlotDraggable nearSlot)
@@ -166,11 +167,9 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
                 if (actionButtonText != null)
                 {
                     actionButtonText.text = _isStealing ? "ROUBAR" : "COMPRAR";
-                    Debug.Log($"[MiniGame2] Texto do botão setado para: {actionButtonText.text}");
                 }
                 else
                 {
-                    Debug.LogWarning("[MiniGame2] actionButtonText está NULL na hora de atualizar o texto.");
                 }
             }
         }
@@ -178,7 +177,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     private void OnActionButtonClicked()
     {
-        Debug.Log($"[MiniGame2] Botão clicado. Roubando? {_isStealing}");
         ApplyScoring();
         StartCoroutine(ShowModalAfterDelay());
     }
@@ -206,16 +204,12 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
                 chosenDrinks.Add(drink);
         }
 
-        Debug.Log($"[MiniGame2] Aplicando pontuação para {chosenDrinks.Count} bebidas escolhidas.");
-
-        // Aplica pontos para cada NPC
         foreach (var npc in eventNpcs)
         {
             if (npc == null) continue;
 
             int delta = 0;
 
-            // 1. Favoritos
             bool choseNpcFavorite = false;
             foreach (var drink in chosenDrinks)
             {
@@ -238,8 +232,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
             {
                 delta -= 1;
             }
-
-            // 2. Traços das bebidas
             foreach (var drink in chosenDrinks)
             {
                 bool drinkMatchesTrait = false;
@@ -254,8 +246,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
                 else
                     delta -= 1;
             }
-
-            // 3. Roubo x traço do NPC
             if (_isStealing)
             {
                 if (npc.traits.isRebel)
@@ -273,15 +263,11 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
             int before = npc.RelationshipScore;
             npc.RelationshipScore += delta;
-            Debug.Log($"[MiniGame2] NPC {npc.name}: {before} -> {npc.RelationshipScore} (delta {delta})");
         }
-
-        // Pontuação do PLAYER
         if (playerCharacter != null)
         {
             int selfDelta = 0;
 
-            // 1. Favorito do player
             bool chosePlayerFavorite = false;
             foreach (var drink in chosenDrinks)
             {
@@ -301,7 +287,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
             else
                 selfDelta -= 1;
 
-            // 2. Traço do player x bebida
             foreach (var drink in chosenDrinks)
             {
                 bool drinkMatchesTrait = false;
@@ -317,7 +302,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
                     selfDelta -= 1;
             }
 
-            // 3. Roubo x traço do player
             if (_isStealing)
             {
                 if (playerCharacter.traits.isRebel)
@@ -328,7 +312,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
             int beforeSelf = playerCharacter.RelationshipScore;
             playerCharacter.RelationshipScore += selfDelta;
-            Debug.Log($"[MiniGame2] PLAYER: {beforeSelf} -> {playerCharacter.RelationshipScore} (delta {selfDelta})");
         }
     }
 
@@ -337,7 +320,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         if (drink != null && !drinkItems.Contains(drink))
         {
             drinkItems.Add(drink);
-            Debug.Log($"[MiniGame2] Bebida '{drink.name}' registrada na lista.");
         }
     }
 
@@ -346,14 +328,7 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         if (slot.lastDroppedObject != null)
         {
             var drink = slot.lastDroppedObject.GetComponent<DrinksINFO>();
-            if (drink != null)
-            {
-                Debug.Log($"[MiniGame2] Bebida encontrada via lastDroppedObject: {drink.name}");
-                return drink;
-            }
         }
-
-        Debug.LogWarning("[MiniGame2] lastDroppedObject é null ou não tem DrinksINFO.");
         return null;
     }
 }

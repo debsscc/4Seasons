@@ -583,6 +583,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &620824446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1963398833150232572, guid: 4b8af83a45a9a314cb742a048ba32eda, type: 3}
+  m_PrefabInstance: {fileID: 1553508425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &728389292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1273,6 +1278,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.03529412
       objectReference: {fileID: 0}
+    - target: {fileID: 5652187897633650656, guid: 4b8af83a45a9a314cb742a048ba32eda, type: 3}
+      propertyPath: loadingScreen
+      value: 
+      objectReference: {fileID: 620824446}
     - target: {fileID: 6152823640444516485, guid: 4b8af83a45a9a314cb742a048ba32eda, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1599,7 +1608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StartMenuController
   optionsModal: {fileID: 1133821030}
   sceneLoadingScreen: {fileID: 775837006}
-  loadingDelay: 5
+  loadingDelay: 1
 --- !u!1 &1813159772
 GameObject:
   m_ObjectHideFlags: 0

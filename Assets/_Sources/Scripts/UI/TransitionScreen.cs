@@ -4,50 +4,57 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using Sirenix.OdinInspector;
 
-public class SceneTransition : MonoBehaviour
+public class SceneTransition : Singleton<SceneTransition>
 {
-    public static SceneTransition Instance;
-
     [FoldoutGroup("Settings")]
     public float fadeTime = 1f;
 
     [FoldoutGroup("Settings")]
     public Image fadeImage;
 
-    void Awake()
+    public GameObject loadingScreen;
+
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+            base.Awake();
+    Debug.Log("SceneTransition AWAKE — Singleton criado");
+    DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-        StartCoroutine((DelayedFadeIn()));
+        StartCoroutine(DelayedFadeIn());
     }
 
-        IEnumerator DelayedFadeIn()
+    IEnumerator DelayedFadeIn()
     {
-        yield return null; // espera um frame
+        yield return null;
         StartCoroutine(FadeIn());
     }
 
     public void ChangeScene(string sceneName)
     {
-        StartCoroutine(FadeOut(sceneName));
+        if (!gameObject.activeInHierarchy || !isActiveAndEnabled)
+        {
+            Debug.LogWarning("SceneTransition GameObject ou componente está inativo.");
+            return;
+        }
+
+        if (loadingScreen != null)
+        {
+            Debug.Log("Activating loading screen");
+            loadingScreen.SetActive(true);
+        }
+
+        StartCoroutine(FadeOutAndLoadScene(sceneName));
     }
 
     IEnumerator FadeIn()
     {
+        Debug.Log("FadeIn started");
         float t = fadeTime;
         Color c = fadeImage.color;
-        
+
         while (t > 0)
         {
             t -= Time.deltaTime;
@@ -55,10 +62,12 @@ public class SceneTransition : MonoBehaviour
             fadeImage.color = c;
             yield return null;
         }
+        Debug.Log("FadeIn finished");
     }
 
-    IEnumerator FadeOut(string sceneName)
+    IEnumerator FadeOutAndLoadScene(string sceneName)
     {
+        Debug.Log("FadeOut started");
         float t = 0;
         Color c = fadeImage.color;
 
@@ -69,9 +78,33 @@ public class SceneTransition : MonoBehaviour
             fadeImage.color = c;
             yield return null;
         }
+        Debug.Log("FadeOut completed");
 
-        SceneManager.LoadScene(sceneName);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
+
+        while (asyncLoad.progress < 0.9f)
+        {
+            Debug.Log($"Loading progress: {asyncLoad.progress}");
+            yield return null;
+        }
+
+        Debug.Log("Scene almost loaded, activating...");
+        asyncLoad.allowSceneActivation = true;
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        Debug.Log("Scene loaded");
+
+        yield return StartCoroutine(FadeIn());
+        Debug.Log("FadeIn completed");
+
+        if (loadingScreen != null)
+        {
+            loadingScreen.SetActive(false);
+            Debug.Log("Loading screen deactivated");
+        }
     }
 }
-
-// to use in another scripts : SceneTransition.Instance.ChangeScene("nomeDaCena");

@@ -13,8 +13,6 @@ public class StartMenuController : MonoBehaviour
     [MinValue(0f)]
     public float loadingDelay = 1f;
 
-    
-
     void Start()
     {
         if (optionsModal != null)
@@ -26,6 +24,10 @@ public class StartMenuController : MonoBehaviour
 
     public void OnStartClick()
     {
+        Debug.Log(SceneTransition.Instance == null 
+        ? "SceneTransition NÃO existe"
+        : "SceneTransition OK");
+
         StartCoroutine(StartGameWithDelay());
     }
 
@@ -39,9 +41,12 @@ public class StartMenuController : MonoBehaviour
         if (loadingDelay > 0)
             yield return new WaitForSeconds(loadingDelay);
 
+        Debug.Log("Chamando ChangeScene");
         // Inicia a transição de cena com fade out
         if (SceneTransition.Instance != null)
             SceneTransition.Instance.ChangeScene("MapSeletor");
+        else
+            Debug.LogWarning("SceneTransition.Instance é null");
     }
 
     public void onOptionsClick()
@@ -55,7 +60,6 @@ public class StartMenuController : MonoBehaviour
         if (optionsModal != null)
             optionsModal.SetActive(false);
     }
-
     public void onExitClick()
     {
 #if UNITY_EDITOR

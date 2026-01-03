@@ -168,6 +168,9 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         }
     }
 
+    public void OnItemRemovedFromSlot(){
+    }
+
     public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
     {
         OnSlotDropped(slot);

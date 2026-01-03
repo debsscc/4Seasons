@@ -163,6 +163,9 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         StartCoroutine(ShowModalAfterDelay(_selectedSlot.specialId));
     }
 
+    public void OnItemRemovedFromSlot(){}
+
+
     private void ApplyScoring(SlotDraggable chosenSlot)
     {
         CharacterData chosenChar = chosenSlot.associatedCharacter;
