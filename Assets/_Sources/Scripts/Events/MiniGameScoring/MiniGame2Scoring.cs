@@ -95,10 +95,31 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         if (slot != basketSlot)
             return;
 
-        var drink = GetDrinkFromSlot(slot);
+        DrinksINFO drink = null;
+        if (items != null && items.Length > 0)
+        {
+            foreach (var d in drinkItems)
+            {
+                if (d==null) continue;
+                foreach (var t in d.drinkTypes)
+                {
+                    if (t == null) continue;
+                    if (System.Array.IndexOf(items,t) > 0)
+                    {
+                        drink = d;
+                        break;
+                    }
+                }
+                if (drink != null) break;
+            }
+        }
         if (drink == null)
         {
-            Debug.LogWarning("[MiniGame2] Nenhuma bebida associada ao drop.");
+            drink = GetDrinkFromSlot(slot);
+        }
+        if (drink == null)
+        {
+            Debug.LogWarning("[MiniGame2] Bebida nula ao adicionar à cesta.");
             return;
         }
 
@@ -325,9 +346,12 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     private DrinksINFO GetDrinkFromSlot(SlotDraggable slot)
     {
+        if (slot == null) return null;
         if (slot.lastDroppedObject != null)
         {
-            var drink = slot.lastDroppedObject.GetComponent<DrinksINFO>();
+            var drink = slot.lastDroppedObject.GetComponent<DrinksINFO>()
+            ??slot.lastDroppedObject.GetComponentInChildren<DrinksINFO>();
+            if (drink != null) return drink;
         }
         return null;
     }

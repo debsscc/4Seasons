@@ -89,8 +89,39 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
         }
     }
 
+    // Alterado: implementado para permitir que o jogador remova o item do slot e voltar a escolher.
+    // Comentário: este método será chamado quando o Draggable começar a ser arrastado E estiver vindo de um slot.
     public void OnItemRemovedFromSlot()
     {
+        // Se havia um slot selecionado, "desfazemos" a seleção para permitir nova escolha.
+        // Comentário: resetamos selectedSlot, isConfirmed e escondemos botões/feedbacks; reativamos isqueiro se necessário.
+        if (selectedSlot != null)
+        {
+            // Se o slot selecionado era o de rejeitar, reexibir o isqueiro (animação de reaparecer)
+            if (selectedSlot.specialId == rejectId && isqueiroObject != null)
+            {
+                isqueiroObject.SetActive(true);
+                // animação suave para reaparecer:
+                isqueiroObject.transform.localScale = Vector3.zero;
+                isqueiroObject.transform.DOScale(Vector3.one, 0.2f);
+            }
+        }
+
+        // Reset do estado interno para permitir nova seleção
+        selectedSlot = null;                // limpa a seleção atual
+        isConfirmed = false;                // permite re-confirmar mais tarde
+        if (confirmButton) confirmButton.SetActive(false); // esconder botão de confirmar até nova seleção
+
+        // Esconder outlines para evitar estado visual confuso
+        SetOutlineEnabled(drogasOutline, false);
+        SetOutlineEnabled(bolsoOutline, false);
+        SetOutlineEnabled(isqueiroOutline, false);
+
+        // Esconder feedbacks (caso apareçam)
+        if (feedbackBolso) feedbackBolso.SetActive(false);
+        if (feedbackDrogas) feedbackDrogas.SetActive(false);
+
+        Debug.Log("[MiniGame3] Item removido do slot — estado resetado para permitir nova escolha.");
     }
 
     public void OnConfirmButtonClicked()

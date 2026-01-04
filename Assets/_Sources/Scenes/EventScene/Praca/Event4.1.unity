@@ -596,7 +596,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1719039232}
   - {fileID: 1802685576}
   - {fileID: 1677127067}
   m_Father: {fileID: 767254365}
@@ -1735,6 +1734,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1719039232}
   - {fileID: 2047037416}
   - {fileID: 1432713324}
   - {fileID: 1808632127}
@@ -2431,7 +2431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2272a0eba016cf444aac473f363096f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
-  sceneToLoad: Event4.1
+  sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1677127069}
 --- !u!1001 &1707531085
 PrefabInstance:
@@ -2664,12 +2664,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719039231}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 428597156}
+  m_Father: {fileID: 1119140737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3434,7 +3434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2272a0eba016cf444aac473f363096f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
-  sceneToLoad: Event4.1
+  sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1802685578}
 --- !u!1 &1808632126
 GameObject:
@@ -3904,7 +3904,7 @@ MonoBehaviour:
   - {fileID: 1808632128}
   - {fileID: 1194279}
   confirmButton: {fileID: 1105875390}
-  centerDistanceThreshold: 40
+  centerDistanceThreshold: 80
   friendCharacters:
   - {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
   - {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
@@ -3915,10 +3915,10 @@ MonoBehaviour:
   selfChosenPoints: 2
   selfNotChosenPoints: -1
   modalsByID:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1802685580}
+  - {fileID: 1802685580}
+  - {fileID: 1802685580}
+  - {fileID: 1677127071}
 --- !u!1001 &1896577007
 PrefabInstance:
   m_ObjectHideFlags: 0

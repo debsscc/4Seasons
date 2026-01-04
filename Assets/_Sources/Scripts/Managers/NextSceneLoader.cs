@@ -7,6 +7,7 @@ public class NextSceneLoader : MonoBehaviour
 
     public void LoadNextScene()
     {
+        Debug.Log($"Loading next scene: {nextScene.name} NXL");
         SceneManager.LoadScene(nextScene.name);
     }
 

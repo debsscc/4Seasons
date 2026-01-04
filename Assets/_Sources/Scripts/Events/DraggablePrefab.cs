@@ -19,7 +19,9 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private AudioSource audioSource;
 
     private bool isDragging;
-    private SlotDraggable currentSlot; // Armazena o slot atual
+    // currentSlot agora representa o slot onde o objeto foi DROPPED (se houver).
+    // Não vamos parentear o objeto ao slot — só guardamos a referência do slot aqui.
+    private SlotDraggable currentSlot;
 
     public List<SlotDraggable> TargetSlots { get; set; } = null;
     public MiniGameController MiniGameController { get; set; }
@@ -49,7 +51,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (pickSfx) audioSource.PlayOneShot(pickSfx);
 
-        // Verifica se o item está em um slot (para MiniGame2)
+        // MiniGame2: notifica remoção da cesta se aplicável
         var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
         if (miniGame2 != null)
         {
@@ -60,8 +62,20 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
         }
 
-        // Armazena o slot atual (caso esteja dentro de um)
-        currentSlot = GetComponentInParent<SlotDraggable>();
+        // Se esse draggable estava marcado como vindo de um slot (currentSlot != null),
+        // limpamos a referência naquele slot e notificamos MiniGame3 para resetar a UI.
+        // Observação: currentSlot só será != null se ele tiver sido dropado antes em um slot.
+        var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
+        if (currentSlot != null)
+        {
+            // limpa a referência armazenada no slot (evita dangling refs)
+            currentSlot.lastDroppedObject = null; // exige que SlotDraggable tenha public GameObject lastDroppedObject
+            // notifica MiniGame3 para reverter UI (reaparecer isqueiro, esconder botão)
+            miniGame3?.OnItemRemovedFromSlot();
+
+            // não zera currentSlot aqui — zeraremos no OnEndDrag, após o drop final
+            // (mas já limpamos a referência no slot para indicar que o objeto está sendo arrastado)
+        }
 
         OnBeginDragEvent?.Invoke();
     }
@@ -160,13 +174,15 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var miniGame41 = MiniGameController?.GetComponent<MiniGame41Scoring>();
         var miniGame5 = MiniGameController?.GetComponent<MiniGame5Scoring>();
 
+        // Desliga hover do isqueiro caso esteja ativo
         if (miniGame3 != null)
         {
             miniGame3.OnIsqueiroHover(false);
         }
 
-        if (nearSlot)
+        if (nearSlot != null)
         {
+            // Desativa highlight do slot
             nearSlot.HighlightSlot(false);
 
             // Remove hover do slot (minigame 3)
@@ -175,10 +191,14 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 miniGame3.OnSlotHover(nearSlot, false);
             }
 
-            // Minigame 2
+            // --- Minigame 2: cesta ---
             if (miniGame2 != null && nearSlot == miniGame2.basketSlot)
             {
+                // Armazena referência do objeto no slot (mas NÃO parentear nem mover o objeto).
                 nearSlot.lastDroppedObject = gameObject;
+                // Também marcamos localmente qual slot o objeto está (para poder ser removido depois)
+                currentSlot = nearSlot;
+
                 if (MiniGameController != null && _itemHolder != null)
                 {
                     MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
@@ -186,31 +206,41 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 return;
             }
 
-            // Minigame 3
+            // --- Minigame 3: bolso/aceita ---
             if (miniGame3 != null)
             {
+                // Registrar referência no slot para permitir remoção futura (mas NÃO parentear)
+                nearSlot.lastDroppedObject = gameObject;
+                currentSlot = nearSlot; // guarda que este objeto está naquele slot agora
+
+                // Notifica o minigame (vai exibir confirm button, esconder isqueiro se for reject, etc.)
                 miniGame3.OnSlotSelected(nearSlot);
                 return;
             }
 
-            // Minigame 4.1
+            // --- Minigame 4.1 ---
             if (miniGame41 != null)
             {
+                nearSlot.lastDroppedObject = gameObject;
+                currentSlot = nearSlot;
                 miniGame41.OnSlotDropped(nearSlot);
                 return;
             }
 
-            // Minigame 5.1
+            // --- Minigame 5.1 ---
             if (miniGame5 != null)
             {
+                nearSlot.lastDroppedObject = gameObject;
+                currentSlot = nearSlot;
                 miniGame5.OnSlotDropped(nearSlot);
                 return;
             }
 
-            // Minigame 1
+            // --- Minigame 1 ---
             if (miniGame1 != null)
             {
                 nearSlot.lastDroppedObject = gameObject; // Armazena o objeto no slot
+                currentSlot = nearSlot;
                 if (MiniGameController != null && _itemHolder != null)
                 {
                     MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
@@ -218,6 +248,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 return; 
             }
 
+            // Padrão para outros drops
             nearSlot.OnSuccessfulDrop();
             if (MiniGameController != null && _itemHolder != null)
             {
@@ -232,15 +263,13 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         else
         {
+           
             if (currentSlot != null)
             {
-                if (miniGame1 != null)
-                {
-                    miniGame1.OnItemRemovedFromSlot();
-                }
-
-                currentSlot.lastDroppedObject = null;
                 currentSlot = null;
+            }
+            else
+            {
             }
         }
     }

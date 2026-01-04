@@ -13,12 +13,15 @@ public class SceneTransition : Singleton<SceneTransition>
     public Image fadeImage;
 
     public GameObject loadingScreen;
-
+    public GameObject contentMenu;
+    private string currentSceneName;
+    
     protected override void Awake()
     {
-            base.Awake();
-    Debug.Log("SceneTransition AWAKE — Singleton criado");
-    DontDestroyOnLoad(gameObject);
+        currentSceneName = SceneManager.GetActiveScene().name;
+        base.Awake();
+        Debug.Log("SceneTransition AWAKE — Singleton criado");
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -40,13 +43,16 @@ public class SceneTransition : Singleton<SceneTransition>
             return;
         }
 
-        if (loadingScreen != null)
+        if (loadingScreen != null && sceneName != "MainMenu")
         {
             Debug.Log("Activating loading screen");
             loadingScreen.SetActive(true);
+            contentMenu.SetActive(false);
         }
-
+        currentSceneName = sceneName;
+        Debug.Log($"Starting scene change to {sceneName}");
         StartCoroutine(FadeOutAndLoadScene(sceneName));
+
     }
 
     IEnumerator FadeIn()
@@ -79,17 +85,20 @@ public class SceneTransition : Singleton<SceneTransition>
             yield return null;
         }
         Debug.Log("FadeOut completed");
+        Debug.Log($"Loading scene: {sceneName}");
+        if (sceneName == "MainMenu")
+        {
+            contentMenu.SetActive(true);
+        }
+
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
 
         while (asyncLoad.progress < 0.9f)
         {
-            Debug.Log($"Loading progress: {asyncLoad.progress}");
             yield return null;
         }
-
-        Debug.Log("Scene almost loaded, activating...");
         asyncLoad.allowSceneActivation = true;
 
         while (!asyncLoad.isDone)
@@ -99,7 +108,6 @@ public class SceneTransition : Singleton<SceneTransition>
         Debug.Log("Scene loaded");
 
         yield return StartCoroutine(FadeIn());
-        Debug.Log("FadeIn completed");
 
         if (loadingScreen != null)
         {

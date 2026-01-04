@@ -75,12 +75,12 @@ public class PauseManager : MonoBehaviour
     public void GoToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneTransition.Instance.ChangeScene("MainMenu");
     }
 
     public void OpenCredits()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Credits");
+        SceneTransition.Instance.ChangeScene("Credits");
     }
 }

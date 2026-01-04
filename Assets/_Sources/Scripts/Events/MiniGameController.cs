@@ -76,7 +76,8 @@ public class MiniGameController : MonoBehaviour
 
             if (miniGame2 != null)
         {
-            var drink = instance.GetComponent<DrinksINFO>();
+            var drink = instance.GetComponent<DrinksINFO>()
+            ??instance.GetComponentInChildren<DrinksINFO>();
             if (drink != null)
             {
                 miniGame2.RegisterDrink(drink);
@@ -118,7 +119,8 @@ public class MiniGameController : MonoBehaviour
 
             if (miniGame2 != null)
         {
-            var drink = drag.GetComponent<DrinksINFO>();
+            var drink = drag.GetComponent<DrinksINFO>()
+            ??drag.GetComponentInChildren<DrinksINFO>();
             if (drink != null)
             {
                 miniGame2.RegisterDrink(drink);
