@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1378673856500498318, guid: e6bc60116d4998d4a99f05718b945973, type: 3}
+    - target: {fileID: 1657747659725462814, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      propertyPath: dropSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a4deb4e889782c48a7ba85c1d4c2fce, type: 3}
+    - target: {fileID: 1657747659725462814, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      propertyPath: pickSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a4deb4e889782c48a7ba85c1d4c2fce, type: 3}
     - target: {fileID: 2963449268658772561, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_Name
       value: Ticket
@@ -96,6 +104,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8412805726915668519, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 7023807163643568229, guid: 4bbf0d77270607148a4de8109fae3875, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

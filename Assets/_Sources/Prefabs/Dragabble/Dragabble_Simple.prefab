@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22761e746c0a204d83d6ac567f478b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  pickSfx: {fileID: 8300000, guid: d7fe1426f9c779c4c850b6b5f0dde98e, type: 3}
-  dropSfx: {fileID: 8300000, guid: 9df59ce22fa0ac243af929695446369e, type: 3}
+  pickSfx: {fileID: 8300000, guid: d403cc2894210ea419753af179a2c859, type: 3}
+  dropSfx: {fileID: 8300000, guid: 1322e501d2fa33c4aa5201a5344835f0, type: 3}
   rectTransform: {fileID: 0}
 --- !u!225 &1427766234127222205
 CanvasGroup:
@@ -75,10 +75,10 @@ AudioSource:
   m_GameObject: {fileID: 2963449268658772561}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7023807163643568229, guid: 4bbf0d77270607148a4de8109fae3875, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
