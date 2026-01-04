@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1657747659725462814, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: moneyIcon
+      value: 
+      objectReference: {fileID: 7224002426185656348}
     - target: {fileID: 2963449268658772561, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_Name
       value: Drink_Beer
@@ -129,3 +133,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+--- !u!1 &7224002426185656348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 390120991841051350, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+  m_PrefabInstance: {fileID: 7001183269723097802}
+  m_PrefabAsset: {fileID: 0}

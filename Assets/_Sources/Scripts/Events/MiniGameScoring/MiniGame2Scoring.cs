@@ -164,6 +164,11 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         UpdateMoneyAndButton();
     }
 
+    public int GetDrinksInBasketCount()
+    {
+        return _drinksInBasket;
+    }
+
     private void UpdateMoneyAndButton()
     {
         _isStealing = _drinksInBasket > 2;
