@@ -3,39 +3,51 @@
 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Lucas_Happy">>
 Lucas: Foi tão legal, que bom que a gente viu esse.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
+<<set $current_sound_emotion = "Ian_Excited">>
 Ian: Pois é, gostei também.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
+<<set $current_sound_emotion = "Ian_Excited">>
 Ian: Aprendeu comigo a escolher um bom filme, né Brina?
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: Viu? Cê não é o único que sabe de filme
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Melissa_Normal">>
 Melissa: Foi legal, mas podia ser mais empolgante.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Melissa_Normal">>
 Melissa: Próxima vez eu que escolho.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Angry">>
+<<set $current_sound_emotion = "Lucas_Angry">>
 Lucas: Não não, você vai escolher um que dá medo!
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Melissa_Happy">>
 Melissa: Tu pode segurar minha mão durante o filme.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Ian_Normal">>
 Ian: Sendo um filme bom, você escolhe o que quiser.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Sabrina_Sad">>
 Sabrina: Só não algo super assustador.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Melissa_Happy">>
 Melissa: Fechou então! Próxima vez a gente vê um filme meu.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Lucas_Sad">>
 Lucas: Vou ter que me esconder embaixo das cobertas.
 <<stop>>
 ===
@@ -44,27 +56,35 @@ title: Feedback_NCorajoso_Event1
 ---
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Melissa_Happy">>
 Melissa: Foi incrível! Ótima escolha, Sabrina!
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
+<<set $current_sound_emotion = "Ian_Excited">>
 Ian: Os efeitos especiais desse filme são muito bons!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Lucas_Sad">>
 Lucas: A gente podia ter visto um filme mais leve né gente?
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Desculpa Luke, mas o filme até que foi legal.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Ian_Teasing">>
 Ian: Você apertou meu braço uma hora porque levou susto, sua medrosa!
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Surprised">>
+<<set $current_sound_emotion = "Sabrina_Surprised">>
 Sabrina: Eu não fiz isso! Eu não lembro, não aconteceu!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Lucas_Normal">>
 Lucas: Na próxima vamos ver algo mais tranquilo, por favor.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Melissa_Normal">>
 Melissa: A gente não assistindo Madre Mia pela milésima vez por mim tá tudo certo.
 <<stop>>
 

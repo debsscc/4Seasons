@@ -3,36 +3,47 @@
 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: O que de pior pode acontecer?
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Tu vai ver que é de boa, só vai ficar mais relaxada.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Talvez falar umas besteiras, mas é legal.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Eu tô fazendo isso certo?
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Não, é assim, ó
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: Tá, acho que entendi.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Iris_Normal">>
 Iris: Eventualmente tu pega o jeito da coisa.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Como eu sei se bateu?
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Tu vai saber, confia em mim.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Shy">>
+<<set $current_sound_emotion = "Sabrina_Shy">>
 Sabrina: Fico feliz de a gente estar fazendo isso juntas.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Eu também.
 <<stop>>
 ===
@@ -42,33 +53,43 @@ title: Feedback_Praia_2
 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Não me leva a mal, mas não é pra mim.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Iris_Normal">>
 Iris: Ei, tá de boa, não precisa se justificar pra mim. Eu entendo.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Como é?
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Iris_Normal">>
 Iris: Ah é legal.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Iris_Normal">>
 Iris: Tu se sente mais leve, parece que a cabeça desacelera um pouco.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Quem sabe algum dia eu não experimente.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Se quiser, eu tô aqui.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Não é um bicho de sete cabeças.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Shy">>
+<<set $current_sound_emotion = "Sabrina_Shy">>
 Sabrina: Se eu for fumar, espero que seja contigo.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Fico feliz que tu confie em mim assim.
 <<stop>>
 ===

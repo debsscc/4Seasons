@@ -3,57 +3,75 @@
 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Ian_Happy">>
 Ian: Eu amo caixa de self check out!
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Arabella_Normal">>
 Arabella: Falei que ia dar pra roubar sem ninguém perceber.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Melissa_Sad">>
 Melissa: Gente e se descobrirem?
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Melissa_Sad">>
 Melissa: E se nossos pais souberem?
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Melissa_Sad">>
 Melissa: Vamo voltar lá e passar o que a gente pegou a mais, sério gente.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Arabella_Normal">>
 Arabella: Como vão descobrir?
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Arabella_Normal">>
 Arabella: Cê vai falar algo?
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
+<<set $current_sound_emotion = "Melissa_Angry">>
 Melissa: Eu deixei claro que não gostava da ideia!
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Ian_Normal">>
 Ian: Calma, Mel.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Ian_Normal">>
 Ian: Vai dar tudo certo, ninguém vai ficar sabendo.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
+<<set $current_sound_emotion = "Melissa_Angry">>
 Melissa: Se alguém descobrir eu vou jogar nas costas de vocês.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Melissa_Sad">>
 Melissa: Desculpa, mas eu disse que não era pra fazer isso.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Arabella_Normal">>
 Arabella: Pode ficar tranquila, se qualquer merda acontecer eu aceito a culpa.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Arabella_Normal">>
 Arabella: A ideia foi minha.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Ian_Happy">>
 Ian: Tu não vai levar a culpa sozinha, Tô contigo pra qualquer merda.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Sabrina_Sad">>
 Sabrina: Desculpa gente mas não posso assumir essa.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Arabella_Teasing">>
 Arabella: Quanto sentimento, Ian.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Arabella_Teasing">>
 Arabella: Vamos aproveitar nossas bebidas antes que alguém comece a chorar.
 <<stop>>
 ===
@@ -63,39 +81,51 @@ title: Feedback_NRoubando_Event2
 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Sad">>
+<<set $current_sound_emotion = "Arabella_Sad">>
 Arabella: O ruim é que as bebidas vão acabar rápido.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Melissa_Normal">>
 Melissa: Mas pelo menos a gente não cometeu um crime.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Ian_Happy">>
 Ian: Roubar das grandes redes não é um crime porque eles roubam primeiro!
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: Cê realmente tá investido nisso né?
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Ian_Happy">>
 Ian: Eu sempre vou estar investido na queda dos monopólios!
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Arabella_Teasing">>
 Arabella: Tá bom gatinho comunista.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Daqui cês querem ir pra onde?
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Melissa_Normal">>
 Melissa: Vamo dar mais uma voltinha no shopping e depois a gente vê.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Ian_Normal">>
 Ian: Eu tava querendo passar ali na livraria.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Melissa_Normal">>
 Melissa: Eu também, queria ver se tem algum cd novo lá.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Arabella_Normal">>
 Arabella: Depois a gente pode ir pra praça?
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: Eu apoio.
 <<stop>>
 ===
