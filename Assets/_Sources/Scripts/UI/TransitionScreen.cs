@@ -43,7 +43,7 @@ public class SceneTransition : Singleton<SceneTransition>
             return;
         }
 
-        if (loadingScreen != null && sceneName != "MainMenu")
+        if (loadingScreen != null && currentSceneName == "MainMenu")
         {
             Debug.Log("Activating loading screen");
             loadingScreen.SetActive(true);

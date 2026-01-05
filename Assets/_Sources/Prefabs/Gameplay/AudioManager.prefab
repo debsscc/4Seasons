@@ -576,34 +576,91 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 792d45cce2ae86e458be50bbf6fc1fa7, type: 3}
     Volume: 1
     Loop: 1
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
   - Name: rockzao
     Clip: {fileID: 8300000, guid: 7e062d2366bcb8d41b47cc55068dba19, type: 3}
     Volume: 1
     Loop: 1
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
   - Name: shopping
     Clip: {fileID: 8300000, guid: 606ea0df270e1df4fbdf0effac460fac, type: 3}
     Volume: 1
     Loop: 1
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
   - Name: night
     Clip: {fileID: 8300000, guid: c4944c33522f88c4eaa8d7b7e6bc392a, type: 3}
     Volume: 1
     Loop: 1
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
   - Name: park
     Clip: {fileID: 8300000, guid: 40abf5eab616bf746b71f8eb8f5146f9, type: 3}
     Volume: 1
     Loop: 1
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
+  - Name: 1.0 Music
+    Clip: {fileID: 8300000, guid: 3f2ac5e618965ce46b12bb94cdc47175, type: 3}
+    Volume: 1
+    Loop: 1
+    PersistentAcrossScenes: 1
+    PersistentScenes:
+    - Event1.0
+    - Event1.1
+  - Name: 5.0 Music
+    Clip: {fileID: 8300000, guid: 511203189cbc98b4bb67cf8960dd310b, type: 3}
+    Volume: 1
+    Loop: 1
+    PersistentAcrossScenes: 1
+    PersistentScenes:
+    - Event5.0
+    - Event5.1
+  - Name: 4.0 Music
+    Clip: {fileID: 8300000, guid: 48fe58aa96d3c5947af82edf338defab, type: 3}
+    Volume: 1
+    Loop: 1
+    PersistentAcrossScenes: 1
+    PersistentScenes:
+    - Event4.0
+    - Event4.1
+  - Name: 3.0 Music
+    Clip: {fileID: 8300000, guid: 78ddb6d5177d4f84eae70af65c988781, type: 3}
+    Volume: 1
+    Loop: 1
+    PersistentAcrossScenes: 1
+    PersistentScenes:
+    - Event3.0
+    - Event3.1
+  - Name: 2.0 Music
+    Clip: {fileID: 8300000, guid: 879428e6cb084694cbadf01ffc06b573, type: 3}
+    Volume: 1
+    Loop: 1
+    PersistentAcrossScenes: 1
+    PersistentScenes:
+    - Event2.0
+    - Event2.1
   SFXLibrary:
   - Name: win
     Clip: {fileID: 8300000, guid: 933dc487086f4ab4fa7f58117a2e9376, type: 3}
     Volume: 1
     Loop: 0
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
   - Name: loose
     Clip: {fileID: 8300000, guid: 9df59ce22fa0ac243af929695446369e, type: 3}
     Volume: 1
     Loop: 0
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
   - Name: pick
     Clip: {fileID: 8300000, guid: d7fe1426f9c779c4c850b6b5f0dde98e, type: 3}
     Volume: 1
     Loop: 0
+    PersistentAcrossScenes: 0
+    PersistentScenes: []
+  FadeDuration: 1
   DebugMusic: 
   DebugSFX: 

@@ -15,7 +15,7 @@ public class MapButton : MonoBehaviour
     [SerializeField] public float waitTimer;
 
     [Header("Map Data")]
-    [SerializeField] private MapData mapData;
+    [SerializeField] public MapData mapData;
     
     [Header("Selection Visual")]
     [SerializeField] private Outline outline; 
@@ -55,10 +55,14 @@ public class MapButton : MonoBehaviour
             Debug.LogError("MapData não está configurado no MapButton!");
             return;
         }
-
+        if (GameSessionManager.Instance != null && GameSessionManager.Instance.IsCompleted(mapData))
+            {
+                Debug.Log("Mapa já completado: " + mapData.sceneName);
+                return;
+            }
         Debug.Log("Map Button Clicked: " + mapData.sceneName);
         await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
-        OnMapSelected?.Invoke(this, mapData); // Passa o MapData, não string
+        OnMapSelected?.Invoke(this, mapData); 
     }
     
     public void SetSelected(bool selected)
@@ -80,4 +84,17 @@ public class MapButton : MonoBehaviour
             }
         }
     }
+
+    public void SetInteractable(bool interactable)
+    {
+        if (mapButton != null)
+            mapButton.interactable = interactable;
+
+        var image = GetComponent<Image>();
+        if (image != null)
+        {
+            image.color = interactable ? Color.white : new Color(1, 1, 1, 0.5f);
+        }
+    }
+
 }

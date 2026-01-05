@@ -36,9 +36,10 @@ public class SceneLoaderYarn : MonoBehaviour
 
     void OnDialogueComplete()
     {   
-        if (!string.IsNullOrEmpty(sceneToLoad))
+        if (!string.IsNullOrEmpty(sceneToLoad)) {
+            GameSessionManager.Instance.MarkCurrentMapAsCompleted();
             SceneTransition.Instance.ChangeScene(sceneToLoad);
-        else
+        } else
             Debug.LogWarning("[SceneOnDialogueComplete] sceneToLoad vazio.");
     }   
 }
