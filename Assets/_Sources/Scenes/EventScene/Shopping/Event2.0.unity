@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &258364338 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
-  m_PrefabInstance: {fileID: 2034283965}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &168043851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,6 +324,11 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3604244442327615249, guid: a02a0016174004c6a809a1ddb3bfc35e, type: 3}
   m_PrefabInstance: {fileID: 168043851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &258364338 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+  m_PrefabInstance: {fileID: 2034283965}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &306553689 stripped
 Transform:
@@ -2017,7 +2017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7563812349228400114, guid: 0ced34fc38bc7c647818c910f08d2c70, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
