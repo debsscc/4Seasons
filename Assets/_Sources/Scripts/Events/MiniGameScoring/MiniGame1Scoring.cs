@@ -34,6 +34,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         _pendingItems = items;
 
         Debug.Log($"[MiniGame1] Drop registrado no slot '{slot.name}'. Aguardando confirmação do jogador.");
+        slot.OnSuccessfulDrop();
 
         if (feedbackCorajoso != null) feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);

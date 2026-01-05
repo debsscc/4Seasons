@@ -125,6 +125,7 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
         drink.isInBasket = true;
         Debug.Log($"[MiniGame2] Bebida '{drink.name}' adicionada à cesta.");
+        slot.OnSuccessfulDrop();
         RecalculateBasketState();
     }
 

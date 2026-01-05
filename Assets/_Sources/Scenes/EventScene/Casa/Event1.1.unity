@@ -985,10 +985,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
@@ -996,7 +1000,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8016679601165365557}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1790834055}
+    - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
@@ -1004,11 +1016,23 @@ PrefabInstance:
       value: OnConfirmButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniGame1Scoring, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2655293688310998210, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
@@ -5160,6 +5184,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725489843}
   m_CullTransparentMesh: 1
+--- !u!82 &1790834055 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 29492544663544786, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+  m_PrefabInstance: {fileID: 1816942344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1814818568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5504,8 +5533,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1567028322}
     m_Modifications:
     - target: {fileID: 29492544663544786, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c7ba0dfd8c4ef34c8c3dc07f863268d, type: 3}
+    - target: {fileID: 29492544663544786, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: Loop

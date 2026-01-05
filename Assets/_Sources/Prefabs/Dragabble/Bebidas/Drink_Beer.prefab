@@ -41,6 +41,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1657747659725462814, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: dropSfx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657747659725462814, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: pickSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 56503e0d838034242be4575d09a7be8e, type: 3}
+    - target: {fileID: 1657747659725462814, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: moneyIcon
       value: 
       objectReference: {fileID: 7224002426185656348}
@@ -128,6 +136,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8412805726915668519, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: m_Pitch
+      value: -0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412805726915668519, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412805726915668519, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 7023807163643568229, guid: 4bbf0d77270607148a4de8109fae3875, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

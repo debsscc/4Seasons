@@ -302,7 +302,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 05f0fb2c38754a34e9bda78f8a273ed9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.713
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -725,8 +725,8 @@ MonoBehaviour:
   defaultSprite: {fileID: 0}
   hoverSprite: {fileID: 0}
   selectedSprite: {fileID: 0}
-  clickSound: {fileID: 0}
-  hoverSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 0c7ba0dfd8c4ef34c8c3dc07f863268d, type: 3}
+  hoverSound: {fileID: 8300000, guid: 9a8e08256165c3749b817bce26642526, type: 3}
   clickVolume: 1
   animator: {fileID: 0}
   clickTrigger: Click
