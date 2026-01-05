@@ -3,30 +3,39 @@ title: Feedback_Amigos_Event4
 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Arabella_Happy">>
 Arabella: Deixa eu ver como ficou.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: Calma ai Bella!
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Sabrina_Normal">>
 Sabrina: Tá abrindo a foto.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Olha só, ficou muito show.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: A câmera valorizou as cores.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Lucas_Happy">>
 Lucas: Pessoalmente era mais bonito, mas que bom que a gente tem registro.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Lucas_Happy">>
 Lucas: Eu adorei a foto.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Shy">>
+<<set $current_sound_emotion = "Sabrina_Shy">>
 Sabrina: Ah, obrigada gente.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Arabella_Teasing">>
 Arabella: Logo logo cê pode me substituir como fotógrafa do grupo.
 <<stop>>
 ===
@@ -36,33 +45,43 @@ title: Feedback_Player_Event4
 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Iris_Normal">>
 Iris: E ai? Ficou boa?
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Lucas_Happy">>
 Lucas: É, deixa a gente ver.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Arabella_Happy">>
 Arabella: Po ficou bem daora.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Arabella_Teasing">>
 Arabella: Mas lógico que cê ia tirar foto do seu.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
+<<set $current_sound_emotion = "Lucas_Normal">>
 Lucas: Deixa ela, Arabella!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Lucas_Happy">>
 Lucas: A foto ficou muito incrível Brina, parabéns.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Iris_Teasing">>
 Iris: A Bella só tá com invejinha.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Iris_Happy">>
 Iris: Ficou bem legal mesmo.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
+<<set $current_sound_emotion = "Sabrina_Happy">>
 Sabrina: É, ela não se aguenta, tem que me perturbar.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
+<<set $current_sound_emotion = "Arabella_Teasing">>
 Arabella: Olha quem fala.
 <<stop>>
 ===
