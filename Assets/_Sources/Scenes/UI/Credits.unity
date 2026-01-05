@@ -352,6 +352,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1948106537
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_Volume
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 634af292fa8bda1459bf5f55a0205fa0, type: 3}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: SFXLibrary.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: MusicLibrary.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: SFXLibrary.Array.data[3].Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: SFXLibrary.Array.data[4].Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4907.672
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -501.86646
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632480397859312972, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
 --- !u!1001 &3969103319569309781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -360,6 +441,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 318195859399022150, guid: 232fe2337ddbfe248a7c7e6898dda8cf, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 318195859399022150, guid: 232fe2337ddbfe248a7c7e6898dda8cf, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: c977da274825a344cb6eb296e5ed6a25, type: 3}
     - target: {fileID: 2049113644005778392, guid: 232fe2337ddbfe248a7c7e6898dda8cf, type: 3}
       propertyPath: m_Name
       value: MainMenuButton
@@ -456,3 +545,4 @@ SceneRoots:
   - {fileID: 3969103319569309781}
   - {fileID: 848759066}
   - {fileID: 1564733793}
+  - {fileID: 1948106537}
