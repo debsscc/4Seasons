@@ -26,7 +26,7 @@ public class SceneTransition : Singleton<SceneTransition>
 
     void Start()
     {
-        StartCoroutine(DelayedFadeIn());
+        // StartCoroutine(DelayedFadeIn());
     }
 
     IEnumerator DelayedFadeIn()
