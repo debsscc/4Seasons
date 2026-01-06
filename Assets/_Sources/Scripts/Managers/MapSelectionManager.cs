@@ -20,6 +20,7 @@ public class MapSelectionManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         Debug.Log("MapSelectionManager Awake");
         if (Instance == null)
         {
@@ -43,6 +44,33 @@ public class MapSelectionManager : MonoBehaviour
 
         if (confirmButtonGO != null)
             confirmButtonGO.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (GameSessionManager.Instance != null)
+        {
+            availableMaps = allMaps
+                .Where(m => !GameSessionManager.Instance.IsCompleted(m))
+                .ToArray();
+        }
+        else
+        {
+            availableMaps = allMaps;
+        }
+
+        // Desabilitar botões de mapas completados
+        foreach (var button in SceneButtons)
+        {
+            if (button == null || button.mapData == null) continue;
+
+            bool isCompleted = GameSessionManager.Instance != null && GameSessionManager.Instance.IsCompleted(button.mapData);
+            button.SetInteractable(!isCompleted);
+        }
+
+        if (confirmButtonGO != null)
+            confirmButtonGO.SetActive(false);
+
     }
 
     private void OnEnable()
@@ -99,11 +127,14 @@ public class MapSelectionManager : MonoBehaviour
             Debug.LogWarning("Nenhum mapa selecionado ao confirmar");
             return;
         }
+        if (GameSessionManager.Instance != null && GameSessionManager.Instance.IsCompleted(pendingMap))
+        {
+            Debug.LogWarning("Mapa já completado, não pode selecionar novamente.");
+            return;
+        }
 
         Debug.Log($"Confirmando seleção: {pendingMap.sceneName}");
-
         ScoreManager.Instancia?.ApplyScoreForMapSelection(pendingMap);
-
         SelectMap(pendingMap);
     }
 

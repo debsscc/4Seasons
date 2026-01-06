@@ -57,6 +57,7 @@ public class GameSessionManager : MonoBehaviour
     public void ReturnToMapSelection()
     {
         Debug.Log("Voltando para cena de seleção de mapas...");
+        MarkCurrentMapAsCompleted();
         SceneTransition.Instance.ChangeScene(mapSelectionSceneName);
        // UnityEngine.SceneManagement.SceneManager.LoadScene(mapSelectionSceneName);
     }

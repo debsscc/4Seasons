@@ -1134,11 +1134,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1619054115354341060, guid: 257c67931a784ce48bedb8a331486208, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4270.4224
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1619054115354341060, guid: 257c67931a784ce48bedb8a331486208, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 732.4812
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1619054115354341060, guid: 257c67931a784ce48bedb8a331486208, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2480,13 +2480,29 @@ PrefabInstance:
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 3f2ac5e618965ce46b12bb94cdc47175, type: 3}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: SFXLibrary.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: MusicLibrary.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: SFXLibrary.Array.data[3].Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354855476184147983, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: SFXLibrary.Array.data[4].Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3886.562
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1125.4207
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8163939346004070106, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_LocalPosition.z
