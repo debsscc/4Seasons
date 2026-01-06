@@ -10,7 +10,6 @@ public class MapButton : MonoBehaviour
 {
     [Header("Map Button Settings")]
     [SerializeField] private Image mapIcon;
-    [SerializeField] private TMP_Text mapNameText;
     [SerializeField] private Button mapButton;
     [SerializeField] public float waitTimer;
 
