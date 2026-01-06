@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 33b4aedda3f3a0948930aaa17db581d2
+guid: a4f7190e4ec1985459ab2686d5785ee5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7199547566641797089
-    second: mapa shopping_0
+      213: -3653036328525648502
+    second: "pra\xE7a_0"
+  - first:
+      213: -85184072291652814
+    second: "pra\xE7a_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +49,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 2
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mapa shopping_0
+      name: "pra\xE7a_0"
       rect:
         serializedVersion: 2
-        x: 893
-        y: 243
-        width: 875
-        height: 898
+        x: 2
+        y: 14
+        width: 957
+        height: 466
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f18a9ca02a1161c90800000000000000
-      internalID: -7199547566641797089
+      spriteID: a8da1a650decd4dc0800000000000000
+      internalID: -3653036328525648502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "pra\xE7a_1"
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 4
+        width: 69
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23be88e998d51def0800000000000000
+      internalID: -85184072291652814
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mapa shopping_0: -7199547566641797089
+      "pra\xE7a_0": -3653036328525648502
+      "pra\xE7a_1": -85184072291652814
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

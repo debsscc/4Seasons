@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 4ffffd3a8323ef34b95f394488b150d0
+guid: 7c23ae676f5693a4a89c945c5215e084
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4548801321735195111
-    second: "mapa pra\xE7a_0"
+      213: -8285812281502413206
+    second: mapa parque 1_0
   - first:
-      213: 7898337078770396743
-    second: "mapa pra\xE7a_1"
+      213: -5046955964055027776
+    second: mapa parque 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 2
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,43 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "mapa pra\xE7a_0"
+      name: mapa parque 1_0
       rect:
         serializedVersion: 2
-        x: 165
-        y: 891
-        width: 959
-        height: 466
+        x: 24
+        y: 66
+        width: 364
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91675286c496fd0c0800000000000000
-      internalID: -4548801321735195111
+      spriteID: a6eca7d41a1e20d80800000000000000
+      internalID: -8285812281502413206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "mapa pra\xE7a_1"
+      name: mapa parque 1_1
       rect:
         serializedVersion: 2
-        x: 838
-        y: 881
-        width: 69
-        height: 61
+        x: 235
+        y: 24
+        width: 628
+        height: 1146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74ee768d9b78c9d60800000000000000
-      internalID: 7898337078770396743
+      spriteID: 0cff5756a4c95f9b0800000000000000
+      internalID: -5046955964055027776
       vertices: []
       indices: 
       edges: []
@@ -186,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "mapa pra\xE7a_0": -4548801321735195111
-      "mapa pra\xE7a_1": 7898337078770396743
+      mapa parque 1_0: -8285812281502413206
+      mapa parque 1_1: -5046955964055027776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

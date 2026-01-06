@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: 1ed538bfb866ebc4cbe7eff01d7a1ae5
+guid: 8e0227ec54bcbe542baae2ece841af15
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3067943935459311863
-    second: mapa praia_0
+      213: -7552171581033095462
+    second: mapa praia 1_0
   - first:
-      213: -3177495626620812343
-    second: mapa praia_1
+      213: -7859351540728026322
+    second: mapa praia 1_1
   - first:
-      213: -3611572341127385394
-    second: mapa praia_2
+      213: 6065828007484265372
+    second: mapa praia 1_2
   - first:
-      213: -7255145569148792923
-    second: mapa praia_3
+      213: 585016906922533658
+    second: mapa praia 1_3
   - first:
-      213: 7044761176471034825
-    second: mapa praia_4
+      213: 2527086175910436059
+    second: mapa praia 1_4
   - first:
-      213: -2970725916363317918
-    second: mapa praia_5
+      213: 4712687995845014663
+    second: mapa praia 1_5
   - first:
-      213: -8742000882931563456
-    second: mapa praia_6
+      213: -146856438506223292
+    second: mapa praia 1_6
   - first:
-      213: -1678221847995901263
-    second: mapa praia_7
+      213: 5115259882385240855
+    second: mapa praia 1_7
   - first:
-      213: 9154792869027592504
-    second: mapa praia_8
+      213: 4714096150718497497
+    second: mapa praia 1_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,229 +120,203 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mapa praia_0
+      name: mapa praia 1_0
       rect:
         serializedVersion: 2
-        x: 901
-        y: 1336
+        x: 24
+        y: 317
         width: 86
-        height: 104
+        height: 105
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90f3220de397c65d0800000000000000
-      internalID: -3067943935459311863
+      spriteID: aded8bdc5fb413790800000000000000
+      internalID: -7552171581033095462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_1
+      name: mapa praia 1_1
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 1345
+        x: 187
+        y: 326
         width: 69
         height: 71
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c3c8eb009447e3d0800000000000000
-      internalID: -3177495626620812343
+      spriteID: e2bacf11a69fde290800000000000000
+      internalID: -7859351540728026322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_2
+      name: mapa praia 1_2
       rect:
         serializedVersion: 2
-        x: 1133
-        y: 1256
+        x: 256
+        y: 237
         width: 202
         height: 172
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ecee976371e11edc0800000000000000
-      internalID: -3611572341127385394
+      spriteID: c9317b64f662e2450800000000000000
+      internalID: 6065828007484265372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_3
+      name: mapa praia 1_3
       rect:
         serializedVersion: 2
-        x: 1326
-        y: 1252
+        x: 449
+        y: 233
         width: 135
         height: 168
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5af03255b8b805b90800000000000000
-      internalID: -7255145569148792923
+      spriteID: a1327bcf6c56e1800800000000000000
+      internalID: 585016906922533658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_4
+      name: mapa praia 1_4
       rect:
         serializedVersion: 2
-        x: 1544
-        y: 1268
+        x: 667
+        y: 249
         width: 109
         height: 135
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9cbd40b17f404c160800000000000000
-      internalID: 7044761176471034825
+      spriteID: bdc11f7ec73021320800000000000000
+      internalID: 2527086175910436059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_5
+      name: mapa praia 1_5
       rect:
         serializedVersion: 2
-        x: 1785
-        y: 1043
-        width: 775
-        height: 397
+        x: 908
+        y: 24
+        width: 776
+        height: 398
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26d1e16c48cd5c6d0800000000000000
-      internalID: -2970725916363317918
+      spriteID: 784f69963c4d66140800000000000000
+      internalID: 4712687995845014663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_6
+      name: mapa praia 1_6
       rect:
         serializedVersion: 2
-        x: 1648
-        y: 1123
+        x: 771
+        y: 104
         width: 64
         height: 72
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04486ba938c2ea680800000000000000
-      internalID: -8742000882931563456
+      spriteID: 4498bd5e8d246fdf0800000000000000
+      internalID: -146856438506223292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_7
+      name: mapa praia 1_7
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 1180
+        x: 803
+        y: 161
         width: 95
         height: 107
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ba97efee12c5b8e0800000000000000
-      internalID: -1678221847995901263
+      spriteID: 713f06fd2cd0df640800000000000000
+      internalID: 5115259882385240855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mapa praia_8
+      name: mapa praia 1_8
       rect:
         serializedVersion: 2
-        x: 1722
-        y: 1126
+        x: 845
+        y: 107
         width: 139
         height: 69
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8393ba63c9b5c0f70800000000000000
-      internalID: 9154792869027592504
+      spriteID: 9d2cc940975db6140800000000000000
+      internalID: 4714096150718497497
       vertices: []
       indices: 
       edges: []
@@ -352,7 +326,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -361,15 +335,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mapa praia_0: -3067943935459311863
-      mapa praia_1: -3177495626620812343
-      mapa praia_2: -3611572341127385394
-      mapa praia_3: -7255145569148792923
-      mapa praia_4: 7044761176471034825
-      mapa praia_5: -2970725916363317918
-      mapa praia_6: -8742000882931563456
-      mapa praia_7: -1678221847995901263
-      mapa praia_8: 9154792869027592504
+      mapa praia 1_0: -7552171581033095462
+      mapa praia 1_1: -7859351540728026322
+      mapa praia 1_2: 6065828007484265372
+      mapa praia 1_3: 585016906922533658
+      mapa praia 1_4: 2527086175910436059
+      mapa praia 1_5: 4712687995845014663
+      mapa praia 1_6: -146856438506223292
+      mapa praia 1_7: 5115259882385240855
+      mapa praia 1_8: 4714096150718497497
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
