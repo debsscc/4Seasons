@@ -7,7 +7,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Title("Audio")]
     public AudioClip pickSfx;
@@ -25,12 +25,8 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public MiniGameController MiniGameController { get; set; }
     private IItemHolder _itemHolder;
     public event Action OnBeginDragEvent;
+    private Vector2 initialAnchoredPosition;
 
-    //----Minigame2----
-    [Header("Steal Icon")]
-    public GameObject moneyIcon; 
-    private bool isPointerOver = false;
-    private bool moneyIconClicked = false;
 
     private void Awake()
     {
@@ -43,13 +39,8 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             Debug.LogError("DraggablePrefab precisa ta dentro de um componente canvas");
 
         audioSource = gameObject.AddComponent<AudioSource>();
+        initialAnchoredPosition = rectTransform.anchoredPosition;
     }
-    public void OnPointerEnter(PointerEventData eventData)
-        {
-            isPointerOver = true;
-            UpdateMoneyIcon();
-        }
-
     // --- INTERFACE DE DRAG ---
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -79,46 +70,12 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         OnBeginDragEvent?.Invoke();
     }
-
-    public void OnPointerExit(PointerEventData eventData)
+    //----Event 1.1-----
+    public void ResetPosition()
     {
-        isPointerOver = false;
-        UpdateMoneyIcon();
+        rectTransform.DOAnchorPos(initialAnchoredPosition, 0.5f);
     }
 
-    private void UpdateMoneyIcon()
-    {
-        if (moneyIcon == null || MiniGameController == null) return;
-
-        var miniGame2 = MiniGameController.GetComponent<MiniGame2Scoring>();
-        if (miniGame2 == null) 
-        {
-            moneyIcon.SetActive(false);
-            return;
-        }
-
-        var drink = GetComponent<DrinksINFO>();
-        if (drink == null)
-        {
-            moneyIcon.SetActive(false);
-            return;
-        }
-        if (isPointerOver && !drink.isInBasket && miniGame2.GetDrinksInBasketCount() >= 2 && !moneyIconClicked)
-        {
-            moneyIcon.SetActive(true);
-        }
-        else
-        {
-            moneyIcon.SetActive(false);
-        }
-    }
-
-    public void OnMoneyIconClicked()
-        {
-            moneyIconClicked = true;
-            moneyIcon.SetActive(false);
-            // Aqui você pode disparar a lógica de "roubar" se quiser
-        }
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -308,8 +265,19 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
             }
 
-            moneyIconClicked = false;
-            UpdateMoneyIcon();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (MiniGameController != null)
+        {
+            MiniGameController.OnDVDRemoved(this);
+        }
+        else
+        {
+            // Se não tiver controlador, reseta direto
+            ResetPosition();
         }
     }
 
