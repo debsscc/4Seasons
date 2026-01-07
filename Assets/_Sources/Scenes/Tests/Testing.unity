@@ -213,6 +213,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 216249965}
   - {fileID: 1866526245}
   - {fileID: 294579581}
   m_Father: {fileID: 0}
@@ -681,7 +682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: Fogos_De_Artificio
+      value: Start_Shopping
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
@@ -759,6 +760,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: Event1.1
   dialogueRunner: {fileID: 182373849}
+--- !u!1 &216249964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216249965}
+  - component: {fileID: 216249967}
+  - component: {fileID: 216249966}
+  - component: {fileID: 216249968}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &216249965
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216249964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 18148252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -697, y: 376}
+  m_SizeDelta: {x: 400, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &216249966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216249964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3c8485d2c21eab044bb440a1fee78a23, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &216249967
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216249964}
+  m_CullTransparentMesh: 1
+--- !u!114 &216249968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216249964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a988e64b60de8468224df82e128e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
+  dialogueRunner: {fileID: 182373849}
+  characterBindings:
+  - characterId: Melissa
+    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
 --- !u!1 &294579580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,14 +1483,15 @@ MonoBehaviour:
   characterBindings:
   - characterId: Iris
     characterGameObject: {fileID: 1896138847}
-  - characterId: Arabella
-    characterGameObject: {fileID: 1977259764}
   - characterId: Sabrina
     characterGameObject: {fileID: 1846310960}
+  - characterId: Melissa
+    characterGameObject: {fileID: 1977259764}
   characterProfiles:
   - {fileID: 11400000, guid: 7bee0eb767ae4b341b22acae9e0f2a05, type: 2}
   - {fileID: 11400000, guid: 1a39c8aeb23b72f45aa95d0253d5e6ac, type: 2}
   - {fileID: 11400000, guid: 0f0f6ebf08edaa04ca3de86064ddf8e5, type: 2}
+  - {fileID: 11400000, guid: 541607e69992d7441b5a076f30a15c71, type: 2}
   speechBubbleRect: {fileID: 182373850}
   dialogueTextTMP: {fileID: 181062415}
   bubbleEmotionImage: {fileID: 0}
@@ -1655,7 +1749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942f5f3904bc129438e9d6a9a1d88995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
-  characterId: Arabella
+  characterId: Melissa
 --- !u!1 &2029800654
 GameObject:
   m_ObjectHideFlags: 0

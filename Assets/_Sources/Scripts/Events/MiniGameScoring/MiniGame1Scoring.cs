@@ -122,6 +122,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             if (escolheuTerrorOuSuspense)
             {
                 if (npc.traits.isFearful) delta += -2;   // medroso com terror/suspense
+                //
                 if (npc.traits.isBrave)   delta += +3;   // corajoso com terror/suspense
             }
             else
@@ -163,6 +164,8 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         return escolheuTerrorOuSuspense;
     }
+
+
 
     private void ShowFeedbackModal(bool escolheuCorajoso)
     {

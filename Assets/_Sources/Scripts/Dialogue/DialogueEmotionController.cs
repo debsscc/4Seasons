@@ -191,14 +191,6 @@ public class DialogueEmotionController : MonoBehaviour
         return "";
     }
 
-    // private void PositionSpeechBubbleToCharacter(string characterId)
-    // {
-    //     RectTransform bubbleRect = speechBubbleRect;
-    //     else
-    //     {
-    //         Debug.LogWarning($"[DialogueEmotionController] Não foi possível posicionar balão: personagem '{characterId}' não encontrado.");
-    //     }
-    // }
 private void PositionSpeechBubbleToCharacter(string characterId)
 {
 
