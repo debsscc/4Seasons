@@ -1,6 +1,7 @@
 title: Fogos_De_Artificio
 ---
 
+<<set $event_part = "Event4.1">>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
 Arabella: Droga!
@@ -85,9 +86,11 @@ Iris: Mas vai ser legal ver o céu colorido.
 -> Sabrina: O estouro não me incomoda tanto.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
+    <<set $current_option = "Event4.1_option1">>
 -> Sabrina: Pois é, não gosto do barulho alto.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Sad">>
+    <<set $current_option = "Event4.1_option2">>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
 Arabella: Tapa os ouvidos que fica de boa, Luke.

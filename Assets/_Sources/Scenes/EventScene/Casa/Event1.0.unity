@@ -987,6 +987,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 455106233}
+  - component: {fileID: 455106235}
+  - component: {fileID: 455106234}
+  - component: {fileID: 455106236}
+  - component: {fileID: 455106237}
   m_Layer: 0
   m_Name: Characters
   m_TagString: Untagged
@@ -1017,6 +1021,95 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &455106234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455106232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d8dab1420b4c449b485d7de7756171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
+  scoreManager: {fileID: 455106237}
+--- !u!114 &455106235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455106232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a988e64b60de8468224df82e128e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
+  dialogueRunner: {fileID: 1496142501}
+  characterBindings:
+  - characterId: Sabrina
+    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+  - characterId: Lucas
+    characterData: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+  - characterId: Melissa
+    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+  - characterId: Ian
+    characterData: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
+--- !u!114 &455106236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455106232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8adc8397421a5846b2b2cbaddf47f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueEmotionController
+  dialogueRunner: {fileID: 1496142501}
+  characterBindings:
+  - characterId: Sabrina
+    characterGameObject: {fileID: 1102871501}
+  - characterId: Lucas
+    characterGameObject: {fileID: 1085670715}
+  - characterId: Melissa
+    characterGameObject: {fileID: 1055271665}
+  - characterId: Ian
+    characterGameObject: {fileID: 1119725277}
+  characterProfiles:
+  - {fileID: 11400000, guid: 0f0f6ebf08edaa04ca3de86064ddf8e5, type: 2}
+  - {fileID: 11400000, guid: 41f33b82e71b5cc45a62bfbe55bd98c3, type: 2}
+  - {fileID: 11400000, guid: 541607e69992d7441b5a076f30a15c71, type: 2}
+  - {fileID: 11400000, guid: e44263d53890abe4a9c8df977b6be4d7, type: 2}
+  speechBubbleRect: {fileID: 1496142497}
+  dialogueTextTMP: {fileID: 0}
+  bubbleEmotionImage: {fileID: 0}
+  bubbleOffset: {x: 0, y: 120}
+  uiCamera: {fileID: 0}
+--- !u!114 &455106237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455106232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f50e9c7166f44cb98d38ba2eabbe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreRulesDialogue
+  rulesAsset: {fileID: 11400000, guid: 396a61885b3fa1c4da13e0358c23088a, type: 2}
+  characterBindings:
+  - characterId: Sabrina
+    characterData: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  - characterId: Lucas
+    characterData: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+  - characterId: Melissa
+    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+  - characterId: Ian
+    characterData: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
 --- !u!1001 &477714688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1333,7 +1426,7 @@ GameObject:
   - component: {fileID: 1055271668}
   - component: {fileID: 1055271667}
   - component: {fileID: 1055271669}
-  - component: {fileID: 1055271669}
+  - component: {fileID: 1055271670}
   m_Layer: 5
   m_Name: Personagem1
   m_TagString: Untagged
@@ -1420,6 +1513,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1055271670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055271665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f5f3904bc129438e9d6a9a1d88995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
+  characterId: Melissa
 --- !u!1 &1085670715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1537,7 @@ GameObject:
   - component: {fileID: 1085670716}
   - component: {fileID: 1085670718}
   - component: {fileID: 1085670717}
+  - component: {fileID: 1085670719}
   m_Layer: 5
   m_Name: Personagem2
   m_TagString: Untagged
@@ -1495,6 +1602,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085670715}
   m_CullTransparentMesh: 1
+--- !u!114 &1085670719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085670715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f5f3904bc129438e9d6a9a1d88995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
+  characterId: Lucas
 --- !u!1 &1102871501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,6 +1626,7 @@ GameObject:
   - component: {fileID: 1102871502}
   - component: {fileID: 1102871504}
   - component: {fileID: 1102871503}
+  - component: {fileID: 1102871505}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1570,6 +1691,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102871501}
   m_CullTransparentMesh: 1
+--- !u!114 &1102871505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102871501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f5f3904bc129438e9d6a9a1d88995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
+  characterId: Sabrina
 --- !u!1 &1119725277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1715,7 @@ GameObject:
   - component: {fileID: 1119725278}
   - component: {fileID: 1119725280}
   - component: {fileID: 1119725279}
+  - component: {fileID: 1119725281}
   m_Layer: 5
   m_Name: Personagem3
   m_TagString: Untagged
@@ -1645,6 +1780,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119725277}
   m_CullTransparentMesh: 1
+--- !u!114 &1119725281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119725277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f5f3904bc129438e9d6a9a1d88995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
+  characterId: Ian
 --- !u!1 &1140162283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -897.6, y: 478.3}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 356.9452, y: 194.4026}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1628005357

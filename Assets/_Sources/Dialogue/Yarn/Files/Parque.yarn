@@ -1,6 +1,7 @@
 title: Roda_Gigante
 ---
 
+<<set $event_part = "Event5.1_Part1">>
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
 Ian: Vamo gente vocês são lentos demais!
@@ -43,9 +44,11 @@ Lucas: Eu achei que ia passar mal nesse negócio.
 -> Sabrina: Pois é, ficar de ponta cabeça é terrível.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
+    <<set $current_option = "Event5.1_option1">>
 -> Sabrina: Na real foi bem divertido.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
+    <<set $current_option = "Event5.1_option2">>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
 Arabella: O melhor foi o Lucas se tremendo todo no trem fantasma.
