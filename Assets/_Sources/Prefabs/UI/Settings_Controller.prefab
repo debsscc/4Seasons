@@ -671,6 +671,8 @@ GameObject:
   - component: {fileID: 1616757103296589736}
   - component: {fileID: 7157295879442787382}
   - component: {fileID: 543614093613091093}
+  - component: {fileID: 3985204724885097715}
+  - component: {fileID: 6179088659783843164}
   m_Layer: 5
   m_Name: ExitSettings
   m_TagString: Untagged
@@ -791,6 +793,65 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3985204724885097715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858631926276665150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
+  cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  hotspot: {x: 0, y: 0}
+--- !u!114 &6179088659783843164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858631926276665150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3985204724885097715}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3985204724885097715}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1878635302040279642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1500,8 @@ GameObject:
   - component: {fileID: 3886302152864151660}
   - component: {fileID: 5066969233351725371}
   - component: {fileID: 4302813857551416229}
+  - component: {fileID: 5993382863700119478}
+  - component: {fileID: 3177233322707498963}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -1503,6 +1566,65 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5993382863700119478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781533018918191555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
+  cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  hotspot: {x: 0, y: 0}
+--- !u!114 &3177233322707498963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781533018918191555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5993382863700119478}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5993382863700119478}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3453142193224341474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,6 +1993,8 @@ GameObject:
   - component: {fileID: 5243969952090216635}
   - component: {fileID: 4043406085083040815}
   - component: {fileID: 2498403258812917096}
+  - component: {fileID: 3475235985938766076}
+  - component: {fileID: 8002268584403335576}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -1935,6 +2059,65 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3475235985938766076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104879974993056180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
+  cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  hotspot: {x: 0, y: 0}
+--- !u!114 &8002268584403335576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104879974993056180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3475235985938766076}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3475235985938766076}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5592033092379319504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartMenuController
   optionsModal: {fileID: 4737366940016785105}
+  sceneLoadingScreen: {fileID: 0}
+  loadingDelay: 1
 --- !u!1 &6772949855521899863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,6 +2902,8 @@ GameObject:
   - component: {fileID: 7086185841922296128}
   - component: {fileID: 4023458986693445499}
   - component: {fileID: 5564304162424767881}
+  - component: {fileID: 5235148354379482640}
+  - component: {fileID: 6009482863344852379}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -2781,6 +2968,65 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5235148354379482640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281170169474890627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
+  cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  hotspot: {x: 0, y: 0}
+--- !u!114 &6009482863344852379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281170169474890627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5235148354379482640}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5235148354379482640}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8482183910165720386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +3113,8 @@ GameObject:
   - component: {fileID: 2700193826502687312}
   - component: {fileID: 8566504270848312163}
   - component: {fileID: 6038326076165289473}
+  - component: {fileID: 1742594460789156445}
+  - component: {fileID: 7028505775299759664}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -2931,3 +3179,62 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1742594460789156445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219593911870047862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
+  cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  hotspot: {x: 0, y: 0}
+--- !u!114 &7028505775299759664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219593911870047862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1742594460789156445}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1742594460789156445}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
