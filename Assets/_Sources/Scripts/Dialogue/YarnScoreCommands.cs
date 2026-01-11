@@ -1,29 +1,31 @@
 using UnityEngine;
 using Yarn.Unity;
-using System; // <-- Adicione esta linha
+using System;
+
 
 public class YarnScoreCommands : MonoBehaviour
 {
     public ScoreRulesDialogue scoreManager;
 
-    // Registra comando Yarn: <<command ApplyEventPart "Evento2.0_Parte1">>
+    //<<command ApplyEventPart "Evento2.0_Parte1">>
     [YarnCommand("ApplyEventPart")]
     public void ApplyEventPart(string ruleId)
     {
+        Debug.Log($"Apllied inicio evento");
         if (scoreManager == null)
         {
             Debug.LogWarning("[YarnScoreCommands] scoreManager not assigned");
             return;
         }
-
+        Debug.Log("Score aplicado '");
         scoreManager.ApplyRuleById(ruleId);
     }
 
-    // Alternativa: mais flexível, permite passar CSV e delta:
     // <<command ApplyPoints "Sabrina,Melissa" 1>>
     [YarnCommand("ApplyPoints")]
     public void ApplyPoints(string csvIds, int delta)
     {
+        Debug.Log($"[YarnScoreCommands] ApplyPoints called with ids='{csvIds}', delta={delta}");
         if (scoreManager == null) return;
 
         var ids = csvIds.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -31,16 +33,18 @@ public class YarnScoreCommands : MonoBehaviour
         {
             gain = new System.Collections.Generic.List<string>(),
             lose = new System.Collections.Generic.List<string>(),
-            amount = Math.Abs(delta) // Agora vai funcionar
+            amount = Math.Abs(delta) 
         };
 
         if (delta > 0)
         {
             foreach (var id in ids) tempRule.gain.Add(id.Trim());
+            Debug.Log("[Yarn DebugLog] Applying +points via ApplyPoints");
         }
         else if (delta < 0)
         {
             foreach (var id in ids) tempRule.lose.Add(id.Trim());
+            Debug.Log("[Yarn DebugLog] Applying -points via ApplyPoints");
         }
 
         scoreManager.ApplyRule(tempRule);

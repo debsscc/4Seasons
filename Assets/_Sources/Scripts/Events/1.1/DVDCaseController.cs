@@ -6,7 +6,6 @@ using DG.Tweening;
 public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Visual")]
-    public Image outlineImage;
     public Color hoverOutlineColor = Color.white;
 
     [Header("DVD Interno")]
@@ -24,16 +23,22 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private bool isOpen = false;
     private AudioSource audioSource;
     private Image caseImage;
+    private Outline outline;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
         caseImage = GetComponent<Image>();
-
-        if (outlineImage)
+        
+        // Pega o componente Outline 
+        outline = GetComponent<Outline>();
+        
+        if (outline)
         {
-            outlineImage.color = hoverOutlineColor;
-            outlineImage.enabled = false;
+            outline.effectColor = hoverOutlineColor;
+            Color startColor = outline.effectColor;
+            startColor.a = 0f;
+            outline.effectColor = startColor;
         }
 
         if (dvdDraggable)
@@ -62,16 +67,12 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void ShowOutline(bool show)
     {
-        if (outlineImage == null) return;
+        if (outline == null) return;
 
         Color targetColor = hoverOutlineColor;
         targetColor.a = show ? 1f : 0f;
 
-        outlineImage.enabled = true;
-        outlineImage.DOColor(targetColor, 0.2f).OnComplete(() =>
-        {
-            if (!show) outlineImage.enabled = false;
-        });
+        DOTween.To(() => outline.effectColor, x => outline.effectColor = x, targetColor, 0.2f);
     }
 
     private void OpenCase()
@@ -104,7 +105,6 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
             dvdDraggable.TargetSlots = miniGameController.targetSlots;
         }
 
-        // Animação de aparição
         dvdDraggable.transform.localScale = Vector3.zero;
         dvdDraggable.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
     }
