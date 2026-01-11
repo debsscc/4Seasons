@@ -2,13 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
+public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("IDs dos Slots")]
     public int acceptId = 1; 
     public int rejectId = 2; 
     
+    [Header("Visual")]
+    public Color hoverOutlineColor = Color.white;
+    private Outline outline;
+
+
     [Header("Objetos da Cena")]
     public GameObject isqueiroObject;
 
@@ -41,6 +47,19 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
 
     private SlotDraggable selectedSlot;
     private bool isConfirmed = false;
+
+    private void Awake()
+    {
+        outline = GetComponent<Outline>();
+
+        if (outline)
+        {
+            outline.effectColor = hoverOutlineColor;
+            Color startColor = outline.effectColor;
+            startColor.a = 0f;
+            outline.effectColor = startColor;
+        }
+    }
 
     private void Start()
     {
@@ -76,48 +95,27 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
         selectedSlot = slot;
         
         if (confirmButton) confirmButton.SetActive(true);
-        
-        // Se for o bolso (recusar), isqueiro some
-        if (slot.specialId == rejectId)
-        {
-            if (isqueiroObject)
-            {
-                isqueiroObject.transform
-                    .DOScale(Vector3.zero, 0.3f)
-                    .OnComplete(() => isqueiroObject.SetActive(false));
-            }
-        }
     }
-
-    // Alterado: implementado para permitir que o jogador remova o item do slot e voltar a escolher.
-    // Comentário: este método será chamado quando o Draggable começar a ser arrastado E estiver vindo de um slot.
     public void OnItemRemovedFromSlot()
     {
-        // Se havia um slot selecionado, "desfazemos" a seleção para permitir nova escolha.
-        // Comentário: resetamos selectedSlot, isConfirmed e escondemos botões/feedbacks; reativamos isqueiro se necessário.
         if (selectedSlot != null)
         {
-            // Se o slot selecionado era o de rejeitar, reexibir o isqueiro (animação de reaparecer)
             if (selectedSlot.specialId == rejectId && isqueiroObject != null)
             {
                 isqueiroObject.SetActive(true);
-                // animação suave para reaparecer:
                 isqueiroObject.transform.localScale = Vector3.zero;
                 isqueiroObject.transform.DOScale(Vector3.one, 0.2f);
             }
         }
 
-        // Reset do estado interno para permitir nova seleção
         selectedSlot = null;                // limpa a seleção atual
-        isConfirmed = false;                // permite re-confirmar mais tarde
+        isConfirmed = false;                
         if (confirmButton) confirmButton.SetActive(false); // esconder botão de confirmar até nova seleção
 
-        // Esconder outlines para evitar estado visual confuso
         SetOutlineEnabled(drogasOutline, false);
         SetOutlineEnabled(bolsoOutline, false);
         SetOutlineEnabled(isqueiroOutline, false);
 
-        // Esconder feedbacks (caso apareçam)
         if (feedbackBolso) feedbackBolso.SetActive(false);
         if (feedbackDrogas) feedbackDrogas.SetActive(false);
 
@@ -207,5 +205,31 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring
     {
         if (outline == null) return;
         outline.enabled = enabled;
+    }
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (isConfirmed) return;
+        ShowOutline(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (isConfirmed) return;
+        ShowOutline(false);
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (isConfirmed) return;
+    }
+
+    private void ShowOutline(bool show)
+    {
+        if (outline == null) return;
+
+        Color targetColor = hoverOutlineColor;
+        targetColor.a = show ? 1f : 0f;
+
+        DOTween.To(() => outline.effectColor, x => outline.effectColor = x, targetColor, 0.2f);
     }
 }

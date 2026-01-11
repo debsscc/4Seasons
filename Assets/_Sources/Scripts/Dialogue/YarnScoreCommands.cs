@@ -2,7 +2,6 @@ using UnityEngine;
 using Yarn.Unity;
 using System;
 
-
 public class YarnScoreCommands : MonoBehaviour
 {
     public ScoreRulesDialogue scoreManager;
@@ -11,13 +10,14 @@ public class YarnScoreCommands : MonoBehaviour
     [YarnCommand("ApplyEventPart")]
     public void ApplyEventPart(string ruleId)
     {
-        Debug.Log($"Apllied inicio evento");
+        Debug.Log($"[YarnScoreCommands] ApplyEventPart chamado: {ruleId}");
+
         if (scoreManager == null)
         {
-            Debug.LogWarning("[YarnScoreCommands] scoreManager not assigned");
+            Debug.LogError("[YarnScoreCommands] scoreManager NÃO atribuído");
             return;
         }
-        Debug.Log("Score aplicado '");
+
         scoreManager.ApplyRuleById(ruleId);
     }
 

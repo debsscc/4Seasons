@@ -6,6 +6,7 @@ public class SceneLoaderYarn : MonoBehaviour
 {
     public string sceneToLoad;
     public DialogueRunner dialogueRunner; // arraste no Inspector ou deixe nulo para achar automaticamente
+    public YarnScoreCommands scoreCommands;
 
     void Awake()
     {
@@ -13,8 +14,8 @@ public class SceneLoaderYarn : MonoBehaviour
 
         if (dialogueRunner == null)
         {
-            //dialogueRunner = FindObjectOfType<DialogueRunner>();
             Debug.Log("[SceneLoaderYarn] Procurando DialogueRunner...");
+            dialogueRunner = FindFirstObjectByType<DialogueRunner>();
         }
 
         if (dialogueRunner != null)
@@ -22,10 +23,22 @@ public class SceneLoaderYarn : MonoBehaviour
             Debug.Log("[SceneLoaderYarn] DialogueRunner encontrado! Registrando evento...");
             dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
         }
-        else
+        if (scoreCommands == null)
         {
-            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner N�O encontrado!");
+            Debug.Log("[SceneLoaderYarn] Procurando YarnScoreCommands...");
+            scoreCommands = FindFirstObjectByType<YarnScoreCommands>();
         }
+        if (dialogueRunner || scoreCommands == null)
+        {
+            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner ou YarnScoreCommands não encontrado!");
+            return;
+        }
+
+        dialogueRunner.AddCommandHandler<string>(
+            "ApplyEventPart",
+            scoreCommands.ApplyEventPart
+        );
+        Debug.Log("[SceneLoaderYarn] Comando ApplyEventPart registrado!");
     }
 
     void OnDestroy()
