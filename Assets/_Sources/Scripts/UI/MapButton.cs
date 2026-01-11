@@ -10,7 +10,6 @@ public class MapButton : MonoBehaviour
 {
     [Header("Map Button Settings")]
     [SerializeField] private Image mapIcon;
-    [SerializeField] private TMP_Text mapNameText;
     [SerializeField] private Button mapButton;
     [SerializeField] public float waitTimer;
 
@@ -20,9 +19,10 @@ public class MapButton : MonoBehaviour
     [Header("Selection Visual")]
     [SerializeField] private Outline outline; 
     
-    public event Action<MapButton, MapData> OnMapSelected; // Mudou de string para MapData
+    public event Action<MapButton, MapData> OnMapSelected; 
     
     private bool isSelected = false;
+    private bool isCompleted = false;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class MapButton : MonoBehaviour
 
     public void PointerEnterFeedback()
     {
-        if (!isSelected)
+        if (!isSelected && !isCompleted )
         {
             transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
         }
@@ -42,7 +42,7 @@ public class MapButton : MonoBehaviour
 
     public void PointerOutFeedback()
     {
-        if (!isSelected)
+        if (!isSelected && !isCompleted)
         {
             transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
         }
@@ -52,7 +52,7 @@ public class MapButton : MonoBehaviour
     {
         if (mapData == null)
         {
-            Debug.LogError("MapData não está configurado no MapButton!");
+            Debug.LogError("MapData nn ta configurado no MapButton!");
             return;
         }
         if (GameSessionManager.Instance != null && GameSessionManager.Instance.IsCompleted(mapData))
@@ -67,6 +67,8 @@ public class MapButton : MonoBehaviour
     
     public void SetSelected(bool selected)
     {
+        if (isCompleted) return;
+
         isSelected = selected;
         
         if (outline != null)
@@ -93,8 +95,20 @@ public class MapButton : MonoBehaviour
         var image = GetComponent<Image>();
         if (image != null)
         {
-            image.color = interactable ? Color.white : new Color(1, 1, 1, 0.5f);
+            if (!interactable)
+            {
+                isCompleted = true;
+                image.color = new Color(1, 1, 1, 0.3f);
+                if (UnityEngine.EventSystems.EventSystem.current != null)
+                {
+                    UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+                }
+            }
+            else
+            {
+                isCompleted = false;
+                image.color = Color.white;
+            }
         }
     }
-
 }

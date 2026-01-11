@@ -30,6 +30,13 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             return;
         }
 
+        // Verifica se o slot já tem um objeto (apenas para Event 1.1)
+        if (slot.lastDroppedObject != null)
+        {
+            Debug.LogWarning($"[MiniGame1] Slot '{slot.name}' já contém um objeto. Não é permitido adicionar outro.");
+            return;
+        }
+
         _pendingSlot = slot;
         _pendingItems = items;
 
@@ -47,6 +54,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             Debug.LogWarning("[MiniGame1] confirmButton não foi atribuído no Inspector.");
         }
     }
+
     public void OnItemDraggedOutOfSlot()
     {
         _pendingSlot = null;
@@ -84,17 +92,17 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
     }
 
     public void OnItemRemovedFromSlot()
-{
-    _pendingSlot = null;
-    _pendingItems = null;
-
-    if (confirmButton != null)
     {
-        confirmButton.SetActive(false);
-    }
+        _pendingSlot = null;
+        _pendingItems = null;
 
-    Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
-}
+        if (confirmButton != null)
+        {
+            confirmButton.SetActive(false);
+        }
+
+        Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
+    }
 
     private bool ApplyScores(ItemsSO[] items)
     {

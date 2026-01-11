@@ -1,6 +1,7 @@
 title: Start_Shopping
 //Contextualização Event2.0
 ---
+<<set $event_part = "Event2.0_Part1">>
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: A gente tem dinheiro pra duas bebidas.
@@ -28,9 +29,11 @@ Ian: Você acha mesmo que eles precisam de dinheiro?
 -> Sabrina: Ainda é errado!
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
+    <<set $current_option = "Event2.0_option1">>
 -> Sabrina: Ele tem um ponto, mas eu não apoio a gente roubar.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
+    <<set $current_option = "Event2.0_option2">>
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
 Melissa: Ninguém vai roubar nada!

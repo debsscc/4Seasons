@@ -1,15 +1,18 @@
 title: Praia
 ---
 
+<<set $event_part = "Event3.1_Part1">>
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Cara, eu adoro a praia, a vibe aqui é muito boa, tu não acha?
 -> Sabrina: Não sou a maior fã.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
+    <<set $current_option = "Event3.1_option1">>
 -> Sabrina: Pior que eu gosto bastante.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
+    <<set $current_option = "Event3.1_option2">>
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
 Iris: Eu sinto que sou uma só com o mar às vezes, bizarro.
@@ -97,9 +100,11 @@ Iris: Com certeza, mas quero acreditar que vai dar certo.
 -> Sabrina: É difícil se manter positiva.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Sad">>
+    <<set $current_option = "Event3.1_option3">>
 -> Sabrina: Uma hora tem que dar certo.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
+    <<set $current_option = "Event3.1_option4">>
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
 Iris: Pra tudo se tem um jeito, Brina.

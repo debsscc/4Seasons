@@ -7,7 +7,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Title("Audio")]
     public AudioClip pickSfx;
@@ -25,12 +25,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public MiniGameController MiniGameController { get; set; }
     private IItemHolder _itemHolder;
     public event Action OnBeginDragEvent;
-
-    //----Minigame2----
-    [Header("Steal Icon")]
-    public GameObject moneyIcon; 
-    private bool isPointerOver = false;
-    private bool moneyIconClicked = false;
+    private Vector2 initialAnchoredPosition;
 
     private void Awake()
     {
@@ -43,13 +38,9 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             Debug.LogError("DraggablePrefab precisa ta dentro de um componente canvas");
 
         audioSource = gameObject.AddComponent<AudioSource>();
+        initialAnchoredPosition = rectTransform.anchoredPosition;
     }
-    public void OnPointerEnter(PointerEventData eventData)
-        {
-            isPointerOver = true;
-            UpdateMoneyIcon();
-        }
-
+    
     // --- INTERFACE DE DRAG ---
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -74,51 +65,32 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             currentSlot.lastDroppedObject = null; 
             miniGame3?.OnItemRemovedFromSlot();
-
         }
 
         OnBeginDragEvent?.Invoke();
     }
-
-    public void OnPointerExit(PointerEventData eventData)
+    
+    //----Event 1.1-----
+    public void ResetPosition()
     {
-        isPointerOver = false;
-        UpdateMoneyIcon();
-    }
-
-    private void UpdateMoneyIcon()
-    {
-        if (moneyIcon == null || MiniGameController == null) return;
-
-        var miniGame2 = MiniGameController.GetComponent<MiniGame2Scoring>();
-        if (miniGame2 == null) 
+        rectTransform.DOAnchorPos(initialAnchoredPosition, 0.5f);
+        
+        // Limpa a referência no slot atual
+        if (currentSlot != null)
         {
-            moneyIcon.SetActive(false);
-            return;
-        }
-
-        var drink = GetComponent<DrinksINFO>();
-        if (drink == null)
-        {
-            moneyIcon.SetActive(false);
-            return;
-        }
-        if (isPointerOver && !drink.isInBasket && miniGame2.GetDrinksInBasketCount() >= 2 && !moneyIconClicked)
-        {
-            moneyIcon.SetActive(true);
-        }
-        else
-        {
-            moneyIcon.SetActive(false);
+            currentSlot.lastDroppedObject = null;
+            currentSlot = null;
         }
     }
 
-    public void OnMoneyIconClicked()
+    public void ReleaseSlot()
+    {
+        if (currentSlot != null)
         {
-            moneyIconClicked = true;
-            moneyIcon.SetActive(false);
-            // Aqui você pode disparar a lógica de "roubar" se quiser
+            currentSlot.ClearSlot();
+            currentSlot = null;
         }
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -200,7 +172,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+        public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
         canvasGroup.blocksRaycasts = true;
@@ -222,6 +194,9 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (nearSlot != null)
         {
+            // Verifica se o slot já tem um objeto (apenas para Event 1.1)
+            bool slotOcupado = nearSlot.lastDroppedObject != null;
+            
             // Desativa highlight do slot
             nearSlot.HighlightSlot(false);
 
@@ -234,6 +209,12 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             // --- Minigame 2: cesta ---
             if (miniGame2 != null && nearSlot == miniGame2.basketSlot)
             {
+                if (slotOcupado)
+                {
+                    ResetPosition();
+                    return;
+                }
+                
                 nearSlot.lastDroppedObject = gameObject;
                 currentSlot = nearSlot;
 
@@ -247,6 +228,12 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             // --- Minigame 3: bolso/aceita ---
             if (miniGame3 != null)
             {
+                if (slotOcupado)
+                {
+                    ResetPosition();
+                    return;
+                }
+                
                 nearSlot.lastDroppedObject = gameObject;
                 currentSlot = nearSlot; // guarda que este objeto está naquele slot agora
 
@@ -257,6 +244,12 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             // --- Minigame 4.1 ---
             if (miniGame41 != null)
             {
+                if (slotOcupado)
+                {
+                    ResetPosition();
+                    return;
+                }
+                
                 nearSlot.lastDroppedObject = gameObject;
                 currentSlot = nearSlot;
                 miniGame41.OnSlotDropped(nearSlot);
@@ -266,15 +259,28 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             // --- Minigame 5.1 ---
             if (miniGame5 != null)
             {
+                if (slotOcupado)
+                {
+                    ResetPosition();
+                    return;
+                }
+                
                 nearSlot.lastDroppedObject = gameObject;
                 currentSlot = nearSlot;
                 miniGame5.OnSlotDropped(nearSlot);
                 return;
             }
 
-            // --- Minigame 1 ---
+            // --- Minigame 1 (Event 1.1) ---
             if (miniGame1 != null)
             {
+                // Impede drop se o slot já estiver ocupado
+                if (slotOcupado)
+                {
+                    ResetPosition();
+                    return;
+                }
+                
                 nearSlot.lastDroppedObject = gameObject; // Armazena o objeto no slot
                 currentSlot = nearSlot;
                 if (MiniGameController != null && _itemHolder != null)
@@ -285,7 +291,13 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
 
             // Padrão para outros drops
-            nearSlot.OnSuccessfulDrop();
+            if (slotOcupado)
+            {
+                ResetPosition();
+                return;
+            }
+            
+            nearSlot.OnSuccessfulDrop(gameObject);
             if (MiniGameController != null && _itemHolder != null)
             {
                 MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
@@ -299,21 +311,27 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         else
         {
-           
             if (currentSlot != null)
             {
+                currentSlot.lastDroppedObject = null;
                 currentSlot = null;
             }
-            else
-            {
-            }
-
-            moneyIconClicked = false;
-            UpdateMoneyIcon();
+        }
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (MiniGameController != null)
+        {
+            MiniGameController.OnDVDRemoved(this);
+        }
+        else
+        {
+            // Se não tiver controlador, reseta direto
+            ResetPosition();
         }
     }
 
-    public SlotDraggable IsNearSlot()
+        public SlotDraggable IsNearSlot()
     {
         if (TargetSlots == null || TargetSlots.Count == 0)
             return null;

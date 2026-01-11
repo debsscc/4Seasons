@@ -87,6 +87,14 @@ public class MiniGameController : MonoBehaviour
 
     }
 
+    public void OnDVDRemoved(DraggablePrefab dvd)
+    {
+        Debug.Log("DVD voltou para a posição inicial via clique.");
+
+        dvd.ReleaseSlot();
+        dvd.ResetPosition();
+    }
+
     private void ClearDraggables(DraggablePrefab selectedOne)
     {
         if (_clared) return;
