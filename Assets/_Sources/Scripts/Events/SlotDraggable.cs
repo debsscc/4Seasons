@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System;
 using DG.Tweening;
 
-public class SlotDraggable : MonoBehaviour
+public class SlotDraggable : MonoBehaviour, IPointerClickHandler
 {
     public Image outlineImage;    
     public AudioClip successSfx;
@@ -14,7 +14,7 @@ public class SlotDraggable : MonoBehaviour
     [HideInInspector]
     public GameObject lastDroppedObject;
 
-    [Header("Visual Feedback (Minigame 5)")]
+    [Header("Minigame 5")]
     [Tooltip("Outline do NPC (hover e seleção)")]
     public UnityEngine.UI.Outline npcOutline;
 
@@ -22,8 +22,13 @@ public class SlotDraggable : MonoBehaviour
     public int specialId;
     public CharacterData associatedCharacter;
     
-    // Referência para o botão de remoção (opcional)
+    [Header("MiniGame 1.1")]
+    [Tooltip("Se true, permite clicar no slot para remover o objeto")]
+    public bool allowClickToRemove = false;
     public GameObject removeButton;
+
+    // Evento para notificar remoção
+    public System.Action<SlotDraggable> OnObjectRemovedFromSlot;
 
     private void Awake()
     {
@@ -34,6 +39,14 @@ public class SlotDraggable : MonoBehaviour
         if (removeButton != null)
         {
             removeButton.SetActive(false);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (allowClickToRemove && lastDroppedObject != null)
+        {
+            RemoveObjectFromSlot();
         }
     }
     
@@ -60,7 +73,7 @@ public class SlotDraggable : MonoBehaviour
     {
         if (outlineImage == null) yield break;
         outlineImage.enabled = true;
-        yield return new WaitForSeconds(0.35f); //GameDesigner pode mudar
+        yield return new WaitForSeconds(0.35f);
         outlineImage.enabled = false;
     }
 
@@ -75,35 +88,32 @@ public class SlotDraggable : MonoBehaviour
         lastDroppedObject = null;
     }
 
-    // Método para remover o objeto do slot (mais intuitivo)
+    // remover o objeto do slot
     public void RemoveObjectFromSlot()
     {
-        if (lastDroppedObject != null)
+        if (lastDroppedObject == null) return;
+
+        Debug.Log($"[SlotDraggable] Removendo objeto do slot '{name}'");
+
+        var draggable = lastDroppedObject.GetComponent<DraggablePrefab>();
+        if (draggable != null)
         {
-            var draggable = lastDroppedObject.GetComponent<DraggablePrefab>();
-            if (draggable != null)
-            {
-                draggable.ResetPosition();
-            }
-            else
-            {
-                Destroy(lastDroppedObject);
-            }
-            
-            lastDroppedObject = null;
-            
-            // Esconde o botão de remoção
-            if (removeButton != null)
-            {
-                removeButton.SetActive(false);
-            }
-            
-            // Notifica o MiniGame1 se existir
-            var miniGame1 = FindObjectOfType<MiniGame1Scoring>();
-            if (miniGame1 != null)
-            {
-                miniGame1.OnItemRemovedFromSlot();
-            }
+            draggable.ResetPosition();
         }
+        else
+        {
+            Destroy(lastDroppedObject);
+        }
+
+        lastDroppedObject = null;
+
+        // Esconde o botão de remoção
+        if (removeButton != null)
+        {
+            removeButton.SetActive(false);
+        }
+
+        // Notifica via event
+        OnObjectRemovedFromSlot?.Invoke(this);
     }
 }
