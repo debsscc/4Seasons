@@ -6,7 +6,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     #region Serialized Fields
     
@@ -85,10 +85,12 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (nearSlot != null)
         {
+            Debug.Log($"[DraggablePrefab] Dropped on slot: {nearSlot.name}");
             HandleDropOnSlot(nearSlot);
         }
         else
         {
+            Debug.Log("[DraggablePrefab] Dropped outside any slot.");
             HandleDropOutsideSlot();
         }
     }
@@ -183,12 +185,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void HandleDefaultDrop(SlotDraggable nearSlot, bool slotOcupado)
     {
-        if (slotOcupado)
-        {
-            ResetPosition();
-            return;
-        }
-
         nearSlot.OnSuccessfulDrop(gameObject);
 
         if (MiniGameController != null && _itemHolder != null)
@@ -232,11 +228,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (miniGame2 == null || nearSlot != miniGame2.basketSlot) return false;
 
         // MiniGame 2: Cesta
-        if (slotOcupado)
-        {
-            ResetPosition();
-            return true;
-        }
 
         nearSlot.lastDroppedObject = gameObject;
         currentSlot = nearSlot;
@@ -391,6 +382,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log($"[DraggablePrefab] OnPointerClick - {name} clicked.");
         if (MiniGameController != null)
         {
             MiniGameController.OnDVDRemoved(this);

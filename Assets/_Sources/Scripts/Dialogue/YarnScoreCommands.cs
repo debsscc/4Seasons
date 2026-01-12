@@ -7,7 +7,7 @@ public class YarnScoreCommands : MonoBehaviour
     public ScoreRulesDialogue scoreManager;
 
     //<<command ApplyEventPart "Evento2.0_Parte1">>
-    [YarnCommand("ApplyEventPart")]
+  //  [YarnCommand("ApplyEventPart")]
     public void ApplyEventPart(string ruleId)
     {
         Debug.Log($"[YarnScoreCommands] ApplyEventPart chamado: {ruleId}");
@@ -22,7 +22,7 @@ public class YarnScoreCommands : MonoBehaviour
     }
 
     // <<command ApplyPoints "Sabrina,Melissa" 1>>
-    [YarnCommand("ApplyPoints")]
+ //   [YarnCommand("ApplyPoints")]
     public void ApplyPoints(string csvIds, int delta)
     {
         Debug.Log($"[YarnScoreCommands] ApplyPoints called with ids='{csvIds}', delta={delta}");
@@ -50,7 +50,7 @@ public class YarnScoreCommands : MonoBehaviour
         scoreManager.ApplyRule(tempRule);
     }
 
-    [YarnCommand("DebugLog")]
+  //  [YarnCommand("DebugLog")]
     public void DebugLog(string message)
     {
         Debug.Log("[Yarn DebugLog] " + message);
