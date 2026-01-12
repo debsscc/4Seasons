@@ -22,6 +22,11 @@ public class SceneTransition : Singleton<SceneTransition>
         base.Awake();
         Debug.Log("SceneTransition AWAKE — Singleton criado");
         DontDestroyOnLoad(gameObject);
+
+        Animator anim = new();
+
+        int animToInt = Animator.StringToHash("Normal");
+        anim.SetTrigger(animToInt);
     }
 
     void Start()
