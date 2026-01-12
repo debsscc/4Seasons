@@ -15,7 +15,7 @@ MonoBehaviour:
   characterId: Lucas
   emotions:
   - type: 0
-    useAnimation: 0
+    useAnimation: 1
     sprite: {fileID: 21300000, guid: b57d4070398249147b2cafef89e25e8b, type: 3}
     animationClip: {fileID: 7400000, guid: a80e40d1c81277760a1b70f4a1b8aac7, type: 2}
   - type: 3
@@ -23,11 +23,11 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 080fe53674d496020946ceb3b6436ea9, type: 3}
     animationClip: {fileID: 0}
   - type: 2
-    useAnimation: 0
+    useAnimation: 1
     sprite: {fileID: 0}
     animationClip: {fileID: 7400000, guid: 7441bc2253211e67f9ef981032c2d71b, type: 2}
   - type: 8
-    useAnimation: 0
+    useAnimation: 1
     sprite: {fileID: 0}
     animationClip: {fileID: 7400000, guid: d0cd2c2327072b949bc22183fa462378, type: 2}
   - type: 1

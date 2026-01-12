@@ -36,10 +36,10 @@ public class SliderSample : MonoBehaviour
     void ChangeSliderValue(int newValue)
     {
         _slider.DOValue(newValue, 0.3f).SetEase(Ease.OutCubic);
-        ApplyColorBasedOnValue(newValue);
+        ApplyValueSprite(newValue);
     }
 
-    public void ApplyColorBasedOnValue(int value)
+    public void ApplyValueSprite(int value)
     {
         int colorDenied = 0;
         Image fillImage = _slider.fillRect?.GetComponent<Image>();

@@ -5,6 +5,7 @@ title: Variables_Yarn
 <<declare $current_emotion = "Normal">>
 <<declare $current_option = "">>
 <<declare $event_part = "">>
+<<declare $current_rule = "">>
 
 // Seta a emoção antes de cada fala
 <<set $current_character = "Iris">>
