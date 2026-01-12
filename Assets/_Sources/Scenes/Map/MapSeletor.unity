@@ -714,6 +714,7 @@ MonoBehaviour:
   fillImage: {fileID: 1154923919}
   maxHealth: 15
   currentHealth: 7
+  _character: {fileID: 0}
 --- !u!1 &330014289
 GameObject:
   m_ObjectHideFlags: 0
@@ -4796,7 +4797,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

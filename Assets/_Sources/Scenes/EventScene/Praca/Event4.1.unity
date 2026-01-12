@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1658, y: 172}
+  m_AnchoredPosition: {x: 1658, y: 31}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194279
@@ -177,6 +177,9 @@ MonoBehaviour:
   npcOutline: {fileID: 0}
   specialId: 4
   associatedCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  allowClickToRemove: 0
+  removeButton: {fileID: 0}
+  enableScaleHighlight: 0
 --- !u!114 &1194281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2282,7 +2285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 698, y: 351}
+  m_AnchoredPosition: {x: 698, y: 210}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1432713325
@@ -2304,6 +2307,9 @@ MonoBehaviour:
   npcOutline: {fileID: 0}
   specialId: 2
   associatedCharacter: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+  allowClickToRemove: 0
+  removeButton: {fileID: 0}
+  enableScaleHighlight: 0
 --- !u!114 &1432713327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2955,6 +2961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1677127069}
+  scoreCommands: {fileID: 0}
 --- !u!114 &1677127074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3257,6 +3264,9 @@ MonoBehaviour:
   npcOutline: {fileID: 0}
   specialId: 2
   associatedCharacter: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+  allowClickToRemove: 0
+  removeButton: {fileID: 0}
+  enableScaleHighlight: 0
 --- !u!222 &1719039234
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3960,6 +3970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1802685578}
+  scoreCommands: {fileID: 0}
 --- !u!114 &1802685583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4025,7 +4036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1230, y: 351}
+  m_AnchoredPosition: {x: 1230, y: 210}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1808632128
@@ -4047,6 +4058,9 @@ MonoBehaviour:
   npcOutline: {fileID: 0}
   specialId: 3
   associatedCharacter: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
+  allowClickToRemove: 0
+  removeButton: {fileID: 0}
+  enableScaleHighlight: 0
 --- !u!114 &1808632130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5488,7 +5502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 277, y: 172}
+  m_AnchoredPosition: {x: 277, y: 31}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047037418
@@ -5548,6 +5562,9 @@ MonoBehaviour:
   npcOutline: {fileID: 0}
   specialId: 1
   associatedCharacter: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
+  allowClickToRemove: 0
+  removeButton: {fileID: 0}
+  enableScaleHighlight: 0
 --- !u!82 &2047037421
 AudioSource:
   m_ObjectHideFlags: 0

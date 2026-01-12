@@ -1,119 +1,96 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class SlotDraggable : MonoBehaviour, IPointerClickHandler
 {
-    public Image outlineImage;    
-    public AudioClip successSfx;
-    public float acceptDistance = 200f;
-    private AudioSource audioSource;
-
-    [HideInInspector]
-    public GameObject lastDroppedObject;
-
-    [Header("Minigame 5")]
-    [Tooltip("Outline do NPC (hover e seleção)")]
-    public UnityEngine.UI.Outline npcOutline;
-
-    [Header("Dados opcionais")]
-    public int specialId;
-    public CharacterData associatedCharacter;
+    public event Action<SlotDraggable> OnObjectRemovedFromSlot;
     
-    [Header("MiniGame 1.1")]
-    [Tooltip("Se true, permite clicar no slot para remover o objeto")]
-    public bool allowClickToRemove = false;
-    public GameObject removeButton;
+    [Header("Visual")]
+    public Image outlineImage;
 
-    // Evento para notificar remoção
-    public System.Action<SlotDraggable> OnObjectRemovedFromSlot;
+    [Header("MiniGames Data")]
+    public Outline npcOutline;              // Usado em MiniGame 5
+    public CharacterData associatedCharacter; // Usado em MiniGame 4 e 5
+    public int specialId;                    // Usado em MiniGame 3, 4 e 5
 
+    [Header("Audio")]
+    public AudioClip successSfx;
+    public float acceptDistance = 80f;
+    
+    public GameObject lastDroppedObject;
+    
+    private AudioSource audioSource;
     private void Awake()
     {
+        InitializeComponents();
+        HideOutline();
+    }
+        private void InitializeComponents()
+    {
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-        if (outlineImage) outlineImage.enabled = false;
-        
-        // Inicializa o botão de remoção como invisível
-        if (removeButton != null)
-        {
-            removeButton.SetActive(false);
-        }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void HideOutline()
     {
-        if (allowClickToRemove && lastDroppedObject != null)
-        {
-            RemoveObjectFromSlot();
-        }
+        if (outlineImage)
+            outlineImage.enabled = false;
     }
-    
-    public void OnSuccessfulDrop(GameObject droppedObject)
+        public void OnSuccessfulDrop(GameObject droppedObject)
     {
         lastDroppedObject = droppedObject;
-        OnSuccessfulDrop();
-        
-        // Mostra o botão de remoção se houver um objeto
-        if (removeButton != null && droppedObject != null)
+
+        PlaySuccessSound();
+        FlashOutlineEffect();
+    }
+    public void HighlightSlot(bool highlight)
+    {
+        Vector2 targetScale = highlight ? Vector2.one * 1.3f : Vector2.one;
+        transform.DOScale(targetScale, 0.25f);
+    }
+
+    public void ClearSlot()
+{
+    if (lastDroppedObject != null)
+    {
+        lastDroppedObject = null;
+        OnObjectRemovedFromSlot?.Invoke(this);
+    }
+}
+public void OnPointerClick(PointerEventData eventData)
+{
+    if (lastDroppedObject != null)
+    {
+        var draggable = lastDroppedObject.GetComponent<DraggablePrefab>();
+        if (draggable != null)
         {
-            removeButton.SetActive(true);
+            draggable.ReleaseSlot();
+            draggable.ResetPosition();
         }
+
+        OnObjectRemovedFromSlot?.Invoke(this);
+    }
+}
+
+    private void PlaySuccessSound()
+    {
+        if (successSfx)
+            audioSource.PlayOneShot(successSfx);
     }
 
-    public void OnSuccessfulDrop()
+    private void FlashOutlineEffect()
     {
-        Debug.Log($"[SlotDraggable] OnSuccessfulDrop em '{name}'");
-        if (successSfx) audioSource.PlayOneShot(successSfx);
-        if (outlineImage) StartCoroutine(FlashOutline());
+        if (outlineImage)
+            StartCoroutine(FlashOutline());
     }
 
-    System.Collections.IEnumerator FlashOutline()
+    private System.Collections.IEnumerator FlashOutline()
     {
-        if (outlineImage == null) yield break;
         outlineImage.enabled = true;
         yield return new WaitForSeconds(0.35f);
         outlineImage.enabled = false;
     }
-
-    public void HighlightSlot(bool highlight)
-    {
-        Vector2 scale = highlight ? Vector2.one * 1.3f : Vector2.one;
-        transform.DOScale(scale, 0.25f);
-    }
     
-    public void ClearSlot()
-    {
-        lastDroppedObject = null;
-    }
-
-    // remover o objeto do slot
-    public void RemoveObjectFromSlot()
-    {
-        if (lastDroppedObject == null) return;
-
-        Debug.Log($"[SlotDraggable] Removendo objeto do slot '{name}'");
-
-        var draggable = lastDroppedObject.GetComponent<DraggablePrefab>();
-        if (draggable != null)
-        {
-            draggable.ResetPosition();
-        }
-        else
-        {
-            Destroy(lastDroppedObject);
-        }
-
-        lastDroppedObject = null;
-
-        // Esconde o botão de remoção
-        if (removeButton != null)
-        {
-            removeButton.SetActive(false);
-        }
-
-        // Notifica via event
-        OnObjectRemovedFromSlot?.Invoke(this);
-    }
 }

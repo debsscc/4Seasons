@@ -38,7 +38,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
     private void OnDestroy()
     {
-        //Limpa as inscrições para evitar memory leaks
         if (miniGameController != null)
         {
             foreach (var slot in miniGameController.targetSlots)
@@ -98,15 +97,26 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
     public void OnConfirmButtonClicked()
     {
-        if (_pendingItems == null || _pendingItems.Length == 0)
+        // ✅ Valida se o slot ainda tem o objeto
+        if (_pendingSlot == null || _pendingSlot.lastDroppedObject == null)
         {
-            Debug.LogWarning("[MiniGame1] Não há itens pendentes para confirmar.");
+            Debug.LogWarning("[MiniGame1] Nenhum DVD no slot para confirmar!");
+            if (confirmButton != null) confirmButton.SetActive(false);
             return;
         }
 
+        // ✅ Valida se o objeto ainda existe na cena
+        if (_pendingItems == null || _pendingItems.Length == 0)
+        {
+            Debug.LogWarning("[MiniGame1] Não há itens pendentes para confirmar.");
+            if (confirmButton != null) confirmButton.SetActive(false);
+            return;
+        }
+
+        Debug.Log($"[MiniGame1] Confirmando escolha do slot '{_pendingSlot.name}'.");
+
         if (confirmButton != null)
             confirmButton.SetActive(false);
-
 
         bool escolheuCorajoso = ApplyScores(_pendingItems);
 
@@ -116,6 +126,17 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         }
 
         ShowFeedbackModal(escolheuCorajoso);
+
+        // ✅ Destrói o DVD confirmado
+        if (_pendingSlot.lastDroppedObject != null)
+        {
+            Destroy(_pendingSlot.lastDroppedObject);
+        }
+        _pendingSlot.ClearSlot();
+
+        // Limpa pendências
+        _pendingSlot = null;
+        _pendingItems = null;
     }
 
     public void OnItemRemovedFromSlot()
@@ -137,27 +158,24 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         bool escolheuTerrorOuSuspense = items.Any(i => terrorOuSuspenseItems.Contains(i));
 
-        // ------------- NPCs -------------
         foreach (var npc in charsManager.npcs)
         {
             if (npc == null) continue;
 
             int delta = 0;
 
-            // Favoritos
             bool escolheuFavoritoNPC = items.Any(i => npc.favoriteItems.Contains(i));
             delta += escolheuFavoritoNPC ? 2 : -1;
 
-            // Traços vs gênero
             if (escolheuTerrorOuSuspense)
             {
-                if (npc.traits.isFearful) delta += -2;   // medroso com terror/suspense
-                if (npc.traits.isBrave)   delta += +3;   // corajoso com terror/suspense
+                if (npc.traits.isFearful) delta += -2;
+                if (npc.traits.isBrave)   delta += +3;
             }
             else
             {
-                if (npc.traits.isFearful) delta += +3;   // medroso sem terror/suspense
-                if (npc.traits.isBrave)   delta += -2;   // corajoso sem terror/suspense
+                if (npc.traits.isFearful) delta += +3;
+                if (npc.traits.isBrave)   delta += -2;
             }
 
             int antes = npc.RelationshipScore;

@@ -147,6 +147,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1375875080330750121}
   - {fileID: 957138331}
   - {fileID: 784019723}
   - {fileID: 1832895407}
@@ -489,9 +490,14 @@ MonoBehaviour:
   dvdDraggable: {fileID: 775338210}
   dvdSpawnPosition: {fileID: 775338208}
   caseTransform: {fileID: 114749765}
+  caseAnimator: {fileID: 0}
+  openAnimationTrigger: Open
   openAnimationDuration: 0.5
   openCaseSfx: {fileID: 8300000, guid: e436b142bf631244d96be81838867899, type: 3}
   miniGameController: {fileID: 8016679601165365556}
+  focusScale: 1.6
+  focusMoveDuration: 0.35
+  focusScreenOffset: {x: 0, y: 0, z: 0}
 --- !u!82 &114749769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -618,6 +624,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
   cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
   hotspot: {x: 0, y: 0}
+  dragCursorTexture: {fileID: 0}
+  dragHotspot: {x: 0, y: 0}
 --- !u!114 &114749773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +899,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 48999343}
-  - {fileID: 1375875080330750121}
+  - {fileID: 1169697724}
   - {fileID: 1586844535}
   - {fileID: 322584331}
   - {fileID: 1427495286}
@@ -2085,9 +2093,14 @@ MonoBehaviour:
   dvdDraggable: {fileID: 1847242395}
   dvdSpawnPosition: {fileID: 1847242393}
   caseTransform: {fileID: 784019723}
+  caseAnimator: {fileID: 0}
+  openAnimationTrigger: Open
   openAnimationDuration: 0.5
   openCaseSfx: {fileID: 8300000, guid: e436b142bf631244d96be81838867899, type: 3}
   miniGameController: {fileID: 8016679601165365556}
+  focusScale: 1.6
+  focusMoveDuration: 0.35
+  focusScreenOffset: {x: 0, y: 0, z: 0}
 --- !u!82 &784019727
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2259,6 +2272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
   cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
   hotspot: {x: 0, y: 0}
+  dragCursorTexture: {fileID: 0}
+  dragHotspot: {x: 0, y: 0}
 --- !u!1001 &787470277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3102,9 +3117,14 @@ MonoBehaviour:
   dvdDraggable: {fileID: 1170807981}
   dvdSpawnPosition: {fileID: 1170807979}
   caseTransform: {fileID: 957138331}
+  caseAnimator: {fileID: 0}
+  openAnimationTrigger: Open
   openAnimationDuration: 0.5
   openCaseSfx: {fileID: 8300000, guid: e436b142bf631244d96be81838867899, type: 3}
   miniGameController: {fileID: 8016679601165365556}
+  focusScale: 1.6
+  focusMoveDuration: 0.35
+  focusScreenOffset: {x: 0, y: 0, z: 0}
 --- !u!82 &957138335
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3276,6 +3296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
   cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
   hotspot: {x: 0, y: 0}
+  dragCursorTexture: {fileID: 0}
+  dragHotspot: {x: 0, y: 0}
 --- !u!1 &959327959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4478,6 +4500,107 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1169697723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1169697724}
+  - component: {fileID: 1169697727}
+  - component: {fileID: 1169697725}
+  m_Layer: 5
+  m_Name: Remove_DraggableButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1169697724
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169697723}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 271217009}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -730, y: 0}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1169697725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169697723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7889654306218354939}
+        m_TargetAssemblyTypeName: SlotDraggable, Assembly-CSharp
+        m_MethodName: RemoveObjectFromSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!222 &1169697727
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169697723}
+  m_CullTransparentMesh: 1
 --- !u!1 &1170807978
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,6 +5585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
   dialogueRunner: {fileID: 1814818571}
+  eventScoreRules: {fileID: 0}
   characterBindings: []
 --- !u!114 &1680107155
 MonoBehaviour:
@@ -5476,6 +5600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
   dialogueRunner: {fileID: 1707489089}
+  eventScoreRules: {fileID: 0}
   characterBindings: []
 --- !u!114 &1680107156
 MonoBehaviour:
@@ -5876,6 +6001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1707489089}
+  scoreCommands: {fileID: 0}
 --- !u!1 &1725489843
 GameObject:
   m_ObjectHideFlags: 0
@@ -6300,6 +6426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1814818571}
+  scoreCommands: {fileID: 0}
 --- !u!1001 &1816942344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6478,9 +6605,14 @@ MonoBehaviour:
   dvdDraggable: {fileID: 65038978}
   dvdSpawnPosition: {fileID: 65038976}
   caseTransform: {fileID: 1832895407}
+  caseAnimator: {fileID: 0}
+  openAnimationTrigger: Open
   openAnimationDuration: 0.5
   openCaseSfx: {fileID: 8300000, guid: e436b142bf631244d96be81838867899, type: 3}
   miniGameController: {fileID: 8016679601165365556}
+  focusScale: 1.6
+  focusMoveDuration: 0.35
+  focusScreenOffset: {x: 0, y: 0, z: 0}
 --- !u!82 &1832895411
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6607,6 +6739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
   cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
   hotspot: {x: 0, y: 0}
+  dragCursorTexture: {fileID: 0}
+  dragHotspot: {x: 0, y: 0}
 --- !u!114 &1832895414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7120,11 +7254,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 271217009}
+  m_Father: {fileID: 48999343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 230, y: 0}
+  m_AnchoredPosition: {x: -680, y: 0}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1488145204006400367
@@ -7303,13 +7437,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  npcOutline: {fileID: 0}
+  associatedCharacter: {fileID: 0}
+  specialId: 0
   successSfx: {fileID: 8300000, guid: 1c070b1266b3b1541ab3c23bb010d280, type: 3}
   acceptDistance: 200
   lastDroppedObject: {fileID: 0}
-  npcOutline: {fileID: 0}
-  specialId: 0
-  associatedCharacter: {fileID: 0}
-  removeButton: {fileID: 0}
 --- !u!82 &7889654306218354940
 AudioSource:
   m_ObjectHideFlags: 0

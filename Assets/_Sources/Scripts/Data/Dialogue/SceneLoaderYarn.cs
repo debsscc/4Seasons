@@ -28,17 +28,12 @@ public class SceneLoaderYarn : MonoBehaviour
             Debug.Log("[SceneLoaderYarn] Procurando YarnScoreCommands...");
             scoreCommands = FindFirstObjectByType<YarnScoreCommands>();
         }
-        if (dialogueRunner || scoreCommands == null)
+        if (dialogueRunner == null|| scoreCommands == null)
         {
             Debug.LogWarning("[SceneLoaderYarn] DialogueRunner ou YarnScoreCommands não encontrado!");
             return;
         }
 
-        dialogueRunner.AddCommandHandler<string>(
-            "ApplyEventPart",
-            scoreCommands.ApplyEventPart
-        );
-        Debug.Log("[SceneLoaderYarn] Comando ApplyEventPart registrado!");
     }
 
     void OnDestroy()
