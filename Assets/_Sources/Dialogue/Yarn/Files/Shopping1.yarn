@@ -26,14 +26,17 @@ Ian: O mercado é dentro do shopping,
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
 Ian: Você acha mesmo que eles precisam de dinheiro?
+<<set $current_character = "Sabrina">>
 -> Sabrina: Ainda é errado!
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event2.0_option1">>
+    <<ApplyEventPart Event2.0_option1>>
 -> Sabrina: Ele tem um ponto, mas eu não apoio a gente roubar.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event2.0_option2">>
+    <<ApplyEventPart Event2.0_option2>>
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
 Melissa: Ninguém vai roubar nada!
@@ -50,7 +53,7 @@ Ian: Ah, não bella! Cerveja é ruim.
 <<set $current_emotion = "Happy">>
 Ian: Se a gente vai beber que seja algo bom mesmo, tipo Ice.
 <<set $current_character = "Arabella">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Arabella: Lógico que era isso que cê ia querer.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
@@ -77,13 +80,13 @@ Arabella: Eu fiz uma nova. Aquela tava um lixo mesmo.
 <<set $current_emotion = "Sad">>
 Melissa: Eu não acho uma boa ideia de qualquer forma.
 <<set $current_character = "Ian">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Ian: Não pode beber.
 <<set $current_character = "Ian">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Ian: Não pode roubar.
 <<set $current_character = "Ian">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Ian: Não pode nada!
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
@@ -98,16 +101,16 @@ Melissa: Pode ser um suco ou um refri se não tiver.
 <<set $current_emotion = "Normal">>
 Sabrina: Eu apoio um suquinho.
 <<set $current_character = "Arabella">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Arabella: Muito sem graça.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: A gente sempre pode pegar algo com álcool e algo sem.
 <<set $current_character = "Ian">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Ian: Ou roubar
 <<set $current_character = "Arabella">>
-<<set $current_emotion = "Teasing">>
+<<set $current_emotion = "Flirty">>
 Arabella: Ou roubar
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>

@@ -27,6 +27,7 @@ Ian: Você disse que gostou do Júpiter ataca!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
 Lucas: Não é ruim, só é estranho.
+<<set $current_character = "Sabrina">>
 -> Sabrina: Por mais que eu goste muito, acho que chega de ficção científica.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
@@ -56,6 +57,7 @@ Ian: Ah, fala sério Lucas!
 <<set $current_emotion = "Angry">>
 Melissa: Ei! Sem zombar do meu namorado!
 Melissa: Você não tem medinho de filme mesmo, né?
+<<set $current_character = "Sabrina">>
 -> Sabrina: Eu tô com o Lucas, sem filmes de medo!
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>

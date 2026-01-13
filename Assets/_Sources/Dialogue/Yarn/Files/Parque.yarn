@@ -43,11 +43,15 @@ Ian: SIM! Eu amo o kamikaze!
 Lucas: Eu achei que ia passar mal nesse negócio.
 <<set $current_character = "Sabrina">>
 -> Sabrina: Pois é, ficar de ponta cabeça é terrível.
+    <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event5.1_option1">>
+    <<ApplyEventPart Event5.1_option1>>
 -> Sabrina: Na real foi bem divertido.
+    <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option2">>
+    <<ApplyEventPart Event5.1_option2>>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
 Arabella: O melhor foi o Lucas se tremendo todo no trem fantasma.
@@ -93,10 +97,12 @@ Iris: Qual a graça dele ir devagarzinho?
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option3">>
+    <<ApplyEventPart Event5.1_option3>>
 ->  Sabrina: SIM! quanto mais rápido melhor!
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option4">>
+    <<ApplyEventPart Event5.1_option4>>
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
 Lucas: É o melhor brinquedo e vocês ficam de palhaçada querendo passar mal.
