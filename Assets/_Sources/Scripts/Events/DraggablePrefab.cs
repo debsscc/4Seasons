@@ -385,11 +385,13 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Debug.Log($"[DraggablePrefab] OnPointerClick - {name} clicked.");
         if (MiniGameController != null)
         {
+            ResetPosition();
+            PlayPickSound();
+            NotifyMiniGamesOnBeginDrag();
             MiniGameController.OnDVDRemoved(this);
         }
         else
         {
-            ResetPosition();
         }
     }
     
