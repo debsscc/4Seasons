@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Yarn.Unity;
+using System.Linq;
 
 [Serializable]
 public class CharacterBinding
@@ -44,6 +45,16 @@ public class DialogueEmotionController : MonoBehaviour
 
     private string _lastCharacter = string.Empty;
     private EmotionType _lastEmotion = EmotionType.Normal;
+
+    private List<CharacterAnimatorRunner> _animatorRunners;
+
+    public void AddAnimatorRunner(CharacterAnimatorRunner runner)
+    {
+        _animatorRunners ??= new List<CharacterAnimatorRunner>();
+
+        if (!_animatorRunners.Contains(runner))
+            _animatorRunners.Add(runner);
+    }
 
     void Awake()
     {
@@ -115,51 +126,15 @@ public class DialogueEmotionController : MonoBehaviour
         _lastCharacter = characterId;
         _lastEmotion = emotion;
 
-        if (!_idToProfile.TryGetValue(characterId, out var profile))
+        if(_animatorRunners == null) return;
+        
+        foreach(CharacterAnimatorRunner runner in _animatorRunners)
         {
-            Debug.LogWarning($"[DialogueEmotionController] Profile não encontrado para '{characterId}'");
-            return;
+            if (runner.GetCharacterId() != characterId) continue;
+            
+            Debug.Log($"[DialogueEmotionController] Aplicando emoção '{emotion}' ao personagem '{characterId}'", runner.gameObject);
+            runner.PlayAnimation(emotion);
         }
-
-        var entry = profile.GetEmotion(emotion);
-        if (entry == null)
-        {
-            Debug.LogWarning($"[DialogueEmotionController] Entry de emoção não encontrado para '{characterId}' -> {emotion}");
-            return;
-        }
-
-        // SpriteRenderer
-        if (_idToSpriteRenderer.TryGetValue(characterId, out var sr) && entry.sprite != null)
-        {
-            sr.sprite = entry.sprite;
-            Debug.Log($"[DialogueEmotionController] Sprite aplicado em '{characterId}' via SpriteRenderer ({entry.sprite.name})");
-            return;
-        }
-
-        // Image
-        if (_idToUIImage.TryGetValue(characterId, out var img) && entry.sprite != null)
-        {
-            img.sprite = entry.sprite;
-            Debug.Log($"[DialogueEmotionController] Sprite aplicado em '{characterId}' via Image (UI) ({entry.sprite.name})");
-            return;
-        }
-
-        // Animator 
-        if (entry.useAnimation && entry.animationClip != null && _idToAnimator.TryGetValue(characterId, out var animator))
-        {
-            try
-            {
-                animator.Play(entry.animationClip.name);
-                Debug.Log($"[DialogueEmotionController] Animator.Play '{entry.animationClip.name}' para '{characterId}'");
-                return;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning($"[DialogueEmotionController] Falha ao usar animator.Play para '{characterId}': {ex.Message}");
-            }
-        }
-
-        Debug.LogWarning($"[DialogueEmotionController] Não foi possível aplicar emoção visual para '{characterId}' (sem SpriteRenderer/Image/Animator compatível ou entry vazio).");
     }
 
     private string GetYarnStringRobust(string varNameWithoutOrWithDollar)

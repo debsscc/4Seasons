@@ -326,10 +326,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1978588704492674624, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 787
-      objectReference: {fileID: 0}
     - target: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_Name
       value: Dialogue System_1
@@ -341,10 +337,6 @@ PrefabInstance:
     - target: {fileID: 5820181997030888676, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5861298112110836593, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 787
       objectReference: {fileID: 0}
     - target: {fileID: 5966181726367265622, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1103,7 +1095,9 @@ GameObject:
   - component: {fileID: 819190054}
   - component: {fileID: 819190056}
   - component: {fileID: 819190055}
+  - component: {fileID: 819190058}
   - component: {fileID: 819190057}
+  - component: {fileID: 819190059}
   m_Layer: 5
   m_Name: Iris
   m_TagString: Untagged
@@ -1181,6 +1175,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
   characterId: Iris
+--- !u!95 &819190058
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819190053}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 8d9f8e9986ce2dd45a120b53cdc5201a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &819190059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819190053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a93977877f9f54c95333e1a7e54def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimatorRunner
+  characterIdentity: {fileID: 819190057}
+  dialogueEmotionController: {fileID: 1321986888}
+  characterAnimator: {fileID: 819190058}
 --- !u!1 &935817604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,7 +1684,9 @@ GameObject:
   - component: {fileID: 1742235831}
   - component: {fileID: 1742235833}
   - component: {fileID: 1742235832}
+  - component: {fileID: 1742235836}
   - component: {fileID: 1742235834}
+  - component: {fileID: 1742235835}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1731,6 +1764,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterIdentity
   characterId: Sabrina
+--- !u!114 &1742235835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742235830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a93977877f9f54c95333e1a7e54def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimatorRunner
+  characterIdentity: {fileID: 1742235834}
+  dialogueEmotionController: {fileID: 1321986888}
+  characterAnimator: {fileID: 1742235836}
+--- !u!95 &1742235836
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742235830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ac92dd39979b0894b8f3c0736d123ec1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1873737704
 GameObject:
   m_ObjectHideFlags: 0

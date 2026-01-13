@@ -31,6 +31,7 @@ public class CharacterEmotionProfile : ScriptableObject
     public List<EmotionEntry> emotions = new();
 
     private Dictionary<EmotionType, EmotionEntry> _lookup;
+    
 
     private void OnEnable()
     {
