@@ -3,139 +3,139 @@ title: Fogos_De_Artificio
 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-<<set $current_sound_emotion = "Arabella_Angry">>
+
 Arabella: Droga!
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-<<set $current_sound_emotion = "Arabella_Angry">>
+
 Arabella: A memória da câmera tá cheia.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Sabrina_Sad">>
+
 Sabrina: Vish.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Sabrina_Sad">>
+
 Sabrina: Tem espaço pra mais quantas?
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Arabella_Normal">>
+
 Arabella: Umas duas fotos
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Iris_Happy">>
+
 Iris: Acho que a gente se empolgou hoje.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Lucas_Happy">>
+
 Lucas: É tão legal tirar foto.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Lucas_Happy">>
+
 Lucas: As fotos da Bella são muito bonitas.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Iris_Happy">>
+
 Iris: Verdade, tu é uma ótima fotógrafa.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Arabella_Teasing">>
+
 Arabella: E cês são muito sentimentais e bonitinhos.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Cê vai mandar elas pra gente depois né?
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Arabella_Teasing">>
+
 Arabella: Lógico, se eu não mando me enchem o saco.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Shy">>
-<<set $current_sound_emotion = "Lucas_Shy">>
+
 Lucas: A gente nem te incomoda tanto assim.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Sabrina_Happy">>
+
 Sabrina: Eu incomodo.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Sabrina_Happy">>
+
 Sabrina: Preciso das fotos pras minhas colagens
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Inclusive tu tem que nos mostrar as últimas.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Com as fotos do aniversário do Ian.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Lucas_Sad">>
+
 Lucas: Verdade, você sempre fica evitando.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Shy">>
-<<set $current_sound_emotion = "Sabrina_Shy">>
+
 Sabrina: Um dia eu mostro.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Arabella_Teasing">>
+
 Arabella: Cheia de migué.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Não querendo evitar o assunto.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Mas a gente não vai soltar os fogos não?
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Arabella_Happy">>
+
 Arabella: Vamos! É pra isso que a gente veio aqui.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Aqui, cada um pega um da minha bolsa.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Lucas_Sad">>
+
 Lucas: Uma penas que eles são barulhentos.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: É, o barulho é meio chato mesmo.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Iris_Happy">>
+
 Iris: Mas vai ser legal ver o céu colorido.
 -> Sabrina: O estouro não me incomoda tanto.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
-    <<set $current_sound_emotion = "Sabrina_Normal">>
+    
 -> Sabrina: Pois é, não gosto do barulho alto.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Sad">>
-    <<set $current_sound_emotion = "Sabrina_Sad">>
+    
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Arabella_Normal">>
+
 Arabella: Tapa os ouvidos que fica de boa, Luke.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Quem vai tirar foto dos fogos?
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Arabella_Normal">>
+
 Arabella: Eu tirei fotos demais hoje, passo a câmera pra outro.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Lucas_Sad">>
+
 Lucas: Ai eu não sei se sou muito bom nisso.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Brina, tu gosta de tirar fotos também, pode ser tu?
 <<stop>>
 ===

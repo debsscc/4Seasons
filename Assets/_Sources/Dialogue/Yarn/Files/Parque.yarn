@@ -3,167 +3,167 @@ title: Roda_Gigante
 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
-<<set $current_sound_emotion = "Ian_Excited">>
+
 Ian: Vamo gente vocês são lentos demais!
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-<<set $current_sound_emotion = "Melissa_Angry">>
+
 Melissa: Se tu cair no chão, Ian.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Sabrina_Happy">>
+
 Sabrina: Deixa ele, Mel.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Sabrina_Happy">>
+
 Sabrina: A gente ri da cara dele.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Melissa_Normal">>
+
 Melissa: É que não é tu que ele vem chorando depois.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-<<set $current_sound_emotion = "Arabella_Angry">>
+
 Arabella: Me espera seu cuzão!
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Por que eles tão correndo? O parque tá vazio hoje.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Vai saber.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Lucas_Normal">>
+
 Lucas: Eles têm muita energia às vezes.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Iris_Sad">>
+
 Iris: Hoje foi tão legal, uma pena que já fomos em todos os brinquedos.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Melissa_Happy">>
+
 Melissa: Pois é, o kamikaze foi incrível!
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Ian_Excited">>
+
 Ian: SIM! Eu amo o kamikaze!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Lucas_Normal">>
+
 Lucas: Eu achei que ia passar mal nesse negócio.
 -> Sabrina: Pois é, ficar de ponta cabeça é terrível.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
-    <<set $current_sound_emotion = "Sabrina_Angry">>
+    
 -> Sabrina: Na real foi bem divertido.
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
-    <<set $current_sound_emotion = "Sabrina_Happy">>
+    
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Arabella_Teasing">>
+
 Arabella: O melhor foi o Lucas se tremendo todo no trem fantasma.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Ian_Teasing">>
+
 Ian: Nossa verdade, os gritos foram muito bons.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Iris_Teasing">>
+
 Iris: Tu não pode falar muito dele sendo que tu gritou no minhocão, Ian!
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Surprised">>
-<<set $current_sound_emotion = "Ian_Surprised">>
+
 Ian: EU?? Nunca fiz isso!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Lucas_Happy">>
+
 Lucas: Ah você fez sim!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Lucas_Happy">>
+
 Lucas: Não tem como me zuar!
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Ian_Normal">>
+
 Ian: Em minha defesa, eu não lembrava que era rápido.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Arabella_Teasing">>
+
 Arabella: Às vezes cê só é cagão mesmo, pensou nisso?
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Angry">>
-<<set $current_sound_emotion = "Ian_Angry">>
+
 Ian: Caba boca, Bella!
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Melissa_Normal">>
+
 Melissa: Inclusive tu ainda tá enjoada das xícaras, Bella?
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Arabella_Normal">>
+
 Arabella: Tô melhor.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-<<set $current_sound_emotion = "Arabella_Angry">>
+
 Arabella: Se a Íris e o Ian não tivessem girado o negócio tão rápido.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Iris_Normal">>
+
 Iris: Qual a graça dele ir devagarzinho?
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Acho que a graça é não vomitar.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-<<set $current_sound_emotion = "Sabrina_Happy">>
+
 Sabrina: SIM! quanto mais rápido melhor!
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Lucas_Normal">>
+
 Lucas: É o melhor brinquedo e vocês ficam de palhaçada querendo passar mal.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Ian_Teasing">>
+
 Ian: É brinquedo de criança gente!
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
-<<set $current_sound_emotion = "Ian_Excited">>
+
 Ian: A graça é poder ficar tonto.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Melissa_Normal">>
+
 Melissa: Próxima vez me lembrem de trazer remédio de enjoo.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Olha a roda gigante tá bem ali.
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Sabrina_Normal">>
+
 Sabrina: Como a gente vai se dividir pra ir? É só dois por carrinho.
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-<<set $current_sound_emotion = "Melissa_Normal">>
+
 Melissa: Pra mim tanto faz.
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-<<set $current_sound_emotion = "Lucas_Sad">>
+
 Lucas: Só quero alguém que me deixe tranquilo, a altura me dá agonia.
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
-<<set $current_sound_emotion = "Ian_Excited">>
+
 Ian: Só vamo entrando e aí a gente vê.
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Iris_Teasing">>
+
 Iris: Calma apressadinho.
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-<<set $current_sound_emotion = "Arabella_Teasing">>
+
 Arabella: Não tem paciência pra nada esse garoto.
 <<stop>>
 ===
