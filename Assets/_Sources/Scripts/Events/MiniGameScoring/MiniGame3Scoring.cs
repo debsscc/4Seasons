@@ -3,11 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [Header("Regras de Preview por Slot")]
+    public List<SlotFeedbackRule> previewRules = new List<SlotFeedbackRule>();
+
     [Header("IDs dos Slots")]
-    public int acceptId = 1; 
+    public int acceptId = 1;    
     public int rejectId = 2; 
     
     [Header("Visual")]
@@ -93,8 +97,21 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
     public void OnSlotSelected(SlotDraggable slot)
     {
         selectedSlot = slot;
-        
         if (confirmButton) confirmButton.SetActive(true);
+
+        //Icons Feedback:
+        if (npcDoEvento != null)
+    {
+        string id = npcDoEvento.name; 
+
+        // Busca a regra correspondente ao slot
+        var rule = previewRules.Find(r => r.specialId == slot.specialId);
+        if (rule != null)
+        {
+            MiniGameFeedbackManager.Instance.ApplySlotRule(rule);
+        }
+    }
+
     }
     public void OnItemRemovedFromSlot()
     {
@@ -120,6 +137,12 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
         if (feedbackDrogas) feedbackDrogas.SetActive(false);
 
         Debug.Log("[MiniGame3] Item removido do slot — estado resetado para permitir nova escolha.");
+
+        //Limpar FeedbackIcon
+        if (npcDoEvento != null)
+        {
+            MiniGameFeedbackManager.Instance.ResetAll();    
+        }
     }
 
     public void OnConfirmButtonClicked()
