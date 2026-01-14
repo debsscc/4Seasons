@@ -80,7 +80,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         else
             Debug.LogWarning("[MiniGame1] confirmButton não foi atribuído no Inspector.");
 
-        ApplyPreviewForItems(items);
+        MiniGameFeedbackManager.Instance.ApplyPreview(items);
     }
 
     public void OnItemDraggedOutOfSlot()
@@ -134,11 +134,21 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         {
             Destroy(_pendingSlot.lastDroppedObject);
         }
+
+        foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
+        {
+            foreach (var item in _pendingItems)
+            {
+                // display heart
+                ui.DisplayHeartFeedbackBasedOnItem(item);
+                if(ui.CharacterLikesItem(item)) break;
+            }
+        }
+
         _pendingSlot.ClearSlot();
 
         _pendingSlot = null;
         _pendingItems = null;
-
     }
 
     public void OnItemRemovedFromSlot()
@@ -175,12 +185,12 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             if (escolheuTerrorOuSuspense)
             {
                 if (npc.traits.isFearful) delta += -2;
-                if (npc.traits.isBrave)   delta += +3;
+                if (npc.traits.isBrave) delta += +3;
             }
             else
             {
                 if (npc.traits.isFearful) delta += +3;
-                if (npc.traits.isBrave)   delta += -2;
+                if (npc.traits.isBrave) delta += -2;
             }
 
             int antes = npc.RelationshipScore;
@@ -230,63 +240,63 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         }
     }
 
-    private void ApplyPreviewForItems(ItemsSO[] items)
-{
-    if (MiniGameFeedbackManager.Instance == null) return;
+    // private void ApplyPreviewForItems(ItemsSO[] items)
+    // {
+    //     if (MiniGameFeedbackManager.Instance == null) return;
 
-    var charsManager = CharactersManager.Instance;
-    Dictionary<string, int> deltas = new Dictionary<string, int>();
+    //     var charsManager = CharactersManager.Instance;
+    //     Dictionary<string, int> deltas = new Dictionary<string, int>();
 
-    bool escolheuTerrorOuSuspense = items.Any(i => terrorOuSuspenseItems.Contains(i));
+    //     bool escolheuTerrorOuSuspense = items.Any(i => terrorOuSuspenseItems.Contains(i));
 
-    foreach (var npc in charsManager.npcs)
-    {
-        if (npc == null) continue;
+    //     foreach (var npc in charsManager.npcs)
+    //     {
+    //         if (npc == null) continue;
 
-        string cleanId = npc.name.Replace("NPCData_", "").Trim();
-        
-        int delta = 0;
-        bool escolheuFavoritoNPC = items.Any(i => npc.favoriteItems.Contains(i));
-        delta += escolheuFavoritoNPC ? 2 : -1;
+    //         string cleanId = npc.name.Replace("NPCData_", "").Trim();
 
-        if (escolheuTerrorOuSuspense)
-        {
-            if (npc.traits.isFearful) delta += -2;
-            if (npc.traits.isBrave)   delta += +3;
-        }
-        else
-        {
-            if (npc.traits.isFearful) delta += +3;
-            if (npc.traits.isBrave)   delta += -2;
-        }
+    //         int delta = 0;
+    //         bool escolheuFavoritoNPC = items.Any(i => npc.favoriteItems.Contains(i));
+    //         delta += escolheuFavoritoNPC ? 2 : -1;
 
-        deltas[cleanId] = delta;
-    }
+    //         if (escolheuTerrorOuSuspense)
+    //         {
+    //             if (npc.traits.isFearful) delta += -2;
+    //             if (npc.traits.isBrave) delta += +3;
+    //         }
+    //         else
+    //         {
+    //             if (npc.traits.isFearful) delta += +3;
+    //             if (npc.traits.isBrave) delta += -2;
+    //         }
 
-    // Player
-    var player = charsManager.playerCharacter;
-    if (player != null)
-    {
-        int deltaSelf = 0;
-        bool escolheuFavoritoSelf = items.Any(i => player.favoriteItems.Contains(i));
-        deltaSelf += escolheuFavoritoSelf ? 2 : -1;
+    //         deltas[cleanId] = delta;
+    //     }
 
-        if (escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += -2;
-        else if (!escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += +3;
+    //     // Player
+    //     var player = charsManager.playerCharacter;
+    //     if (player != null)
+    //     {
+    //         int deltaSelf = 0;
+    //         bool escolheuFavoritoSelf = items.Any(i => player.favoriteItems.Contains(i));
+    //         deltaSelf += escolheuFavoritoSelf ? 2 : -1;
 
-        deltas["Player"] = deltaSelf; 
-    }
+    //         if (escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += -2;
+    //         else if (!escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += +3;
 
-    var preview = new Dictionary<string, FeedbackType>();
-    foreach (var kv in deltas)
-    {
-        FeedbackType t = FeedbackType.Neutral;
-        if (kv.Value > 0) t = FeedbackType.Positive;
-        else if (kv.Value < 0) t = FeedbackType.Negative;
+    //         deltas["Player"] = deltaSelf;
+    //     }
 
-        preview[kv.Key] = t;
-    }
+    //     var preview = new Dictionary<string, FeedbackType>();
+    //     foreach (var kv in deltas)
+    //     {
+    //         FeedbackType t = FeedbackType.Neutral;
+    //         if (kv.Value > 0) t = FeedbackType.Positive;
+    //         else if (kv.Value < 0) t = FeedbackType.Negative;
 
-    MiniGameFeedbackManager.Instance.ApplyPreview(preview);
-}
+    //         preview[kv.Key] = t;
+    //     }
+
+    //     MiniGameFeedbackManager.Instance.ApplyPreview(preview);
+    // }
 }

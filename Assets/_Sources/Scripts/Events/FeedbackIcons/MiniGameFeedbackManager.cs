@@ -13,10 +13,10 @@ public class NPCFeedbackUI
 {
     [Tooltip("ID do personagem (ex: Ian, Arabella)")]
     public string characterId;
-    
+
     [Tooltip("A imagem do ícone que vai trocar")]
     public Image iconImage;
-    
+
     [Header("Sprites Específicas deste NPC")]
     public Sprite neutralSprite;
     public Sprite positiveSprite;
@@ -35,7 +35,7 @@ public class SlotFeedbackRule
 {
     [Tooltip("ID do slot (ex: specialId do SlotDraggable)")]
     public int specialId;
-    
+
     [Tooltip("Mudanças de feedback para cada NPC quando este slot for escolhido")]
     public List<CharacterFeedbackEntry> changes = new List<CharacterFeedbackEntry>();
 }
@@ -53,28 +53,31 @@ public class MiniGameFeedbackManager : MonoBehaviour
     private Dictionary<string, NPCFeedbackUI> _feedbackLookup = new Dictionary<string, NPCFeedbackUI>();
 
     [ContextMenu("PrintRegisteredCharacters")]
-public void PrintRegisteredCharacters()
-{
-    Debug.Log("[FeedbackManager] Registered characters:");
-    foreach (var k in _feedbackLookup.Keys)
-        Debug.Log($" - {k}");
-}
-
-    private void Awake()
-{
-    if (Instance == null){
-        Instance = this;
-        Debug.Log("[FeedbackManager] Instância criada.");
-    } else {
-        Destroy(gameObject);
-        Debug.LogWarning("[FeedbackManager] Instância destruída.");
+    public void PrintRegisteredCharacters()
+    {
+        Debug.Log("[FeedbackManager] Registered characters:");
+        foreach (var k in _feedbackLookup.Keys)
+            Debug.Log($" - {k}");
     }
 
-    Debug.Log("[FeedbackManager] Construindo lookup de NPCs...");
-    BuildLookup();
-    // NÃO inicializamos sprites no Awake aqui caso os balões sejam instanciados depois.
-    // Vamos inicializar no Start para ter mais chance de as refs já estarem prontas.
-}
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            Debug.Log("[FeedbackManager] Instância criada.");
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.LogWarning("[FeedbackManager] Instância destruída.");
+        }
+
+        Debug.Log("[FeedbackManager] Construindo lookup de NPCs...");
+        BuildLookup();
+        // NÃO inicializamos sprites no Awake aqui caso os balões sejam instanciados depois.
+        // Vamos inicializar no Start para ter mais chance de as refs já estarem prontas.
+    }
 
     private void Start()
     {
@@ -83,61 +86,61 @@ public void PrintRegisteredCharacters()
 
     private void InitializeAllToNeutral()
     {
-    Debug.Log("[FeedbackManager] Inicializando todos os ícones para neutral...");
-    foreach (var ui in npcFeedbacks)
-    {
-        if (ui == null)
+        Debug.Log("[FeedbackManager] Inicializando todos os ícones para neutral...");
+        foreach (var ui in npcFeedbacks)
         {
-            Debug.LogWarning("[FeedbackManager] npcFeedbacks element null");
-            continue;
+            if (ui == null)
+            {
+                Debug.LogWarning("[FeedbackManager] npcFeedbacks element null");
+                continue;
+            }
+
+            if (ui.iconImage == null)
+            {
+                Debug.LogWarning($"[FeedbackManager] iconImage NÃO atribuído para '{ui.characterId}'");
+                continue;
+            }
+
+            if (ui.neutralSprite == null)
+                Debug.LogWarning($"[FeedbackManager] neutralSprite NÃO atribuído para '{ui.characterId}'");
+
+            ui.iconImage.sprite = ui.neutralSprite;
+            ui.iconImage.transform.localScale = Vector3.one;
+
+            // se quiser esconder balões neutros, faça aqui (opcional)
+            // if (ui.bubbleObject != null && hideNeutralBubbles) ui.bubbleObject.SetActive(false);
         }
-
-        if (ui.iconImage == null)
-        {
-            Debug.LogWarning($"[FeedbackManager] iconImage NÃO atribuído para '{ui.characterId}'");
-            continue;
-        }
-
-        if (ui.neutralSprite == null)
-            Debug.LogWarning($"[FeedbackManager] neutralSprite NÃO atribuído para '{ui.characterId}'");
-
-        ui.iconImage.sprite = ui.neutralSprite;
-        ui.iconImage.transform.localScale = Vector3.one;
-
-        // se quiser esconder balões neutros, faça aqui (opcional)
-        // if (ui.bubbleObject != null && hideNeutralBubbles) ui.bubbleObject.SetActive(false);
-    }
     }
 
     private void BuildLookup()
-{
-    Debug.Log("[FeedbackManager] Construindo dicionário de feedbacks...");
-    _feedbackLookup.Clear();
-
-    foreach (var fb in npcFeedbacks)
     {
-        if (fb == null)
+        Debug.Log("[FeedbackManager] Construindo dicionário de feedbacks...");
+        _feedbackLookup.Clear();
+
+        foreach (var fb in npcFeedbacks)
         {
-            Debug.LogWarning("[FeedbackManager] entrada npcFeedbacks contém null - verifique Inspector");
-            continue;
+            if (fb == null)
+            {
+                Debug.LogWarning("[FeedbackManager] entrada npcFeedbacks contém null - verifique Inspector");
+                continue;
+            }
+
+            if (string.IsNullOrEmpty(fb.characterId))
+            {
+                Debug.LogWarning("[FeedbackManager] NPCFeedbackUI com characterId vazio (verifique Inspector)", this);
+                continue;
+            }
+
+            if (_feedbackLookup.ContainsKey(fb.characterId))
+            {
+                Debug.LogWarning($"[FeedbackManager] characterId duplicado: {fb.characterId}", this);
+                continue;
+            }
+
+            _feedbackLookup[fb.characterId] = fb;
+            Debug.Log($"[FeedbackManager] Adicionado NPC '{fb.characterId}' ao lookup.");
         }
 
-        if (string.IsNullOrEmpty(fb.characterId))
-        {
-            Debug.LogWarning("[FeedbackManager] NPCFeedbackUI com characterId vazio (verifique Inspector)", this);
-            continue;
-        }
-
-        if (_feedbackLookup.ContainsKey(fb.characterId))
-        {
-            Debug.LogWarning($"[FeedbackManager] characterId duplicado: {fb.characterId}", this);
-            continue;
-        }
-
-        _feedbackLookup[fb.characterId] = fb;
-        Debug.Log($"[FeedbackManager] Adicionado NPC '{fb.characterId}' ao lookup.");
-    }
-    
 
 
     }
@@ -167,13 +170,24 @@ public void PrintRegisteredCharacters()
         ui.iconImage.transform.DOPunchScale(Vector3.one * 0.2f, animDuration);
     }
 
-    public void ApplyPreview(Dictionary<string, FeedbackType> statesByCharacterId)
+    public List<UICharacterOrder> uiCharacterOrders = new();
+
+    public void ApplyPreview(ItemsSO[] items)
     {
-        Debug.Log("[FeedbackManager] Aplicando preview múltiplo...");
-        foreach (var kv in statesByCharacterId)
+        // Debug.Log("[FeedbackManager] Aplicando preview múltiplo...");
+        // foreach (var kv in statesByCharacterId)
+        // {
+        //     Debug.Log($"[FeedbackManager] Aplicando preview para '{kv.Key}' como '{kv.Value}'.");
+        //     UpdatePreview(kv.Key, kv.Value);
+        // }
+
+        foreach (var ui in uiCharacterOrders)
         {
-            Debug.Log($"[FeedbackManager] Aplicando preview para '{kv.Key}' como '{kv.Value}'.");
-            UpdatePreview(kv.Key, kv.Value);
+            foreach(var item in items)
+            {
+                ui.UpdateExpresionBasedOnItem(item);
+                if (ui.CharacterLikesItem(item)) break;
+            }
         }
     }
 

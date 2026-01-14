@@ -29,6 +29,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private SlotDraggable currentSlot;
     private Vector2 initialAnchoredPosition;
     
+    public ItemsSO[] Items => _itemHolder != null ? _itemHolder.Items : null;
     
     private void Awake()
     {

@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   _initialRelationshipScore: 9
   _maxRelationshipScore: 15
-  _relationshipScore: 1
+  _expressionFeedbackSprite:
+    neutralSprite: {fileID: 2638337913185195573, guid: 0aea32c8df73d7745bfb5e13ddcad381, type: 3}
+    happySprite: {fileID: -4201612862202913703, guid: c87208d02163f5e429923badc97ab35c, type: 3}
+    sadSprite: {fileID: 1476507218709298136, guid: 5d2a3184124b0da43bf8d26d2bbdddcb, type: 3}
   favoriteItems:
   - {fileID: 11400000, guid: fc21452f5f8f8f042973b66747c70e24, type: 2}
   - {fileID: 11400000, guid: 82da496df044d594f866590aa9e12314, type: 2}

@@ -8,8 +8,8 @@ public class CharacterData : ScriptableObject
 {
     [SerializeField] public int _initialRelationshipScore = 10;
     [SerializeField] public int _maxRelationshipScore;
-    [ShowInInspector, ReadOnly]
-    [SerializeField] private int _relationshipScore = 0;
+    [ShowInInspector, ReadOnly] private int _relationshipScore = 0;
+    [SerializeField] private ExpressionFeedbackSprite _expressionFeedbackSprite;
 
     public List<ItemsSO> favoriteItems;
     public MapData favoritePlace; 
@@ -27,10 +27,17 @@ public class CharacterData : ScriptableObject
             OnRelationshipChanged?.Invoke(value);
         }
     }
+    
+    public ExpressionFeedbackSprite ExpressionFeedbackSprite => _expressionFeedbackSprite;
 
     public void Onable()
     {
         _relationshipScore = _initialRelationshipScore;
+    }
+
+    public bool LikesItem(ItemsSO item)
+    {
+        return favoriteItems.Contains(item);
     }
 }
 
@@ -47,3 +54,10 @@ public class TraitsData
     public bool isFollower;
 }
 
+[Serializable]
+public struct ExpressionFeedbackSprite
+{
+    [PreviewField] public Sprite neutralSprite;
+    [PreviewField] public Sprite happySprite;
+    [PreviewField] public Sprite sadSprite;
+}
