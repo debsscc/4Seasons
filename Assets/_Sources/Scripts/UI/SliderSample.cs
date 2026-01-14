@@ -17,6 +17,7 @@ public class SliderSample : MonoBehaviour
 
     private void Start()
     {
+
         if (fillImage == null || character == null)
         {
             Debug.LogError("[FillBarSample] Referências não atribuídas.");
