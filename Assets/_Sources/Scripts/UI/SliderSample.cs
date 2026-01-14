@@ -1,58 +1,68 @@
-using NUnit.Framework;
-using System;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class SliderSample : MonoBehaviour
 {
-    [SerializeField] private Slider _slider;
-    [SerializeField] private CharacterData _character;
-    [SerializeField] List<Color> colorTresholds;
+    [Header("UI")]
+    [SerializeField] private Image fillImage;
 
-    public int CurrentValue => (int)_slider.value;
+    [Header("Data")]
+    [SerializeField] private CharacterData character;
 
-    public void Start()
+    [Header("Visual")]
+    [SerializeField] private List<Color> colorTresholds;
+
+    public int CurrentValue => character != null ? character.RelationshipScore : 0;
+
+    private void Start()
     {
-        ChangeSliderValue(_character.RelationshipScore);
-        _slider.maxValue = _character._maxRelationshipScore;
-        _slider.minValue = 0;
-        _character.RelationshipScore = _character.RelationshipScore;
-        _slider.fillRect.GetComponent<Image>().color = colorTresholds[0]; 
-        ChangeSliderValue(_character.RelationshipScore);
-    }
-
-    void OnEnable()
-    {
-        _character.OnRelationshipChanged += ChangeSliderValue;
-    }
-
-    void OnDisable()
-    {
-        _character.OnRelationshipChanged -= ChangeSliderValue;
-    }
-
-    void ChangeSliderValue(int newValue)
-    {
-        _slider.DOValue(newValue, 0.3f).SetEase(Ease.OutCubic);
-        ApplyValueSprite(newValue);
-    }
-
-    public void ApplyValueSprite(int value)
-    {
-        int colorDenied = 0;
-        Image fillImage = _slider.fillRect?.GetComponent<Image>();
-        if (fillImage == null)
+        if (fillImage == null || character == null)
         {
-            Debug.LogError("O Slider não possui um componente Image no Fill Rect. Verifique a configuração.");
+            Debug.LogError("[FillBarSample] Referências não atribuídas.");
+            enabled = false;
             return;
         }
 
+        fillImage.type = Image.Type.Filled;
+        fillImage.fillMethod = Image.FillMethod.Horizontal;
+        fillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
 
-        for (int i = _character._relationshipTresholds.Count - 1; i >= 0; i--)
+        UpdateFill(character.RelationshipScore);
+    }
+
+    private void OnEnable()
+    {
+        if (character != null)
+            character.OnRelationshipChanged += UpdateFill;
+    }
+
+    private void OnDisable()
+    {
+        if (character != null)
+            character.OnRelationshipChanged -= UpdateFill;
+    }
+
+    private void UpdateFill(int newValue)
+    {
+        float normalizedValue = Mathf.InverseLerp(
+            0,
+            character._maxRelationshipScore,
+            newValue
+        );
+
+        fillImage.fillAmount = normalizedValue;
+
+        ApplyValueColor(newValue);
+    }
+
+    private void ApplyValueColor(int value)
+    {
+        int colorDenied = 0;
+
+        for (int i = character._relationshipTresholds.Count - 1; i >= 0; i--)
         {
-            if (value <= _character._relationshipTresholds[i])
+            if (value <= character._relationshipTresholds[i])
             {
                 colorDenied++;
                 continue;
@@ -63,7 +73,6 @@ public class SliderSample : MonoBehaviour
         int colorId = colorTresholds.Count - 1 - colorDenied;
         colorId = Mathf.Clamp(colorId, 0, colorTresholds.Count - 1);
 
-        _slider.fillRect.GetComponent<Image>().DOKill(); // Cancela tweens anteriores
-        _slider.fillRect.GetComponent<Image>().DOColor(colorTresholds[colorId], 1f);
+        fillImage.color = colorTresholds[colorId];
     }
 }
