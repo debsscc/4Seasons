@@ -74,6 +74,8 @@ public class MiniGameController : MonoBehaviour
 
             spawnedDraggables.Add(instance);
 
+            SetupHoverOutline(instance.gameObject);
+
             if (miniGame2 != null)
         {
             var drink = instance.GetComponent<DrinksINFO>()
@@ -86,13 +88,32 @@ public class MiniGameController : MonoBehaviour
         }
 
     }
+    private void SetupHoverOutline(GameObject obj)
+    {
+    var graphic = obj.GetComponentInChildren<UnityEngine.UI.Graphic>();
+    
+    if (graphic == null)
+    {
+        Debug.LogWarning($"[MiniGameController] {obj.name} e seus filhos não têm Graphic, hover não funcionará.");
+        return;
+    }
 
+    GameObject targetObj = graphic.gameObject;
+
+    graphic.raycastTarget = true;
+
+    if (targetObj.GetComponent<RuntimeOutlineLighter>() == null)
+    {
+        targetObj.AddComponent<RuntimeOutlineLighter>();
+        Debug.Log($"[MiniGameController] RuntimeOutlineHover adicionado em {targetObj.name} (filho de {obj.name})");
+    }
+
+    }
     public void OnDVDRemoved(DraggablePrefab dvd)
     {
-        // Aqui você pode fazer o que quiser quando o DVD "voltar" para a posição inicial
         Debug.Log("DVD voltou para a posição inicial via clique.");
 
-        // Exemplo: chamar um método para resetar a posição do objeto
+        dvd.ReleaseSlot();
         dvd.ResetPosition();
     }
 

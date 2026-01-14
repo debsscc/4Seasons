@@ -36,7 +36,7 @@ public class MapButton : MonoBehaviour
     {
         if (!isSelected && !isCompleted )
         {
-            transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+            transform.DOScale(1.05f, 0.2f).SetEase(Ease.OutBack);
         }
     }
 
@@ -61,7 +61,7 @@ public class MapButton : MonoBehaviour
                 return;
             }
         Debug.Log("Map Button Clicked: " + mapData.sceneName);
-        await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
+        // await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
         OnMapSelected?.Invoke(this, mapData); 
     }
     
@@ -73,12 +73,12 @@ public class MapButton : MonoBehaviour
         
         if (outline != null)
         {
-            outline.enabled = selected;
+            // outline.enabled = selected;
             
             if (selected)
             {
-                outline.effectColor = Color.white;
-                transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack);
+                // outline.effectColor = Color.white;
+                transform.DOScale(1.1f, 0.2f).SetEase(Ease.OutBack);
             }
             else
             {

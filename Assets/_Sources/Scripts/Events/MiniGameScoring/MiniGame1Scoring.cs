@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -22,6 +23,41 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
     private SlotDraggable _pendingSlot;
     private ItemsSO[] _pendingItems;
 
+    private void Start()
+    {
+        if (miniGameController != null)
+        {
+            foreach (var slot in miniGameController.targetSlots)
+            {
+                if (slot != null)
+                {
+                    slot.OnObjectRemovedFromSlot += HandleObjectRemoved;
+                }
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (miniGameController != null)
+        {
+            foreach (var slot in miniGameController.targetSlots)
+            {
+                if (slot != null)
+                {
+                    slot.OnObjectRemovedFromSlot -= HandleObjectRemoved;
+                }
+            }
+        }
+    }
+
+    private void HandleObjectRemoved(SlotDraggable slot)
+    {
+        Debug.Log($"[MiniGame1] Objeto removido do slot '{slot.name}'");
+        OnItemRemovedFromSlot();
+    }
+
+    // Chamado pelo MiniGameController quando um objeto é dropado no slot
     public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
     {
         if (slot == null)
@@ -35,18 +71,18 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         Debug.Log($"[MiniGame1] Drop registrado no slot '{slot.name}'. Aguardando confirmação do jogador.");
 
+        // esconde modais
         if (feedbackCorajoso != null) feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
         if (confirmButton != null)
-        {
             confirmButton.SetActive(true);
-        }
         else
-        {
             Debug.LogWarning("[MiniGame1] confirmButton não foi atribuído no Inspector.");
-        }
+
+        MiniGameFeedbackManager.Instance.ApplyPreview(items);
     }
+
     public void OnItemDraggedOutOfSlot()
     {
         _pendingSlot = null;
@@ -58,20 +94,32 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         }
 
         Debug.Log("[MiniGame1] Item arrastado para fora do slot. Escolha cancelada.");
+
+        // limpa preview
+        if (MiniGameFeedbackManager.Instance != null)
+            MiniGameFeedbackManager.Instance.ResetAll();
     }
 
     public void OnConfirmButtonClicked()
     {
-        if (_pendingItems == null || _pendingItems.Length == 0)
+        if (_pendingSlot == null || _pendingSlot.lastDroppedObject == null)
         {
-            Debug.LogWarning("[MiniGame1] Não há itens pendentes para confirmar.");
+            Debug.LogWarning("[MiniGame1] Nenhum DVD no slot para confirmar!");
+            if (confirmButton != null) confirmButton.SetActive(false);
             return;
         }
 
+        if (_pendingItems == null || _pendingItems.Length == 0)
+        {
+            Debug.LogWarning("[MiniGame1] Não há itens pendentes para confirmar.");
+            if (confirmButton != null) confirmButton.SetActive(false);
+            return;
+        }
+
+        Debug.Log($"[MiniGame1] Confirmando escolha do slot '{_pendingSlot.name}'.");
+
         if (confirmButton != null)
             confirmButton.SetActive(false);
-
-        Debug.Log("[MiniGame1] Confirmando escolha. Aplicando pontuações...");
 
         bool escolheuCorajoso = ApplyScores(_pendingItems);
 
@@ -81,54 +129,68 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         }
 
         ShowFeedbackModal(escolheuCorajoso);
+
+        if (_pendingSlot.lastDroppedObject != null)
+        {
+            Destroy(_pendingSlot.lastDroppedObject);
+        }
+
+        foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
+        {
+            foreach (var item in _pendingItems)
+            {
+                // display heart
+                ui.DisplayHeartFeedbackBasedOnItem(item);
+                if(ui.CharacterLikesItem(item)) break;
+            }
+        }
+
+        _pendingSlot.ClearSlot();
+
+        _pendingSlot = null;
+        _pendingItems = null;
     }
 
     public void OnItemRemovedFromSlot()
-{
-    _pendingSlot = null;
-    _pendingItems = null;
-
-    if (confirmButton != null)
     {
-        confirmButton.SetActive(false);
-    }
+        _pendingSlot = null;
+        _pendingItems = null;
 
-    Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
-}
+        if (confirmButton != null)
+        {
+            confirmButton.SetActive(false);
+        }
+
+        Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
+
+        // Reseta preview visual imediatamente
+        MiniGameFeedbackManager.Instance?.ResetAll();
+    }
 
     private bool ApplyScores(ItemsSO[] items)
     {
         var charsManager = CharactersManager.Instance;
-        if (charsManager == null)
-        {
-            Debug.LogError("[MiniGame1] CharactersManager.Instance é nulo.");
-            return false;
-        }
 
         bool escolheuTerrorOuSuspense = items.Any(i => terrorOuSuspenseItems.Contains(i));
 
-        // ------------- NPCs -------------
         foreach (var npc in charsManager.npcs)
         {
             if (npc == null) continue;
 
             int delta = 0;
 
-            // Favoritos
             bool escolheuFavoritoNPC = items.Any(i => npc.favoriteItems.Contains(i));
             delta += escolheuFavoritoNPC ? 2 : -1;
 
-            // Traços vs gênero
             if (escolheuTerrorOuSuspense)
             {
-                if (npc.traits.isFearful) delta += -2;   // medroso com terror/suspense
-                //
-                if (npc.traits.isBrave)   delta += +3;   // corajoso com terror/suspense
+                if (npc.traits.isFearful) delta += -2;
+                if (npc.traits.isBrave) delta += +3;
             }
             else
             {
-                if (npc.traits.isFearful) delta += +3;   // medroso sem terror/suspense
-                if (npc.traits.isBrave)   delta += -2;   // corajoso sem terror/suspense
+                if (npc.traits.isFearful) delta += +3;
+                if (npc.traits.isBrave) delta += -2;
             }
 
             int antes = npc.RelationshipScore;
@@ -157,15 +219,9 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             player.RelationshipScore = antes + deltaSelf;
             Debug.Log($"[MiniGame1][SELF] {player.name}: {antes} → {player.RelationshipScore} (Δ {deltaSelf})");
         }
-        else
-        {
-            Debug.LogWarning("[MiniGame1] playerCharacter não configurado em CharactersManager.");
-        }
 
         return escolheuTerrorOuSuspense;
     }
-
-
 
     private void ShowFeedbackModal(bool escolheuCorajoso)
     {
@@ -174,15 +230,73 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         if (escolheuCorajoso)
         {
-            Debug.Log("[MiniGame1] Feedback: CORAJOSO.");
             if (feedbackCorajoso != null)
                 feedbackCorajoso.SetActive(true);
         }
         else
         {
-            Debug.Log("[MiniGame1] Feedback: NÃO CORAJOSO.");
             if (feedbackNaoCorajoso != null)
                 feedbackNaoCorajoso.SetActive(true);
         }
     }
+
+    // private void ApplyPreviewForItems(ItemsSO[] items)
+    // {
+    //     if (MiniGameFeedbackManager.Instance == null) return;
+
+    //     var charsManager = CharactersManager.Instance;
+    //     Dictionary<string, int> deltas = new Dictionary<string, int>();
+
+    //     bool escolheuTerrorOuSuspense = items.Any(i => terrorOuSuspenseItems.Contains(i));
+
+    //     foreach (var npc in charsManager.npcs)
+    //     {
+    //         if (npc == null) continue;
+
+    //         string cleanId = npc.name.Replace("NPCData_", "").Trim();
+
+    //         int delta = 0;
+    //         bool escolheuFavoritoNPC = items.Any(i => npc.favoriteItems.Contains(i));
+    //         delta += escolheuFavoritoNPC ? 2 : -1;
+
+    //         if (escolheuTerrorOuSuspense)
+    //         {
+    //             if (npc.traits.isFearful) delta += -2;
+    //             if (npc.traits.isBrave) delta += +3;
+    //         }
+    //         else
+    //         {
+    //             if (npc.traits.isFearful) delta += +3;
+    //             if (npc.traits.isBrave) delta += -2;
+    //         }
+
+    //         deltas[cleanId] = delta;
+    //     }
+
+    //     // Player
+    //     var player = charsManager.playerCharacter;
+    //     if (player != null)
+    //     {
+    //         int deltaSelf = 0;
+    //         bool escolheuFavoritoSelf = items.Any(i => player.favoriteItems.Contains(i));
+    //         deltaSelf += escolheuFavoritoSelf ? 2 : -1;
+
+    //         if (escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += -2;
+    //         else if (!escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += +3;
+
+    //         deltas["Player"] = deltaSelf;
+    //     }
+
+    //     var preview = new Dictionary<string, FeedbackType>();
+    //     foreach (var kv in deltas)
+    //     {
+    //         FeedbackType t = FeedbackType.Neutral;
+    //         if (kv.Value > 0) t = FeedbackType.Positive;
+    //         else if (kv.Value < 0) t = FeedbackType.Negative;
+
+    //         preview[kv.Key] = t;
+    //     }
+
+    //     MiniGameFeedbackManager.Instance.ApplyPreview(preview);
+    // }
 }

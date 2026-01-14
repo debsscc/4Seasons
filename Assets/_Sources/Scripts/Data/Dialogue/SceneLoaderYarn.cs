@@ -6,27 +6,43 @@ public class SceneLoaderYarn : MonoBehaviour
 {
     public string sceneToLoad;
     public DialogueRunner dialogueRunner; // arraste no Inspector ou deixe nulo para achar automaticamente
+    public YarnScoreCommands scoreCommands;
 
     void Awake()
     {
         Debug.Log("[SceneLoaderYarn] Awake chamado!");
 
+        // Buscar DialogueRunner
         if (dialogueRunner == null)
         {
-            //dialogueRunner = FindObjectOfType<DialogueRunner>();
             Debug.Log("[SceneLoaderYarn] Procurando DialogueRunner...");
+            dialogueRunner = FindFirstObjectByType<DialogueRunner>();
         }
 
-        if (dialogueRunner != null)
+        // Buscar YarnScoreCommands
+        if (scoreCommands == null)
         {
-            Debug.Log("[SceneLoaderYarn] DialogueRunner encontrado! Registrando evento...");
-            dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
+            Debug.Log("[SceneLoaderYarn] Procurando YarnScoreCommands...");
+            scoreCommands = FindFirstObjectByType<YarnScoreCommands>();
         }
-        else
+
+        // Validar dependências
+        if (dialogueRunner == null || scoreCommands == null)
         {
-            Debug.LogWarning("[SceneLoaderYarn] DialogueRunner N�O encontrado!");
+            Debug.LogError("[SceneLoaderYarn] DialogueRunner ou YarnScoreCommands não encontrado!");
+            return;
         }
+
+        dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
+
+        dialogueRunner.AddCommandHandler<string>(
+            "ApplyEventPart",
+            scoreCommands.ApplyEventPart
+        );
+
+        Debug.Log("[SceneLoaderYarn] Comando ApplyEventPart registrado!");
     }
+
 
     void OnDestroy()
     {
@@ -35,11 +51,22 @@ public class SceneLoaderYarn : MonoBehaviour
     }
 
     void OnDialogueComplete()
-    {   
-        if (!string.IsNullOrEmpty(sceneToLoad)) {
-            GameSessionManager.Instance.MarkCurrentMapAsCompleted();
-            SceneTransition.Instance.ChangeScene(sceneToLoad);
-        } else
+    {
+        // Editor ou jogo já está sendo encerrado
+        if (!Application.isPlaying)
+            return;
+
+        if (string.IsNullOrEmpty(sceneToLoad))
+        {
             Debug.LogWarning("[SceneOnDialogueComplete] sceneToLoad vazio.");
-    }   
-}
+            return;
+        }
+
+        if (GameSessionManager.Instance == null || SceneTransition.Instance == null)
+            return;
+
+        GameSessionManager.Instance.MarkCurrentMapAsCompleted();
+        SceneTransition.Instance.ChangeScene(sceneToLoad);
+    }
+
+} 

@@ -1,57 +1,96 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class SlotDraggable : MonoBehaviour
+public class SlotDraggable : MonoBehaviour, IPointerClickHandler
 {
-    public Image outlineImage;    
+    public event Action<SlotDraggable> OnObjectRemovedFromSlot;
+    
+    [Header("Visual")]
+    public Image outlineImage;
+
+    [Header("MiniGames Data")]
+    public Outline npcOutline;              // Usado em MiniGame 5
+    public CharacterData associatedCharacter; // Usado em MiniGame 4 e 5
+    public int specialId;                    // Usado em MiniGame 3, 4 e 5
+
+    [Header("Audio")]
     public AudioClip successSfx;
-    public float acceptDistance = 200f;
-    private AudioSource audioSource;
-
-    [HideInInspector]
+    public float acceptDistance = 80f;
+    
     public GameObject lastDroppedObject;
-
-    [Header("Visual Feedback (Minigame 5)")]
-    [Tooltip("Outline do NPC (hover e seleção)")]
-    public UnityEngine.UI.Outline npcOutline;
-
-
-    [Header("Dados opcionais")]
-    public int specialId;
-    public CharacterData associatedCharacter;
+    
+    private AudioSource audioSource;
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-        if (outlineImage) outlineImage.enabled = false;
+        InitializeComponents();
+        HideOutline();
     }
-    public void OnSuccessfulDrop(GameObject droppedObject)
+        private void InitializeComponents()
+    {
+        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
+    }
+
+    private void HideOutline()
+    {
+        if (outlineImage)
+            outlineImage.enabled = false;
+    }
+        public void OnSuccessfulDrop(GameObject droppedObject)
     {
         lastDroppedObject = droppedObject;
-        OnSuccessfulDrop();
+
+        PlaySuccessSound();
+        FlashOutlineEffect();
     }
-
-    public void OnSuccessfulDrop()
-    {
-        Debug.Log($"[SlotDraggable] OnSuccessfulDrop em '{name}'");
-        if (successSfx) audioSource.PlayOneShot(successSfx);
-        if (outlineImage) StartCoroutine(FlashOutline());
-    }
-
-
-    System.Collections.IEnumerator FlashOutline()
-    {
-        if (outlineImage == null) yield break;
-        outlineImage.enabled = true;
-        yield return new WaitForSeconds(0.35f); //GameDesigner pode mudar
-        outlineImage.enabled = false;
-    }
-
     public void HighlightSlot(bool highlight)
     {
-        Vector2 scale = highlight ? Vector2.one * 1.3f : Vector2.one;
-        transform.DOScale(scale, 0.25f);
+        Vector2 targetScale = highlight ? Vector2.one * 1.3f : Vector2.one;
+        transform.DOScale(targetScale, 0.25f);
     }
+
+    public void ClearSlot()
+{
+    if (lastDroppedObject != null)
+    {
+        lastDroppedObject = null;
+        OnObjectRemovedFromSlot?.Invoke(this);
+    }
+}
+public void OnPointerClick(PointerEventData eventData)
+{
+    if (lastDroppedObject != null)
+    {
+        var draggable = lastDroppedObject.GetComponent<DraggablePrefab>();
+        if (draggable != null)
+        {
+            draggable.ReleaseSlot();
+            draggable.ResetPosition();
+        }
+
+        OnObjectRemovedFromSlot?.Invoke(this);
+    }
+}
+
+    private void PlaySuccessSound()
+    {
+        if (successSfx)
+            audioSource.PlayOneShot(successSfx);
+    }
+
+    private void FlashOutlineEffect()
+    {
+        if (outlineImage)
+            StartCoroutine(FlashOutline());
+    }
+
+    private System.Collections.IEnumerator FlashOutline()
+    {
+        outlineImage.enabled = true;
+        yield return new WaitForSeconds(0.35f);
+        outlineImage.enabled = false;
+    }
+    
 }

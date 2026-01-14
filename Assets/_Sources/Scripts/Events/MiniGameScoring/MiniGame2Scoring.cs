@@ -73,6 +73,9 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
         public void OnItemRemovedFromSlot()
     {
+        Debug.Log("[MiniGame2] Item removido do slot.");
+        RecalculateBasketState();
+
     }
 
     public void OnDragOverSlot(DraggablePrefab draggable, SlotDraggable nearSlot)

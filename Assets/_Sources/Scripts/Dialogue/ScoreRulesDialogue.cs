@@ -59,7 +59,7 @@ public class ScoreRulesDialogue : MonoBehaviour
             Debug.LogWarning($"[ScoreRulesManager] Rule not found: '{ruleId}'");
             return;
         }
-
+        Debug.Log($"[ScoreRulesManager] Applying rule '{ruleId}'");
         ApplyRule(rule);
     }
 

@@ -1,14 +1,14 @@
 <!-- UNITY CODE ASSIST INSTRUCTIONS START -->
-- Project name: 4Seasons
+- Project name: 4Seasons - Copy
 - Unity version: Unity 6000.2.6f2
 - Active scene:
-  - Name: Testing
+  - Name: MapSeletor
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, UI_A, a
 - Active game object:
-  - Name: Canvas
+  - Name: day/autumn
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
