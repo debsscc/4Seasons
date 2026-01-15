@@ -37,6 +37,7 @@ public class CharacterData : ScriptableObject
 
     public bool LikesItem(ItemsSO item)
     {
+        Debug.Log($"[CharacterData] Checking if '{item.name}' is liked by character '{name}'");
         return favoriteItems.Contains(item);
     }
 }

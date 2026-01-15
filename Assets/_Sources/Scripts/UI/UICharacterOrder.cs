@@ -20,10 +20,16 @@ public class UICharacterOrder : MonoBehaviour
         MiniGameController miniGameController = FindFirstObjectByType<MiniGameController>();
         var draggables = miniGameController.draggablePrefabs;
         string order = null;
+        orderText.text = "";
+        Debug.Log("Dragganle amount " + draggables.Count);
         foreach (var draggable in draggables)
         {
-            if (draggable.Items == null) continue;
-            foreach (var item in draggable.Items)
+            var itemsHolder = draggable.GetComponent<IItemHolder>();
+            
+            if (itemsHolder == null) continue;
+            if (itemsHolder.Items == null) continue;
+
+            foreach (var item in itemsHolder.Items)
             {
                 if (character.LikesItem(item))
                 {
