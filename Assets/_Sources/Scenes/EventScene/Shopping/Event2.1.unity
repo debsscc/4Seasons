@@ -380,6 +380,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151553090}
   m_CullTransparentMesh: 1
+--- !u!1 &232794465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232794467}
+  - component: {fileID: 232794466}
+  m_Layer: 0
+  m_Name: SceneMusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &232794466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232794465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2207106de7f24488555ef88636fcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusicPlayer
+  _musicClip: {fileID: 8300000, guid: 879428e6cb084694cbadf01ffc06b573, type: 3}
+  _loop: 1
+  _volume: 1
+--- !u!4 &232794467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232794465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 814.36084, y: 661.80176, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &247904471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 637501961}
+  scoreCommands: {fileID: 0}
 --- !u!1 &656449720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,12 +1674,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  npcOutline: {fileID: 666570261}
+  associatedCharacter: {fileID: 0}
+  specialId: 0
   successSfx: {fileID: 0}
   acceptDistance: 80
   lastDroppedObject: {fileID: 0}
-  npcOutline: {fileID: 666570261}
-  specialId: 0
-  associatedCharacter: {fileID: 0}
 --- !u!114 &666570265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4808,6 +4856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1972590333}
+  scoreCommands: {fileID: 0}
 --- !u!1 &2035196935
 GameObject:
   m_ObjectHideFlags: 0
@@ -5532,3 +5581,4 @@ SceneRoots:
   - {fileID: 485795635}
   - {fileID: 1603147009}
   - {fileID: 319641031}
+  - {fileID: 232794467}
