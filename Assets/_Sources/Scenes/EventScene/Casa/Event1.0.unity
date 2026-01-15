@@ -412,12 +412,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue
+      value: Ian
       objectReference: {fileID: 0}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 25c208735bf6c364c8aa0e03ee764ed6, type: 2}
+    - target: {fileID: 8445790971961224682, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: dialogueEmotionController
+      value: 
+      objectReference: {fileID: 918303314}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -426,6 +430,11 @@ PrefabInstance:
 --- !u!224 &279066938 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 279066937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &279066939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 279066937}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &326197157
@@ -969,7 +978,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1458642287}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1405237667006323973, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -993,11 +1002,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -505.8067
+      value: 457.4018
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 179.80096
+      value: 721.40955
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1009,15 +1018,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1063,6 +1072,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7475054429671448908, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7871598882747819436, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1094,12 +1107,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 414403519}
+    - targetCorrespondingSourceObject: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 414403523}
   m_SourcePrefab: {fileID: 100100000, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
---- !u!4 &414403516 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
-  m_PrefabInstance: {fileID: 414403515}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &414403517 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3541565641142757184, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -1130,12 +1141,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: Event1.1
   dialogueRunner: {fileID: 414403517}
-  scoreCommands: {fileID: 918303316}
+  scoreCommands: {fileID: 414403523}
 --- !u!224 &414403520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8586434540972666658, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
   m_PrefabInstance: {fileID: 414403515}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &414403523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414403518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d8dab1420b4c449b485d7de7756171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
+  scoreManager: {fileID: 918303313}
 --- !u!1 &455106232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1753,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918303317}
-  - component: {fileID: 918303316}
   - component: {fileID: 918303315}
   - component: {fileID: 918303314}
   - component: {fileID: 918303313}
@@ -1778,20 +1801,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8adc8397421a5846b2b2cbaddf47f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEmotionController
-  dialogueRunner: {fileID: 0}
+  dialogueRunner: {fileID: 414403517}
   characterBindings:
   - characterId: Sabrina
-    characterGameObject: {fileID: 0}
-  - characterId: Iris
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1354583114}
   - characterId: Lucas
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1002984894}
   - characterId: Ian
-    characterGameObject: {fileID: 0}
-  - characterId: Arabella
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 279066939}
   - characterId: Melissa
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1105305252}
   characterProfiles:
   - {fileID: 11400000, guid: 1a39c8aeb23b72f45aa95d0253d5e6ac, type: 2}
   - {fileID: 11400000, guid: e44263d53890abe4a9c8df977b6be4d7, type: 2}
@@ -1816,7 +1835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a988e64b60de8468224df82e128e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
-  dialogueRunner: {fileID: 0}
+  dialogueRunner: {fileID: 414403517}
   eventScoreRules: {fileID: 11400000, guid: 606d2194046e06f4aacb0f29e50b38cb, type: 2}
   characterBindings:
   - characterId: Arabella
@@ -1831,19 +1850,6 @@ MonoBehaviour:
     characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
   - characterId: Sabrina
     characterData: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
---- !u!114 &918303316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918303312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d8dab1420b4c449b485d7de7756171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
-  scoreManager: {fileID: 918303313}
 --- !u!4 &918303317
 Transform:
   m_ObjectHideFlags: 0
@@ -1953,12 +1959,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue_1
+      value: Lucas
       objectReference: {fileID: 0}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 6acd0e4500c3aa044a58107a24d3dced, type: 2}
+    - target: {fileID: 8445790971961224682, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: dialogueEmotionController
+      value: 
+      objectReference: {fileID: 918303314}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1967,6 +1977,11 @@ PrefabInstance:
 --- !u!224 &1002984893 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 1002984892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1002984894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 1002984892}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1105305250
@@ -2063,12 +2078,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue_2
+      value: Mel
       objectReference: {fileID: 0}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: fac2c17ac246c4f4f8f7ad12758c466d, type: 2}
+    - target: {fileID: 8445790971961224682, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: dialogueEmotionController
+      value: 
+      objectReference: {fileID: 918303314}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2077,6 +2096,11 @@ PrefabInstance:
 --- !u!224 &1105305251 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 1105305250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1105305252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 1105305250}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1140162283
@@ -2283,6 +2307,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: ac92dd39979b0894b8f3c0736d123ec1, type: 2}
+    - target: {fileID: 8445790971961224682, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: dialogueEmotionController
+      value: 
+      objectReference: {fileID: 918303314}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2291,6 +2319,11 @@ PrefabInstance:
 --- !u!224 &1354583113 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 1354583112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1354583114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 1354583112}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1386685961
@@ -2368,7 +2401,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 414403516}
   - {fileID: 1829068701}
   - {fileID: 477714689}
   m_Father: {fileID: 1140162284}
@@ -2673,6 +2705,7 @@ SceneRoots:
   - {fileID: 1941477931}
   - {fileID: 865607037}
   - {fileID: 94413754}
+  - {fileID: 414403515}
   - {fileID: 1140162284}
   - {fileID: 789287373}
   - {fileID: 1386685963}
