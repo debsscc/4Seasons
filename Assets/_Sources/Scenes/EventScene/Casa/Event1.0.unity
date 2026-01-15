@@ -326,6 +326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 455106233}
     m_Modifications:
+    - target: {fileID: 1794841213966166091, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: characterId
+      value: Ian
+      objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -388,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -632
+      value: -589
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -410,6 +414,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 25c208735bf6c364c8aa0e03ee764ed6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1859,6 +1867,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 455106233}
     m_Modifications:
+    - target: {fileID: 1794841213966166091, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: characterId
+      value: Lucas
+      objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1921,7 +1933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -179
+      value: -188.00002
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1943,6 +1955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Dialogue_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 6acd0e4500c3aa044a58107a24d3dced, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1961,6 +1977,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 455106233}
     m_Modifications:
+    - target: {fileID: 1794841213966166091, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: characterId
+      value: Mel
+      objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2023,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 207
+      value: 197.99998
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2045,6 +2065,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Dialogue_2
       objectReference: {fileID: 0}
+    - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: fac2c17ac246c4f4f8f7ad12758c466d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2167,6 +2191,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 455106233}
     m_Modifications:
+    - target: {fileID: 1794841213966166091, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: characterId
+      value: Sabrina
+      objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2229,7 +2257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 603
+      value: 594
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2251,6 +2279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: ac92dd39979b0894b8f3c0736d123ec1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
