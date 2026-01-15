@@ -225,6 +225,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &400408061 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8586434540972666658, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+  m_PrefabInstance: {fileID: 1562227395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &555130480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -447,6 +452,10 @@ PrefabInstance:
     - target: {fileID: 6129327304287984269, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_Name
       value: SkipDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129327304287984269, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8574765773318093372, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1070,6 +1079,16 @@ Transform:
   - {fileID: 1992509205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1013906166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 763959714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1163001361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 768111790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1221970461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1120,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1229762504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 2007178419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1243132563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1340,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1438213116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 1885484751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1473617654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1568,7 +1597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1978588704492674624, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1978588704492674624, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1588,7 +1617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5861298112110836593, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5861298112110836593, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1629,6 +1658,10 @@ PrefabInstance:
     - target: {fileID: 7366633320249469931, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: hurryUpLineAxis
       value: Submit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475054429671448908, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7871598882747819436, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1907,7 +1940,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1794841213966166091, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: characterId
-      value: Mel
+      value: Melissa
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Pivot.x
@@ -2075,22 +2108,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8adc8397421a5846b2b2cbaddf47f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEmotionController
-  dialogueRunner: {fileID: 0}
+  dialogueRunner: {fileID: 1562227400}
   characterBindings:
   - characterId: Melissa
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1438213116}
   - characterId: Ian
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1229762504}
   - characterId: Arabella
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1013906166}
   - characterId: Sabrina
-    characterGameObject: {fileID: 0}
+    characterGameObject: {fileID: 1163001361}
   characterProfiles:
   - {fileID: 11400000, guid: 541607e69992d7441b5a076f30a15c71, type: 2}
   - {fileID: 11400000, guid: e44263d53890abe4a9c8df977b6be4d7, type: 2}
   - {fileID: 11400000, guid: 1a39c8aeb23b72f45aa95d0253d5e6ac, type: 2}
   - {fileID: 11400000, guid: 0f0f6ebf08edaa04ca3de86064ddf8e5, type: 2}
-  speechBubbleRect: {fileID: 0}
+  speechBubbleRect: {fileID: 400408061}
   dialogueTextTMP: {fileID: 0}
   bubbleEmotionImage: {fileID: 0}
   bubbleOffset: {x: 0, y: 120}
@@ -2107,7 +2140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a988e64b60de8468224df82e128e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
-  dialogueRunner: {fileID: 0}
+  dialogueRunner: {fileID: 1562227400}
   eventScoreRules: {fileID: 0}
   characterBindings:
   - characterId: Melissa

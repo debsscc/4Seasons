@@ -675,6 +675,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2426227363209911762, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 282984910}
+    - target: {fileID: 2426227363209911762, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestNextLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426227363209911762, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Yarn.Unity.DialogueRunner, YarnSpinner.Unity
+      objectReference: {fileID: 0}
     - target: {fileID: 3541565641142757184, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: startNode
       value: Feedback_Roubando_Event2
@@ -2386,6 +2398,18 @@ PrefabInstance:
     - target: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426227363209911762, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1033056283}
+    - target: {fileID: 2426227363209911762, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestNextLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426227363209911762, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Yarn.Unity.DialogueRunner, YarnSpinner.Unity
       objectReference: {fileID: 0}
     - target: {fileID: 3541565641142757184, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: startNode
