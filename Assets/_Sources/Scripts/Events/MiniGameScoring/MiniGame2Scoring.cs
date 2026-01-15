@@ -13,8 +13,8 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     public GameObject handIcon;
 
     [Header("Actions Buttons")]
-    public Button actionButton;
-    public TextMeshProUGUI actionButtonText;
+    public Button confirmButton;
+    public Button stealButton;
 
     [Header("Feedback Modals")]
     public GameObject modalRobbed;
@@ -41,11 +41,18 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     private void Start()
     {
-        if (actionButton != null)
+        if (confirmButton != null)
         {
-            actionButton.gameObject.SetActive(false);
-            actionButton.onClick.AddListener(OnActionButtonClicked);
+            confirmButton.gameObject.SetActive(false);
+            confirmButton.onClick.AddListener(OnActionButtonClicked);
         }
+
+        if (stealButton != null)
+        {
+            stealButton.gameObject.SetActive(false);
+            stealButton.onClick.AddListener(OnActionButtonClicked);
+        }
+
         if (modalPurchased) modalPurchased.SetActive(false);
         if (modalRobbed) modalRobbed.SetActive(false);
 
@@ -184,22 +191,18 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
             handIcon.SetActive(_isStealing);
         }
 
-        if (actionButton != null)
+        if (confirmButton != null)
         {
             if (_drinksInBasket == 0)
             {
-                actionButton.gameObject.SetActive(false);
+                confirmButton.gameObject.SetActive(false);
+                stealButton.gameObject.SetActive(false);
             }
             else
             {
-                actionButton.gameObject.SetActive(true);
-                if (actionButtonText != null)
-                {
-                    actionButtonText.text = _isStealing ? "ROUBAR" : "COMPRAR";
-                }
-                else
-                {
-                }
+                stealButton.gameObject.SetActive(_isStealing);
+                confirmButton.gameObject.SetActive(!_isStealing);
+                // image.sprite = _isStealing ? stealSprite : pruchaseSprite;
             }
         }
     }
