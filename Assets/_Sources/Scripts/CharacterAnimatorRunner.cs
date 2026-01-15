@@ -9,14 +9,14 @@ public class CharacterAnimatorRunner : MonoBehaviour
 
     void Start()
     {
-        dialogueEmotionController.AddAnimatorRunner(this);
+        // dialogueEmotionController.AddAnimatorRunner(this);
 
-        if(!characterAnimator)
-        {
-            characterAnimator = GetComponent<Animator>();
-        }
+        // if(!characterAnimator)
+        // {
+        //     characterAnimator = GetComponent<Animator>();
+        // }
 
-        PlayAnimation(EmotionType.Normal);
+        // PlayAnimation(EmotionType.Normal);
     }
 
     public void PlayAnimation(EmotionType animationTrigger)

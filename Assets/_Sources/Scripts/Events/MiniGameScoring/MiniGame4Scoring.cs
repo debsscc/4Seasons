@@ -156,7 +156,7 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
 
     private void ShowModalByID(int id)
     {
-        int index = id ;
+        int index = id-1 ;
 
         if (index >= 0 && index < modalsByID.Count && modalsByID[index] != null)
         {
