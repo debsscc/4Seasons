@@ -11750,6 +11750,14 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1359154763112915780, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359154763112915780, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.700001
+      objectReference: {fileID: 0}
     - target: {fileID: 1498088652609980119, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_Transition
       value: 2
@@ -12145,7 +12153,7 @@ MonoBehaviour:
   selfChosenPoints: 2
   selfNotChosenPoints: -1
   modalsByID:
-  - {fileID: 2074998787}
+  - {fileID: 1004970148}
   - {fileID: 1004970148}
   - {fileID: 183786207}
   - {fileID: 1692587552}
