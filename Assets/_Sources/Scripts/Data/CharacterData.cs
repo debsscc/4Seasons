@@ -30,7 +30,7 @@ public class CharacterData : ScriptableObject
     
     public ExpressionFeedbackSprite ExpressionFeedbackSprite => _expressionFeedbackSprite;
 
-    public void Onable()
+    public void OnEnable()
     {
         _relationshipScore = _initialRelationshipScore;
     }
