@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
+    public GameObject PAUSE;
 
     public GameObject settingsPanel;
     public GameObject creditsPanel;
@@ -14,7 +14,7 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        pauseMenuUI.SetActive(false);
+        PAUSE.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -37,7 +37,7 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
 
-        pauseMenuUI.SetActive(true);
+        PAUSE.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
 
@@ -54,7 +54,7 @@ public class PauseManager : MonoBehaviour
             return;
         }
 
-        pauseMenuUI.SetActive(false);
+        PAUSE.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
