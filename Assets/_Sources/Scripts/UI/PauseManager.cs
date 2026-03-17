@@ -16,6 +16,7 @@ public class PauseManager : MonoBehaviour
     {
         PAUSE.SetActive(false);
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         isPaused = false;
     }
 
@@ -39,6 +40,7 @@ public class PauseManager : MonoBehaviour
 
         PAUSE.SetActive(true);
         Time.timeScale = 0f;
+        AudioListener.pause = true;
         isPaused = true;
 
         mainPausePanel.SetActive(true);
@@ -56,6 +58,7 @@ public class PauseManager : MonoBehaviour
 
         PAUSE.SetActive(false);
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         isPaused = false;
     }
 
@@ -75,12 +78,14 @@ public class PauseManager : MonoBehaviour
     public void GoToMenu()
     {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         SceneTransition.Instance.ChangeScene("MainMenu");
     }
 
     public void OpenCredits()
     {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         SceneTransition.Instance.ChangeScene("Credits");
     }
 }

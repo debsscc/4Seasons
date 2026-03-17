@@ -18,6 +18,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public List<SlotDraggable> TargetSlots { get; set; } = null;
     public MiniGameController MiniGameController { get; set; }
     public event Action OnBeginDragEvent;
+    public event Action OnEndDragEvent;
 
     
     private CanvasGroup canvasGroup;
@@ -82,6 +83,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var nearSlot = IsNearSlot();
         Debug.Log($"[DraggablePrefab] OnEndDrag - nearSlot: {(nearSlot != null ? nearSlot.name : "NONE")}");
 
+        OnEndDragEvent?.Invoke();
         NotifyMiniGamesOnEndDrag();
 
         if (nearSlot != null)
@@ -384,8 +386,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log($"[DraggablePrefab] OnPointerClick - {name} clicked.");
-        if (MiniGameController != null)
-        {
+        if (MiniGameController != null && GetComponent<IgnoreClickReset>() == null){
             ResetPosition();
             PlayPickSound();
             NotifyMiniGamesOnBeginDrag();

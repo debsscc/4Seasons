@@ -12,7 +12,7 @@ public class SlotDraggable : MonoBehaviour, IPointerClickHandler
     public Image outlineImage;
 
     [Header("MiniGames Data")]
-    public Outline npcOutline;              // Usado em MiniGame 5
+    public UIOutline npcOutline;              // Usado em MiniGame 5
     public CharacterData associatedCharacter; // Usado em MiniGame 4 e 5
     public int specialId;                    // Usado em MiniGame 3, 4 e 5
 
@@ -48,7 +48,6 @@ public class SlotDraggable : MonoBehaviour, IPointerClickHandler
     public void HighlightSlot(bool highlight)
     {
         Vector2 targetScale = highlight ? Vector2.one * 1.3f : Vector2.one;
-        transform.DOScale(targetScale, 0.25f);
     }
 
     public void ClearSlot()

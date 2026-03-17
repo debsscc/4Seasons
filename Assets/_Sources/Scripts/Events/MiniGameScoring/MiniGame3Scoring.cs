@@ -16,18 +16,18 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
     
     [Header("Visual")]
     public Color hoverOutlineColor = Color.white;
-    private Outline outline;
+    private UIOutline outline;
 
 
     [Header("Objetos da Cena")]
     public GameObject isqueiroObject;
 
     [Tooltip("Outline do ícone das drogas (mesmo GameObject da imagem, mas componente Outline)")]
-    public Outline drogasOutline;
+    public UIOutline drogasOutline;
     [Tooltip("Outline do ícone do bolso")]
-    public Outline bolsoOutline;
+    public UIOutline bolsoOutline;
     [Tooltip("Outline do ícone do isqueiro")]
-    public Outline isqueiroOutline;
+    public UIOutline isqueiroOutline;
 
     [Header("Modals Feedbacks")]
     [Tooltip("Modal Feedback Bolso")]
@@ -46,6 +46,9 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
     [Header("UI de Confirmação")]
     public GameObject confirmButton;
 
+    [Header("Animacao")]
+    public Animator drogasAnimator;
+
     [Header("Configuração")]
     public float feedbackDuration = 3f;
 
@@ -54,7 +57,7 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
 
     private void Awake()
     {
-        outline = GetComponent<Outline>();
+        outline = GetComponent<UIOutline>();
 
         if (outline)
         {
@@ -81,7 +84,7 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
     {
         if (isConfirmed || slot == null) return;
 
-        Outline targetOutline = GetOutlineForSlot(slot);
+        UIOutline targetOutline = GetOutlineForSlot(slot);
         if (targetOutline != null)
         {
             SetOutlineEnabled(targetOutline, isHovering);
@@ -151,7 +154,10 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
         
         isConfirmed = true;
         if (confirmButton) confirmButton.SetActive(false);
-        
+
+        if (selectedSlot.specialId == acceptId && drogasAnimator != null)
+            drogasAnimator.SetTrigger("Tocar");
+
         OnObjectDropped(selectedSlot, System.Array.Empty<ItemsSO>());
         StartCoroutine(ShowFeedbackSequence(selectedSlot.specialId));
     }
@@ -217,14 +223,14 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
     }
 
     // Helpers
-    private Outline GetOutlineForSlot(SlotDraggable slot)
+    private UIOutline GetOutlineForSlot(SlotDraggable slot)
     {
         if (slot.specialId == acceptId) return drogasOutline;
         if (slot.specialId == rejectId) return bolsoOutline;
         return null;
     }
 
-    private void SetOutlineEnabled(Outline outline, bool enabled)
+    private void SetOutlineEnabled(UIOutline outline, bool enabled)
     {
         if (outline == null) return;
         outline.enabled = enabled;
