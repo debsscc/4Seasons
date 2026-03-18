@@ -10,6 +10,7 @@ public class ChangeOptionHolder : MonoBehaviour
     [SerializeField] private Button _rightArrowButton;
     [SerializeField] private Button _confirmButton;
     [SerializeField] private float _itemSize = 200f;
+    [SerializeField] private DialogueEmotionController _emotionController;
 
     private DialogueRunner _dialogueRunner;
     private float _currentScrollPosition = 0f;
@@ -41,6 +42,7 @@ public class ChangeOptionHolder : MonoBehaviour
         {
             _currentIndex = Mathf.Clamp(value, 0, _layoutGroup.transform.childCount - 1);
             CurrentLayoutPosition = -_currentIndex * ScrollAmount + _posOffset;
+            PreviewOptionEmotion();
         }
     }
 
@@ -86,4 +88,27 @@ public class ChangeOptionHolder : MonoBehaviour
         }
     }
 
+    private void PreviewOptionEmotion()
+    {
+        if (_emotionController == null) return;
+
+        var options = Options;
+        if (_currentIndex < 0 || _currentIndex >= options.Length) return;
+
+        var option = options[_currentIndex];
+        var characterName = option.Option.Line.CharacterName;
+
+        string emotionTag = null;
+        foreach (var tag in option.Option.Line.Metadata)
+        {
+            if (tag.StartsWith("emotion:"))
+            {
+                emotionTag = tag.Substring("emotion:".Length);
+                break;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(characterName) && !string.IsNullOrEmpty(emotionTag))
+            _emotionController.PreviewEmotion(characterName, emotionTag);
+    }
 }

@@ -1161,6 +1161,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218281555211596571, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: _emotionController
+      value: 
+      objectReference: {fileID: 918303314}
     - target: {fileID: 8572666163549193176, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1345,6 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 918303313}
+  emotionController: {fileID: 918303314}
 --- !u!4 &414403524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -1833,7 +1838,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1794841213966166091, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: characterId
-      value: Mel
+      value: Melissa
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Pivot.x
@@ -2241,13 +2246,13 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1829068701}
-  - {fileID: 64191831}
   - {fileID: 414403524}
+  - {fileID: 64191831}
   m_Father: {fileID: 1140162284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.208496, y: 1.6085815}
+  m_AnchoredPosition: {x: 3.208496, y: 1.6086426}
   m_SizeDelta: {x: -12.689, y: -7.1413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1567559124

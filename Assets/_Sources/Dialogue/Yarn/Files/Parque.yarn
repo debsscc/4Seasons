@@ -42,12 +42,12 @@ Ian: SIM! Eu amo o kamikaze!
 <<set $current_emotion = "Normal">>
 Lucas: Eu achei que ia passar mal nesse negócio.
 <<set $current_character = "Sabrina">>
--> Sabrina: Pois é, ficar de ponta cabeça é terrível.
+-> Sabrina: Pois é, ficar de ponta cabeça é terrível. #emotion:Angry
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event5.1_option1">>
     <<ApplyEventPart Event5.1_option1>>
--> Sabrina: Na real foi bem divertido.
+-> Sabrina: Na real foi bem divertido. #emotion:Happy
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option2">>
@@ -93,12 +93,12 @@ Arabella: Se a Íris e o Ian não tivessem girado o negócio tão rápido.
 Iris: Qual a graça dele ir devagarzinho?
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-->  Sabrina: Acho que a graça é não vomitar.
+->  Sabrina: Acho que a graça é não vomitar. #emotion:Happy
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option3">>
     <<ApplyEventPart Event5.1_option3>>
-->  Sabrina: SIM! quanto mais rápido melhor!
+->  Sabrina: SIM! quanto mais rápido melhor! #emotion:Happy
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option4">>

@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ticket
       objectReference: {fileID: 0}
+    - target: {fileID: 5521181803030057396, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -86,11 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 310.6767
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 145.1163
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_LocalPosition.x
@@ -122,11 +126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000023842
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000076294
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8064730221010307260, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -147,5 +151,77 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2963449268658772561, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2942698822830505946}
+    - targetCorrespondingSourceObject: {fileID: 2963449268658772561, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3052561898600997939}
   m_SourcePrefab: {fileID: 100100000, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+--- !u!1 &6800110727869924745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2963449268658772561, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+  m_PrefabInstance: {fileID: 8610479813281357784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2942698822830505946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800110727869924745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3052561898600997939}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3052561898600997939}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &3052561898600997939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800110727869924745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
+  cursorTexture: {fileID: 2800000, guid: 144934b3287d68349a005266b217deb7, type: 3}
+  hotspot: {x: 0, y: 0}
+  dragCursorTexture: {fileID: 2800000, guid: 144934b3287d68349a005266b217deb7, type: 3}
+  dragHotspot: {x: 0, y: 0}

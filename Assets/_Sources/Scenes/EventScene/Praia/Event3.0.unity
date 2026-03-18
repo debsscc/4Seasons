@@ -1366,6 +1366,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218281555211596571, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      propertyPath: _emotionController
+      value: 
+      objectReference: {fileID: 2072018014}
     - target: {fileID: 8572666163549193176, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1451,7 +1455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderYarn
   sceneToLoad: Event3.1
   dialogueRunner: {fileID: 1288443198}
-  scoreCommands: {fileID: 0}
+  scoreCommands: {fileID: 2072018017}
 --- !u!224 &1288443201 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8586434540972666658, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -2248,6 +2252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 2072018016}
+  emotionController: {fileID: 0}
 --- !u!4 &2072018018
 Transform:
   m_ObjectHideFlags: 0

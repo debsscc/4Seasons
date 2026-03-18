@@ -27,12 +27,12 @@ Ian: O mercado é dentro do shopping,
 <<set $current_emotion = "Normal">>
 Ian: Você acha mesmo que eles precisam de dinheiro?
 <<set $current_character = "Sabrina">>
--> Sabrina: Ainda é errado!
+-> Sabrina: Ainda é errado! #emotion:Angry
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event2.0_option1">>
-    <<ApplyEventPart Event2.0_option1>>
--> Sabrina: Ele tem um ponto, mas eu não apoio a gente roubar.
+    <<ApplyEventPart Event2.0_option1>> 
+-> Sabrina: Ele tem um ponto, mas eu não apoio a gente roubar. #emotion:Normal
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event2.0_option2">>

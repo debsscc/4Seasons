@@ -5,6 +5,7 @@ using System;
 public class YarnScoreCommands : MonoBehaviour
 {
     public ScoreRulesDialogue scoreManager;
+    public DialogueEmotionController emotionController;
 
     //<<command ApplyEventPart "Evento2.0_Parte1">>
   //  [YarnCommand("ApplyEventPart")]
@@ -17,6 +18,8 @@ public class YarnScoreCommands : MonoBehaviour
             Debug.LogError("[YarnScoreCommands] scoreManager NÃO atribuído");
             return;
         }
+
+        emotionController?.ForceApplyCurrentEmotion();
 
         scoreManager.ApplyRuleById(ruleId);
     }

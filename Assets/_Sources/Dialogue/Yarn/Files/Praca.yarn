@@ -84,12 +84,12 @@ Iris: É, o barulho é meio chato mesmo.
 <<set $current_emotion = "Happy">>
 Iris: Mas vai ser legal ver o céu colorido.
 <<set $current_character = "Sabrina">>
--> Sabrina: O estouro não me incomoda tanto.
+-> Sabrina: O estouro não me incomoda tanto. #emotion:Normal
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event4.1_option1">>
     <<ApplyEventPart Event4.1_option1>>
--> Sabrina: Pois é, não gosto do barulho alto.
+-> Sabrina: Pois é, não gosto do barulho alto. #emotion:Sad
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Sad">>
     <<set $current_option = "Event4.1_option2">>

@@ -28,12 +28,12 @@ Ian: Você disse que gostou do Júpiter ataca!
 <<set $current_emotion = "Normal">>
 Lucas: Não é ruim, só é estranho.
 <<set $current_character = "Sabrina">>
--> Sabrina: Por mais que eu goste muito, acho que chega de ficção científica.
+-> Sabrina: Por mais que eu goste muito, acho que chega de ficção científica. #emotion:Normal
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_rule = "Event1.1_option1">>
     <<ApplyEventPart Event1.1_option1>>
--> Sabrina: Não ataque os filmes do Ian! Eles são os melhores.
+-> Sabrina: Não ataque os filmes do Ian! Eles são os melhores. #emotion:Happy
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event1.1_option2">>
@@ -58,12 +58,12 @@ Ian: Ah, fala sério Lucas!
 Melissa: Ei! Sem zombar do meu namorado!
 Melissa: Você não tem medinho de filme mesmo, né?
 <<set $current_character = "Sabrina">>
--> Sabrina: Eu tô com o Lucas, sem filmes de medo!
+-> Sabrina: Eu tô com o Lucas, sem filmes de medo! #emotion:Angry
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event1.1_option3">>
     <<ApplyEventPart Event1.1_option3>>
--> Sabrina: Não sou fã, mas se todo mundo quiser a gente pode ver um assim.
+-> Sabrina: Não sou fã, mas se todo mundo quiser a gente pode ver um assim. #emotion:Normal
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event1.1_option4">>

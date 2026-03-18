@@ -9,11 +9,8 @@ using System.Linq;
 [Serializable]
 public class CharacterBinding
 {
-    [Tooltip("ID usado no Yarn (ex: Ian)")]
-    public string characterId;
-
-    [Tooltip("GameObject do personagem na cena")]
-    public GameObject characterGameObject;
+    public string characterId = string.Empty;
+    public GameObject? characterGameObject;
 }
 
 public class DialogueEmotionController : MonoBehaviour
@@ -29,14 +26,13 @@ public class DialogueEmotionController : MonoBehaviour
 
     [Header("Speech bubble UI (single bubble)")]
     public RectTransform speechBubbleRect;
-    public TextMeshProUGUI dialogueTextTMP;   //  balão de texto
-    public Image bubbleEmotionImage;          // imagem dentro do balão se tiver msm
+    public TextMeshProUGUI dialogueTextTMP;
+    public Image bubbleEmotionImage;
 
     [Header("Config")]
     public Vector2 bubbleOffset = new Vector2(0, 120);
-    public Camera uiCamera; 
+    public Camera uiCamera;
 
-    // Internos
     private Dictionary<string, GameObject> _idToGO = new();
     private Dictionary<string, CharacterEmotionProfile> _idToProfile = new();
     private Dictionary<string, SpriteRenderer> _idToSpriteRenderer = new();
@@ -46,12 +42,10 @@ public class DialogueEmotionController : MonoBehaviour
     private string _lastCharacter = string.Empty;
     private EmotionType _lastEmotion = EmotionType.Normal;
 
-    private List<CharacterAnimatorRunner> _animatorRunners;
+    private List<CharacterAnimatorRunner> _animatorRunners = new List<CharacterAnimatorRunner>();
 
     public void AddAnimatorRunner(CharacterAnimatorRunner runner)
     {
-        _animatorRunners ??= new List<CharacterAnimatorRunner>();
-
         if (!_animatorRunners.Contains(runner))
             _animatorRunners.Add(runner);
     }
@@ -70,17 +64,14 @@ public class DialogueEmotionController : MonoBehaviour
 
             _idToGO[b.characterId] = b.characterGameObject;
 
-            // Procura SpriteRenderer no próprio GameObject ou filhos
-            var sr = b.characterGameObject.GetComponent<SpriteRenderer>() 
+            var sr = b.characterGameObject.GetComponent<SpriteRenderer>()
                      ?? b.characterGameObject.GetComponentInChildren<SpriteRenderer>(true);
             if (sr != null) _idToSpriteRenderer[b.characterId] = sr;
 
-            // Procura Animator
-            var anim = b.characterGameObject.GetComponent<Animator>() 
+            var anim = b.characterGameObject.GetComponent<Animator>()
                        ?? b.characterGameObject.GetComponentInChildren<Animator>(true);
             if (anim != null) _idToAnimator[b.characterId] = anim;
 
-            // Procura Image no gameObject ou filhos
             var img = b.characterGameObject.GetComponent<Image>()
                       ?? b.characterGameObject.GetComponentInChildren<Image>(true);
             if (img != null) _idToUIImage[b.characterId] = img;
@@ -94,7 +85,6 @@ public class DialogueEmotionController : MonoBehaviour
             _idToProfile[p.characterId] = p;
         }
 
-        // inicializa _lastCharacter com vazio pra forçar a primeira string
         _lastCharacter = string.Empty;
     }
 
@@ -104,8 +94,6 @@ public class DialogueEmotionController : MonoBehaviour
 
         string currentChar = GetYarnStringRobust("current_character");
         string emotionStr = GetYarnStringRobust("current_emotion");
-
-        //Debug.Log($"[DialogueEmotionController] Yarn vars lidas -> current_character: '{currentChar}', current_emotion: '{emotionStr}'");
 
         if (!Enum.TryParse(emotionStr, true, out EmotionType emotion))
             emotion = EmotionType.Normal;
@@ -120,18 +108,34 @@ public class DialogueEmotionController : MonoBehaviour
         }
     }
 
+    public void ForceApplyCurrentEmotion()
+    {
+        if (dialogueRunner == null || dialogueRunner.VariableStorage == null) return;
+
+        string currentChar = GetYarnStringRobust("current_character");
+        string emotionStr = GetYarnStringRobust("current_emotion");
+
+        if (!Enum.TryParse(emotionStr, true, out EmotionType emotion))
+            emotion = EmotionType.Normal;
+
+        Debug.Log($"[DialogueEmotionController] ForceApply -> personagem='{currentChar}', emoção='{emotion}'");
+
+        ApplyEmotionToSceneCharacter(currentChar, emotion);
+        PositionSpeechBubbleToCharacter(currentChar);
+        UpdateBubbleEmotionImage(currentChar, emotion);
+    }
+
     private void ApplyEmotionToSceneCharacter(string characterId, EmotionType emotion)
     {
-        // Marca como "já tentado" para evitar loop de logs caso falhe
         _lastCharacter = characterId;
         _lastEmotion = emotion;
 
-        if(_animatorRunners == null) return;
-        
-        foreach(CharacterAnimatorRunner runner in _animatorRunners)
+        if (_animatorRunners == null) return;
+
+        foreach (CharacterAnimatorRunner runner in _animatorRunners)
         {
             if (runner.GetCharacterId() != characterId) continue;
-            
+
             Debug.Log($"[DialogueEmotionController] Aplicando emoção '{emotion}' ao personagem '{characterId}'", runner.gameObject);
             runner.PlayAnimation(emotion);
         }
@@ -166,37 +170,18 @@ public class DialogueEmotionController : MonoBehaviour
         return "";
     }
 
-private void PositionSpeechBubbleToCharacter(string characterId)
-{
-
-    if (speechBubbleRect == null)
+    private void PositionSpeechBubbleToCharacter(string characterId)
     {
-        Debug.Log("[BubbleMove] speechBubbleRect é NULL");
-        return;
+        if (speechBubbleRect == null) return;
+
+        if (!_idToGO.TryGetValue(characterId, out var characterGO)) return;
+
+        if (characterGO == null) return;
+
+        Vector3 bubblePos = speechBubbleRect.position;
+        bubblePos.x = characterGO.transform.position.x;
+        speechBubbleRect.position = bubblePos;
     }
-
-    if (!_idToGO.TryGetValue(characterId, out var characterGO))
-    {
-        Debug.Log($"[BubbleMove] characterId '{characterId}' não encontrado no dicionário");
-        return;
-    }
-
-    if (characterGO == null)
-    {
-        Debug.Log($"[BubbleMove] characterGO é NULL para '{characterId}'");
-        return;
-    }
-
-    Vector3 bubblePos = speechBubbleRect.position;
-
-    Vector3 characterPos = characterGO.transform.position;
-
-    float targetX = characterPos.x;
-
-    bubblePos.x = targetX;
-
-    speechBubbleRect.position = bubblePos;
-}
 
     private void UpdateBubbleEmotionImage(string characterId, EmotionType emotion)
     {
@@ -215,13 +200,21 @@ private void PositionSpeechBubbleToCharacter(string characterId)
         bubbleEmotionImage.enabled = false;
     }
 
-    // Atualiza texto do balão 
     public void UpdateDialogueText(string text)
     {
         if (dialogueTextTMP != null) dialogueTextTMP.text = text;
     }
 
-    // Método de debug para forçar 
+    public void PreviewEmotion(string characterId, string emotionStr)
+    {
+        if (!Enum.TryParse(emotionStr, true, out EmotionType emotion))
+            emotion = EmotionType.Normal;
+
+        ApplyEmotionToSceneCharacter(characterId, emotion);
+        PositionSpeechBubbleToCharacter(characterId);
+        UpdateBubbleEmotionImage(characterId, emotion);
+    }
+
     public void Debug_ForceApply(string characterId, EmotionType emotion)
     {
         Debug.Log($"[DEBUG] Forçando Apply: {characterId} / {emotion}");

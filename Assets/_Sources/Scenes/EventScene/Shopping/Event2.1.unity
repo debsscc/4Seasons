@@ -873,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 282984911}
+  emotionController: {fileID: 0}
 --- !u!114 &282984913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,7 +1866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
-  npcOutline: {fileID: 666570261}
+  npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 0}
   specialId: 0
   successSfx: {fileID: 0}
@@ -2815,6 +2816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 1033056287}
+  emotionController: {fileID: 0}
 --- !u!114 &1033056287
 MonoBehaviour:
   m_ObjectHideFlags: 0
