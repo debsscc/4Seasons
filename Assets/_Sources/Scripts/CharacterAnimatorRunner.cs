@@ -21,7 +21,6 @@ public class CharacterAnimatorRunner : MonoBehaviour
 
     public void PlayAnimation(EmotionType animationTrigger)
     {
-        Debug.Log($"[CharacterAnimatorRunner] Playing animation '{animationTrigger}' for character '{characterIdentity.characterId}'");
         characterAnimator.SetTrigger(animationTrigger.ToString());
     }
 

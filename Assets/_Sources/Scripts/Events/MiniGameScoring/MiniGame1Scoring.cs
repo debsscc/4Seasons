@@ -22,6 +22,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
     private SlotDraggable _pendingSlot;
     private ItemsSO[] _pendingItems;
+    private bool _isConfirming = false;
 
     private void Start()
     {
@@ -30,9 +31,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             foreach (var slot in miniGameController.targetSlots)
             {
                 if (slot != null)
-                {
                     slot.OnObjectRemovedFromSlot += HandleObjectRemoved;
-                }
             }
         }
     }
@@ -44,20 +43,18 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             foreach (var slot in miniGameController.targetSlots)
             {
                 if (slot != null)
-                {
                     slot.OnObjectRemovedFromSlot -= HandleObjectRemoved;
-                }
             }
         }
     }
 
     private void HandleObjectRemoved(SlotDraggable slot)
     {
+        if (_isConfirming) return;
         Debug.Log($"[MiniGame1] Objeto removido do slot '{slot.name}'");
         OnItemRemovedFromSlot();
     }
 
-    // Chamado pelo MiniGameController quando um objeto é dropado no slot
     public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
     {
         if (slot == null)
@@ -71,7 +68,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         Debug.Log($"[MiniGame1] Drop registrado no slot '{slot.name}'. Aguardando confirmação do jogador.");
 
-        // esconde modais
         if (feedbackCorajoso != null) feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
@@ -89,66 +85,64 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         _pendingItems = null;
 
         if (confirmButton != null)
-        {
             confirmButton.SetActive(false);
-        }
 
         Debug.Log("[MiniGame1] Item arrastado para fora do slot. Escolha cancelada.");
 
-        // limpa preview
         if (MiniGameFeedbackManager.Instance != null)
             MiniGameFeedbackManager.Instance.ResetAll();
     }
 
     public void OnConfirmButtonClicked()
     {
-        if (_pendingSlot == null || _pendingSlot.lastDroppedObject == null)
+        var slot = _pendingSlot;
+        var items = _pendingItems;
+
+        if (slot == null || slot.lastDroppedObject == null)
         {
             Debug.LogWarning("[MiniGame1] Nenhum DVD no slot para confirmar!");
             if (confirmButton != null) confirmButton.SetActive(false);
             return;
         }
 
-        if (_pendingItems == null || _pendingItems.Length == 0)
+        if (items == null || items.Length == 0)
         {
             Debug.LogWarning("[MiniGame1] Não há itens pendentes para confirmar.");
             if (confirmButton != null) confirmButton.SetActive(false);
             return;
         }
 
-        Debug.Log($"[MiniGame1] Confirmando escolha do slot '{_pendingSlot.name}'.");
+        Debug.Log($"[MiniGame1] Confirmando escolha do slot '{slot.name}'.");
 
         if (confirmButton != null)
             confirmButton.SetActive(false);
 
-        bool escolheuCorajoso = ApplyScores(_pendingItems);
+        bool escolheuCorajoso = ApplyScores(items);
 
         if (miniGameController != null)
-        {
-            miniGameController.ShowNPCReactions(_pendingItems);
-        }
-
-        ShowFeedbackModal(escolheuCorajoso);
-
-        if (_pendingSlot.lastDroppedObject != null)
-        {
-            Destroy(_pendingSlot.lastDroppedObject);
-        }
+            miniGameController.ShowNPCReactions(items);
 
         foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
         {
-            foreach (var item in _pendingItems)
+            foreach (var item in items)
             {
-                // display heart
                 ui.DisplayHeartFeedbackBasedOnItem(item);
-                if(ui.CharacterLikesItem(item)) break;
+                if (ui.CharacterLikesItem(item)) break;
             }
         }
 
-        _pendingSlot.ClearSlot();
-
+        _isConfirming = true;
         _pendingSlot = null;
         _pendingItems = null;
+
+        if (slot.lastDroppedObject != null)
+            Destroy(slot.lastDroppedObject);
+
+        slot.ClearSlot();
+
+        _isConfirming = false;
+
+        slot.PlayCloseAnimation(() => ShowFeedbackModal(escolheuCorajoso));
     }
 
     public void OnItemRemovedFromSlot()
@@ -157,13 +151,10 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         _pendingItems = null;
 
         if (confirmButton != null)
-        {
             confirmButton.SetActive(false);
-        }
 
         Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
 
-        // Reseta preview visual imediatamente
         MiniGameFeedbackManager.Instance?.ResetAll();
     }
 
@@ -207,13 +198,9 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             deltaSelf += escolheuFavoritoSelf ? 2 : -1;
 
             if (escolheuTerrorOuSuspense && player.traits.isFearful)
-            {
                 deltaSelf += -2;
-            }
             else if (!escolheuTerrorOuSuspense && player.traits.isFearful)
-            {
                 deltaSelf += +3;
-            }
 
             int antes = player.RelationshipScore;
             player.RelationshipScore = antes + deltaSelf;
@@ -239,64 +226,4 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
                 feedbackNaoCorajoso.SetActive(true);
         }
     }
-
-    // private void ApplyPreviewForItems(ItemsSO[] items)
-    // {
-    //     if (MiniGameFeedbackManager.Instance == null) return;
-
-    //     var charsManager = CharactersManager.Instance;
-    //     Dictionary<string, int> deltas = new Dictionary<string, int>();
-
-    //     bool escolheuTerrorOuSuspense = items.Any(i => terrorOuSuspenseItems.Contains(i));
-
-    //     foreach (var npc in charsManager.npcs)
-    //     {
-    //         if (npc == null) continue;
-
-    //         string cleanId = npc.name.Replace("NPCData_", "").Trim();
-
-    //         int delta = 0;
-    //         bool escolheuFavoritoNPC = items.Any(i => npc.favoriteItems.Contains(i));
-    //         delta += escolheuFavoritoNPC ? 2 : -1;
-
-    //         if (escolheuTerrorOuSuspense)
-    //         {
-    //             if (npc.traits.isFearful) delta += -2;
-    //             if (npc.traits.isBrave) delta += +3;
-    //         }
-    //         else
-    //         {
-    //             if (npc.traits.isFearful) delta += +3;
-    //             if (npc.traits.isBrave) delta += -2;
-    //         }
-
-    //         deltas[cleanId] = delta;
-    //     }
-
-    //     // Player
-    //     var player = charsManager.playerCharacter;
-    //     if (player != null)
-    //     {
-    //         int deltaSelf = 0;
-    //         bool escolheuFavoritoSelf = items.Any(i => player.favoriteItems.Contains(i));
-    //         deltaSelf += escolheuFavoritoSelf ? 2 : -1;
-
-    //         if (escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += -2;
-    //         else if (!escolheuTerrorOuSuspense && player.traits.isFearful) deltaSelf += +3;
-
-    //         deltas["Player"] = deltaSelf;
-    //     }
-
-    //     var preview = new Dictionary<string, FeedbackType>();
-    //     foreach (var kv in deltas)
-    //     {
-    //         FeedbackType t = FeedbackType.Neutral;
-    //         if (kv.Value > 0) t = FeedbackType.Positive;
-    //         else if (kv.Value < 0) t = FeedbackType.Negative;
-
-    //         preview[kv.Key] = t;
-    //     }
-
-    //     MiniGameFeedbackManager.Instance.ApplyPreview(preview);
-    // }
 }

@@ -100,7 +100,6 @@ public class DialogueEmotionController : MonoBehaviour
 
         if (!string.Equals(_lastCharacter, currentChar, StringComparison.Ordinal) || _lastEmotion != emotion)
         {
-            Debug.Log($"[DialogueEmotionController] Mudança detectada -> personagem='{currentChar}', emoção='{emotion}'");
 
             ApplyEmotionToSceneCharacter(currentChar, emotion);
             PositionSpeechBubbleToCharacter(currentChar);
@@ -136,7 +135,6 @@ public class DialogueEmotionController : MonoBehaviour
         {
             if (runner.GetCharacterId() != characterId) continue;
 
-            Debug.Log($"[DialogueEmotionController] Aplicando emoção '{emotion}' ao personagem '{characterId}'", runner.gameObject);
             runner.PlayAnimation(emotion);
         }
     }
