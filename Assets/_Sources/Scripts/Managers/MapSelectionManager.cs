@@ -23,16 +23,7 @@ public class MapSelectionManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        Debug.Log("MapSelectionManager Awake");
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            return;
-        }
+        Instance = this;
 
         if (GameSessionManager.Instance != null)
         {
@@ -47,6 +38,12 @@ public class MapSelectionManager : MonoBehaviour
 
         if (confirmButtonGO != null)
             confirmButtonGO.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     private void Start()
@@ -89,7 +86,7 @@ public class MapSelectionManager : MonoBehaviour
             : 0;
         int currentDay = completed + 1;
         int total = allMaps != null ? allMaps.Length : 0;
-        dayText.text = $"Dia {currentDay}/{total}";
+        dayText.text = $" {currentDay}";
     }
 
     public void ShowEndGamePanel()

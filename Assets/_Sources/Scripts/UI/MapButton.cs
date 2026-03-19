@@ -32,9 +32,15 @@ public class MapButton : MonoBehaviour
         SetSelected(false);
     }
 
+    private void Start()
+    {
+        if (mapData != null && GameSessionManager.Instance != null && GameSessionManager.Instance.IsCompleted(mapData))
+            SetInteractable(false);
+    }
+
     public void PointerEnterFeedback()
     {
-        if (!isSelected && !isCompleted )
+        if (!isSelected && !isCompleted && mapButton != null && mapButton.interactable)
         {
             transform.DOScale(1.05f, 0.2f).SetEase(Ease.OutBack);
         }
@@ -42,7 +48,7 @@ public class MapButton : MonoBehaviour
 
     public void PointerOutFeedback()
     {
-        if (!isSelected && !isCompleted)
+        if (!isSelected && !isCompleted && mapButton != null && mapButton.interactable)
         {
             transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
         }
@@ -61,7 +67,6 @@ public class MapButton : MonoBehaviour
                 return;
             }
         Debug.Log("Map Button Clicked: " + mapData.sceneName);
-        // await UniTask.Delay(TimeSpan.FromSeconds(waitTimer));
         OnMapSelected?.Invoke(this, mapData); 
     }
     
@@ -73,11 +78,8 @@ public class MapButton : MonoBehaviour
         
         if (outline != null)
         {
-            // outline.enabled = selected;
-            
             if (selected)
             {
-                // outline.effectColor = Color.white;
                 transform.DOScale(1.1f, 0.2f).SetEase(Ease.OutBack);
             }
             else
@@ -92,12 +94,20 @@ public class MapButton : MonoBehaviour
         if (mapButton != null)
             mapButton.interactable = interactable;
 
+        // Sempre refletir o estado de completado, mesmo sem Image.
+        isCompleted = !interactable;
+
+        var cursorHover = GetComponent<UICursorChange>();
+        if (cursorHover != null)
+        {
+            cursorHover.enabled = interactable;
+        }
+
         var image = GetComponent<Image>();
         if (image != null)
         {
             if (!interactable)
             {
-                isCompleted = true;
                 image.color = new Color(1, 1, 1, 0.3f);
                 if (UnityEngine.EventSystems.EventSystem.current != null)
                 {
@@ -106,7 +116,6 @@ public class MapButton : MonoBehaviour
             }
             else
             {
-                isCompleted = false;
                 image.color = Color.white;
             }
         }

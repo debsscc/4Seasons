@@ -84,6 +84,7 @@ Iris: É, o barulho é meio chato mesmo.
 <<set $current_emotion = "Happy">>
 Iris: Mas vai ser legal ver o céu colorido.
 <<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
 -> Sabrina: O estouro não me incomoda tanto. #emotion:Normal
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>

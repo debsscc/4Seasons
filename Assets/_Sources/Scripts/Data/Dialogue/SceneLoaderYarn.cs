@@ -5,28 +5,19 @@ using Yarn.Unity;
 public class SceneLoaderYarn : MonoBehaviour
 {
     public string sceneToLoad;
-    public DialogueRunner dialogueRunner; // arraste no Inspector ou deixe nulo para achar automaticamente
+    public DialogueRunner dialogueRunner;
     public YarnScoreCommands scoreCommands;
 
     void Awake()
     {
         Debug.Log("[SceneLoaderYarn] Awake chamado!");
 
-        // Buscar DialogueRunner
         if (dialogueRunner == null)
-        {
-            Debug.Log("[SceneLoaderYarn] Procurando DialogueRunner...");
             dialogueRunner = FindFirstObjectByType<DialogueRunner>();
-        }
 
-        // Buscar YarnScoreCommands
         if (scoreCommands == null)
-        {
-            Debug.Log("[SceneLoaderYarn] Procurando YarnScoreCommands...");
             scoreCommands = FindFirstObjectByType<YarnScoreCommands>();
-        }
 
-        // Validar dependências
         if (dialogueRunner == null || scoreCommands == null)
         {
             Debug.LogError("[SceneLoaderYarn] DialogueRunner ou YarnScoreCommands não encontrado!");
@@ -39,10 +30,7 @@ public class SceneLoaderYarn : MonoBehaviour
             "ApplyEventPart",
             scoreCommands.ApplyEventPart
         );
-
-        Debug.Log("[SceneLoaderYarn] Comando ApplyEventPart registrado!");
     }
-
 
     void OnDestroy()
     {
@@ -52,21 +40,41 @@ public class SceneLoaderYarn : MonoBehaviour
 
     void OnDialogueComplete()
     {
-        // Editor ou jogo já está sendo encerrado
         if (!Application.isPlaying)
             return;
 
         if (string.IsNullOrEmpty(sceneToLoad))
         {
-            Debug.LogWarning("[SceneOnDialogueComplete] sceneToLoad vazio.");
+            Debug.LogWarning("[SceneLoaderYarn] sceneToLoad vazio.");
             return;
         }
 
-        if (GameSessionManager.Instance == null || SceneTransition.Instance == null)
-            return;
+        bool isEndOfDay = sceneToLoad == "MapSeletor";
 
-        GameSessionManager.Instance.MarkCurrentMapAsCompleted();
-        SceneTransition.Instance.ChangeScene(sceneToLoad);
+        if (isEndOfDay && GameSessionManager.Instance != null)
+        {
+            GameSessionManager.Instance.MarkCurrentMapAsCompleted();
+
+            int completed = System.Linq.Enumerable.Count(GameSessionManager.Instance.GetCompletedMaps());
+            int needed = GameFlowManager.Instance != null ? GameFlowManager.Instance.mapsCompletedToEndGame : 3;
+
+            if (completed >= needed)
+            {
+                if (GameFlowManager.Instance != null)
+                    GameFlowManager.Instance.isGameOver = true;
+                LoadScene("Credits");
+                return;
+            }
+        }
+
+        LoadScene(sceneToLoad);
     }
 
-} 
+    void LoadScene(string sceneName)
+    {
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.ChangeScene(sceneName);
+        else
+            SceneManager.LoadScene(sceneName);
+    }
+}

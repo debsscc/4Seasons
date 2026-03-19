@@ -4,13 +4,13 @@ using System.Collections.Generic;
 public class GameSessionManager : MonoBehaviour
 {
     public static GameSessionManager Instance { get; private set; }
-    
+
     private HashSet<MapData> completedMaps = new HashSet<MapData>();
     private MapData currentMap;
-    
+
     [Header("Map Selection Scene")]
-    [SerializeField] private string mapSelectionSceneName = "MapSelectionScene";
-    
+    [SerializeField] private string mapSelectionSceneName = "MapSeletor";
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,23 +24,23 @@ public class GameSessionManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     public void SetCurrentMap(MapData map)
     {
         currentMap = map;
         Debug.Log($"GameSessionManager: Mapa atual = {map.sceneName}");
     }
-    
+
     public MapData GetCurrentMap()
     {
         return currentMap;
     }
-    
+
     public bool IsCompleted(MapData map)
     {
         return map != null && completedMaps.Contains(map);
     }
-    
+
     public void MarkCurrentMapAsCompleted()
     {
         if (currentMap != null)
@@ -53,13 +53,24 @@ public class GameSessionManager : MonoBehaviour
             Debug.LogWarning("Tentou marcar mapa como completado, mas currentMap é null");
         }
     }
-    
+
     public void ReturnToMapSelection()
     {
         Debug.Log("Voltando para cena de seleção de mapas...");
-        MarkCurrentMapAsCompleted();
         SceneTransition.Instance.ChangeScene(mapSelectionSceneName);
-       // UnityEngine.SceneManagement.SceneManager.LoadScene(mapSelectionSceneName);
+    }
+
+    public void ResetSession()
+    {
+        completedMaps.Clear();
+        currentMap = null;
+        if (GameFlowManager.Instance != null)
+        {
+            GameFlowManager.Instance.isGameOver = false;
+            GameFlowManager.Instance.currentDay = 1;
+            GameFlowManager.Instance.currentEventIndex = 0;
+        }
+        Debug.Log("GameSessionManager: sessão resetada.");
     }
 
     public IEnumerable<MapData> GetCompletedMaps() => completedMaps;

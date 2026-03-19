@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using NUnit.Framework;
 
 public class UICharacterOrder : MonoBehaviour
 {
@@ -15,35 +14,34 @@ public class UICharacterOrder : MonoBehaviour
 
     void Start()
     {
+        MiniGameFeedbackManager.Instance.uiCharacterOrders.RemoveAll(x => x == this);
+        MiniGameFeedbackManager.Instance.uiCharacterOrders.Add(this);
+
         UpdateExpresionBasedOnItem(null);
 
         MiniGameController miniGameController = FindFirstObjectByType<MiniGameController>();
         var draggables = miniGameController.draggablePrefabs;
         string order = null;
-        orderText.text = "";
+        var seen = new System.Collections.Generic.HashSet<string>();
         Debug.Log("Dragganle amount " + draggables.Count);
         foreach (var draggable in draggables)
         {
             var itemsHolder = draggable.GetComponent<IItemHolder>();
-            
+
             if (itemsHolder == null) continue;
             if (itemsHolder.Items == null) continue;
 
             foreach (var item in itemsHolder.Items)
             {
-                if (character.LikesItem(item))
+                if (character.LikesItem(item) && !string.IsNullOrEmpty(item.OrderDescription) && seen.Add(item.OrderDescription))
                 {
-                    if (order == null)
-                        order = item.OrderDescription;
-                    else
-                        order += $", {item.OrderDescription}";
-
-                    orderText.text = order;
+                    order = order == null ? item.OrderDescription : $"{order}, {item.OrderDescription}";
                 }
             }
         }
 
-        MiniGameFeedbackManager.Instance.uiCharacterOrders.Add(this);
+        if (!string.IsNullOrEmpty(order))
+            orderText.text = order;
     }
 
     public void UpdateExpresionBasedOnItem(ItemsSO item)

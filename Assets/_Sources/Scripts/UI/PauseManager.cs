@@ -14,49 +14,47 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        PAUSE.SetActive(false);
+        if (PAUSE != null) PAUSE.SetActive(false);
         Time.timeScale = 1f;
         AudioListener.pause = false;
         isPaused = false;
     }
 
     private void Update()
-{
-    if (Input.GetKeyDown(KeyCode.Escape))
     {
-        if (isPaused)
+        if (PAUSE == null) return;
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
         }
     }
-}
 
     public void PauseGame()
     {
-
+        if (PAUSE == null) return;
         PAUSE.SetActive(true);
         Time.timeScale = 0f;
         AudioListener.pause = true;
         isPaused = true;
 
-        mainPausePanel.SetActive(true);
-        settingsPanel.SetActive(false);
-        creditsPanel.SetActive(false);
+        if (mainPausePanel != null) mainPausePanel.SetActive(true);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (creditsPanel != null) creditsPanel.SetActive(false);
     }
 
     public void ResumeGame()
     {
-        if (settingsPanel.activeSelf || creditsPanel.activeSelf)
+        if (settingsPanel != null && creditsPanel != null &&
+            (settingsPanel.activeSelf || creditsPanel.activeSelf))
         {
             GoToMainPause();
             return;
         }
 
-        PAUSE.SetActive(false);
+        if (PAUSE != null) PAUSE.SetActive(false);
         Time.timeScale = 1f;
         AudioListener.pause = false;
         isPaused = false;
@@ -64,15 +62,15 @@ public class PauseManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        mainPausePanel.SetActive(false);
-        settingsPanel.SetActive(true);
+        if (mainPausePanel != null) mainPausePanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(true);
     }
 
     public void GoToMainPause()
     {
-        settingsPanel.SetActive(false);
-        creditsPanel.SetActive(false);
-        mainPausePanel.SetActive(true);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (creditsPanel != null) creditsPanel.SetActive(false);
+        if (mainPausePanel != null) mainPausePanel.SetActive(true);
     }
 
     public void GoToMenu()

@@ -1306,6 +1306,7 @@ MonoBehaviour:
   sceneToLoad: Event1.1
   dialogueRunner: {fileID: 414403517}
   scoreCommands: {fileID: 414403523}
+  markMapAsCompletedOnDialogueEnd: 0
 --- !u!224 &414403520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8586434540972666658, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -1623,7 +1624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9f50e9c7166f44cb98d38ba2eabbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreRulesDialogue
-  rulesAsset: {fileID: 11400000, guid: 606d2194046e06f4aacb0f29e50b38cb, type: 2}
+  rulesAsset: {fileID: 11400000, guid: 396a61885b3fa1c4da13e0358c23088a, type: 2}
   characterBindings:
   - characterId: Sabrina
     characterData: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
@@ -1684,7 +1685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
   dialogueRunner: {fileID: 414403517}
-  eventScoreRules: {fileID: 11400000, guid: 606d2194046e06f4aacb0f29e50b38cb, type: 2}
+  eventScoreRules: {fileID: 11400000, guid: 396a61885b3fa1c4da13e0358c23088a, type: 2}
   characterBindings:
   - characterId: Arabella
     characterData: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}

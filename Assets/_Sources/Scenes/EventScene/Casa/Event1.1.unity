@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294432045}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e403f43b61279d4f9cd863aedc6c807, type: 3}
   m_Name: 
@@ -1485,6 +1485,10 @@ PrefabInstance:
     - target: {fileID: 107537945541884507, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: sceneToLoadName
       value: MapSeletor
+      objectReference: {fileID: 0}
+    - target: {fileID: 107537945541884507, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
+      propertyPath: countsAsMapCompletion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 463511435045449562, guid: 3d65befbfa354954bbdd49730282a343, type: 3}
       propertyPath: m_fontSize
@@ -4329,6 +4333,7 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1202238189}
   scoreCommands: {fileID: 1202238194}
+  countsAsMapCompletion: 1
 --- !u!114 &1202238200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6998,6 +7003,7 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1955203216}
   scoreCommands: {fileID: 1955203221}
+  countsAsMapCompletion: 1
 --- !u!114 &2116981044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3503360460136036494, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}

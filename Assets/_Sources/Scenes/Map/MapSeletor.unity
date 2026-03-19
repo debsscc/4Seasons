@@ -3336,8 +3336,9 @@ MonoBehaviour:
   currentSchedule: []
   currentEventIndex: 0
   currentDay: 1
-  maxDays: 5
+  maxDays: 3
   isGameOver: 0
+  mapsCompletedToEndGame: 3
 --- !u!1 &1431175223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,7 +5160,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15751153321491904, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1011518526502154788, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
       propertyPath: m_IsActive
@@ -5215,7 +5216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216289967158977448, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7708108200891403409, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
       propertyPath: creditsPanel

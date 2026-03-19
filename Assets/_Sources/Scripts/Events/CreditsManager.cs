@@ -16,6 +16,10 @@ public class CreditsManager : MonoBehaviour
     public float duracaoDoFade = 1.5f;
     public string nomeDaCenaMenu = "MenuPrincipal";
 
+    [Header("Audio")]
+    [Tooltip("Trilha específica dos créditos (opcional). Se atribuída, ela não será parada ao entrar na cena.")]
+    [SerializeField] private AudioSource creditosMusic;
+
     [Header("Overlap")]
     [Tooltip("Seconds before the anuario scroll ends when the credits scroll should begin.")]
     public float creditosStartBeforeAnuarioEnd = 2f;
@@ -25,6 +29,17 @@ public class CreditsManager : MonoBehaviour
 
     void Start()
     {
+        // Ao entrar na cena de créditos, parar qualquer música anterior que ainda esteja tocando,
+        // exceto a trilha configurada especificamente para os créditos (se houver).
+        var allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (var src in allAudioSources)
+        {
+            if (src == null) continue;
+            if (creditosMusic != null && src == creditosMusic) continue;
+            if (src.isPlaying)
+                src.Stop();
+        }
+
         if (imagemAnuario != null) imagemAnuario.SetActive(false);
         if (imagemAnuarioScroll != null) imagemAnuarioScroll.gameObject.SetActive(false);
         if (creditosScroll != null) creditosScroll.gameObject.SetActive(false);
@@ -36,7 +51,6 @@ public class CreditsManager : MonoBehaviour
     {
         creditosStarted = false;
 
-        // 1) Quando o SCROLL da imagem acabar, faz o cleanup e garante que os créditos estejam rodando
         if (imagemAnuarioScroll != null)
         {
             imagemAnuarioScroll.OnScrollFinished += OnScrollImagemFinalizado;
@@ -71,7 +85,6 @@ public class CreditsManager : MonoBehaviour
             imagemAnuario.SetActive(false);
         }
 
-        // Se os créditos ainda não começaram (por algum motivo), garante que comecem agora.
         if (!creditosStarted)
         {
             StartCredits();
@@ -104,38 +117,50 @@ public class CreditsManager : MonoBehaviour
     }
 
     public void IniciarTransicaoParaMenu()
+{
+    if (creditosScroll != null)
     {
-        if (creditosScroll != null)
+        creditosScroll.OnScrollFinished -= IniciarTransicaoParaMenu;
+    }
+    if (fadePrefab != null)
+    {
+        GameObject fadeObject = Instantiate(fadePrefab);
+        fadeObject.SetActive(true);
+        DontDestroyOnLoad(fadeObject);
+        fadeControllerInstance = fadeObject.GetComponent<FadeController>();
+        if (fadeControllerInstance != null)
         {
-            creditosScroll.OnScrollFinished -= IniciarTransicaoParaMenu;
-        }
-
-        if (fadePrefab != null)
-        {
-            GameObject fadeObject = Instantiate(fadePrefab);
-            fadeObject.SetActive(true); // garante que o objeto e o Image possam ser vistos e o coroutine rode
-            DontDestroyOnLoad(fadeObject);
-
-            fadeControllerInstance = fadeObject.GetComponent<FadeController>();
-
-            if (fadeControllerInstance != null)
-            {
-                StartCoroutine(TransicionarParaMenu());
-            }
-            else
-            {
-                SceneManager.LoadScene(nomeDaCenaMenu);
-            }
+            StartCoroutine(TransicionarParaMenu());
         }
         else
         {
+            GameSessionManager.Instance?.ResetSession();
             SceneManager.LoadScene(nomeDaCenaMenu);
         }
     }
+    else
+    {
+        GameSessionManager.Instance?.ResetSession();
+        SceneManager.LoadScene(nomeDaCenaMenu);
+    }
+}
 
     private IEnumerator TransicionarParaMenu()
     {
-        yield return StartCoroutine(fadeControllerInstance.FadeOut(duracaoDoFade));
-        SceneManager.LoadScene(nomeDaCenaMenu);
-    }
+        // Faz o fade
+    yield return StartCoroutine(fadeControllerInstance.FadeOut(duracaoDoFade));
+    // Reseta sessão
+    GameSessionManager.Instance?.ResetSession();
+    // Destroi os singletons/persistentes que não queremos no menu
+    if (GameSessionManager.Instance != null)
+        Destroy(GameSessionManager.Instance.gameObject);
+    if (MapSelectionManager.Instance != null)
+        Destroy(MapSelectionManager.Instance.gameObject);
+    if (GameFlowManager.Instance != null)
+        Destroy(GameFlowManager.Instance.gameObject);
+    if (fadeControllerInstance != null)
+        Destroy(fadeControllerInstance.gameObject);
+    // Carrega o menu limpo
+    SceneManager.LoadScene(nomeDaCenaMenu);
+}
 }

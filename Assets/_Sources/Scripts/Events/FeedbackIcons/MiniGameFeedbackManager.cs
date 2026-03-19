@@ -171,9 +171,29 @@ public class MiniGameFeedbackManager : MonoBehaviour
     }
 
     public List<UICharacterOrder> uiCharacterOrders = new();
+    private bool _triedAutoDiscoverOrders = false;
+
+    private void EnsureUICharacterOrdersDiscovered()
+    {
+        if (uiCharacterOrders != null && uiCharacterOrders.Count > 0) return;
+        if (_triedAutoDiscoverOrders) return;
+        _triedAutoDiscoverOrders = true;
+
+        var found = FindObjectsByType<UICharacterOrder>(FindObjectsSortMode.None);
+        if (found == null || found.Length == 0) return;
+
+        if (uiCharacterOrders == null) uiCharacterOrders = new List<UICharacterOrder>();
+        uiCharacterOrders.Clear();
+        uiCharacterOrders.AddRange(found);
+        Debug.Log($"[FeedbackManager] Auto-discovered {uiCharacterOrders.Count} UICharacterOrder(s).");
+    }
 
     public void ApplyPreview(ItemsSO[] items)
     {
+        EnsureUICharacterOrdersDiscovered();
+
+        if (items == null || items.Length == 0) return;
+
         // Debug.Log("[FeedbackManager] Aplicando preview múltiplo...");
         // foreach (var kv in statesByCharacterId)
         // {
@@ -183,6 +203,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
         foreach (var ui in uiCharacterOrders)
         {
+            if (ui == null) continue;
             foreach(var item in items)
             {
                 ui.UpdateExpresionBasedOnItem(item);

@@ -9,6 +9,10 @@ public class GameFlowManager : Singleton<GameFlowManager>
     public int currentDay = 1;
     public int maxDays = 5;
     public bool isGameOver = false;
+    
+    [UnityEngine.Header("End Game Rule")]
+    [UnityEngine.Tooltip("Quantos mapas completados são necessários para ir aos créditos.")]
+    public int mapsCompletedToEndGame = 3;
 
     public void StartWeek(List<LocationData> weekSchedule)
     {
@@ -38,10 +42,9 @@ public class GameFlowManager : Singleton<GameFlowManager>
     {
         if (MapSelectionManager.Instance == null) return;
 
-        var totalMaps = MapSelectionManager.Instance.allMaps.Length;
         var completedCount = GameSessionManager.Instance.GetCompletedMaps().Count();
 
-        if (completedCount >= totalMaps)
+        if (completedCount >= mapsCompletedToEndGame)
         {
             isGameOver = true;
             StartCoroutine(GoToCreditsAfterDelay(3f));

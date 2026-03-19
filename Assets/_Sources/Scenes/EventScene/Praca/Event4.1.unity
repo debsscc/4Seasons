@@ -171,6 +171,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
   specialId: 4
@@ -1691,6 +1694,7 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 183786206}
   scoreCommands: {fileID: 183786212}
+  countsAsMapCompletion: 1
 --- !u!114 &183786211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,6 +1730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 183786211}
+  emotionController: {fileID: 0}
 --- !u!1 &189672740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,6 +2200,7 @@ MonoBehaviour:
   _rightArrowButton: {fileID: 866875401}
   _confirmButton: {fileID: 1838933109}
   _itemSize: 400
+  _emotionController: {fileID: 0}
 --- !u!1 &310412755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,6 +4811,7 @@ MonoBehaviour:
   _rightArrowButton: {fileID: 718108585}
   _confirmButton: {fileID: 820731886}
   _itemSize: 400
+  _emotionController: {fileID: 0}
 --- !u!1 &830909333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 15751153321491904, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
@@ -5968,6 +5975,7 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1004970147}
   scoreCommands: {fileID: 1004970153}
+  countsAsMapCompletion: 1
 --- !u!114 &1004970152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6003,6 +6011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 1004970152}
+  emotionController: {fileID: 0}
 --- !u!1 &1015935066
 GameObject:
   m_ObjectHideFlags: 0
@@ -8160,6 +8169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
   specialId: 2
@@ -10179,6 +10191,7 @@ MonoBehaviour:
   _rightArrowButton: {fileID: 899338179}
   _confirmButton: {fileID: 717279963}
   _itemSize: 400
+  _emotionController: {fileID: 0}
 --- !u!1001 &1692587550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10426,6 +10439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 1692587556}
+  emotionController: {fileID: 0}
 --- !u!114 &1692587555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10495,6 +10509,7 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1692587560}
   scoreCommands: {fileID: 1692587554}
+  countsAsMapCompletion: 1
 --- !u!114 &1692587558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11555,6 +11570,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
   specialId: 3
@@ -13569,6 +13587,7 @@ MonoBehaviour:
   _rightArrowButton: {fileID: 321963371}
   _confirmButton: {fileID: 507288106}
   _itemSize: 400
+  _emotionController: {fileID: 0}
 --- !u!1 &1946421362
 GameObject:
   m_ObjectHideFlags: 0
@@ -14093,6 +14112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
   specialId: 1
@@ -14770,6 +14792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnScoreCommands
   scoreManager: {fileID: 2074998793}
+  emotionController: {fileID: 0}
 --- !u!114 &2074998793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14807,6 +14830,7 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 2074998790}
   scoreCommands: {fileID: 2074998792}
+  countsAsMapCompletion: 1
 --- !u!114 &2074998795
 MonoBehaviour:
   m_ObjectHideFlags: 0
