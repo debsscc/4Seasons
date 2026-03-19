@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -7,6 +8,26 @@ using DG.Tweening;
 
 public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 {
+    [Serializable]
+    public class FavoriteDrinkConfig
+    {
+        [Tooltip("Personagem correspondente (usado para determinar o characterId automaticamente)")]
+        public CharacterData character;
+
+        [Tooltip("Opcional: ID do personagem (use apenas se não quiser depender de CharacterData.name)")]
+        public string characterId;
+
+        [Tooltip("Lista de drinks favoritos (verifica também pelo nome do ItemsSO)")]
+        public List<ItemsSO> favoriteItems = new List<ItemsSO>();
+
+        public string GetCharacterId()
+        {
+            if (character != null)
+                return character.name;
+            return characterId;
+        }
+    }
+
     [Header("Money and Hands")]
     public GameObject money1;
     public GameObject money2;
@@ -31,6 +52,10 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     [Header("Characters")]
     public List<CharacterData> eventNpcs = new List<CharacterData>();
     public CharacterData playerCharacter;
+
+    [Header("Favorite Drinks (Heart Feedback)")]
+    [Tooltip("Configurações de drinks favoritos para cada personagem (usado apenas para coração de feedback)")]
+    public List<FavoriteDrinkConfig> favoriteDrinkConfigs = new List<FavoriteDrinkConfig>();
 
     private bool _isStealing = false;
     private int _drinksInBasket = 0;
@@ -111,6 +136,11 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         drink.isInBasket = true;
         Debug.Log($"[MiniGame2] Bebida '{drink.name}' adicionada à cesta.");
         RecalculateBasketState();
+
+        if (MiniGameFeedbackManager.Instance != null)
+        MiniGameFeedbackManager.Instance.ApplyPreview(items);
+        Debug.Log($"[MiniGame2] Aplicando preview para {items.Length} itens.");
+
     }
 
     public void OnDrinkRemovedFromBasket(DrinksINFO drink)
@@ -184,7 +214,119 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     private void OnActionButtonClicked()
     {
         ApplyScoring();
+        ApplyHeartFeedback();
         StartCoroutine(ShowModalAfterDelay());
+    }
+
+    private FavoriteDrinkConfig GetFavoriteConfig(string characterId)
+    {
+        if (string.IsNullOrEmpty(characterId)) return null;
+        return favoriteDrinkConfigs.Find(x => x.GetCharacterId() == characterId);
+    }
+
+    private bool IsFavoriteDrinkForCharacter(string characterId, ItemsSO drinkItem)
+    {
+        if (drinkItem == null) return false;
+
+        var config = GetFavoriteConfig(characterId);
+        if (config != null && config.favoriteItems != null && config.favoriteItems.Count > 0)
+        {
+            if (config.favoriteItems.Contains(drinkItem))
+                return true;
+
+            foreach (var fav in config.favoriteItems)
+            {
+                if (fav != null && fav.name == drinkItem.name)
+                    return true;
+            }
+
+            return false;
+        }
+
+        // Fallback para os favoritos do CharacterData (se existir)
+        var character = eventNpcs.Find(c => c != null && c.name == characterId);
+        if (character == null && playerCharacter != null && playerCharacter.name == characterId)
+            character = playerCharacter;
+
+        if (character != null)
+            return character.LikesItem(drinkItem);
+
+        return false;
+    }
+
+    private void ApplyHeartFeedback()
+    {
+        if (MiniGameFeedbackManager.Instance == null) return;
+
+        var chosenDrinks = new List<DrinksINFO>();
+        foreach (var drink in drinkItems)
+        {
+            if (drink != null && drink.isInBasket)
+                chosenDrinks.Add(drink);
+        }
+
+        void ShowForCharacterId(string characterId)
+        {
+            if (string.IsNullOrEmpty(characterId)) return;
+
+            bool choseFavorite = false;
+            foreach (var drink in chosenDrinks)
+            {
+                foreach (var drinkItemSO in drink.drinkTypes)
+                {
+                    if (drinkItemSO == null) continue;
+                    if (IsFavoriteDrinkForCharacter(characterId, drinkItemSO))
+                    {
+                        choseFavorite = true;
+                        break;
+                    }
+                }
+
+                if (choseFavorite) break;
+            }
+
+            MiniGameFeedbackManager.Instance.ShowHeart(characterId, choseFavorite);
+        }
+
+        void ShowForConfig(FavoriteDrinkConfig config)
+        {
+            if (config == null) return;
+            string id = config.GetCharacterId();
+            if (string.IsNullOrEmpty(id)) return;
+
+            bool choseFavorite = false;
+            foreach (var drink in chosenDrinks)
+            {
+                foreach (var drinkItemSO in drink.drinkTypes)
+                {
+                    if (drinkItemSO == null) continue;
+                    if (IsFavoriteDrinkForCharacter(id, drinkItemSO))
+                    {
+                        choseFavorite = true;
+                        break;
+                    }
+                }
+
+                if (choseFavorite) break;
+            }
+
+            MiniGameFeedbackManager.Instance.ShowHeart(id, choseFavorite);
+        }
+
+        // Primeiro, aplique configurações explícitas do Inspector
+        foreach (var config in favoriteDrinkConfigs)
+            ShowForConfig(config);
+
+        // Depois, aplique para os NPCs que não foram cobertos pelo config
+        foreach (var npc in eventNpcs)
+        {
+            if (npc == null) continue;
+            if (GetFavoriteConfig(npc.name) != null) continue;
+            ShowForCharacterId(npc.name);
+        }
+
+        if (playerCharacter != null && GetFavoriteConfig(playerCharacter.name) == null)
+            ShowForCharacterId(playerCharacter.name);
     }
 
     private IEnumerator ShowModalAfterDelay()

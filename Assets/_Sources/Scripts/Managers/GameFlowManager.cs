@@ -25,11 +25,6 @@ public class GameFlowManager : Singleton<GameFlowManager>
         currentEventIndex++;
         if (currentEventIndex >= currentSchedule.Count)
         {
-            if (GameSessionManager.Instance != null)
-            {
-                GameSessionManager.Instance.MarkCurrentMapAsCompleted();
-            }
-
             CheckForGameOver();
         }
         else

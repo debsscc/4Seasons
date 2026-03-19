@@ -37,8 +37,24 @@ public class CharacterData : ScriptableObject
 
     public bool LikesItem(ItemsSO item)
     {
+        if (item == null) return false;
+
         Debug.Log($"[CharacterData] Checking if '{item.name}' is liked by character '{name}'");
-        return favoriteItems.Contains(item);
+
+        if (favoriteItems == null || favoriteItems.Count == 0)
+            return false;
+
+        if (favoriteItems.Contains(item))
+            return true;
+
+        // Fallback: compare by name in case different asset instances are used
+        foreach (var fav in favoriteItems)
+        {
+            if (fav != null && fav.name == item.name)
+                return true;
+        }
+
+        return false; 
     }
 }
 

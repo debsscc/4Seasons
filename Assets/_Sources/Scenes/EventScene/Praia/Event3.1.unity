@@ -1079,10 +1079,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Icon_Iris
       objectReference: {fileID: 0}
+    - target: {fileID: 5942671972425609022, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967931150718823549, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
+    - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_text
+      value: Bora?
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1093,6 +1105,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 275407954263677337, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 502228418}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &502228420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 502228418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &507481024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,28 +1395,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGameFeedbackManager
   npcFeedbacks:
-  - characterId: Ian
-    iconImage: {fileID: 0}
-    neutralSprite: {fileID: 2638337913185195573, guid: 0aea32c8df73d7745bfb5e13ddcad381, type: 3}
-    positiveSprite: {fileID: -4201612862202913703, guid: c87208d02163f5e429923badc97ab35c, type: 3}
-    negativeSprite: {fileID: -1849005913038297209, guid: c067b984c456f004a9873e6b995a82cf, type: 3}
   - characterId: Sabrina
-    iconImage: {fileID: 0}
-    neutralSprite: {fileID: 0}
-    positiveSprite: {fileID: 0}
-    negativeSprite: {fileID: 0}
-  - characterId: Melissa
-    iconImage: {fileID: 0}
-    neutralSprite: {fileID: -1234303171210977798, guid: 3a5ddea5899ab824ea2db0425f68b4f7, type: 3}
-    positiveSprite: {fileID: -7880237802584187432, guid: 6ffd7da3cd817ea46b563874fe6d4b24, type: 3}
-    negativeSprite: {fileID: 7838117288194516182, guid: b3128db293aafe242a14694c5c7f8616, type: 3}
-  - characterId: Lucas
-    iconImage: {fileID: 0}
-    neutralSprite: {fileID: 4085973070589481312, guid: b794b900d273bc24bbe7da39d380de1a, type: 3}
-    positiveSprite: {fileID: -3639395793394733973, guid: 0f0c821d1de576241b4179bd04dcf577, type: 3}
-    negativeSprite: {fileID: 6720188123871110025, guid: 358e33ca1ad3de743804e83dd28bcc78, type: 3}
+    iconImage: {fileID: 1055368851}
+    neutralSprite: {fileID: 21300000, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
+    positiveSprite: {fileID: 21300000, guid: 8896e9b480068914cadb040345673d3f, type: 3}
+    negativeSprite: {fileID: 21300000, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
+    heartImage: {fileID: 968046800}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Iris
+    iconImage: {fileID: 502228420}
+    neutralSprite: {fileID: 3413675321134560121, guid: 7930556b06a4adc4eacaddf51e72fba4, type: 3}
+    positiveSprite: {fileID: 2545766827918284352, guid: 69f0d5bace2e1ef4da032ccdb3e6ec6c, type: 3}
+    negativeSprite: {fileID: -1849005913038297209, guid: c067b984c456f004a9873e6b995a82cf, type: 3}
+    heartImage: {fileID: 1798111952}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   animDuration: 0.2
-  uiCharacterOrders: []
+  heartDisplayDuration: 2
+  uiCharacterOrders:
+  - {fileID: 1500186870}
+  - {fileID: 1504345094}
 --- !u!224 &718511947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3062,6 +3084,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandFollower
   offset: {x: 0, y: 0}
+--- !u!114 &968046800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4182010749972759614, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 1055368849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &969469934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,10 +3275,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Icon_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5942671972425609022, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967931150718823549, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+    - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_text
+      value: "Ser\xE1?"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3256,6 +3301,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 275407954263677337, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 1055368849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1055368851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 1055368849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1081522350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3550,7 +3606,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7148ebcb80f94468abfb49c9ed8680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGame3Scoring
-  previewRules: []
+  previewRules:
+  - specialId: 1
+    changes:
+    - characterId: Sabrina
+      type: 2
+    - characterId: Iris
+      type: 1
+  - specialId: 2
+    changes:
+    - characterId: Sabrina
+      type: 1
+    - characterId: Iris
+      type: 2
   acceptId: 1
   rejectId: 2
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3564,6 +3632,8 @@ MonoBehaviour:
   selfPointsOnAccept: 3
   npcDoEvento: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
   playerCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  irisCharacterId: Iris
+  sabrinaCharacterId: Sabrina
   confirmButton: {fileID: 753771694}
   drogasAnimator: {fileID: 357284048}
   feedbackDuration: 3
@@ -4474,6 +4544,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1500186870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 502228418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
+--- !u!114 &1504345094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 1055368849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
 --- !u!1 &1519588949
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,6 +5238,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676389614}
   m_CullTransparentMesh: 1
+--- !u!114 &1798111952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4182010749972759614, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 502228418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &1902745052 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3503360460136036494, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}

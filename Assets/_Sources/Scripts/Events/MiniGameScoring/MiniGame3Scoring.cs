@@ -43,6 +43,13 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
     public CharacterData npcDoEvento; 
     public CharacterData playerCharacter;
 
+    [Header("Feedback de Preview (sem confirmar)")]
+    [Tooltip("CharacterId usado para o ícone da Iris no FeedbackManager")]
+    public string irisCharacterId = "Iris";
+
+    [Tooltip("CharacterId usado para o ícone da Sabrina no FeedbackManager")]
+    public string sabrinaCharacterId = "Sabrina";
+
     [Header("UI de Confirmação")]
     public GameObject confirmButton;
 
@@ -102,19 +109,37 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
         selectedSlot = slot;
         if (confirmButton) confirmButton.SetActive(true);
 
-        //Icons Feedback:
+        // Icons Feedback (preview rules configured per slot)
         if (npcDoEvento != null)
-    {
-        string id = npcDoEvento.name; 
-
-        // Busca a regra correspondente ao slot
-        var rule = previewRules.Find(r => r.specialId == slot.specialId);
-        if (rule != null)
         {
-            MiniGameFeedbackManager.Instance.ApplySlotRule(rule);
+            var rule = previewRules.Find(r => r.specialId == slot.specialId);
+            if (rule != null)
+            {
+                MiniGameFeedbackManager.Instance.ApplySlotRule(rule);
+            }
         }
+
+        // Preview: show Iris/Sabrina reactions when the lighter is dropped, before confirming
+        ApplyLighterPreview(slot);
     }
 
+    private void ApplyLighterPreview(SlotDraggable slot)
+    {
+        if (slot == null || isqueiroObject == null) return;
+        if (slot.lastDroppedObject != isqueiroObject) return;
+
+        if (MiniGameFeedbackManager.Instance == null) return;
+
+        if (slot.specialId == acceptId)
+        {
+            MiniGameFeedbackManager.Instance.UpdatePreview(irisCharacterId, FeedbackType.Positive);
+            MiniGameFeedbackManager.Instance.UpdatePreview(sabrinaCharacterId, FeedbackType.Negative);
+        }
+        else if (slot.specialId == rejectId)
+        {
+            MiniGameFeedbackManager.Instance.UpdatePreview(irisCharacterId, FeedbackType.Negative);
+            MiniGameFeedbackManager.Instance.UpdatePreview(sabrinaCharacterId, FeedbackType.Positive);
+        }
     }
     public void OnItemRemovedFromSlot()
     {
@@ -157,6 +182,14 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
 
         if (selectedSlot.specialId == acceptId && drogasAnimator != null)
             drogasAnimator.SetTrigger("Tocar");
+
+        // Mostra coração positivo/negativo após confirmação
+        if (MiniGameFeedbackManager.Instance != null)
+        {
+            bool accepted = selectedSlot.specialId == acceptId;
+            MiniGameFeedbackManager.Instance.ShowHeart(irisCharacterId, accepted);
+            MiniGameFeedbackManager.Instance.ShowHeart(sabrinaCharacterId, !accepted);
+        }
 
         OnObjectDropped(selectedSlot, System.Array.Empty<ItemsSO>());
         StartCoroutine(ShowFeedbackSequence(selectedSlot.specialId));

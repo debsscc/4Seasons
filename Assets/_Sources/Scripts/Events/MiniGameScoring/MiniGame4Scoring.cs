@@ -59,6 +59,7 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         {
             _centeredSlot = null;
             if (confirmButton) confirmButton.SetActive(false);
+            UpdatePreviewIcons(null);
             return;
         }
 
@@ -73,6 +74,29 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         {
             _centeredSlot = null;
             if (confirmButton) confirmButton.SetActive(false);
+        }
+
+        UpdatePreviewIcons(_centeredSlot);
+    }
+
+    private void UpdatePreviewIcons(SlotDraggable hoveredSlot)
+    {
+        if (MiniGameFeedbackManager.Instance == null) return;
+
+        // Personagem que está sendo “hovered” (próximo ao centro)
+        CharacterData positiveCharacter = hoveredSlot?.associatedCharacter;
+
+        foreach (var friend in friendCharacters)
+        {
+            if (friend == null) continue;
+            var type = (friend == positiveCharacter) ? FeedbackType.Positive : FeedbackType.Negative;
+            MiniGameFeedbackManager.Instance.UpdatePreview(friend.name, type);
+        }
+
+        if (playerCharacter != null)
+        {
+            var type = (playerCharacter == positiveCharacter) ? FeedbackType.Positive : FeedbackType.Negative;
+            MiniGameFeedbackManager.Instance.UpdatePreview(playerCharacter.name, type);
         }
     }
 
@@ -104,11 +128,32 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         if (confirmButton) confirmButton.SetActive(false);
 
         ApplyScoring(_selectedSlot);
+        ApplyHeartFeedback(_selectedSlot.associatedCharacter);
 
         // Ativa o modal baseado no specialId do slot
         ShowModalByID(_selectedSlot.specialId);
 
         Debug.Log("[MiniGame4.1] Fim do minigame 4.1.");
+    }
+
+    private void ApplyHeartFeedback(CharacterData chosenChar)
+    {
+        if (MiniGameFeedbackManager.Instance == null) return;
+
+        bool chosenIsNull = chosenChar == null;
+
+        foreach (var friend in friendCharacters)
+        {
+            if (friend == null) continue;
+            bool positive = !chosenIsNull && friend == chosenChar;
+            MiniGameFeedbackManager.Instance.ShowHeart(friend.name, positive);
+        }
+
+        if (playerCharacter != null)
+        {
+            bool positive = !chosenIsNull && playerCharacter == chosenChar;
+            MiniGameFeedbackManager.Instance.ShowHeart(playerCharacter.name, positive);
+        }
     }
 
     private void ApplyScoring(SlotDraggable chosenSlot)

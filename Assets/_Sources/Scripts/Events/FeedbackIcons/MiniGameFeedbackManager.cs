@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,16 @@ public class NPCFeedbackUI
     public Sprite neutralSprite;
     public Sprite positiveSprite;
     public Sprite negativeSprite;
+
+    [Header("Heart Feedback (mostrado ao confirmar)")]
+    [Tooltip("Imagem do coração que aparecerá ao confirmar")]
+    public Image heartImage;
+
+    [Tooltip("Sprite do coração positivo")]
+    public Sprite positiveHeartSprite;
+
+    [Tooltip("Sprite do coração negativo")]
+    public Sprite negativeHeartSprite;
 }
 
 [Serializable]
@@ -48,9 +59,14 @@ public class MiniGameFeedbackManager : MonoBehaviour
     public List<NPCFeedbackUI> npcFeedbacks = new List<NPCFeedbackUI>();
 
     [Header("Animação")]
-    public float animDuration = 0.2f;
+    public float animDuration = 0.3f;
+
+    [Header("Heart Feedback")]
+    [Tooltip("Tempo em segundos que o coração fica visível após confirmação")]
+    public float heartDisplayDuration = 3f;
 
     private Dictionary<string, NPCFeedbackUI> _feedbackLookup = new Dictionary<string, NPCFeedbackUI>();
+    private Dictionary<string, Tween> _heartTweens = new Dictionary<string, Tween>();
 
     [ContextMenu("PrintRegisteredCharacters")]
     public void PrintRegisteredCharacters()
@@ -106,6 +122,12 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
             ui.iconImage.sprite = ui.neutralSprite;
             ui.iconImage.transform.localScale = Vector3.one;
+
+            if (ui.heartImage != null)
+            {
+                ui.heartImage.enabled = false;
+                ui.heartImage.sprite = null;
+            }
 
             // se quiser esconder balões neutros, faça aqui (opcional)
             // if (ui.bubbleObject != null && hideNeutralBubbles) ui.bubbleObject.SetActive(false);
@@ -171,18 +193,15 @@ public class MiniGameFeedbackManager : MonoBehaviour
     }
 
     public List<UICharacterOrder> uiCharacterOrders = new();
-    private bool _triedAutoDiscoverOrders = false;
 
     private void EnsureUICharacterOrdersDiscovered()
     {
-        if (uiCharacterOrders != null && uiCharacterOrders.Count > 0) return;
-        if (_triedAutoDiscoverOrders) return;
-        _triedAutoDiscoverOrders = true;
+        uiCharacterOrders.RemoveAll(x => x == null);
+        if (uiCharacterOrders.Count > 0) return;
 
         var found = FindObjectsByType<UICharacterOrder>(FindObjectsSortMode.None);
         if (found == null || found.Length == 0) return;
 
-        if (uiCharacterOrders == null) uiCharacterOrders = new List<UICharacterOrder>();
         uiCharacterOrders.Clear();
         uiCharacterOrders.AddRange(found);
         Debug.Log($"[FeedbackManager] Auto-discovered {uiCharacterOrders.Count} UICharacterOrder(s).");
@@ -193,13 +212,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
         EnsureUICharacterOrdersDiscovered();
 
         if (items == null || items.Length == 0) return;
-
-        // Debug.Log("[FeedbackManager] Aplicando preview múltiplo...");
-        // foreach (var kv in statesByCharacterId)
-        // {
-        //     Debug.Log($"[FeedbackManager] Aplicando preview para '{kv.Key}' como '{kv.Value}'.");
-        //     UpdatePreview(kv.Key, kv.Value);
-        // }
 
         foreach (var ui in uiCharacterOrders)
         {
@@ -226,10 +238,69 @@ public class MiniGameFeedbackManager : MonoBehaviour
     public void ResetAll()
     {
         Debug.Log("[FeedbackManager] Resetando todos os feedbacks para neutro...");
+
+        // Para garantir que não fiquem tweens pendentes exibindo hearts depois do reset
+        foreach (var tween in _heartTweens.Values)
+            tween.Kill();
+        _heartTweens.Clear();
+
         foreach (var ui in npcFeedbacks)
         {
             if (ui.iconImage != null)
                 ui.iconImage.sprite = ui.neutralSprite;
+
+            if (ui.heartImage != null)
+            {
+                ui.heartImage.enabled = false;
+                ui.heartImage.sprite = null;
+            }
         }
     }
+
+    public void SetHeart(string characterId, bool positive)
+    {
+        if (!_feedbackLookup.TryGetValue(characterId, out var ui))
+        {
+            Debug.LogWarning($"[FeedbackManager] NPC '{characterId}' não configurado para hearts!");
+            return;
+        }
+
+        if (ui.heartImage == null)
+        {
+            Debug.LogWarning($"[FeedbackManager] heartImage NÃO atribuído para '{characterId}'");
+            return;
+        }
+
+        // Cancel any in-flight fade tweens
+        if (_heartTweens.TryGetValue(characterId, out var existingTween))
+        {
+            existingTween.Kill();
+            _heartTweens.Remove(characterId);
+        }
+
+        ui.heartImage.sprite = positive ? ui.positiveHeartSprite : ui.negativeHeartSprite;
+        ui.heartImage.enabled = true;
+
+        var color = ui.heartImage.color;
+        color.a = 1f;
+        ui.heartImage.color = color;
+    }
+
+    public void ShowHeart(string characterId, bool positive)
+    {
+        SetHeart(characterId, positive);
+
+        if (!_feedbackLookup.TryGetValue(characterId, out var ui) || ui.heartImage == null)
+            return;
+
+        var tween = ui.heartImage.DOFade(0f, heartDisplayDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            if (ui.heartImage != null)
+                ui.heartImage.enabled = false;
+            _heartTweens.Remove(characterId);
+        });
+
+        _heartTweens[characterId] = tween;
+    }
 }
+
