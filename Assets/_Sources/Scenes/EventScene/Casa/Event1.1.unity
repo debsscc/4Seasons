@@ -173,10 +173,10 @@ GameObject:
   - component: {fileID: 65038980}
   - component: {fileID: 65038979}
   - component: {fileID: 65038978}
-  - component: {fileID: 65038977}
   - component: {fileID: 65038982}
   - component: {fileID: 65038983}
   - component: {fileID: 65038984}
+  - component: {fileID: 65038985}
   m_Layer: 5
   m_Name: DVD_Internal_2
   m_TagString: Untagged
@@ -203,21 +203,6 @@ RectTransform:
   m_AnchoredPosition: {x: 119.3, y: 3.1}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &65038977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65038975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 2.63, y: -2.63}
-  m_UseGraphicAlpha: 1
 --- !u!114 &65038978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -440,6 +425,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &65038985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65038975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!1001 &87614033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -572,9 +572,9 @@ GameObject:
   - component: {fileID: 114749766}
   - component: {fileID: 114749768}
   - component: {fileID: 114749769}
-  - component: {fileID: 114749771}
   - component: {fileID: 114749772}
   - component: {fileID: 114749773}
+  - component: {fileID: 114749774}
   m_Layer: 5
   m_Name: DVDCase4-SCFI
   m_TagString: Untagged
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -653,6 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DVDCaseController
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineTargetImage: {fileID: 114749766}
   dvdDraggable: {fileID: 775338210}
   dvdSpawnPosition: {fileID: 775338208}
   caseAnimator: {fileID: 114749773}
@@ -760,21 +761,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114749771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114749764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 9, y: 9}
-  m_UseGraphicAlpha: 1
 --- !u!114 &114749772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,6 +828,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &114749774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114749764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 10
+  _outlineSoftness: 0.5
 --- !u!1 &142922182 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -2587,10 +2588,10 @@ GameObject:
   - component: {fileID: 775338212}
   - component: {fileID: 775338211}
   - component: {fileID: 775338210}
-  - component: {fileID: 775338209}
   - component: {fileID: 775338214}
   - component: {fileID: 775338215}
   - component: {fileID: 775338216}
+  - component: {fileID: 775338217}
   m_Layer: 5
   m_Name: DVD_Internal_3
   m_TagString: Untagged
@@ -2617,21 +2618,6 @@ RectTransform:
   m_AnchoredPosition: {x: 122.5, y: 3.3}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &775338209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775338207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 2.63, y: -2.63}
-  m_UseGraphicAlpha: 1
 --- !u!114 &775338210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,7 +2645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2854,6 +2840,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &775338217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775338207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!1 &784019722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,9 +2868,9 @@ GameObject:
   - component: {fileID: 784019724}
   - component: {fileID: 784019726}
   - component: {fileID: 784019727}
-  - component: {fileID: 784019728}
   - component: {fileID: 784019729}
   - component: {fileID: 784019730}
+  - component: {fileID: 784019731}
   m_Layer: 5
   m_Name: DVDCase2-Musical
   m_TagString: Untagged
@@ -2909,7 +2910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2948,6 +2949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DVDCaseController
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineTargetImage: {fileID: 784019724}
   dvdDraggable: {fileID: 1847242395}
   dvdSpawnPosition: {fileID: 1847242393}
   caseAnimator: {fileID: 784019730}
@@ -3055,21 +3057,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &784019728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784019722}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 9, y: 9}
-  m_UseGraphicAlpha: 1
 --- !u!114 &784019729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3137,6 +3124,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &784019731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784019722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!1 &863981171 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4462504454823589440, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
@@ -3367,8 +3369,8 @@ GameObject:
   - component: {fileID: 957138334}
   - component: {fileID: 957138335}
   - component: {fileID: 957138337}
-  - component: {fileID: 957138336}
   - component: {fileID: 957138338}
+  - component: {fileID: 957138339}
   m_Layer: 5
   m_Name: DVDCase1-Horror
   m_TagString: Untagged
@@ -3408,7 +3410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3447,6 +3449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DVDCaseController
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineTargetImage: {fileID: 957138332}
   dvdDraggable: {fileID: 1170807981}
   dvdSpawnPosition: {fileID: 1170807979}
   caseAnimator: {fileID: 957138338}
@@ -3554,21 +3557,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &957138336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957138330}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
-  m_EffectDistance: {x: 9, y: 9}
-  m_UseGraphicAlpha: 1
 --- !u!114 &957138337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3636,6 +3624,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &957138339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957138330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 10
+  _outlineSoftness: 0.5
 --- !u!1 &1160543962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,10 +3689,10 @@ GameObject:
   - component: {fileID: 1170807983}
   - component: {fileID: 1170807982}
   - component: {fileID: 1170807981}
-  - component: {fileID: 1170807980}
   - component: {fileID: 1170807985}
   - component: {fileID: 1170807986}
   - component: {fileID: 1170807987}
+  - component: {fileID: 1170807988}
   m_Layer: 5
   m_Name: DVD_Internal
   m_TagString: Untagged
@@ -3716,21 +3719,6 @@ RectTransform:
   m_AnchoredPosition: {x: 121, y: 2}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1170807980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170807978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 2.63, y: -2.63}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1170807981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3758,7 +3746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3953,6 +3941,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1170807988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170807978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!1001 &1202238186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5782,9 +5785,9 @@ GameObject:
   - component: {fileID: 1832895408}
   - component: {fileID: 1832895410}
   - component: {fileID: 1832895411}
-  - component: {fileID: 1832895412}
   - component: {fileID: 1832895414}
   - component: {fileID: 1832895415}
+  - component: {fileID: 1832895416}
   m_Layer: 5
   m_Name: DVDCase3-Musical
   m_TagString: Untagged
@@ -5824,7 +5827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5863,6 +5866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DVDCaseController
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineTargetImage: {fileID: 1832895408}
   dvdDraggable: {fileID: 65038978}
   dvdSpawnPosition: {fileID: 65038976}
   caseAnimator: {fileID: 1832895415}
@@ -5970,21 +5974,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1832895412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832895406}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 9, y: 9}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1832895414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6052,6 +6041,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1832895416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832895406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 10
+  _outlineSoftness: 0.5
 --- !u!1 &1847242392
 GameObject:
   m_ObjectHideFlags: 0
@@ -6065,10 +6069,10 @@ GameObject:
   - component: {fileID: 1847242397}
   - component: {fileID: 1847242396}
   - component: {fileID: 1847242395}
-  - component: {fileID: 1847242394}
   - component: {fileID: 1847242399}
   - component: {fileID: 1847242400}
   - component: {fileID: 1847242401}
+  - component: {fileID: 1847242402}
   m_Layer: 5
   m_Name: DVD_Internal_1
   m_TagString: Untagged
@@ -6095,21 +6099,6 @@ RectTransform:
   m_AnchoredPosition: {x: 119.2, y: 3.5}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1847242394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847242392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 2.63, y: -2.63}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1847242395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6137,7 +6126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -6332,6 +6321,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1847242402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847242392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!114 &1917721595 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}
@@ -7115,21 +7119,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8893084526502258648, guid: 4df25b409d3009f459dce0bd212634d8, type: 3}
   m_PrefabInstance: {fileID: 100445462773068708}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2833796408988828319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5105902589422654694}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 9, y: 9}
-  m_UseGraphicAlpha: 1
 --- !u!223 &4741659004654588739
 Canvas:
   m_ObjectHideFlags: 0
@@ -7164,10 +7153,10 @@ GameObject:
   - component: {fileID: 1375875080330750121}
   - component: {fileID: 7889654306218354938}
   - component: {fileID: 6424672129041381141}
-  - component: {fileID: 2833796408988828319}
   - component: {fileID: 7889654306218354939}
   - component: {fileID: 7889654306218354940}
   - component: {fileID: 7889654306218354941}
+  - component: {fileID: 7889654306218354942}
   m_Layer: 5
   m_Name: Slot_ToPut
   m_TagString: Untagged
@@ -7288,7 +7277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -7374,7 +7363,7 @@ MonoBehaviour:
   slotAnimator: {fileID: 7889654306218354941}
   closeAnimationTrigger: Close
   closeAnimationDuration: 2.5
-  npcOutline: {fileID: 0}
+  npcOutline: {fileID: 7889654306218354942}
   associatedCharacter: {fileID: 0}
   specialId: 0
   successSfx: {fileID: 8300000, guid: 1c070b1266b3b1541ab3c23bb010d280, type: 3}
@@ -7499,6 +7488,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7889654306218354942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5105902589422654694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 10
+  _outlineSoftness: 0.5
 --- !u!1 &8016679601165365555
 GameObject:
   m_ObjectHideFlags: 0

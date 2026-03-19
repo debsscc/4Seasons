@@ -24,10 +24,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     [Tooltip("Timer to open the modal")]
     public float delayBeforeModal = 3f;
 
-    [Header("Outline Basket hover")]
-    public Outline basketOutline;
-    public Color basketHoverColor = Color.yellow;
-
     [Header("Basket and Drinks")]
     public SlotDraggable basketSlot;
     public List<DrinksINFO> drinkItems = new List<DrinksINFO>();
@@ -56,11 +52,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         if (modalPurchased) modalPurchased.SetActive(false);
         if (modalRobbed) modalRobbed.SetActive(false);
 
-        if (basketOutline != null)
-        {
-            basketOutline.enabled = false;
-        }
-
         if (drinkItems.Count == 0)
         {
             var allDrinks = FindObjectsByType<DrinksINFO>(FindObjectsSortMode.None);
@@ -78,26 +69,10 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         }
     }
 
-        public void OnItemRemovedFromSlot()
+    public void OnItemRemovedFromSlot()
     {
         Debug.Log("[MiniGame2] Item removido do slot.");
         RecalculateBasketState();
-
-    }
-
-    public void OnDragOverSlot(DraggablePrefab draggable, SlotDraggable nearSlot)
-    {
-        if (basketOutline == null || basketSlot == null) return;
-        
-        if (nearSlot == basketSlot)
-        {
-            basketOutline.enabled = true;
-            basketOutline.effectColor = basketHoverColor;
-        }
-        else
-        {
-            basketOutline.enabled = false;
-        }
     }
 
     public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
@@ -147,7 +122,7 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         var t = drink.transform;
         if (t != null)
         {
-            t.DOKill(); //function dotween that kills others dots
+            t.DOKill();
             Vector3 originalScale = Vector3.one;
 
             t.localScale = originalScale;
@@ -202,7 +177,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
             {
                 stealButton.gameObject.SetActive(_isStealing);
                 confirmButton.gameObject.SetActive(!_isStealing);
-                // image.sprite = _isStealing ? stealSprite : pruchaseSprite;
             }
         }
     }

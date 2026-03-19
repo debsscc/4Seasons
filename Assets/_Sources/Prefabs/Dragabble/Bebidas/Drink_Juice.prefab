@@ -37,8 +37,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8025696746631326135, guid: 8983bdc703d04334fa7aa08ad21b3146, type: 3}
     - target: {fileID: 1568875060517252123, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
+    - target: {fileID: 1568875060517252123, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657747659725462814, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      propertyPath: dropSfx
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2963449268658772561, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       propertyPath: m_Name
@@ -134,7 +142,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2963449268658772561, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4628095771473819856}
+    - targetCorrespondingSourceObject: {fileID: 5511082381287032711, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4941727799464901649}
   m_SourcePrefab: {fileID: 100100000, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+--- !u!1 &3265812511446256973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5511082381287032711, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
+  m_PrefabInstance: {fileID: 7001183269723097802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4941727799464901649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265812511446256973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!1 &5190814734337495195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2963449268658772561, guid: 685ae2f507b405c45858ca2788496d0a, type: 3}
@@ -152,9 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172ead161d8d2db4c9e5883d5d97d5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICursorChange
-  cursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 144934b3287d68349a005266b217deb7, type: 3}
   hotspot: {x: 0, y: 0}
-  dragCursorTexture: {fileID: 2800000, guid: 0bc11367d808b8346a6ec5a8bafeb8a1, type: 3}
+  dragCursorTexture: {fileID: 2800000, guid: 144934b3287d68349a005266b217deb7, type: 3}
   dragHotspot: {x: 0, y: 0}
 --- !u!114 &4628095771473819856
 MonoBehaviour:

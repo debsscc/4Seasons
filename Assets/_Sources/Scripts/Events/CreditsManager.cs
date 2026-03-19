@@ -16,7 +16,12 @@ public class CreditsManager : MonoBehaviour
     public float duracaoDoFade = 1.5f;
     public string nomeDaCenaMenu = "MenuPrincipal";
 
+    [Header("Overlap")]
+    [Tooltip("Seconds before the anuario scroll ends when the credits scroll should begin.")]
+    public float creditosStartBeforeAnuarioEnd = 2f;
+
     private FadeController fadeControllerInstance;
+    private bool creditosStarted;
 
     void Start()
     {
@@ -29,7 +34,9 @@ public class CreditsManager : MonoBehaviour
 
     public void IniciarSequenciaDeCreditos()
     {
-        // 1) Quando o SCROLL da imagem acabar, começa o SCROLL dos créditos
+        creditosStarted = false;
+
+        // 1) Quando o SCROLL da imagem acabar, faz o cleanup e garante que os créditos estejam rodando
         if (imagemAnuarioScroll != null)
         {
             imagemAnuarioScroll.OnScrollFinished += OnScrollImagemFinalizado;
@@ -48,6 +55,7 @@ public class CreditsManager : MonoBehaviour
         if (imagemAnuarioScroll != null)
         {
             imagemAnuarioScroll.StartScroll();
+            StartCoroutine(StartCreditsWithOverlap());
         }
     }
 
@@ -62,6 +70,32 @@ public class CreditsManager : MonoBehaviour
         {
             imagemAnuario.SetActive(false);
         }
+
+        // Se os créditos ainda não começaram (por algum motivo), garante que comecem agora.
+        if (!creditosStarted)
+        {
+            StartCredits();
+        }
+    }
+
+    private IEnumerator StartCreditsWithOverlap()
+    {
+        if (imagemAnuarioScroll == null || creditosScroll == null)
+            yield break;
+
+        float anuarioDuration = imagemAnuarioScroll.GetEstimatedScrollDuration();
+        float delay = Mathf.Max(0f, anuarioDuration - creditosStartBeforeAnuarioEnd);
+        yield return new WaitForSeconds(delay);
+
+        StartCredits();
+    }
+
+    private void StartCredits()
+    {
+        if (creditosStarted)
+            return;
+
+        creditosStarted = true;
 
         if (creditosScroll != null)
         {
@@ -79,6 +113,7 @@ public class CreditsManager : MonoBehaviour
         if (fadePrefab != null)
         {
             GameObject fadeObject = Instantiate(fadePrefab);
+            fadeObject.SetActive(true); // garante que o objeto e o Image possam ser vistos e o coroutine rode
             DontDestroyOnLoad(fadeObject);
 
             fadeControllerInstance = fadeObject.GetComponent<FadeController>();

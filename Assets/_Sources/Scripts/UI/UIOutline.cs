@@ -5,10 +5,15 @@ using UnityEngine.UI;
 public class UIOutline : MonoBehaviour
 {
     [SerializeField] private Color _effectColor = Color.white;
-    [SerializeField] private float _effectDistance = 2f;
+    [SerializeField] private float _outlineSize = 5f;
+    [SerializeField] private float _outlineSoftness = 0.5f;
 
-    private Image _outlineImage;
-    private Material _outlineMaterial;
+    private Image _image;
+    private Material _material;
+
+    private static readonly int OutlineColorProp = Shader.PropertyToID("_OutlineColor");
+    private static readonly int OutlineSizeProp  = Shader.PropertyToID("_OutlineSize");
+    private static readonly int OutlineSoftProp  = Shader.PropertyToID("_OutlineSoftness");
 
     public Color effectColor
     {
@@ -16,63 +21,50 @@ public class UIOutline : MonoBehaviour
         set
         {
             _effectColor = value;
-            if (_outlineMaterial != null)
-                _outlineMaterial.color = value;
+            if (_material != null)
+                _material.SetColor(OutlineColorProp, value);
         }
     }
 
     public new bool enabled
     {
-        get => _outlineImage != null && _outlineImage.gameObject.activeSelf;
-        set { if (_outlineImage != null) _outlineImage.gameObject.SetActive(value); }
+        get => _material != null && _material.IsKeywordEnabled("USE_OUTLINE");
+        set
+        {
+            if (_material == null) return;
+            if (value) _material.EnableKeyword("USE_OUTLINE");
+            else       _material.DisableKeyword("USE_OUTLINE");
+        }
     }
 
-    private void Start()
+    private void Awake()
     {
-        var source = GetComponent<Image>();
-        if (source == null)
+        _image = GetComponent<Image>();
+        if (_image == null)
         {
             Debug.LogError($"[UIOutline] {gameObject.name} não tem Image component!", this);
             return;
         }
 
-        var shader = Shader.Find("Custom/UIColorFill");
+        var shader = Shader.Find("Custom/UI/Outline");
         if (shader == null)
         {
-            Debug.LogError("[UIOutline] Shader 'Custom/UIColorFill' não encontrado! Verifique se o arquivo .shader está no projeto.", this);
+            Debug.LogError("[UIOutline] Shader 'Custom/UI/Outline' não encontrado!", this);
             return;
         }
 
-        var go = new GameObject("_UIOutline");
-        go.transform.SetParent(transform.parent, false);
-        go.transform.SetSiblingIndex(transform.GetSiblingIndex());
+        _material = new Material(shader);
+        _material.SetColor(OutlineColorProp, _effectColor);
+        _material.SetFloat(OutlineSizeProp, _outlineSize);
+        _material.SetFloat(OutlineSoftProp, _outlineSoftness);
+        _material.DisableKeyword("USE_OUTLINE");
 
-        var parentRT = GetComponent<RectTransform>();
-        var rt = go.AddComponent<RectTransform>();
-        rt.anchorMin = parentRT.anchorMin;
-        rt.anchorMax = parentRT.anchorMax;
-        rt.anchoredPosition = parentRT.anchoredPosition;
-        rt.sizeDelta = parentRT.sizeDelta + Vector2.one * _effectDistance * 2f;
-        rt.pivot = parentRT.pivot;
-        rt.localScale = parentRT.localScale;
-
-        _outlineImage = go.AddComponent<Image>();
-        _outlineImage.sprite = source.sprite;
-        _outlineImage.type = source.type;
-        _outlineImage.raycastTarget = false;
-
-        _outlineMaterial = new Material(shader);
-        _outlineMaterial.color = _effectColor;
-        _outlineImage.material = _outlineMaterial;
-
-        go.SetActive(false);
-
-        Debug.Log($"[UIOutline] Outline criado em '{gameObject.name}' com shader OK.", this);
+        _image.material = _material;
     }
 
     private void OnDestroy()
     {
-        if (_outlineMaterial != null)
-            Destroy(_outlineMaterial);
+        if (_material != null)
+            Destroy(_material);
     }
 }

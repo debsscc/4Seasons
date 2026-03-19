@@ -20,11 +20,11 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public event Action OnBeginDragEvent;
     public event Action OnEndDragEvent;
 
-    
     private CanvasGroup canvasGroup;
     private Canvas parentCanvas;
     private AudioSource audioSource;
     private IItemHolder _itemHolder;
+    private UIOutline _draggableOutline;
 
     private bool isDragging;
     private SlotDraggable currentSlot;
@@ -46,6 +46,14 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _itemHolder = GetComponent<IItemHolder>();
         parentCanvas = GetComponentInParent<Canvas>();
         audioSource = gameObject.AddComponent<AudioSource>();
+        _draggableOutline = GetComponent<UIOutline>();
+        if (_draggableOutline != null)
+        {
+            _draggableOutline.enabled = true;
+            Color c = _draggableOutline.effectColor;
+            c.a = 0f;
+            _draggableOutline.effectColor = c;
+        }
     }
 
     private void ValidateCanvas()
@@ -102,6 +110,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         isDragging = true;
         canvasGroup.blocksRaycasts = false;
+        SetDraggableOutline(true);
     }
 
     private void EndDrag()
@@ -142,17 +151,22 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (nearSlot != null)
         {
+            SetDraggableOutline(false);
             nearSlot.HighlightSlot(true);
             NotifyMiniGame3OnSlotHover(nearSlot, true);
         }
-        else if (TargetSlots != null)
+        else
         {
-            foreach (var slot in TargetSlots)
+            SetDraggableOutline(true);
+            if (TargetSlots != null)
             {
-                if (slot != null)
+                foreach (var slot in TargetSlots)
                 {
-                    slot.HighlightSlot(false);
-                    NotifyMiniGame3OnSlotHover(slot, false);
+                    if (slot != null)
+                    {
+                        slot.HighlightSlot(false);
+                        NotifyMiniGame3OnSlotHover(slot, false);
+                    }
                 }
             }
         }
@@ -162,23 +176,21 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         bool slotOcupado = nearSlot.lastDroppedObject != null;
 
-        // Desativa highlight
         nearSlot.HighlightSlot(false);
         NotifyMiniGame3OnSlotHover(nearSlot, false);
 
-        // Tenta processar drop em cada minigame
         if (TryDropInMiniGame2(nearSlot, slotOcupado)) return;
         if (TryDropInMiniGame3(nearSlot, slotOcupado)) return;
         if (TryDropInMiniGame41(nearSlot, slotOcupado)) return;
         if (TryDropInMiniGame5(nearSlot, slotOcupado)) return;
         if (TryDropInMiniGame1(nearSlot, slotOcupado)) return;
 
-        // Drop padrão (outros minigames)
         HandleDefaultDrop(nearSlot, slotOcupado);
     }
 
     private void HandleDropOutsideSlot()
     {
+        SetDraggableOutline(false);
         if (currentSlot != null)
         {
             currentSlot.lastDroppedObject = null;
@@ -207,15 +219,16 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var miniGame1 = MiniGameController?.GetComponent<MiniGame1Scoring>();
         if (miniGame1 == null) return false;
 
-        // MiniGame 1: Impede drop se slot ocupado
         if (slotOcupado)
         {
+            SetDraggableOutline(false);
             ResetPosition();
             return true;
         }
 
         nearSlot.lastDroppedObject = gameObject;
         currentSlot = nearSlot;
+        SetDraggableOutline(true);
 
         if (MiniGameController != null && _itemHolder != null)
         {
@@ -229,8 +242,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
         if (miniGame2 == null || nearSlot != miniGame2.basketSlot) return false;
-
-        // MiniGame 2: Cesta
 
         nearSlot.lastDroppedObject = gameObject;
         currentSlot = nearSlot;
@@ -248,7 +259,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
         if (miniGame3 == null) return false;
 
-        // MiniGame 3: Bolso/Aceita
         if (slotOcupado)
         {
             ResetPosition();
@@ -298,7 +308,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     private void NotifyMiniGamesOnBeginDrag()
     {
-        // MiniGame 2: Remove da cesta se aplicável
         var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
         if (miniGame2 != null)
         {
@@ -309,7 +318,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
         }
 
-        // MiniGame 3: Remove do slot
         var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
         if (currentSlot != null)
         {
@@ -321,9 +329,6 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void NotifyMiniGamesOnDrag()
     {
         var nearSlot = IsNearSlot();
-
-        var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
-        miniGame2?.OnDragOverSlot(this, nearSlot);
 
         var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
         miniGame3?.OnIsqueiroHover(true);
@@ -349,6 +354,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     public void ResetPosition()
     {
+        SetDraggableOutline(false);
         rectTransform.DOAnchorPos(initialAnchoredPosition, 0.5f);
 
         if (currentSlot != null)
@@ -383,17 +389,24 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         return null;
     }
+
+    private void SetDraggableOutline(bool show)
+    {
+        if (_draggableOutline == null) return;
+        Color c = _draggableOutline.effectColor;
+        c.a = show ? 1f : 0f;
+        _draggableOutline.effectColor = c;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log($"[DraggablePrefab] OnPointerClick - {name} clicked.");
-        if (MiniGameController != null && GetComponent<IgnoreClickReset>() == null){
+        if (MiniGameController != null && GetComponent<IgnoreClickReset>() == null)
+        {
             ResetPosition();
             PlayPickSound();
             NotifyMiniGamesOnBeginDrag();
             MiniGameController.OnDVDRemoved(this);
-        }
-        else
-        {
         }
     }
     

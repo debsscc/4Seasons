@@ -135,5 +135,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2963449268658772561, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1282319498213720450}
   m_SourcePrefab: {fileID: 100100000, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+--- !u!1 &871901883733578296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2963449268658772561, guid: 5058aa2a41c531745b112cf96fe40bf4, type: 3}
+  m_PrefabInstance: {fileID: 2682411776148179049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1282319498213720450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871901883733578296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 10
+  _outlineSoftness: 0.5

@@ -45,7 +45,11 @@ public class SlotDraggable : MonoBehaviour, IPointerClickHandler
 
     public void HighlightSlot(bool highlight)
     {
-        Vector2 targetScale = highlight ? Vector2.one * 1.3f : Vector2.one;
+        if (npcOutline == null) return;
+        npcOutline.enabled = true;
+        Color c = npcOutline.effectColor;
+        c.a = highlight ? 1f : 0f;
+        npcOutline.effectColor = c;
     }
 
     public void ClearSlot()

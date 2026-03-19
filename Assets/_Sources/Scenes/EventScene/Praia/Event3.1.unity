@@ -654,6 +654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 0}
   specialId: 1
@@ -811,7 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIOutline
   _effectColor: {r: 1, g: 1, b: 1, a: 1}
-  _effectDistance: 3
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!95 &357284048
 Animator:
   serializedVersion: 7
@@ -2649,6 +2653,7 @@ GameObject:
   - component: {fileID: 954175023}
   - component: {fileID: 954175022}
   - component: {fileID: 954175024}
+  - component: {fileID: 954175025}
   m_Layer: 5
   m_Name: Mao Sabrina
   m_TagString: HandSprite
@@ -2726,7 +2731,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIOutline
   _effectColor: {r: 1, g: 1, b: 1, a: 1}
-  _effectDistance: 2
+  _outlineSize: 5
+  _outlineSoftness: 0.5
+--- !u!114 &954175025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954175020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd681d55462d0649b37795d324cb199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandFollower
+  offset: {x: 0, y: 0}
 --- !u!1 &969469934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,8 +3132,8 @@ MonoBehaviour:
   rejectId: 2
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
   isqueiroObject: {fileID: 1004099925}
-  drogasOutline: {fileID: 0}
-  bolsoOutline: {fileID: 0}
+  drogasOutline: {fileID: 357284047}
+  bolsoOutline: {fileID: 1564191227}
   isqueiroOutline: {fileID: 0}
   feedbackBolso: {fileID: 769406935}
   feedbackDrogas: {fileID: 1310868418}
@@ -4286,6 +4305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
   associatedCharacter: {fileID: 0}
   specialId: 2
@@ -4440,7 +4462,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIOutline
   _effectColor: {r: 1, g: 1, b: 1, a: 1}
-  _effectDistance: 2
+  _outlineSize: 5
+  _outlineSoftness: 0.5
 --- !u!1001 &1663697578
 PrefabInstance:
   m_ObjectHideFlags: 0

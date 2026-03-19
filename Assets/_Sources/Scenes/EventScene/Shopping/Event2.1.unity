@@ -1771,9 +1771,9 @@ GameObject:
   - component: {fileID: 666570260}
   - component: {fileID: 666570263}
   - component: {fileID: 666570262}
-  - component: {fileID: 666570261}
   - component: {fileID: 666570264}
   - component: {fileID: 666570265}
+  - component: {fileID: 666570266}
   m_Layer: 5
   m_Name: Slot_ToPut
   m_TagString: Untagged
@@ -1800,21 +1800,6 @@ RectTransform:
   m_AnchoredPosition: {x: 428.056, y: 113.734}
   m_SizeDelta: {x: 862.892, y: 862.892}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &666570261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666570259}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 9.21, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &666570262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,7 +1812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0acb4c874771b7d41888dce1d5edcc2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1866,7 +1851,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot_Draggable
   outlineImage: {fileID: 0}
-  npcOutline: {fileID: 0}
+  slotAnimator: {fileID: 0}
+  closeAnimationTrigger: Close
+  closeAnimationDuration: 0.6
+  npcOutline: {fileID: 666570266}
   associatedCharacter: {fileID: 0}
   specialId: 0
   successSfx: {fileID: 0}
@@ -1887,6 +1875,21 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0}
   m_EffectDistance: {x: 9.64, y: -6.36}
   m_UseGraphicAlpha: 1
+--- !u!114 &666570266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666570259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 1
 --- !u!1 &677805573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4313490817376697131, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -3019,8 +3022,6 @@ MonoBehaviour:
   modalRobbed: {fileID: 282984908}
   modalPurchased: {fileID: 1033056281}
   delayBeforeModal: 1
-  basketOutline: {fileID: 666570261}
-  basketHoverColor: {r: 0.93809175, g: 0.015686274, b: 1, a: 1}
   basketSlot: {fileID: 666570264}
   drinkItems: []
   eventNpcs:
@@ -5050,7 +5051,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1882991912}
-  - component: {fileID: 1882991913}
   - component: {fileID: 1882991915}
   - component: {fileID: 1882991914}
   m_Layer: 5
@@ -5079,21 +5079,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3, y: -177}
   m_SizeDelta: {x: 143.7309, y: 238.4594}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1882991913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882991911}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 2.76, y: 4.83}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1882991914
 MonoBehaviour:
   m_ObjectHideFlags: 0

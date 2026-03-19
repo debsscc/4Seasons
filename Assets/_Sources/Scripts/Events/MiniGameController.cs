@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -102,10 +102,15 @@ public class MiniGameController : MonoBehaviour
 
     graphic.raycastTarget = true;
 
-    if (targetObj.GetComponent<RuntimeOutlineLighter>() == null)
+    if (targetObj.GetComponent<UIOutline>() == null)
     {
-        targetObj.AddComponent<RuntimeOutlineLighter>();
-        Debug.Log($"[MiniGameController] RuntimeOutlineHover adicionado em {targetObj.name} (filho de {obj.name})");
+        targetObj.AddComponent<UIOutline>();
+    }
+
+    if (targetObj.GetComponent<UIOutlineHover>() == null)
+    {
+        targetObj.AddComponent<UIOutlineHover>();
+        Debug.Log($"[MiniGameController] UIOutlineHover adicionado em {targetObj.name} (filho de {obj.name})");
     }
 
     }

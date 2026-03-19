@@ -3,12 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class DVDCaseController : MonoBehaviour, IPointerClickHandler
 {
     #region Serialized Fields
 
     [Header("Visual")]
     public Color hoverOutlineColor = Color.white;
+    [Tooltip("Arraste aqui o Image exato que deve receber o outline (recomendado). Se vazio, o script tenta achar automaticamente nos filhos.")]
+    [SerializeField] private Image outlineTargetImage;
 
     [Header("DVD Interno")]
     public DraggablePrefab dvdDraggable;
@@ -39,7 +41,8 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private State _state = State.Idle;
 
     private AudioSource audioSource;
-    private Outline outline;
+    private UIOutline _outline;
+    private UIOutlineHover _outlineHover;
     private RectTransform _rectTransform;
     private Vector2 _originalPosition;
     private Vector3 _originalScale;
@@ -51,11 +54,10 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-        outline = GetComponent<Outline>();
         _rectTransform = GetComponent<RectTransform>();
         _originalPosition = _rectTransform.anchoredPosition;
         _originalScale = _rectTransform.localScale;
-        SetupOutline();
+        EnsureOutlineOnGraphic();
         HideDVD();
         if (backdropBlocker != null) backdropBlocker.SetActive(false);
     }
@@ -64,12 +66,31 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Initialization
 
-    private void SetupOutline()
+    private void EnsureOutlineOnGraphic()
     {
-        if (outline == null) return;
-        Color c = hoverOutlineColor;
+        var image = outlineTargetImage != null ? outlineTargetImage : GetComponentInChildren<Image>(true);
+        if (image == null)
+        {
+            Debug.LogWarning($"[DVDCaseController] {name} e seus filhos não têm Image, outline não funcionará.");
+            return;
+        }
+
+        image.raycastTarget = true;
+
+        var targetObj = image.gameObject;
+
+        _outline = targetObj.GetComponent<UIOutline>();
+        if (_outline == null)
+            _outline = targetObj.AddComponent<UIOutline>();
+
+        _outline.enabled = true;
+        var c = hoverOutlineColor;
         c.a = 0f;
-        outline.effectColor = c;
+        _outline.effectColor = c;
+
+        _outlineHover = targetObj.GetComponent<UIOutlineHover>();
+        if (_outlineHover == null)
+            _outlineHover = targetObj.AddComponent<UIOutlineHover>();
     }
 
     private void HideDVD()
@@ -81,16 +102,6 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     #endregion
 
     #region Pointer Events
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (_state == State.Idle) ShowOutline(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (_state == State.Idle) ShowOutline(false);
-    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -110,12 +121,12 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Visual Feedback
 
-    private void ShowOutline(bool show)
+    private void SetOutlineAlpha(float alpha)
     {
-        if (outline == null) return;
-        Color target = hoverOutlineColor;
-        target.a = show ? 1f : 0f;
-        DOTween.To(() => outline.effectColor, x => outline.effectColor = x, target, 0.2f);
+        if (_outline == null) return;
+        var c = _outline.effectColor;
+        c.a = alpha;
+        _outline.effectColor = c;
     }
 
     #endregion
@@ -125,7 +136,8 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private void FocusCase()
     {
         _state = State.Focused;
-        ShowOutline(false);
+        if (_outlineHover != null) _outlineHover.enabled = false;
+        SetOutlineAlpha(1f);
 
         if (backdropBlocker != null) backdropBlocker.SetActive(true);
 
@@ -140,6 +152,9 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
         _state = State.Idle;
 
         if (backdropBlocker != null) backdropBlocker.SetActive(false);
+
+        if (_outlineHover != null) _outlineHover.enabled = true;
+        SetOutlineAlpha(0f);
 
         _rectTransform.DOAnchorPos(_originalPosition, focusDuration).SetEase(Ease.OutCubic);
         _rectTransform.DOScale(_originalScale, focusDuration).SetEase(Ease.OutCubic);
@@ -173,7 +188,12 @@ public class DVDCaseController : MonoBehaviour, IPointerEnterHandler, IPointerEx
             .SetEase(Ease.OutCubic);
         _rectTransform.DOScale(_originalScale, focusDuration)
             .SetDelay(openAnimationDuration)
-            .SetEase(Ease.OutCubic);
+            .SetEase(Ease.OutCubic)
+            .OnComplete(() =>
+            {
+                if (_outlineHover != null) _outlineHover.enabled = true;
+                SetOutlineAlpha(0f);
+            });
     }
 
     private System.Collections.IEnumerator WaitAndReveal(float duration)

@@ -148,7 +148,8 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 7023807163643568229, guid: 4bbf0d77270607148a4de8109fae3875, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5521181803030057396, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -158,7 +159,47 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2963449268658772561, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3052561898600997939}
+    - targetCorrespondingSourceObject: {fileID: 5511082381287032711, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3524292057112137280}
+    - targetCorrespondingSourceObject: {fileID: 5511082381287032711, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7086107592793706551}
   m_SourcePrefab: {fileID: 100100000, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+--- !u!1 &4253049510555129951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5511082381287032711, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
+  m_PrefabInstance: {fileID: 8610479813281357784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3524292057112137280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4253049510555129951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915a192d58d25d47b29ed20dd6d4083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutline
+  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 5
+  _outlineSoftness: 0.5
+--- !u!114 &7086107592793706551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4253049510555129951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a81c95492b987459a5f680f9b5e349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIOutlineHover
+  _fadeDuration: 0.2
+  _hoverAlpha: 1
 --- !u!1 &6800110727869924745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2963449268658772561, guid: 3aab1c6664f03ff46ba9874a7d812a72, type: 3}
