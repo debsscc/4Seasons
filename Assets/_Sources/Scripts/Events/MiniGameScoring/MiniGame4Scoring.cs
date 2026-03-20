@@ -90,7 +90,7 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         {
             if (friend == null) continue;
             var type = (friend == positiveCharacter) ? FeedbackType.Positive : FeedbackType.Negative;
-            MiniGameFeedbackManager.Instance.UpdatePreview(friend.name, type);
+            MiniGameFeedbackManager.Instance.UpdatePreviewTemp(friend, (int)type);
         }
 
         if (playerCharacter != null)

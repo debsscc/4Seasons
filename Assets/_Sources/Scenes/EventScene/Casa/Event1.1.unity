@@ -1201,22 +1201,35 @@ MonoBehaviour:
     neutralSprite: {fileID: 2638337913185195573, guid: 0aea32c8df73d7745bfb5e13ddcad381, type: 3}
     positiveSprite: {fileID: -4201612862202913703, guid: c87208d02163f5e429923badc97ab35c, type: 3}
     negativeSprite: {fileID: -1849005913038297209, guid: c067b984c456f004a9873e6b995a82cf, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 0}
+    negativeHeartSprite: {fileID: 0}
   - characterId: Sabrina
     iconImage: {fileID: 1917721595}
     neutralSprite: {fileID: 6104698073502313074, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
     positiveSprite: {fileID: 5149902483799389379, guid: 8896e9b480068914cadb040345673d3f, type: 3}
     negativeSprite: {fileID: -2404435144956920138, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 0}
+    negativeHeartSprite: {fileID: 0}
   - characterId: Melissa
     iconImage: {fileID: 0}
     neutralSprite: {fileID: -1234303171210977798, guid: 3a5ddea5899ab824ea2db0425f68b4f7, type: 3}
     positiveSprite: {fileID: -7880237802584187432, guid: 6ffd7da3cd817ea46b563874fe6d4b24, type: 3}
     negativeSprite: {fileID: 7838117288194516182, guid: b3128db293aafe242a14694c5c7f8616, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 0}
+    negativeHeartSprite: {fileID: 0}
   - characterId: Lucas
     iconImage: {fileID: 0}
     neutralSprite: {fileID: 4085973070589481312, guid: b794b900d273bc24bbe7da39d380de1a, type: 3}
     positiveSprite: {fileID: -3639395793394733973, guid: 0f0c821d1de576241b4179bd04dcf577, type: 3}
     negativeSprite: {fileID: 6720188123871110025, guid: 358e33ca1ad3de743804e83dd28bcc78, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 0}
+    negativeHeartSprite: {fileID: 0}
   animDuration: 0.2
+  heartDisplayDuration: 3
   uiCharacterOrders: []
 --- !u!1 &318176519
 GameObject:
@@ -2067,51 +2080,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5861298112110836593, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
   m_PrefabInstance: {fileID: 1955203213}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &513465695
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 513465696}
-  - component: {fileID: 513465697}
-  m_Layer: 0
-  m_Name: NextScene
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &513465696
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513465695}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1567028322}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &513465697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513465695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7632d89a1c26dd4ab31d3861012dd48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextSceneLoader
-  nextScene: {fileID: 102900000, guid: 1506c3e889302d34eb052faf81181c6b, type: 3}
 --- !u!1 &563472756
 GameObject:
   m_ObjectHideFlags: 0
@@ -4333,7 +4301,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1202238189}
   scoreCommands: {fileID: 1202238194}
-  countsAsMapCompletion: 1
 --- !u!114 &1202238200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5136,7 +5103,6 @@ Transform:
   - {fileID: 1816942345}
   - {fileID: 8022065968081724991}
   - {fileID: 1619054115839992171}
-  - {fileID: 513465696}
   - {fileID: 1680107153}
   - {fileID: 294432046}
   m_Father: {fileID: 0}
@@ -7003,7 +6969,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1955203216}
   scoreCommands: {fileID: 1955203221}
-  countsAsMapCompletion: 1
 --- !u!114 &2116981044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3503360460136036494, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}

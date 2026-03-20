@@ -21,7 +21,6 @@ public class SceneTransition : Singleton<SceneTransition>
         currentSceneName = SceneManager.GetActiveScene().name;
         base.Awake();
         Debug.Log("SceneTransition AWAKE — Singleton criado");
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -107,12 +106,12 @@ public class SceneTransition : Singleton<SceneTransition>
         }
         Debug.Log("Scene loaded");
 
-        yield return StartCoroutine(FadeIn());
 
         if (loadingScreen != null)
         {
             loadingScreen.SetActive(false);
             Debug.Log("Loading screen deactivated");
         }
+        yield return StartCoroutine(FadeIn());
     }
 }

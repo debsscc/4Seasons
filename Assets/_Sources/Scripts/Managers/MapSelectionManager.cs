@@ -186,7 +186,7 @@ public class MapSelectionManager : MonoBehaviour
     private void ChangeSceneMap(MapData mapData)
     {
         Debug.Log("Changing Scene to: " + mapData.sceneName);
-        SceneManager.LoadScene(mapData.sceneName);
+        SceneTransition.Instance.ChangeScene(mapData.sceneName);  
     }
 
     public void removeMapFromAvailable(MapData mapData)

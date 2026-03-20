@@ -12,6 +12,8 @@ public class UICharacterOrder : MonoBehaviour
     [SerializeField] private Sprite positiveHeartSprite;
     [SerializeField] private Sprite negativeHeartSprite;
 
+    public CharacterData Character => character;
+
     void Start()
     {
         MiniGameFeedbackManager.Instance.uiCharacterOrders.RemoveAll(x => x == this);
@@ -54,6 +56,18 @@ public class UICharacterOrder : MonoBehaviour
         }
 
         Sprite newExpression = character.LikesItem(item) ? feedbackSprites.happySprite : feedbackSprites.sadSprite;
+        characterImage.sprite = newExpression;
+    }
+
+    public void UpdateExpressionBasedOnCharacter(int expressionID)
+    {
+        ExpressionFeedbackSprite feedbackSprites = character.ExpressionFeedbackSprite;
+        Sprite newExpression = expressionID switch
+        {
+             1=> feedbackSprites.happySprite,
+            -1 => feedbackSprites.sadSprite,
+            0=> feedbackSprites.neutralSprite
+        };
         characterImage.sprite = newExpression;
     }
 

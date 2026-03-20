@@ -1757,7 +1757,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 345353707}
   scoreCommands: {fileID: 345353713}
-  countsAsMapCompletion: 1
 --- !u!1 &404869983
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,7 +3478,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 886992293}
   scoreCommands: {fileID: 886992299}
-  countsAsMapCompletion: 1
 --- !u!1 &903188242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,7 +5173,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1481095625}
   scoreCommands: {fileID: 1481095631}
-  countsAsMapCompletion: 1
 --- !u!1001 &1570237653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5953,7 +5950,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1645447275}
   scoreCommands: {fileID: 1645447281}
-  countsAsMapCompletion: 1
 --- !u!1 &1648767280
 GameObject:
   m_ObjectHideFlags: 0
@@ -6426,7 +6422,6 @@ MonoBehaviour:
   sceneToLoad: MapSeletor
   dialogueRunner: {fileID: 1669815344}
   scoreCommands: {fileID: 1669815347}
-  countsAsMapCompletion: 1
 --- !u!114 &1669815349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7311,7 +7306,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070296294}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e403f43b61279d4f9cd863aedc6c807, type: 3}
   m_Name: 
@@ -7322,7 +7317,11 @@ MonoBehaviour:
     neutralSprite: {fileID: 21300000, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
     positiveSprite: {fileID: 21300000, guid: 8896e9b480068914cadb040345673d3f, type: 3}
     negativeSprite: {fileID: 21300000, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 0}
+    negativeHeartSprite: {fileID: 0}
   animDuration: 0.2
+  heartDisplayDuration: 3
   uiCharacterOrders:
   - {fileID: 1360326784}
 --- !u!224 &2070296296

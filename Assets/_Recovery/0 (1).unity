@@ -4372,6 +4372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7632d89a1c26dd4ab31d3861012dd48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextSceneLoader
+  nextScene: {fileID: 0}
 --- !u!1 &1492474674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4766,7 +4767,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1558379657
 RectTransform:

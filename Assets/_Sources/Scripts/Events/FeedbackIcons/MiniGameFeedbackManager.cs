@@ -7,7 +7,7 @@ using DG.Tweening;
 
 
 
-public enum FeedbackType { Neutral, Positive, Negative }
+public enum FeedbackType { Neutral=0, Positive=1, Negative=-1 }
 
 [Serializable]
 public class NPCFeedbackUI
@@ -166,6 +166,19 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
 
     }
+
+    public void UpdatePreviewTemp(CharacterData character, int expressionID) 
+    {
+        foreach (var ui in uiCharacterOrders)
+        {
+            if (ui.Character == character)
+            {
+                ui.UpdateExpressionBasedOnCharacter(expressionID);
+                break;
+            }
+        }
+    }
+
     public void UpdatePreview(string characterId, FeedbackType type)
     {
         Debug.Log($"[FeedbackManager] Atualizando preview do NPC '{characterId}' para '{type}'.");
@@ -209,6 +222,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     public void ApplyPreview(ItemsSO[] items)
     {
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         EnsureUICharacterOrdersDiscovered();
 
         if (items == null || items.Length == 0) return;

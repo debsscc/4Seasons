@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 public class GameSessionManager : MonoBehaviour
 {
     public static GameSessionManager Instance { get; private set; }
 
     private HashSet<MapData> completedMaps = new HashSet<MapData>();
+    [Header("Current Map")]
+    [ShowInInspector] private List<MapData> tryingCurrentMap => new List<MapData>(completedMaps);
+
     private MapData currentMap;
 
     [Header("Map Selection Scene")]
