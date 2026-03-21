@@ -41,6 +41,7 @@ public class DialogueEmotionController : MonoBehaviour
 
     private string _lastCharacter = string.Empty;
     private EmotionType _lastEmotion = EmotionType.Normal;
+    private bool _isShowingOptions = false;
 
     private List<CharacterAnimatorRunner> _animatorRunners = new List<CharacterAnimatorRunner>();
 
@@ -88,8 +89,12 @@ public class DialogueEmotionController : MonoBehaviour
         _lastCharacter = string.Empty;
     }
 
+    public void BeginOptionsPreview() => _isShowingOptions = true;
+    public void EndOptionsPreview() => _isShowingOptions = false;
+
     void Update()
     {
+        if (_isShowingOptions) return;
         if (dialogueRunner == null || dialogueRunner.VariableStorage == null) return;
 
         string currentChar = GetYarnStringRobust("current_character");

@@ -23,7 +23,23 @@ public class SceneTransition : Singleton<SceneTransition>
     {
         currentSceneName = SceneManager.GetActiveScene().name;
         base.Awake();
+        SceneManager.sceneLoaded += OnSceneLoaded;
         Debug.Log("SceneTransition AWAKE — Singleton criado");
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        currentSceneName = scene.name;
+        if (scene.name == "MainMenu")
+        {
+            if (contentMenu != null) contentMenu.SetActive(true);
+            if (loadingScreen != null) loadingScreen.SetActive(false);
+        }
     }
 
     void Start()

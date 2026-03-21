@@ -16,6 +16,7 @@ public class ChangeOptionHolder : MonoBehaviour
     private float _currentScrollPosition = 0f;
     private int _currentIndex = 0;
     private float _posOffset = 0f;
+    private int _lastOptionCount = -1;
 
     private float ItensSpacing => _layoutGroup != null ? _layoutGroup.spacing : 0f;
     private float ScrollAmount => _itemSize + ItensSpacing;
@@ -48,6 +49,28 @@ public class ChangeOptionHolder : MonoBehaviour
 
     private OptionItem[] Options => _layoutGroup.GetComponentsInChildren<OptionItem>();
 
+    void Update()
+    {
+        var options = Options;
+        int activeCount = 0;
+        foreach (var o in options)
+            if (o.gameObject.activeSelf) activeCount++;
+
+        if (activeCount > 0 && activeCount != _lastOptionCount)
+        {
+            _lastOptionCount = activeCount;
+            _currentIndex = 0;
+            CurrentLayoutPosition = _posOffset;
+            if (_emotionController != null)
+                _emotionController.BeginOptionsPreview();
+            PreviewOptionEmotion();
+        }
+        else if (activeCount == 0 && _lastOptionCount > 0)
+        {
+            _lastOptionCount = 0;
+        }
+    }
+
     void Awake()
     {
         if (_dialogueRunner == null)
@@ -78,10 +101,12 @@ public class ChangeOptionHolder : MonoBehaviour
 
     void ConfirmSelection()
     {
-       var options = Options;
+        var options = Options;
 
         if (options.Length > 0 && _currentIndex >= 0 && _currentIndex < options.Length)
         {
+            if (_emotionController != null)
+                _emotionController.EndOptionsPreview();
             var selectedOption = options[_currentIndex];
             selectedOption.InvokeOptionSelected();
             Debug.Log($"Selected option: {selectedOption}", selectedOption);
