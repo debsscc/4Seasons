@@ -1,10 +1,26 @@
-using UnityEngine;
+    using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+
+[System.Serializable]
+public struct MiniGame5SlotFeedback
+{
+    public SlotDraggable slot;
+    public Image characterImage;
+    public Sprite happySprite;
+    public Sprite sadSprite;
+    public Image heartImage;
+    public Sprite positiveHeartSprite;
+    public Sprite negativeHeartSprite;
+}
 
 public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
 {
+    [Header("Feedback Visual dos Slots")]
+    public List<MiniGame5SlotFeedback> slotFeedbacks = new List<MiniGame5SlotFeedback>();
+
     [Header("Amigos presentes no evento")]
     public List<CharacterData> eventFriends = new List<CharacterData>();
 
@@ -46,19 +62,29 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
     {
         if (confirmButton) confirmButton.SetActive(false);
 
-        // Desativa todos os outlines no início
         foreach (var slot in npcSlots)
         {
             if (slot != null && slot.npcOutline != null)
-            {
                 slot.npcOutline.enabled = false;
-            }
         }
 
-        // Garante que todos os modais começam desativados
         foreach (var modal in modalsByID)
         {
             if (modal != null) modal.SetActive(false);
+        }
+
+        foreach (var slot in npcSlots)
+        {
+            if (slot == null) continue;
+            slot.OnObjectRemovedFromSlot += OnNPCSlotObjectRemoved;
+
+            // Garante que o slot possa receber cliques mesmo sem Graphic próprio
+            if (slot.GetComponent<Image>() == null)
+            {
+                var img = slot.gameObject.AddComponent<Image>();
+                img.color = Color.clear;
+                img.raycastTarget = true;
+            }
         }
     }
 
@@ -66,31 +92,23 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
     {
         if (_confirmed) return;
 
-        // Se não está perto de nenhum slot, desativa hover
         if (nearSlot == null)
         {
             if (_hoveredSlot != null && _hoveredSlot != _selectedSlot)
-            {
                 SetOutline(_hoveredSlot, false, hoverOutlineColor);
-            }
             _hoveredSlot = null;
             return;
         }
 
-        // Se mudou de slot, desativa o hover do anterior
         if (_hoveredSlot != null && _hoveredSlot != nearSlot && _hoveredSlot != _selectedSlot)
-        {
             SetOutline(_hoveredSlot, false, hoverOutlineColor);
-        }
 
-        // Ativa hover no slot atual (se não for o selecionado)
         if (nearSlot != _selectedSlot)
         {
             _hoveredSlot = nearSlot;
             SetOutline(_hoveredSlot, true, hoverOutlineColor);
         }
     }
-
 
     public void OnSlotDropped(SlotDraggable slot)
     {
@@ -104,24 +122,27 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         }
 
         if (_selectedSlot != null)
-        {
-            SetOutline(_selectedSlot, false, selectedOutlineColor);
-        }
+            SetAllSlotsNeutral();
 
         _selectedSlot = slot;
         SetOutline(_selectedSlot, true, selectedOutlineColor);
 
-        // Esconde o ticket
-        if (ticketObject != null)
+        foreach (var fb in slotFeedbacks)
         {
-            ticketObject.SetActive(false);
+            if (fb.slot == slot)
+                SetSlotFeedback(fb, true, true);
+            else
+                SetSlotFeedback(fb, false, false);
         }
 
-        // Mostra o botão de confirmar
+        if (ticketObject != null)
+            ticketObject.SetActive(false);
+
         if (confirmButton) confirmButton.SetActive(true);
 
         Debug.Log($"[MiniGame5] NPC selecionado: {slot.name} (char = {slot.associatedCharacter?.name ?? "null"}, specialId = {slot.specialId})");
     }
+
     public void OnSelectedNPCClicked()
     {
         if (_confirmed) return;
@@ -130,15 +151,43 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         Debug.Log($"[MiniGame5] NPC desselecionado: {_selectedSlot.name}");
 
         SetOutline(_selectedSlot, false, selectedOutlineColor);
+        if (_selectedSlot != null) _selectedSlot.lastDroppedObject = null;
+        SetAllSlotsNeutral();
         _selectedSlot = null;
 
-        if (ticketObject != null)
+        ShowTicket();
+
+        if (confirmButton) confirmButton.SetActive(false);
+    }
+
+    private void OnNPCSlotObjectRemoved(SlotDraggable slot)
+    {
+        if (_confirmed) return;
+
+        Debug.Log($"[MiniGame5] NPC desselecionado via clique: {slot.name}");
+
+        SetOutline(slot, false, selectedOutlineColor);
+        slot.lastDroppedObject = null;
+        SetAllSlotsNeutral();
+        _selectedSlot = null;
+
+        ShowTicket();
+
+        if (confirmButton) confirmButton.SetActive(false);
+    }
+
+    private void ShowTicket()
+    {
+        if (ticketObject == null) return;
+
+        var draggable = ticketObject.GetComponent<DraggablePrefab>();
+        if (draggable != null)
         {
-            ticketObject.SetActive(true);
+            draggable.rectTransform.DOKill();
+            draggable.rectTransform.anchoredPosition = draggable.InitialAnchoredPosition;
         }
 
-        // Esconde o botão de confirmar
-        if (confirmButton) confirmButton.SetActive(false);
+        ticketObject.SetActive(true);
     }
 
     public void OnConfirmButtonClicked()
@@ -152,19 +201,65 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
 
         _confirmed = true;
 
-        SetOutline(_selectedSlot, false, selectedOutlineColor);
+        foreach (var fb in slotFeedbacks)
+        {
+            if (fb.slot == _selectedSlot)
+                ShowHeart(fb, true);
+            else
+                ShowHeart(fb, false);
+        }
 
-        // Esconde o botão de confirmar
         if (confirmButton) confirmButton.SetActive(false);
 
-        // Aplica pontos
         ApplyScoring(_selectedSlot);
-
         StartCoroutine(ShowModalAfterDelay(_selectedSlot.specialId));
     }
 
-    public void OnItemRemovedFromSlot(){}
+    public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
+    {
+        OnSlotDropped(slot);
+    }
 
+    public void OnItemRemovedFromSlot() { }
+
+    // --- FEEDBACK VISUAL ---
+
+    private void SetSlotFeedback(MiniGame5SlotFeedback fb, bool isSelected, bool isPositive)
+    {
+        if (fb.characterImage != null)
+            fb.characterImage.sprite = isPositive ? fb.happySprite : fb.sadSprite;
+        if (fb.heartImage != null)
+            fb.heartImage.gameObject.SetActive(false);
+    }
+
+    private void SetAllSlotsNeutral()
+    {
+        foreach (var fb in slotFeedbacks)
+            SetSlotFeedback(fb, false, false);
+    }
+
+    private void ShowHeart(MiniGame5SlotFeedback fb, bool positive)
+    {
+        if (fb.heartImage == null) return;
+        fb.heartImage.sprite = positive ? fb.positiveHeartSprite : fb.negativeHeartSprite;
+        fb.heartImage.gameObject.SetActive(true);
+        var color = fb.heartImage.color;
+        color.a = 1f;
+        fb.heartImage.color = color;
+        fb.heartImage.DOKill();
+        fb.heartImage.DOFade(0f, 2f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            if (fb.heartImage != null) fb.heartImage.gameObject.SetActive(false);
+        });
+    }
+
+    private void SetOutline(SlotDraggable slot, bool enabled, Color color)
+    {
+        if (slot == null || slot.npcOutline == null) return;
+        slot.npcOutline.enabled = enabled;
+        if (enabled)
+            slot.npcOutline.effectColor = color;
+    }
 
     private void ApplyScoring(SlotDraggable chosenSlot)
     {
@@ -206,22 +301,5 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         {
             Debug.LogWarning($"[MiniGame5] Nenhum modal configurado para ID {id}.");
         }
-    }
-
-    private void SetOutline(SlotDraggable slot, bool enabled, Color color)
-    {
-        if (slot == null || slot.npcOutline == null) return;
-
-        slot.npcOutline.enabled = enabled;
-        if (enabled)
-        {
-            slot.npcOutline.effectColor = color;
-        }
-
-    }
-
-    public void OnObjectDropped(SlotDraggable slot, ItemsSO[] items)
-    {
-        OnSlotDropped(slot);
     }
 }

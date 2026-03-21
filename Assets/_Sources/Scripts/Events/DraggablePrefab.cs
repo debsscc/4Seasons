@@ -29,6 +29,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private bool isDragging;
     private SlotDraggable currentSlot;
     private Vector2 initialAnchoredPosition;
+    public Vector2 InitialAnchoredPosition => initialAnchoredPosition;
     
     public ItemsSO[] Items => _itemHolder != null ? _itemHolder.Items : null;
     
@@ -248,6 +249,7 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (MiniGameController != null && _itemHolder != null)
         {
+            miniGame2.OnDroppedInBasket(this, _itemHolder.Items);
             MiniGameController.OnObjectDroppedInSlot(nearSlot, _itemHolder.Items);
         }
 
@@ -329,6 +331,10 @@ public class DraggablePrefab : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void NotifyMiniGamesOnDrag()
     {
         var nearSlot = IsNearSlot();
+
+        var miniGame2 = MiniGameController?.GetComponent<MiniGame2Scoring>();
+        if (miniGame2 != null && nearSlot == miniGame2.basketSlot && _itemHolder != null)
+            miniGame2.OnDragOverBasket(_itemHolder.Items);
 
         var miniGame3 = MiniGameController?.GetComponent<MiniGame3Scoring>();
         miniGame3?.OnIsqueiroHover(true);

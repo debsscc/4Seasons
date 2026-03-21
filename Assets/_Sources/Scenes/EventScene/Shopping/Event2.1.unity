@@ -1003,6 +1003,116 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8893084526502258648, guid: 4df25b409d3009f459dce0bd212634d8, type: 3}
   m_PrefabInstance: {fileID: 393248081}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &400650932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400650933}
+  - component: {fileID: 400650935}
+  - component: {fileID: 400650934}
+  m_Layer: 5
+  m_Name: MiniGameFeedbackManager_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &400650933
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400650932}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1411826955}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1163.6084, y: -204.80371}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &400650934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400650932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7ffca56ff9a4b45981a0d5de0f4f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharactersManager
+  npcs:
+  - {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
+  - {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+  - {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  - {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
+  playerCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  motherCharacter: {fileID: 11400000, guid: 126a9fb01570ea347984d10ce095e9cc, type: 2}
+  positiveBaseScore: 2
+  negativeBaseScore: 1
+--- !u!114 &400650935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400650932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e403f43b61279d4f9cd863aedc6c807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniGameFeedbackManager
+  npcFeedbacks:
+  - characterId: Ian
+    iconImage: {fileID: 987477378}
+    neutralSprite: {fileID: 2638337913185195573, guid: 0aea32c8df73d7745bfb5e13ddcad381, type: 3}
+    positiveSprite: {fileID: -4201612862202913703, guid: c87208d02163f5e429923badc97ab35c, type: 3}
+    negativeSprite: {fileID: 1476507218709298136, guid: 5d2a3184124b0da43bf8d26d2bbdddcb, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Melissa
+    iconImage: {fileID: 364213389}
+    neutralSprite: {fileID: -1234303171210977798, guid: 3a5ddea5899ab824ea2db0425f68b4f7, type: 3}
+    positiveSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeSprite: {fileID: 7838117288194516182, guid: b3128db293aafe242a14694c5c7f8616, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Sabrina
+    iconImage: {fileID: 1527496723}
+    neutralSprite: {fileID: 21300000, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
+    positiveSprite: {fileID: 21300000, guid: 8896e9b480068914cadb040345673d3f, type: 3}
+    negativeSprite: {fileID: 21300000, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Arabella
+    iconImage: {fileID: 683402508}
+    neutralSprite: {fileID: -1684386081756791962, guid: a1dd5108dedeb0242a6ed92e6416d4e5, type: 3}
+    positiveSprite: {fileID: 5863910691704229213, guid: 7eddb384fb9dbe745844690735a6323b, type: 3}
+    negativeSprite: {fileID: -6654562637563030117, guid: 182b01613b324f54982ffcf7499ba3cc, type: 3}
+    heartImage: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  animDuration: 0.5
+  heartDisplayDuration: 3
+  uiCharacterOrders:
+  - {fileID: 2090897890}
+  - {fileID: 1967807002}
+  - {fileID: 702570824}
+  - {fileID: 1932704361}
 --- !u!114 &429310000 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3503360460136036494, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -1693,116 +1803,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &565744778
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 565744779}
-  - component: {fileID: 565744781}
-  - component: {fileID: 565744780}
-  m_Layer: 5
-  m_Name: MiniGameFeedbackManager_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &565744779
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565744778}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1411826955}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1163.6084, y: -204.80371}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &565744780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565744778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7ffca56ff9a4b45981a0d5de0f4f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharactersManager
-  npcs:
-  - {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
-  - {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
-  - {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
-  - {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
-  playerCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
-  motherCharacter: {fileID: 11400000, guid: 126a9fb01570ea347984d10ce095e9cc, type: 2}
-  positiveBaseScore: 2
-  negativeBaseScore: 1
---- !u!114 &565744781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565744778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e403f43b61279d4f9cd863aedc6c807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiniGameFeedbackManager
-  npcFeedbacks:
-  - characterId: Ian
-    iconImage: {fileID: 987477378}
-    neutralSprite: {fileID: 2638337913185195573, guid: 0aea32c8df73d7745bfb5e13ddcad381, type: 3}
-    positiveSprite: {fileID: -4201612862202913703, guid: c87208d02163f5e429923badc97ab35c, type: 3}
-    negativeSprite: {fileID: 1476507218709298136, guid: 5d2a3184124b0da43bf8d26d2bbdddcb, type: 3}
-    heartImage: {fileID: 696978944}
-    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
-    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
-  - characterId: Melissa
-    iconImage: {fileID: 364213389}
-    neutralSprite: {fileID: -1234303171210977798, guid: 3a5ddea5899ab824ea2db0425f68b4f7, type: 3}
-    positiveSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
-    negativeSprite: {fileID: 7838117288194516182, guid: b3128db293aafe242a14694c5c7f8616, type: 3}
-    heartImage: {fileID: 1640914520}
-    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
-    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
-  - characterId: Sabrina
-    iconImage: {fileID: 1527496723}
-    neutralSprite: {fileID: 21300000, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
-    positiveSprite: {fileID: 21300000, guid: 8896e9b480068914cadb040345673d3f, type: 3}
-    negativeSprite: {fileID: 21300000, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
-    heartImage: {fileID: 992606072}
-    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
-    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
-  - characterId: Arabella
-    iconImage: {fileID: 683402508}
-    neutralSprite: {fileID: -1684386081756791962, guid: a1dd5108dedeb0242a6ed92e6416d4e5, type: 3}
-    positiveSprite: {fileID: 5863910691704229213, guid: 7eddb384fb9dbe745844690735a6323b, type: 3}
-    negativeSprite: {fileID: -6654562637563030117, guid: 182b01613b324f54982ffcf7499ba3cc, type: 3}
-    heartImage: {fileID: 1658471625}
-    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
-    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
-  animDuration: 0.5
-  heartDisplayDuration: 3
-  uiCharacterOrders:
-  - {fileID: 2090897890}
-  - {fileID: 1967807002}
-  - {fileID: 702570824}
-  - {fileID: 1932704361}
 --- !u!1 &656449720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,17 +2018,6 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 826424218}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &696978944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4182010749972759614, guid: ad84185de2982f94686b45f95c340269, type: 3}
-  m_PrefabInstance: {fileID: 2090897888}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -2341,7 +2330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5967931150718823549, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: character
@@ -2632,17 +2621,6 @@ Canvas:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 2090897888}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &992606072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4182010749972759614, guid: ad84185de2982f94686b45f95c340269, type: 3}
-  m_PrefabInstance: {fileID: 558601515}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -3158,7 +3136,7 @@ MonoBehaviour:
   stealButton: {fileID: 12798493}
   modalRobbed: {fileID: 282984908}
   modalPurchased: {fileID: 1033056281}
-  delayBeforeModal: 1
+  delayBeforeModal: 3
   basketSlot: {fileID: 666570264}
   drinkItems: []
   eventNpcs:
@@ -3167,19 +3145,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
   playerCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
   favoriteDrinkConfigs:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
     characterId: Arabella
     favoriteItems:
     - {fileID: 11400000, guid: 0f1c3364bd77b1048a85ea27422a6b87, type: 2}
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
     characterId: Sabrina
     favoriteItems:
     - {fileID: 11400000, guid: 8881f83a1ec3d5b4889bf3d01e6b15de, type: 2}
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
     characterId: Ian
     favoriteItems:
     - {fileID: 11400000, guid: 82da496df044d594f866590aa9e12314, type: 2}
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
     characterId: Melissa
     favoriteItems:
     - {fileID: 11400000, guid: 8881f83a1ec3d5b4889bf3d01e6b15de, type: 2}
@@ -4232,7 +4210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5967931150718823549, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: character
@@ -4280,7 +4258,7 @@ Transform:
   - {fileID: 503838651}
   - {fileID: 1908543982}
   - {fileID: 393248082}
-  - {fileID: 565744779}
+  - {fileID: 400650933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1424584649 stripped
@@ -4629,28 +4607,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604018831}
   m_CullTransparentMesh: 1
---- !u!114 &1640914520 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4182010749972759614, guid: ad84185de2982f94686b45f95c340269, type: 3}
-  m_PrefabInstance: {fileID: 1406452544}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &1658471625 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4182010749972759614, guid: ad84185de2982f94686b45f95c340269, type: 3}
-  m_PrefabInstance: {fileID: 826424218}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1670960224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5803,7 +5759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5967931150718823549, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: character

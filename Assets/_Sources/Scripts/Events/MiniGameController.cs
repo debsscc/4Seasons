@@ -87,6 +87,12 @@ public class MiniGameController : MonoBehaviour
         }
         }
 
+        var miniGame5 = GetComponent<MiniGame5Scoring>();
+        if (miniGame5 != null && spawnedDraggables.Count > 0)
+        {
+            miniGame5.ticketObject = spawnedDraggables[0].gameObject;
+        }
+
     }
     private void SetupHoverOutline(GameObject obj)
     {

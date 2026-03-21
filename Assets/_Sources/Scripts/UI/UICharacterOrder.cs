@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UICharacterOrder : MonoBehaviour
 {
@@ -88,5 +89,39 @@ public class UICharacterOrder : MonoBehaviour
     public bool CharacterLikesItem(ItemsSO item)
     {
         return character.LikesItem(item);
+    }
+
+    public float heartDisplayDuration = 3f;
+
+    public void PunchScale()
+    {
+        characterImage.transform.DOKill();
+        characterImage.transform.localScale = Vector3.one;
+        characterImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+    }
+
+    public void ShowHeart(bool positive)
+    {
+        Debug.Log("ShowHeart called for " + (character ? character.name : "null") + " positive: " + positive);
+        if (heartImage == null) 
+        {
+            Debug.Log("heartImage is null for " + (character ? character.name : "null"));
+            return;
+        }
+        if (positiveHeartSprite == null || negativeHeartSprite == null)
+        {
+            Debug.Log("Heart sprites not set for " + (character ? character.name : "null"));
+            return;
+        }
+        heartImage.sprite = positive ? positiveHeartSprite : negativeHeartSprite;
+        heartImage.gameObject.SetActive(true);
+        var color = heartImage.color;
+        color.a = 1f;
+        heartImage.color = color;
+        heartImage.DOKill();
+        heartImage.DOFade(0f, heartDisplayDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            if (heartImage != null) heartImage.gameObject.SetActive(false);
+        });
     }
 }

@@ -954,6 +954,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 275407954263677337, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 184514380}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &184514382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 184514380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
 --- !u!1 &236954654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,35 +1213,39 @@ MonoBehaviour:
     positiveSprite: {fileID: -4201612862202913703, guid: c87208d02163f5e429923badc97ab35c, type: 3}
     negativeSprite: {fileID: -1849005913038297209, guid: c067b984c456f004a9873e6b995a82cf, type: 3}
     heartImage: {fileID: 0}
-    positiveHeartSprite: {fileID: 0}
-    negativeHeartSprite: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   - characterId: Sabrina
     iconImage: {fileID: 1917721595}
-    neutralSprite: {fileID: 6104698073502313074, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
-    positiveSprite: {fileID: 5149902483799389379, guid: 8896e9b480068914cadb040345673d3f, type: 3}
-    negativeSprite: {fileID: -2404435144956920138, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
+    neutralSprite: {fileID: 21300000, guid: c9b72040a1fdd9f4ab2d3bfda9e2a107, type: 3}
+    positiveSprite: {fileID: 21300000, guid: 8896e9b480068914cadb040345673d3f, type: 3}
+    negativeSprite: {fileID: 21300000, guid: b4dcd024e3e9297459b383f7241c565d, type: 3}
     heartImage: {fileID: 0}
-    positiveHeartSprite: {fileID: 0}
-    negativeHeartSprite: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   - characterId: Melissa
     iconImage: {fileID: 0}
     neutralSprite: {fileID: -1234303171210977798, guid: 3a5ddea5899ab824ea2db0425f68b4f7, type: 3}
     positiveSprite: {fileID: -7880237802584187432, guid: 6ffd7da3cd817ea46b563874fe6d4b24, type: 3}
     negativeSprite: {fileID: 7838117288194516182, guid: b3128db293aafe242a14694c5c7f8616, type: 3}
     heartImage: {fileID: 0}
-    positiveHeartSprite: {fileID: 0}
-    negativeHeartSprite: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   - characterId: Lucas
-    iconImage: {fileID: 0}
+    iconImage: {fileID: 1885781517}
     neutralSprite: {fileID: 4085973070589481312, guid: b794b900d273bc24bbe7da39d380de1a, type: 3}
     positiveSprite: {fileID: -3639395793394733973, guid: 0f0c821d1de576241b4179bd04dcf577, type: 3}
     negativeSprite: {fileID: 6720188123871110025, guid: 358e33ca1ad3de743804e83dd28bcc78, type: 3}
     heartImage: {fileID: 0}
-    positiveHeartSprite: {fileID: 0}
-    negativeHeartSprite: {fileID: 0}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   animDuration: 0.2
-  heartDisplayDuration: 3
-  uiCharacterOrders: []
+  heartDisplayDuration: 1
+  uiCharacterOrders:
+  - {fileID: 184514382}
+  - {fileID: 1627448317}
+  - {fileID: 1623690397}
+  - {fileID: 922145691}
 --- !u!1 &318176519
 GameObject:
   m_ObjectHideFlags: 0
@@ -3327,6 +3342,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 891494746}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &922145691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 5116264786912750652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
 --- !u!1 &957138330
 GameObject:
   m_ObjectHideFlags: 0
@@ -5353,6 +5379,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 275407954263677337, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 1623690395}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1623690397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 1623690395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
 --- !u!1001 &1627448315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5459,6 +5496,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 275407954263677337, guid: ad84185de2982f94686b45f95c340269, type: 3}
   m_PrefabInstance: {fileID: 1627448315}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1627448317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 1627448315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
 --- !u!1 &1680107152
 GameObject:
   m_ObjectHideFlags: 0
@@ -6307,6 +6355,17 @@ MonoBehaviour:
   _effectColor: {r: 1, g: 1, b: 1, a: 1}
   _outlineSize: 5
   _outlineSoftness: 0.5
+--- !u!114 &1885781517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 1627448315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &1917721595 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2096019109415026837, guid: ad84185de2982f94686b45f95c340269, type: 3}

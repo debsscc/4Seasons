@@ -11,13 +11,10 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     [Serializable]
     public class FavoriteDrinkConfig
     {
-        [Tooltip("Personagem correspondente (usado para determinar o characterId automaticamente)")]
         public CharacterData character;
 
-        [Tooltip("Opcional: ID do personagem (use apenas se não quiser depender de CharacterData.name)")]
         public string characterId;
 
-        [Tooltip("Lista de drinks favoritos (verifica também pelo nome do ItemsSO)")]
         public List<ItemsSO> favoriteItems = new List<ItemsSO>();
 
         public string GetCharacterId()
@@ -42,7 +39,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     public GameObject modalPurchased;
 
     [Header("Config")]
-    [Tooltip("Timer to open the modal")]
     public float delayBeforeModal = 3f;
 
     [Header("Basket and Drinks")]
@@ -54,7 +50,6 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     public CharacterData playerCharacter;
 
     [Header("Favorite Drinks (Heart Feedback)")]
-    [Tooltip("Configurações de drinks favoritos para cada personagem (usado apenas para coração de feedback)")]
     public List<FavoriteDrinkConfig> favoriteDrinkConfigs = new List<FavoriteDrinkConfig>();
 
     private bool _isStealing = false;
@@ -110,11 +105,11 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         {
             foreach (var d in drinkItems)
             {
-                if (d==null) continue;
+                if (d == null) continue;
                 foreach (var t in d.drinkTypes)
                 {
                     if (t == null) continue;
-                    if (System.Array.IndexOf(items,t) > 0)
+                    if (System.Array.IndexOf(items, t) > 0)
                     {
                         drink = d;
                         break;
@@ -141,8 +136,27 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         MiniGameFeedbackManager.Instance.ApplyPreview(items);
         Debug.Log($"[MiniGame2] Aplicando preview para {items.Length} itens.");
 
-    }
+        // Update UICharacterOrder expressions and punch scale
+        foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
+        {
+            if (ui == null || ui.Character == null) continue;
+            bool likesAny = false;
+            foreach (var item in items)
+            {
+                if (item != null && ui.CharacterLikesItem(item))
+                {
+                    likesAny = true;
+                    break;
+                }
+            }
+            ui.UpdateExpressionBasedOnCharacter(likesAny ? 1 : -1);
+            if (likesAny)
+            {
+                ui.PunchScale();
+            }
+        }
 
+    }
     public void OnDrinkRemovedFromBasket(DrinksINFO drink)
     {
         if (drink == null) return;
@@ -213,9 +227,16 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     private void OnActionButtonClicked()
     {
+        Debug.Log("OnActionButtonClicked called");
         ApplyScoring();
-        ApplyHeartFeedback();
+        StartCoroutine(DelayedHeartFeedback());
         StartCoroutine(ShowModalAfterDelay());
+    }
+
+    private IEnumerator DelayedHeartFeedback()
+    {
+        yield return null; // espera 1 frame
+        ApplyHeartFeedback();
     }
 
     private FavoriteDrinkConfig GetFavoriteConfig(string characterId)
@@ -256,7 +277,13 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
     private void ApplyHeartFeedback()
     {
-        if (MiniGameFeedbackManager.Instance == null) return;
+        Debug.Log("ApplyHeartFeedback entrou no método");
+        if (MiniGameFeedbackManager.Instance == null)
+        {
+            Debug.Log("MiniGameFeedbackManager.Instance é null!");
+            return;
+        }
+        Debug.Log("ApplyHeartFeedback called. uiCharacterOrders count: " + MiniGameFeedbackManager.Instance.uiCharacterOrders.Count);
 
         var chosenDrinks = new List<DrinksINFO>();
         foreach (var drink in drinkItems)
@@ -285,7 +312,19 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
                 if (choseFavorite) break;
             }
 
-            MiniGameFeedbackManager.Instance.ShowHeart(characterId, choseFavorite);
+            Debug.Log("ShowForCharacterId: " + characterId + " choseFavorite: " + choseFavorite);
+            var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character != null && x.Character.name == characterId);
+            Debug.Log("uiOrder found for " + characterId + ": " + (uiOrder != null));
+            if (uiOrder != null)
+            {
+                uiOrder.PunchScale();
+                uiOrder.ShowHeart(choseFavorite);
+            }
+            else
+            {
+                Debug.Log("Calling MiniGameFeedbackManager.ShowHeart for " + characterId);
+                MiniGameFeedbackManager.Instance.ShowHeart(characterId, choseFavorite);
+            }
         }
 
         void ShowForConfig(FavoriteDrinkConfig config)
@@ -310,7 +349,19 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
                 if (choseFavorite) break;
             }
 
-            MiniGameFeedbackManager.Instance.ShowHeart(id, choseFavorite);
+            Debug.Log("ShowForConfig: " + id + " choseFavorite: " + choseFavorite);
+            var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character != null && x.Character.name == id);
+            Debug.Log("uiOrder found for " + id + ": " + (uiOrder != null));
+            if (uiOrder != null)
+            {
+                uiOrder.PunchScale();
+                uiOrder.ShowHeart(choseFavorite);
+            }
+            else
+            {
+                Debug.Log("Calling MiniGameFeedbackManager.ShowHeart for " + id);
+                MiniGameFeedbackManager.Instance.ShowHeart(id, choseFavorite);
+            }
         }
 
         // Primeiro, aplique configurações explícitas do Inspector
@@ -460,6 +511,37 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
 
             int beforeSelf = playerCharacter.RelationshipScore;
             playerCharacter.RelationshipScore += selfDelta;
+        }
+    }
+
+    public void OnDragOverBasket(ItemsSO[] items)
+    {
+        if (MiniGameFeedbackManager.Instance != null && items != null)
+            MiniGameFeedbackManager.Instance.ApplyPreview(items);
+    }
+
+    public void OnDroppedInBasket(DraggablePrefab draggable, ItemsSO[] items)
+    {
+        if (draggable == null || items == null) return;
+
+        bool isPositive = false;
+        foreach (var item in items)
+        {
+            foreach (var npc in eventNpcs)
+            {
+                if (npc != null && npc.LikesItem(item)) { isPositive = true; break; }
+            }
+            if (!isPositive && playerCharacter != null && playerCharacter.LikesItem(item)) isPositive = true;
+            if (isPositive) break;
+        }
+
+        if (isPositive)
+        {
+            var t = draggable.transform;
+            t.DOKill();
+            t.DOScale(Vector3.one * 1.05f, 0.08f)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() => t.DOScale(Vector3.one, 0.08f).SetEase(Ease.InQuad));
         }
     }
 

@@ -59,24 +59,33 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
     {
         if (slot == null)
         {
-            Debug.LogWarning("[MiniGame1] Slot é nulo em OnObjectDropped.");
             return;
         }
 
         _pendingSlot = slot;
         _pendingItems = items;
 
-        Debug.Log($"[MiniGame1] Drop registrado no slot '{slot.name}'. Aguardando confirmação do jogador.");
-
         if (feedbackCorajoso != null) feedbackCorajoso.SetActive(false);
         if (feedbackNaoCorajoso != null) feedbackNaoCorajoso.SetActive(false);
 
         if (confirmButton != null)
             confirmButton.SetActive(true);
-        else
-            Debug.LogWarning("[MiniGame1] confirmButton não foi atribuído no Inspector.");
 
-        MiniGameFeedbackManager.Instance.ApplyPreview(items);
+        // Preview: troca expressão e anima ícone dos NPCs
+        if (MiniGameFeedbackManager.Instance != null)
+        {
+            MiniGameFeedbackManager.Instance.ApplyPreview(items);
+            foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
+            {
+                if (ui == null) continue;
+                foreach (var item in items)
+                {
+                    ui.UpdateExpresionBasedOnItem(item);
+                    ui.PunchScale();
+                    if (ui.CharacterLikesItem(item)) break;
+                }
+            }
+        }
     }
 
     public void OnItemDraggedOutOfSlot()
@@ -87,7 +96,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         if (confirmButton != null)
             confirmButton.SetActive(false);
 
-        Debug.Log("[MiniGame1] Item arrastado para fora do slot. Escolha cancelada.");
 
         if (MiniGameFeedbackManager.Instance != null)
             MiniGameFeedbackManager.Instance.ResetAll();
@@ -100,19 +108,16 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         if (slot == null || slot.lastDroppedObject == null)
         {
-            Debug.LogWarning("[MiniGame1] Nenhum DVD no slot para confirmar!");
             if (confirmButton != null) confirmButton.SetActive(false);
             return;
         }
 
         if (items == null || items.Length == 0)
         {
-            Debug.LogWarning("[MiniGame1] Não há itens pendentes para confirmar.");
             if (confirmButton != null) confirmButton.SetActive(false);
             return;
         }
 
-        Debug.Log($"[MiniGame1] Confirmando escolha do slot '{slot.name}'.");
 
         if (confirmButton != null)
             confirmButton.SetActive(false);
@@ -126,8 +131,9 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         {
             foreach (var item in items)
             {
-                ui.DisplayHeartFeedbackBasedOnItem(item);
-                if (ui.CharacterLikesItem(item)) break;
+                bool positive = ui.CharacterLikesItem(item);
+                ui.ShowHeart(positive);
+                if (positive) break;
             }
         }
 
@@ -153,7 +159,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         if (confirmButton != null)
             confirmButton.SetActive(false);
 
-        Debug.Log("[MiniGame1] Item removido do slot. Escolha cancelada.");
 
         MiniGameFeedbackManager.Instance?.ResetAll();
     }
@@ -186,7 +191,6 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
             int antes = npc.RelationshipScore;
             npc.RelationshipScore = antes + delta;
-            Debug.Log($"[MiniGame1][NPC] {npc.name}: {antes} → {npc.RelationshipScore} (Δ {delta})");
         }
 
         var player = charsManager.playerCharacter;

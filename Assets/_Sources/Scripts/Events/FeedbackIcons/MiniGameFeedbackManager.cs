@@ -62,7 +62,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
     public float animDuration = 0.3f;
 
     [Header("Heart Feedback")]
-    [Tooltip("Tempo em segundos que o coração fica visível após confirmação")]
     public float heartDisplayDuration = 3f;
 
     private Dictionary<string, NPCFeedbackUI> _feedbackLookup = new Dictionary<string, NPCFeedbackUI>();

@@ -4805,7 +4805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2961f59c90804842a1cb00da33abbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransition
-  fadeTime: 3
+  fadeTime: 2
+  minLoadingTime: 10
   fadeImage: {fileID: 775837008}
   loadingScreen: {fileID: 1430136017}
   contentMenu: {fileID: 1609835247}

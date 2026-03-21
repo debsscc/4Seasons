@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
 {
@@ -34,6 +35,10 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
     [Tooltip("Satisfação própria se NÃO escolher a própria foto")]
     public int selfNotChosenPoints = -1;
 
+    [Header("Feedback")]
+    [Tooltip("Tempo de espera antes de mostrar o modal")]
+    public float feedbackDuration = 3f;
+
     [Header("Modals por ID")]
     public List<GameObject> modalsByID = new List<GameObject>();
 
@@ -59,7 +64,6 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         {
             _centeredSlot = null;
             if (confirmButton) confirmButton.SetActive(false);
-            UpdatePreviewIcons(null);
             return;
         }
 
@@ -67,30 +71,46 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
 
         if (dist <= centerDistanceThreshold)
         {
+            if (_centeredSlot != nearSlot)
+            {
+                var t = nearSlot.transform;
+                t.DOKill();
+                t.DOScale(Vector3.one * 1.05f, 0.08f)
+                    .SetEase(Ease.OutQuad)
+                    .OnComplete(() => t.DOScale(Vector3.one, 0.08f).SetEase(Ease.InQuad));
+            }
             _centeredSlot = nearSlot;
             if (confirmButton) confirmButton.SetActive(true);
         }
         else
         {
+            if (_centeredSlot == nearSlot)
+            {
+                nearSlot.transform.DOKill();
+                nearSlot.transform.DOScale(Vector3.one, 0.08f);
+            }
             _centeredSlot = null;
             if (confirmButton) confirmButton.SetActive(false);
         }
-
-        UpdatePreviewIcons(_centeredSlot);
     }
 
-    private void UpdatePreviewIcons(SlotDraggable hoveredSlot)
+    private void UpdatePreviewIcons(SlotDraggable droppedSlot)
     {
         if (MiniGameFeedbackManager.Instance == null) return;
 
-        // Personagem que está sendo “hovered” (próximo ao centro)
-        CharacterData positiveCharacter = hoveredSlot?.associatedCharacter;
+        CharacterData positiveCharacter = droppedSlot?.associatedCharacter;
 
         foreach (var friend in friendCharacters)
         {
             if (friend == null) continue;
             var type = (friend == positiveCharacter) ? FeedbackType.Positive : FeedbackType.Negative;
             MiniGameFeedbackManager.Instance.UpdatePreviewTemp(friend, (int)type);
+        }
+
+        if (positiveCharacter != null)
+        {
+            var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character == positiveCharacter);
+            uiOrder?.PunchScale();
         }
 
         if (playerCharacter != null)
@@ -106,6 +126,7 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         if (slot == null) return;
 
         _selectedSlot = slot;
+        UpdatePreviewIcons(slot);
 
         Debug.Log($"[MiniGame4.1] Fogo selecionado: {slot.name} (char = {slot.associatedCharacter?.name ?? "null"}, specialId = {slot.specialId})");
     }
@@ -130,10 +151,15 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         ApplyScoring(_selectedSlot);
         ApplyHeartFeedback(_selectedSlot.associatedCharacter);
 
-        // Ativa o modal baseado no specialId do slot
-        ShowModalByID(_selectedSlot.specialId);
+        StartCoroutine(ShowFeedbackThenModal(_selectedSlot.specialId));
 
         Debug.Log("[MiniGame4.1] Fim do minigame 4.1.");
+    }
+
+    private IEnumerator ShowFeedbackThenModal(int specialId)
+    {
+        yield return new WaitForSeconds(feedbackDuration);
+        ShowModalByID(specialId);
     }
 
     private void ApplyHeartFeedback(CharacterData chosenChar)
@@ -146,13 +172,15 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         {
             if (friend == null) continue;
             bool positive = !chosenIsNull && friend == chosenChar;
-            MiniGameFeedbackManager.Instance.ShowHeart(friend.name, positive);
+            var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character == friend);
+            uiOrder?.ShowHeart(positive);
         }
 
         if (playerCharacter != null)
         {
             bool positive = !chosenIsNull && playerCharacter == chosenChar;
-            MiniGameFeedbackManager.Instance.ShowHeart(playerCharacter.name, positive);
+            var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character == playerCharacter);
+            uiOrder?.ShowHeart(positive);
         }
     }
 
@@ -201,7 +229,7 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
 
     private void ShowModalByID(int id)
     {
-        int index = id-1 ;
+        int index = id-1;
 
         if (index >= 0 && index < modalsByID.Count && modalsByID[index] != null)
         {
@@ -220,4 +248,4 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
     {
         OnSlotDropped(slot);
     }
-} 
+}
