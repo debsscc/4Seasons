@@ -185,6 +185,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
             }
             else
             {
+                
                 if (npc.traits.isFearful) delta += +3;
                 if (npc.traits.isBrave) delta += -2;
             }

@@ -5026,7 +5026,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
     - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_text
-      value: Com quem eu vou?
+      value: Quem chamar?
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7579,7 +7579,7 @@ MonoBehaviour:
   notChosenFriendPoints: -2
   hoverOutlineColor: {r: 1, g: 1, b: 1, a: 1}
   selectedOutlineColor: {r: 1, g: 1, b: 1, a: 1}
-  waitBeforeModal: 2
+  waitBeforeModal: 3
 --- !u!1 &2048329737
 GameObject:
   m_ObjectHideFlags: 0
@@ -7937,8 +7937,8 @@ MonoBehaviour:
     heartImage: {fileID: 0}
     positiveHeartSprite: {fileID: 0}
     negativeHeartSprite: {fileID: 0}
-  animDuration: 0.2
-  heartDisplayDuration: 3
+  animDuration: 0.5
+  heartDisplayDuration: 4
   uiCharacterOrders:
   - {fileID: 1360326784}
 --- !u!224 &2070296296

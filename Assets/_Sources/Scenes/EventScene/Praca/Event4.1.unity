@@ -175,7 +175,7 @@ MonoBehaviour:
   closeAnimationTrigger: Close
   closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
-  associatedCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  associatedCharacter: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
   specialId: 4
   successSfx: {fileID: 8300000, guid: 9a8e08256165c3749b817bce26642526, type: 3}
   acceptDistance: 80
@@ -2471,9 +2471,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_text
-      value: Bora?
+      value: "O meu \xE9 o mais legal!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2622,9 +2626,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_text
-      value: "Ser\xE1?"
+      value: Eu gosto do meu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6046,9 +6054,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_text
-      value: Bora?
+      value: Olha que bonito!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6972,9 +6984,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
       propertyPath: m_text
-      value: Bora?
+      value: "Uau! Essa cor \xE9 linda!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8837,7 +8853,7 @@ MonoBehaviour:
   closeAnimationTrigger: Close
   closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
-  associatedCharacter: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+  associatedCharacter: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
   specialId: 2
   successSfx: {fileID: 8300000, guid: 9a8e08256165c3749b817bce26642526, type: 3}
   acceptDistance: 80
@@ -12238,7 +12254,7 @@ MonoBehaviour:
   closeAnimationTrigger: Close
   closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
-  associatedCharacter: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
+  associatedCharacter: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
   specialId: 3
   successSfx: {fileID: 8300000, guid: 9a8e08256165c3749b817bce26642526, type: 3}
   acceptDistance: 80
@@ -13177,10 +13193,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGame41Scoring
   fireworkSlots:
-  - {fileID: 2047037420}
   - {fileID: 1432713325}
-  - {fileID: 1808632128}
+  - {fileID: 2047037420}
   - {fileID: 1194279}
+  - {fileID: 1808632128}
   confirmButton: {fileID: 1105875390}
   centerDistanceThreshold: 200
   friendCharacters:
@@ -13193,12 +13209,12 @@ MonoBehaviour:
   notChosenFriendPoints: -1
   selfChosenPoints: 2
   selfNotChosenPoints: -1
-  feedbackDuration: 3
+  feedbackDuration: 7
   modalsByID:
   - {fileID: 1004970148}
   - {fileID: 1004970148}
-  - {fileID: 183786207}
   - {fileID: 1692587552}
+  - {fileID: 183786207}
 --- !u!1001 &1895364755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14781,7 +14797,7 @@ MonoBehaviour:
   closeAnimationTrigger: Close
   closeAnimationDuration: 0.6
   npcOutline: {fileID: 0}
-  associatedCharacter: {fileID: 11400000, guid: 160652d012b53054cb696645d43ec62f, type: 2}
+  associatedCharacter: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
   specialId: 1
   successSfx: {fileID: 8300000, guid: 9a8e08256165c3749b817bce26642526, type: 3}
   acceptDistance: 80
@@ -15895,8 +15911,8 @@ MonoBehaviour:
     heartImage: {fileID: 0}
     positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
     negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
-  animDuration: 0.2
-  heartDisplayDuration: 2
+  animDuration: 2
+  heartDisplayDuration: 3
   uiCharacterOrders:
   - {fileID: 345905542}
   - {fileID: 1062244261}

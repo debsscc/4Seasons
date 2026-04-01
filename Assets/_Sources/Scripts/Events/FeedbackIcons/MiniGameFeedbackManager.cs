@@ -306,7 +306,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
         if (!_feedbackLookup.TryGetValue(characterId, out var ui) || ui.heartImage == null)
             return;
 
-        var tween = ui.heartImage.DOFade(0f, heartDisplayDuration).SetEase(Ease.Linear).OnComplete(() =>
+        var tween = ui.heartImage.DOFade(0f, heartDisplayDuration).SetDelay(1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (ui.heartImage != null)
                 ui.heartImage.enabled = false;

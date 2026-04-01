@@ -15,7 +15,7 @@ public class SlotDraggable : MonoBehaviour, IPointerClickHandler
     [Header("Close Animation")]
     public Animator slotAnimator;
     public string closeAnimationTrigger = "Close";
-    public float closeAnimationDuration = 0.6f;
+    public float closeAnimationDuration = 3;
 
     [Header("MiniGames Data")]
     public UIOutline npcOutline;

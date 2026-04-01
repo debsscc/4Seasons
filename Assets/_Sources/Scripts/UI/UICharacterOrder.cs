@@ -113,13 +113,14 @@ public class UICharacterOrder : MonoBehaviour
             Debug.Log("Heart sprites not set for " + (character ? character.name : "null"));
             return;
         }
+        
         heartImage.sprite = positive ? positiveHeartSprite : negativeHeartSprite;
         heartImage.gameObject.SetActive(true);
         var color = heartImage.color;
         color.a = 1f;
         heartImage.color = color;
         heartImage.DOKill();
-        heartImage.DOFade(0f, heartDisplayDuration).SetEase(Ease.Linear).OnComplete(() =>
+        heartImage.DOFade(0f, heartDisplayDuration).SetDelay(1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (heartImage != null) heartImage.gameObject.SetActive(false);
         });

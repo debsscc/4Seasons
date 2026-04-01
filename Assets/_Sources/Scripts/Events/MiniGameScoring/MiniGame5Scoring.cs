@@ -247,7 +247,7 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
         color.a = 1f;
         fb.heartImage.color = color;
         fb.heartImage.DOKill();
-        fb.heartImage.DOFade(0f, 2f).SetEase(Ease.Linear).OnComplete(() =>
+        fb.heartImage.DOFade(0f, 2f).SetDelay(1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (fb.heartImage != null) fb.heartImage.gameObject.SetActive(false);
         });

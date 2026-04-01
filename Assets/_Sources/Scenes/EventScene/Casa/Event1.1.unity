@@ -944,6 +944,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_text
+      value: "Ci\xEAncia!"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1239,8 +1247,8 @@ MonoBehaviour:
     heartImage: {fileID: 0}
     positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
     negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
-  animDuration: 0.2
-  heartDisplayDuration: 1
+  animDuration: 3
+  heartDisplayDuration: 0.5
   uiCharacterOrders:
   - {fileID: 184514382}
   - {fileID: 1627448317}
@@ -5369,6 +5377,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_text
+      value: "Mist\xE9rio por favor"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5486,6 +5502,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 657d3dc2a23942949bd70f5f44e8b017, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_text
+      value: "Algo com m\xFAsica"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7290,6 +7314,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+    - target: {fileID: 6003129581762435827, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: heartDisplayDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      propertyPath: m_text
+      value: Gosto dos filmes de et
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
