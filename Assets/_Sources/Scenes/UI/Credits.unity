@@ -2581,10 +2581,10 @@ MonoBehaviour:
   creditosScroll: {fileID: 1146262151}
   imagemAnuario: {fileID: 1449160850}
   fadePrefab: {fileID: 1836112402}
-  duracaoDoFade: 7.34
+  duracaoDoFade: 1
   nomeDaCenaMenu: MainMenu
   creditosMusic: {fileID: 701218623}
-  creditosStartBeforeAnuarioEnd: 2
+  creditosStartBeforeAnuarioEnd: 0
 --- !u!1 &1113445297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,8 +2822,8 @@ RectTransform:
   m_GameObject: {fileID: 1146262146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 768886803}
   - {fileID: 464250900}
@@ -2834,7 +2834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 477}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146262149
@@ -2895,11 +2895,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5616f4cf30ef74489ecee031fa7c09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollAnimation
-  startDelay: 3
-  scrollDuration: 60
-  scrollSpeed: 60.5
+  startDelay: 1
+  scrollDuration: 3
+  scrollSpeed: 50
   useSceneStartPosition: 1
-  scrollDistance: 2300
+  scrollDistance: 3260
   targetRectTransform: {fileID: 1146262147}
   debugLog: 0
 --- !u!1 &1205078829
@@ -3608,10 +3608,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollAnimation
   startDelay: 3
-  scrollDuration: 3
-  scrollSpeed: 60
+  scrollDuration: 2
+  scrollSpeed: 50
   useSceneStartPosition: 1
-  scrollDistance: 950
+  scrollDistance: 1250
   targetRectTransform: {fileID: 1449160851}
   debugLog: 0
 --- !u!1 &1476593784
@@ -5306,8 +5306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 796, y: -476}
-  m_SizeDelta: {x: 226.9, y: 100}
+  m_AnchoredPosition: {x: 818, y: -467}
+  m_SizeDelta: {x: 227.69, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017463934
 MonoBehaviour:
@@ -5352,7 +5352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2017463935}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017463937}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: GoToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2017463935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5400,23 +5412,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2017463932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1302f9f79649dd4fbee6a092ed28ca2, type: 3}
+  m_Script: {fileID: 11500000, guid: 02744961b0340b14db2cadbf19693854, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Button_Prefab
-  buttonImage: {fileID: 0}
-  defaultSprite: {fileID: 0}
-  hoverSprite: {fileID: 0}
-  selectedSprite: {fileID: 0}
-  clickSound: {fileID: 8300000, guid: 0c7ba0dfd8c4ef34c8c3dc07f863268d, type: 3}
-  hoverSound: {fileID: 0}
-  clickVolume: 1
-  animator: {fileID: 0}
-  clickTrigger: Click
-  isMapConfirmButton: 0
-  sceneToLoadName: MainMenu
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
+  m_EditorClassIdentifier: Assembly-CSharp::PauseManager
+  PAUSE: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  creditsPanel: {fileID: 0}
+  mainPausePanel: {fileID: 0}
 --- !u!1 &2054736749
 GameObject:
   m_ObjectHideFlags: 0
