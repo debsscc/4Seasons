@@ -149,7 +149,7 @@ public class SceneTransition : Singleton<SceneTransition>
             Debug.Log("Loading screen deactivated");
         }
 
-        if (sceneName == "MainMenu")
+        if (sceneName == "MainMenu2")
             contentMenu.SetActive(true);
 
         asyncLoad.allowSceneActivation = true;
