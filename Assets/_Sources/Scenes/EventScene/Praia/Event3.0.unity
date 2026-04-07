@@ -1456,7 +1456,6 @@ MonoBehaviour:
   sceneToLoad: Event3.1
   dialogueRunner: {fileID: 1288443198}
   scoreCommands: {fileID: 2072018017}
-  markMapAsCompletedOnDialogueEnd: 0
 --- !u!224 &1288443201 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8586434540972666658, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -1941,14 +1940,14 @@ RectTransform:
   m_GameObject: {fileID: 1873737704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1741131674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.10473633, y: -48.770386}
+  m_AnchoredPosition: {x: 0.10473633, y: -3}
   m_SizeDelta: {x: 1121.5938, y: 631.6345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1873737706
@@ -1973,7 +1972,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -5631503915956900448, guid: a6e013089458cef4c99d30b50fac48d9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

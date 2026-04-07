@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-
-
 public enum FeedbackType { Neutral=0, Positive=1, Negative=-1 }
 
 [Serializable]
@@ -180,6 +178,8 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     public void UpdatePreview(string characterId, FeedbackType type)
     {
+
+        // Atualiza o ícone de feedback do NPC específico para positivo, negativo ou neutro
         Debug.Log($"[FeedbackManager] Atualizando preview do NPC '{characterId}' para '{type}'.");
         if (!_feedbackLookup.TryGetValue(characterId, out var ui))
         {
@@ -187,15 +187,16 @@ public class MiniGameFeedbackManager : MonoBehaviour
             return;
         }
 
+        // Determina o sprite alvo com base no tipo de feedback
         Sprite targetSprite = type switch
         {
             FeedbackType.Positive => ui.positiveSprite,
             FeedbackType.Negative => ui.negativeSprite,
             _ => ui.neutralSprite
         };
-
+        // Se o sprite já estiver correto, não faz nada
         if (ui.iconImage.sprite == targetSprite) return;
-
+        // Atualiza o sprite do ícone
         ui.iconImage.sprite = targetSprite;
 
         // Animação de "mudança"
@@ -208,6 +209,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     private void EnsureUICharacterOrdersDiscovered()
     {
+        // Remove referências nulas (caso algum UICharacterOrder tenha sido destruído)
         uiCharacterOrders.RemoveAll(x => x == null);
         if (uiCharacterOrders.Count > 0) return;
 
@@ -219,9 +221,11 @@ public class MiniGameFeedbackManager : MonoBehaviour
         Debug.Log($"[FeedbackManager] Auto-discovered {uiCharacterOrders.Count} UICharacterOrder(s).");
     }
 
-    public void ApplyPreview(ItemsSO[] items)
+    public void ApplyPreview(ItemsSO[] items) { }
+
+    public void ApplyConfirmedReactions(ItemsSO[] items)
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        // Aplica as reações de coração baseadas nos itens confirmados para cada NPC
         EnsureUICharacterOrdersDiscovered();
 
         if (items == null || items.Length == 0) return;
@@ -229,16 +233,19 @@ public class MiniGameFeedbackManager : MonoBehaviour
         foreach (var ui in uiCharacterOrders)
         {
             if (ui == null) continue;
-            foreach(var item in items)
+            bool liked = false;
+            foreach (var item in items)
             {
                 ui.UpdateExpresionBasedOnItem(item);
-                if (ui.CharacterLikesItem(item)) break;
+                if (ui.CharacterLikesItem(item)) { liked = true; break; }
             }
+            if (liked) ui.PunchScale();
         }
     }
 
     public void ApplySlotRule(SlotFeedbackRule rule)
     {
+        // Aplica as mudanças de feedback definidas na regra para os NPCs correspondentes
         if (rule == null || rule.changes == null) return;
 
         foreach (var change in rule.changes)
@@ -272,6 +279,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     public void SetHeart(string characterId, bool positive)
     {
+        // Configura o sprite do coração para positivo ou negativo
         if (!_feedbackLookup.TryGetValue(characterId, out var ui))
         {
             Debug.LogWarning($"[FeedbackManager] NPC '{characterId}' não configurado para hearts!");
@@ -294,6 +302,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
         ui.heartImage.sprite = positive ? ui.positiveHeartSprite : ui.negativeHeartSprite;
         ui.heartImage.enabled = true;
 
+        // Reset alpha to fully visible in case it was mid-fade
         var color = ui.heartImage.color;
         color.a = 1f;
         ui.heartImage.color = color;
@@ -301,6 +310,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     public void ShowHeart(string characterId, bool positive)
     {
+        // Configura o sprite do coração e inicia a animação de fade-out
         SetHeart(characterId, positive);
 
         if (!_feedbackLookup.TryGetValue(characterId, out var ui) || ui.heartImage == null)

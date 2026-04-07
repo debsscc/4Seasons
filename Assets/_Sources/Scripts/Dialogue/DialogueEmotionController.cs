@@ -40,7 +40,8 @@ public class DialogueEmotionController : MonoBehaviour
     private Dictionary<string, Image> _idToUIImage = new();
 
     private string _lastCharacter = string.Empty;
-    private EmotionType _lastEmotion = EmotionType.Normal;
+    private EmotionType 
+    _lastEmotion = EmotionType.Normal;
     private bool _isShowingOptions = false;
 
     private List<CharacterAnimatorRunner> _animatorRunners = new List<CharacterAnimatorRunner>();
@@ -89,8 +90,38 @@ public class DialogueEmotionController : MonoBehaviour
         _lastCharacter = string.Empty;
     }
 
-    public void BeginOptionsPreview() => _isShowingOptions = true;
-    public void EndOptionsPreview() => _isShowingOptions = false;
+    public void BeginOptionsPreview()
+    {
+        StopAllCoroutines();
+        _isShowingOptions = true;
+    }
+
+    public void EndOptionsPreview()
+    {
+        StopAllCoroutines();
+        // Sincroniza _lastCharacter/_lastEmotion com o estado atual do Yarn SEM re-aplicar o sprite.
+        // Isso evita que o Update() veja uma "discrepância" entre o preview (ex: Angry) e as vars
+        // do Yarn ainda velhas (ex: Normal) e reverta o sprite antes do Yarn processar a escolha.
+        SyncLastStateFromYarnWithoutApplying();
+        _isShowingOptions = false;
+    }
+
+    private void SyncLastStateFromYarnWithoutApplying()
+    {
+        if (dialogueRunner == null || dialogueRunner.VariableStorage == null) return;
+        string currentChar = GetYarnStringRobust("current_character");
+        string emotionStr = GetYarnStringRobust("current_emotion");
+        if (!Enum.TryParse(emotionStr, true, out EmotionType emotion))
+            emotion = EmotionType.Normal;
+        _lastCharacter = currentChar;
+        _lastEmotion = emotion;
+    }
+
+    private System.Collections.IEnumerator EndOptionsPreviewDelayed()
+    {
+        yield return null; // aguarda 1 frame para as variáveis Yarn serem atualizadas
+        _isShowingOptions = false;
+    }
 
     void Update()
     {

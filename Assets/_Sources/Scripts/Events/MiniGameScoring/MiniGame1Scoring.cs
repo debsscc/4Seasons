@@ -71,21 +71,7 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
         if (confirmButton != null)
             confirmButton.SetActive(true);
 
-        // Preview: troca expressão e anima ícone dos NPCs
-        if (MiniGameFeedbackManager.Instance != null)
-        {
-            MiniGameFeedbackManager.Instance.ApplyPreview(items);
-            foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
-            {
-                if (ui == null) continue;
-                foreach (var item in items)
-                {
-                    ui.UpdateExpresionBasedOnItem(item);
-                    ui.PunchScale();
-                    if (ui.CharacterLikesItem(item)) break;
-                }
-            }
-        }
+
     }
 
     public void OnItemDraggedOutOfSlot()
@@ -126,6 +112,8 @@ public class MiniGame1Scoring : MonoBehaviour, IMiniGameScoring
 
         if (miniGameController != null)
             miniGameController.ShowNPCReactions(items);
+
+        MiniGameFeedbackManager.Instance.ApplyConfirmedReactions(items);
 
         foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
         {

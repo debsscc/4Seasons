@@ -22,6 +22,9 @@ public class UICharacterOrder : MonoBehaviour
 
         UpdateExpresionBasedOnItem(null);
 
+        if (!string.IsNullOrEmpty(orderText.text))
+            return;
+
         MiniGameController miniGameController = FindFirstObjectByType<MiniGameController>();
         var draggables = miniGameController.draggablePrefabs;
         string order = null;
@@ -33,6 +36,7 @@ public class UICharacterOrder : MonoBehaviour
 
             if (itemsHolder == null) continue;
             if (itemsHolder.Items == null) continue;
+
 
             foreach (var item in itemsHolder.Items)
             {
