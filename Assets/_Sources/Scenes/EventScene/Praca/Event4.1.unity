@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Lucas
@@ -825,6 +829,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -2200,6 +2208,7 @@ MonoBehaviour:
   _confirmButton: {fileID: 1838933109}
   _itemSize: 400
   _emotionController: {fileID: 0}
+  _emotionIcon: {fileID: 0}
 --- !u!1 &310412755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,6 +3687,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Iris
@@ -5110,6 +5123,7 @@ MonoBehaviour:
   _confirmButton: {fileID: 820731886}
   _itemSize: 400
   _emotionController: {fileID: 0}
+  _emotionIcon: {fileID: 0}
 --- !u!1 &830909333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 15751153321491904, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
@@ -5207,9 +5221,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Sabrina
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
@@ -7356,6 +7378,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Iris
@@ -7609,6 +7635,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -7984,6 +8014,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Iris
@@ -8134,6 +8168,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -9266,6 +9304,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Arabella
@@ -9521,6 +9563,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Sabrina
@@ -9760,6 +9806,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -10387,6 +10437,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Arabella
@@ -10872,6 +10926,7 @@ MonoBehaviour:
   _confirmButton: {fileID: 717279963}
   _itemSize: 400
   _emotionController: {fileID: 0}
+  _emotionIcon: {fileID: 0}
 --- !u!1001 &1692587550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13307,6 +13362,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Lucas
@@ -13755,6 +13814,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -14269,6 +14332,7 @@ MonoBehaviour:
   _confirmButton: {fileID: 507288106}
   _itemSize: 400
   _emotionController: {fileID: 0}
+  _emotionIcon: {fileID: 0}
 --- !u!1 &1946421362
 GameObject:
   m_ObjectHideFlags: 0
@@ -14522,6 +14586,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
@@ -15822,6 +15890,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
       value: Lucas
@@ -15913,6 +15985,7 @@ MonoBehaviour:
     negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   animDuration: 2
   heartDisplayDuration: 3
+  isMinigame: 1
   uiCharacterOrders:
   - {fileID: 345905542}
   - {fileID: 1062244261}

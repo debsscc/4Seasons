@@ -79,7 +79,7 @@ public class ScoreRulesDialogue : MonoBehaviour
                 data.RelationshipScore += gainAmount;
                 Debug.Log($"[ScoreRulesManager] +{gainAmount} -> {id} (now {data.RelationshipScore})");
                 MiniGameFeedbackManager.Instance?.ShowHeart(id, true);
-                MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(data, 1);
+                MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(id, 1);
             }
             else
             {
@@ -96,7 +96,7 @@ public class ScoreRulesDialogue : MonoBehaviour
                 data.RelationshipScore -= loseAmount;
                 Debug.Log($"[ScoreRulesManager] -{loseAmount} -> {id} (now {data.RelationshipScore})");
                 MiniGameFeedbackManager.Instance?.ShowHeart(id, false);
-                MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(data, -1);
+                MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(id, -1);
             }
             else
             {

@@ -179,13 +179,74 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1838278203422266437, guid: 257c67931a784ce48bedb8a331486208, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 334236730}
   m_SourcePrefab: {fileID: 100100000, guid: 257c67931a784ce48bedb8a331486208, type: 3}
 --- !u!4 &334236728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1619054115354341060, guid: 257c67931a784ce48bedb8a331486208, type: 3}
   m_PrefabInstance: {fileID: 334236727}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &334236729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1838278203422266437, guid: 257c67931a784ce48bedb8a331486208, type: 3}
+  m_PrefabInstance: {fileID: 334236727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &334236730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334236729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e403f43b61279d4f9cd863aedc6c807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniGameFeedbackManager
+  npcFeedbacks:
+  - characterId: Arabella
+    iconImage: {fileID: 763959717}
+    neutralSprite: {fileID: 21300000, guid: 67631f1b1a242fdc2a7cf14e315eb066, type: 3}
+    positiveSprite: {fileID: 21300000, guid: fa94b363c7db5fcb595087e0132e6588, type: 3}
+    negativeSprite: {fileID: 21300000, guid: 60f6b64283beecdbb994a660ec479256, type: 3}
+    heartImage: {fileID: 763959717}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Sabrina
+    iconImage: {fileID: 768111793}
+    neutralSprite: {fileID: 21300000, guid: 2c443901966c6ab22939cea7120c0541, type: 3}
+    positiveSprite: {fileID: 21300000, guid: f566ad2bed1f7f8c79962681bad6b194, type: 3}
+    negativeSprite: {fileID: 21300000, guid: 9a0ffdc6563e80f2ea326a4098fe32d3, type: 3}
+    heartImage: {fileID: 768111793}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Melissa
+    iconImage: {fileID: 1885484754}
+    neutralSprite: {fileID: 21300000, guid: 17ed6d60007ab6e4894d45842ef95f66, type: 3}
+    positiveSprite: {fileID: 21300000, guid: a9b44f616e7a7e872bb0f3785f02ac7a, type: 3}
+    negativeSprite: {fileID: 21300000, guid: 9064b6db04b0f5c00b5c55aab05b4470, type: 3}
+    heartImage: {fileID: 1885484754}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  - characterId: Ian
+    iconImage: {fileID: 2007178422}
+    neutralSprite: {fileID: 21300000, guid: e1c79f9743c01fd4bbcca157945df522, type: 3}
+    positiveSprite: {fileID: 21300000, guid: 01936ded635aeaf4cb2ca1c06f704f3f, type: 3}
+    negativeSprite: {fileID: 21300000, guid: d37a19d13d2acff4a9b70c7197341aa4, type: 3}
+    heartImage: {fileID: 2007178422}
+    positiveHeartSprite: {fileID: 7930808973230338605, guid: 988eb6e54e261a846abd94614a9945da, type: 3}
+    negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
+  animDuration: 0.3
+  heartDisplayDuration: 3
+  isMinigame: 0
+  uiCharacterOrders:
+  - {fileID: 763959716}
+  - {fileID: 768111792}
+  - {fileID: 1885484753}
+  - {fileID: 2007178421}
 --- !u!1 &367756375
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,8 +777,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue_4
+      value: Arabella
       objectReference: {fileID: 0}
+    - target: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -736,6 +801,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 763959714}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &763959716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 763959714}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013906166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
+--- !u!114 &763959717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400209011514693926, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 763959714}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &768111790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -830,8 +917,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue_5
+      value: Sabrina
       objectReference: {fileID: 0}
+    - target: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -850,6 +941,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 768111790}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &768111792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 768111790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163001361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
+--- !u!114 &768111793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400209011514693926, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 768111790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &794304132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,8 +2467,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue_6
+      value: Melissa
       objectReference: {fileID: 0}
+    - target: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2374,6 +2491,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 1885484751}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885484753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 1885484751}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438213116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
+--- !u!114 &1885484754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400209011514693926, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 1885484751}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1992509204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,14 +2561,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreRulesDialogue
   rulesAsset: {fileID: 11400000, guid: e12db525c2782764c852f359b7a8987e, type: 2}
   characterBindings:
-  - characterId: Melissa
-    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
   - characterId: Arabella
     characterData: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
-  - characterId: Ian
-    characterData: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
   - characterId: Sabrina
     characterData: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  - characterId: Melissa
+    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+  - characterId: Ian
+    characterData: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
 --- !u!114 &1992509207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2444,19 +2583,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEmotionController
   dialogueRunner: {fileID: 1562227400}
   characterBindings:
-  - characterId: Melissa
-    characterGameObject: {fileID: 1438213116}
-  - characterId: Ian
-    characterGameObject: {fileID: 1229762504}
   - characterId: Arabella
     characterGameObject: {fileID: 1013906166}
   - characterId: Sabrina
     characterGameObject: {fileID: 1163001361}
+  - characterId: Melissa
+    characterGameObject: {fileID: 1438213116}
+  - characterId: Ian
+    characterGameObject: {fileID: 1229762504}
   characterProfiles:
-  - {fileID: 11400000, guid: 541607e69992d7441b5a076f30a15c71, type: 2}
-  - {fileID: 11400000, guid: e44263d53890abe4a9c8df977b6be4d7, type: 2}
   - {fileID: 11400000, guid: 1a39c8aeb23b72f45aa95d0253d5e6ac, type: 2}
   - {fileID: 11400000, guid: 0f0f6ebf08edaa04ca3de86064ddf8e5, type: 2}
+  - {fileID: 11400000, guid: 541607e69992d7441b5a076f30a15c71, type: 2}
+  - {fileID: 11400000, guid: e44263d53890abe4a9c8df977b6be4d7, type: 2}
   speechBubbleRect: {fileID: 400408061}
   dialogueTextTMP: {fileID: 0}
   bubbleEmotionImage: {fileID: 0}
@@ -2475,16 +2614,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YarnRelationshipController
   dialogueRunner: {fileID: 1562227400}
-  eventScoreRules: {fileID: 0}
+  eventScoreRules: {fileID: 11400000, guid: e12db525c2782764c852f359b7a8987e, type: 2}
   characterBindings:
-  - characterId: Melissa
-    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
-  - characterId: Sabrina
-    characterData: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
-  - characterId: Ian
-    characterData: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
   - characterId: Arabella
     characterData: {fileID: 11400000, guid: 08ffc784cf596aa45a55530ce01a3faa, type: 2}
+  - characterId: Sabrina
+    characterData: {fileID: 11400000, guid: 3496c7024ac06f74a9211254badd371a, type: 2}
+  - characterId: Melissa
+    characterData: {fileID: 11400000, guid: 1fac1bab1c15ff442af7949ab603dda9, type: 2}
+  - characterId: Ian
+    characterData: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
 --- !u!1001 &2007178419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2579,8 +2718,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Name
-      value: Character_Dialogue_7
+      value: Ian
       objectReference: {fileID: 0}
+    - target: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 11400000, guid: d8e7146fff9369e46a76bec6b9f53a7c, type: 2}
     - target: {fileID: 7300709511673446568, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2599,6 +2742,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2865938960256489145, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
   m_PrefabInstance: {fileID: 2007178419}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2007178421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5831562300591312183, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 2007178419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229762504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793cbe6f696def94889609fac0a49f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICharacterOrder
+--- !u!114 &2007178422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400209011514693926, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
+  m_PrefabInstance: {fileID: 2007178419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &2034283965
 PrefabInstance:
   m_ObjectHideFlags: 0

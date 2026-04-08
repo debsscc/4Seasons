@@ -182,8 +182,34 @@ public class MiniGameFeedbackManager : MonoBehaviour
         EnsureUICharacterOrdersDiscovered();
         foreach (var ui in uiCharacterOrders)
         {
-            if (ui == null || ui.Character == null) continue;
-            if (ui.Character == character || ui.Character.name == character.name)
+            if (ui == null) continue;
+            bool match = ui.Character != null &&
+                         (ui.Character == character || ui.Character.name == character.name);
+
+            if (!match)
+            {
+                var identity = ui.GetComponent<CharacterIdentity>();
+                if (identity != null)
+                    match = string.Equals(identity.characterId, character.name, System.StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (match)
+            {
+                ui.UpdateExpressionBasedOnCharacter(expressionID);
+                break;
+            }
+        }
+    }
+
+    public void UpdatePreviewTemp(string characterId, int expressionID)
+    {
+        EnsureUICharacterOrdersDiscovered();
+        foreach (var ui in uiCharacterOrders)
+        {
+            if (ui == null) continue;
+            var identity = ui.GetComponent<CharacterIdentity>();
+            if (identity == null) continue;
+            if (string.Equals(identity.characterId, characterId, System.StringComparison.OrdinalIgnoreCase))
             {
                 ui.UpdateExpressionBasedOnCharacter(expressionID);
                 break;
