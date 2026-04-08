@@ -61,9 +61,12 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     [Header("Heart Feedback")]
     public float heartDisplayDuration = 3f;
+    [Tooltip("Marque em cenas de minigame. Desmarcado (padrão): o diálogo pausa 3s após escolha para mostrar os corações.")]
+    public bool isMinigame = false;
 
     private Dictionary<string, NPCFeedbackUI> _feedbackLookup = new Dictionary<string, NPCFeedbackUI>();
     private Dictionary<string, Tween> _heartTweens = new Dictionary<string, Tween>();
+    private Dictionary<string, Vector3> _heartOriginalScales = new Dictionary<string, Vector3>();
 
     [ContextMenu("PrintRegisteredCharacters")]
     public void PrintRegisteredCharacters()
@@ -88,6 +91,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
         Debug.Log("[FeedbackManager] Construindo lookup de NPCs...");
         BuildLookup();
+        CacheHeartScales();
         // NÃO inicializamos sprites no Awake aqui caso os balões sejam instanciados depois.
         // Vamos inicializar no Start para ter mais chance de as refs já estarem prontas.
     }
@@ -131,6 +135,15 @@ public class MiniGameFeedbackManager : MonoBehaviour
         }
     }
 
+    private void CacheHeartScales()
+    {
+        foreach (var ui in npcFeedbacks)
+        {
+            if (ui == null || string.IsNullOrEmpty(ui.characterId) || ui.heartImage == null) continue;
+            _heartOriginalScales[ui.characterId] = ui.heartImage.transform.localScale;
+        }
+    }
+
     private void BuildLookup()
     {
         Debug.Log("[FeedbackManager] Construindo dicionário de feedbacks...");
@@ -166,9 +179,11 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     public void UpdatePreviewTemp(CharacterData character, int expressionID) 
     {
+        EnsureUICharacterOrdersDiscovered();
         foreach (var ui in uiCharacterOrders)
         {
-            if (ui.Character == character)
+            if (ui == null || ui.Character == null) continue;
+            if (ui.Character == character || ui.Character.name == character.name)
             {
                 ui.UpdateExpressionBasedOnCharacter(expressionID);
                 break;
@@ -302,7 +317,9 @@ public class MiniGameFeedbackManager : MonoBehaviour
         ui.heartImage.sprite = positive ? ui.positiveHeartSprite : ui.negativeHeartSprite;
         ui.heartImage.enabled = true;
 
-        // Reset alpha to fully visible in case it was mid-fade
+        // Reset scale para o original e alpha para 1
+        ui.heartImage.transform.DOKill();
+        ui.heartImage.transform.localScale = _heartOriginalScales.TryGetValue(characterId, out var origScale) ? origScale : ui.heartImage.transform.localScale;
         var color = ui.heartImage.color;
         color.a = 1f;
         ui.heartImage.color = color;

@@ -93,12 +93,12 @@ Arabella: Se a Íris e o Ian não tivessem girado o negócio tão rápido.
 Iris: Qual a graça dele ir devagarzinho?
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-->  Sabrina: Acho que a graça é não vomitar. #emotion:Happy
+->  Sabrina: Acho que a graça é não vomitar. #emotion:Normal
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option3">>
     <<ApplyEventPart Event5.1_option3>>
-->  Sabrina: SIM! quanto mais rápido melhor! 
+->  Sabrina: SIM! quanto mais rápido melhor! #emotion:Happy
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option4">>

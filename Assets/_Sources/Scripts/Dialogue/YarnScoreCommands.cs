@@ -24,6 +24,24 @@ public class YarnScoreCommands : MonoBehaviour
         scoreManager.ApplyRuleById(ruleId);
     }
 
+    public System.Collections.IEnumerator ApplyEventPartRoutine(string ruleId)
+    {
+        Debug.Log($"[YarnScoreCommands] ApplyEventPartRoutine chamado: {ruleId}");
+
+        if (scoreManager == null)
+        {
+            Debug.LogError("[YarnScoreCommands] scoreManager NÃO atribuído");
+            yield break;
+        }
+
+        emotionController?.ForceApplyCurrentEmotion();
+        scoreManager.ApplyRuleById(ruleId);
+
+        bool isMinigame = MiniGameFeedbackManager.Instance != null && MiniGameFeedbackManager.Instance.isMinigame;
+        if (!isMinigame)
+            yield return new UnityEngine.WaitForSeconds(3f);
+    }
+
     // <<command ApplyPoints "Sabrina,Melissa" 1>>
  //   [YarnCommand("ApplyPoints")]
     public void ApplyPoints(string csvIds, int delta)

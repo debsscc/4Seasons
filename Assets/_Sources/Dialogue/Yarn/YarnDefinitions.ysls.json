@@ -1,0 +1,43 @@
+{
+  "commands": [
+    {
+      "name": "ApplyEventPart",
+      "documentation": "Aplica regras de pontuação de relacionamento para a opção de diálogo escolhida.",
+      "parameters": [
+        {
+          "name": "ruleId",
+          "type": "string",
+          "documentation": "ID da regra definida no ScriptableObject EventScoreRules."
+        }
+      ]
+    },
+    {
+      "name": "ApplyPoints",
+      "documentation": "Aplica pontos diretamente a uma lista de personagens separados por vírgula.",
+      "parameters": [
+        {
+          "name": "characterIds",
+          "type": "string",
+          "documentation": "IDs dos personagens separados por vírgula (ex: Sabrina,Melissa)."
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "documentation": "Quantidade de pontos (positivo = ganha, negativo = perde)."
+        }
+      ]
+    },
+    {
+      "name": "DebugLog",
+      "documentation": "Imprime uma mensagem no console do Unity.",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string",
+          "documentation": "Mensagem a ser impressa."
+        }
+      ]
+    }
+  ],
+  "functions": []
+}

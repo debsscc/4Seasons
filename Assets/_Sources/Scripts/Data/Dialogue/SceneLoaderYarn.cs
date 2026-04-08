@@ -28,7 +28,7 @@ public class SceneLoaderYarn : MonoBehaviour
 
         dialogueRunner.AddCommandHandler<string>(
             "ApplyEventPart",
-            scoreCommands.ApplyEventPart
+            scoreCommands.ApplyEventPartRoutine
         );
     }
 
