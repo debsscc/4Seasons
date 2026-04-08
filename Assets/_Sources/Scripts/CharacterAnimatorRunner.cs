@@ -24,6 +24,8 @@ public class CharacterAnimatorRunner : MonoBehaviour
         characterAnimator.SetTrigger(animationTrigger.ToString());
     }
 
+    public Animator GetAnimator() => characterAnimator;
+
     public string GetCharacterId()
     {
         return characterIdentity.characterId;

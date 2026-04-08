@@ -1413,6 +1413,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1288443200}
+    - targetCorrespondingSourceObject: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1288443202}
     - targetCorrespondingSourceObject: {fileID: 6102347053816423176, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1783356610}
@@ -1461,6 +1464,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8586434540972666658, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
   m_PrefabInstance: {fileID: 1288443196}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1288443202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288443199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87ceac0d0edff94e8ec55dc60c1649b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueChoiceFeedbackController
+  emotionDuration: 3
+  gainEmotion: 1
+  loseEmotion: 3
+  loseFallbackEmotion: 2
 --- !u!1001 &1324151698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2238,6 +2257,7 @@ GameObject:
   - component: {fileID: 2072018016}
   - component: {fileID: 2072018014}
   - component: {fileID: 2072018015}
+  - component: {fileID: 2072018019}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -2337,6 +2357,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1470054218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2072018019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072018013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87ceac0d0edff94e8ec55dc60c1649b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueChoiceFeedbackController
+  emotionDuration: 5
+  gainEmotion: 1
+  loseEmotion: 3
+  loseFallbackEmotion: 2
 --- !u!1 &2089821927 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5101464218255446861, guid: abe4567891b48d643aef469ed4a3673c, type: 3}

@@ -1297,6 +1297,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 414403523}
+    - targetCorrespondingSourceObject: {fileID: 2001876330874591833, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 414403525}
     - targetCorrespondingSourceObject: {fileID: 6102347053816423176, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 414403521}
@@ -1409,6 +1412,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1739638256200976083, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
   m_PrefabInstance: {fileID: 414403515}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &414403525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414403518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87ceac0d0edff94e8ec55dc60c1649b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueChoiceFeedbackController
+  emotionDuration: 3
+  gainEmotion: 1
+  loseEmotion: 3
+  loseFallbackEmotion: 4
 --- !u!1 &455106232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,6 +1852,7 @@ MonoBehaviour:
     negativeHeartSprite: {fileID: -6944606030148141077, guid: 4af64864277f9964a902d44f455a4942, type: 3}
   animDuration: 0.3
   heartDisplayDuration: 3
+  isMinigame: 0
   uiCharacterOrders:
   - {fileID: 279066942}
   - {fileID: 1002984897}

@@ -7,8 +7,6 @@ public class YarnScoreCommands : MonoBehaviour
     public ScoreRulesDialogue scoreManager;
     public DialogueEmotionController emotionController;
 
-    //<<command ApplyEventPart "Evento2.0_Parte1">>
-  //  [YarnCommand("ApplyEventPart")]
     public void ApplyEventPart(string ruleId)
     {
         Debug.Log($"[YarnScoreCommands] ApplyEventPart chamado: {ruleId}");
@@ -38,12 +36,21 @@ public class YarnScoreCommands : MonoBehaviour
         scoreManager.ApplyRuleById(ruleId);
 
         bool isMinigame = MiniGameFeedbackManager.Instance != null && MiniGameFeedbackManager.Instance.isMinigame;
+
+        if (scoreManager.rulesAsset != null)
+        {
+            var rule = scoreManager.rulesAsset.GetRule(ruleId);
+            if (rule != null && (rule.gain == null || rule.gain.Count == 0) && (rule.lose == null || rule.lose.Count == 0))
+            {
+                Debug.Log($"[YarnScoreCommands] Regra '{ruleId}' não tem gain nem lose, pulando espera.");
+                yield break;
+            }
+        }
+
         if (!isMinigame)
             yield return new UnityEngine.WaitForSeconds(3f);
     }
 
-    // <<command ApplyPoints "Sabrina,Melissa" 1>>
- //   [YarnCommand("ApplyPoints")]
     public void ApplyPoints(string csvIds, int delta)
     {
         Debug.Log($"[YarnScoreCommands] ApplyPoints called with ids='{csvIds}', delta={delta}");
@@ -71,7 +78,6 @@ public class YarnScoreCommands : MonoBehaviour
         scoreManager.ApplyRule(tempRule);
     }
 
-  //  [YarnCommand("DebugLog")]
     public void DebugLog(string message)
     {
         Debug.Log("[Yarn DebugLog] " + message);
