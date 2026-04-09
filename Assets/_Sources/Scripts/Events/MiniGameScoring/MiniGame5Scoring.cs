@@ -201,6 +201,8 @@ public class MiniGame5Scoring : MonoBehaviour, IMiniGameScoring
 
         _confirmed = true;
 
+        GameSessionManager.Instance?.MarkCurrentMapAsCompleted();
+
         foreach (var fb in slotFeedbacks)
         {
             if (fb.slot == _selectedSlot)
