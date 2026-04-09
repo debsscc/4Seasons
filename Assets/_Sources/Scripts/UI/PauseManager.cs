@@ -17,6 +17,7 @@ public class PauseManager : MonoBehaviour
 
     private bool isPaused = false;
     private GameObject _creditsInstance;
+    private CreditsManager _creditsManager;
     private AudioSource[] _pausedForCredits;
 
     private void Start()
@@ -116,12 +117,13 @@ public class PauseManager : MonoBehaviour
         _pausedForCredits = paused.ToArray();
 
         _creditsInstance = Instantiate(creditsPrefab);
-        var mgr = _creditsInstance.GetComponent<CreditsManager>();
+        var mgr = _creditsInstance.GetComponentInChildren<CreditsManager>(includeInactive: true);
 
         if (mgr != null)
         {
             mgr.isOverlay = true;
             mgr.OnOverlayClosed = OnCreditsClosed;
+            _creditsManager = mgr;
         }
 
         // Fiação do botão de fechar (Button_Menu dentro do prefab)
@@ -134,11 +136,16 @@ public class PauseManager : MonoBehaviour
 
     public void CloseCredits()
     {
-        OnCreditsClosed();
+        if (_creditsManager != null)
+            _creditsManager.IniciarTransicaoParaMenu();
+        else
+            OnCreditsClosed();
     }
 
     private void OnCreditsClosed()
     {
+        _creditsManager = null;
+
         if (_creditsInstance != null)
             Destroy(_creditsInstance);
         _creditsInstance = null;

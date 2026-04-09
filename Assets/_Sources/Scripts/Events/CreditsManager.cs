@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +26,7 @@ public class CreditsManager : MonoBehaviour
     [Tooltip("Se true, ao final não troca de cena — apenas fecha o overlay e invoca OnOverlayClosed.")]
     public bool isOverlay = false;
     public System.Action OnOverlayClosed;
+    public float overlayFadeOutDuration = 0.4f;
 
     [Header("Overlap")]
     [Tooltip("Seconds before the anuario scroll ends when the credits scroll should begin.")]
@@ -31,6 +34,7 @@ public class CreditsManager : MonoBehaviour
 
     private FadeController fadeControllerInstance;
     private bool creditosStarted;
+    private bool _transitionStarted;
 
     void Start()
     {
@@ -136,8 +140,8 @@ public class CreditsManager : MonoBehaviour
 
     if (isOverlay)
     {
-        OnOverlayClosed?.Invoke();
-        gameObject.SetActive(false);
+        if (_transitionStarted) return;
+        StartCoroutine(FadeOutOverlay());
         return;
     }
 
@@ -163,6 +167,30 @@ public class CreditsManager : MonoBehaviour
         SceneManager.LoadScene(nomeDaCenaMenu);
     }
 }
+
+    private IEnumerator FadeOutOverlay()
+    {
+        _transitionStarted = true;
+
+        var canvases = GetComponentsInChildren<Canvas>(true);
+        var cgs = new List<CanvasGroup>();
+        foreach (var c in canvases)
+        {
+            var cg = c.GetComponent<CanvasGroup>();
+            if (cg == null) cg = c.gameObject.AddComponent<CanvasGroup>();
+            cgs.Add(cg);
+        }
+
+        if (cgs.Count > 0)
+        {
+            var seq = DOTween.Sequence().SetUpdate(true);
+            foreach (var cg in cgs)
+                seq.Join(cg.DOFade(0f, overlayFadeOutDuration).SetUpdate(true));
+            yield return seq.WaitForCompletion();
+        }
+
+        OnOverlayClosed?.Invoke();
+    }
 
     private IEnumerator TransicionarParaMenu()
     {
