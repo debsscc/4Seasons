@@ -22,10 +22,7 @@ public class DialogueChoiceFeedbackController : MonoBehaviour
 
     private readonly List<RunnerBinding> _bindings = new();
 
-    private void Awake()
-    {
-        Debug.Log("[DialogueChoiceFeedbackController] Awake OK.");
-    }
+
 
     private void Start()
     {
@@ -66,8 +63,6 @@ public class DialogueChoiceFeedbackController : MonoBehaviour
             binding.handler = newScore => OnScoreChanged(binding, newScore);
             data.OnRelationshipChanged += binding.handler;
             _bindings.Add(binding);
-
-            Debug.Log($"[DialogueChoiceFeedbackController] Inscrito em '{characterId}' (score inicial: {binding.previousScore}).");
         }
     }
 
@@ -104,12 +99,10 @@ public class DialogueChoiceFeedbackController : MonoBehaviour
     {
         if (HasTrigger(runner, first))
         {
-            Debug.Log($"[DialogueChoiceFeedbackController] Tocando '{first}' em '{runner.GetCharacterId()}'");
             runner.PlayAnimation(first);
         }
         else if (HasTrigger(runner, fallback))
         {
-            Debug.Log($"[DialogueChoiceFeedbackController] Fallback: tocando '{fallback}' em '{runner.GetCharacterId()}'");
             runner.PlayAnimation(fallback);
         }
     }

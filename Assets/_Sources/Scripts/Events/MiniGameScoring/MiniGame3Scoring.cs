@@ -109,16 +109,6 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
         selectedSlot = slot;
         if (confirmButton) confirmButton.SetActive(true);
 
-        // Icons Feedback (preview rules configured per slot)
-        if (npcDoEvento != null)
-        {
-            var rule = previewRules.Find(r => r.specialId == slot.specialId);
-            if (rule != null)
-            {
-                MiniGameFeedbackManager.Instance.ApplySlotRule(rule);
-            }
-        }
-
         // Preview: show Iris/Sabrina reactions when the lighter is dropped, before confirming
         ApplyLighterPreview(slot);
     }
@@ -182,6 +172,14 @@ public class MiniGame3Scoring : MonoBehaviour, IMiniGameScoring, IPointerEnterHa
 
         if (selectedSlot.specialId == acceptId && drogasAnimator != null)
             drogasAnimator.SetTrigger("Tocar");
+
+        // Aplica feedback de ícone dos NPCs só após confirmar
+        if (npcDoEvento != null && MiniGameFeedbackManager.Instance != null)
+        {
+            var rule = previewRules.Find(r => r.specialId == selectedSlot.specialId);
+            if (rule != null)
+                MiniGameFeedbackManager.Instance.ApplySlotRule(rule);
+        }
 
         // Mostra coração positivo/negativo após confirmação
         if (MiniGameFeedbackManager.Instance != null)

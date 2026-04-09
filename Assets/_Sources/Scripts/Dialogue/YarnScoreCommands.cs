@@ -9,7 +9,6 @@ public class YarnScoreCommands : MonoBehaviour
 
     public void ApplyEventPart(string ruleId)
     {
-        Debug.Log($"[YarnScoreCommands] ApplyEventPart chamado: {ruleId}");
 
         if (scoreManager == null)
         {
@@ -24,7 +23,6 @@ public class YarnScoreCommands : MonoBehaviour
 
     public System.Collections.IEnumerator ApplyEventPartRoutine(string ruleId)
     {
-        Debug.Log($"[YarnScoreCommands] ApplyEventPartRoutine chamado: {ruleId}");
 
         if (scoreManager == null)
         {
@@ -42,7 +40,6 @@ public class YarnScoreCommands : MonoBehaviour
             var rule = scoreManager.rulesAsset.GetRule(ruleId);
             if (rule != null && (rule.gain == null || rule.gain.Count == 0) && (rule.lose == null || rule.lose.Count == 0))
             {
-                Debug.Log($"[YarnScoreCommands] Regra '{ruleId}' não tem gain nem lose, pulando espera.");
                 yield break;
             }
         }
@@ -53,7 +50,6 @@ public class YarnScoreCommands : MonoBehaviour
 
     public void ApplyPoints(string csvIds, int delta)
     {
-        Debug.Log($"[YarnScoreCommands] ApplyPoints called with ids='{csvIds}', delta={delta}");
         if (scoreManager == null) return;
 
         var ids = csvIds.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -67,12 +63,10 @@ public class YarnScoreCommands : MonoBehaviour
         if (delta > 0)
         {
             foreach (var id in ids) tempRule.gain.Add(id.Trim());
-            Debug.Log("[Yarn DebugLog] Applying +points via ApplyPoints");
         }
         else if (delta < 0)
         {
             foreach (var id in ids) tempRule.lose.Add(id.Trim());
-            Debug.Log("[Yarn DebugLog] Applying -points via ApplyPoints");
         }
 
         scoreManager.ApplyRule(tempRule);

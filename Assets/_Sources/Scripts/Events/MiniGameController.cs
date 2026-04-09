@@ -116,14 +116,11 @@ public class MiniGameController : MonoBehaviour
     if (targetObj.GetComponent<UIOutlineHover>() == null)
     {
         targetObj.AddComponent<UIOutlineHover>();
-        Debug.Log($"[MiniGameController] UIOutlineHover adicionado em {targetObj.name} (filho de {obj.name})");
     }
 
     }
     public void OnDVDRemoved(DraggablePrefab dvd)
     {
-        Debug.Log("DVD voltou para a posição inicial via clique.");
-
         dvd.ReleaseSlot();
         dvd.ResetPosition();
     }
@@ -156,8 +153,6 @@ public class MiniGameController : MonoBehaviour
             drag.TargetSlots = targetSlots;
             drag.MiniGameController = this;
 
-            Debug.Log($"[MiniGameController] Drag '{drag.name}' recebeu {targetSlots.Count} TargetSlots.");
-
             if (miniGame2 != null)
         {
             var drink = drag.GetComponent<DrinksINFO>()
@@ -169,7 +164,6 @@ public class MiniGameController : MonoBehaviour
         }
         }
 
-        Debug.Log($"[MiniGameController] Registrados {sceneDraggables.Length} DraggablePrefabs via FindObjectsByType.");
     }
 
     public void ShowNPCReactions(ItemsSO[] items)
@@ -186,7 +180,7 @@ public class MiniGameController : MonoBehaviour
                 }
             }
 
-            Debug.Log($"{npc.name} reage: {(isFavorite ? "FELIZ" : "TRISTE")}");
+
         }
     }
 

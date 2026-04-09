@@ -20,6 +20,11 @@ public class CreditsManager : MonoBehaviour
     [Tooltip("Trilha específica dos créditos (opcional). Se atribuída, ela não será parada ao entrar na cena.")]
     [SerializeField] private AudioSource creditosMusic;
 
+    [Header("Overlay Mode")]
+    [Tooltip("Se true, ao final não troca de cena — apenas fecha o overlay e invoca OnOverlayClosed.")]
+    public bool isOverlay = false;
+    public System.Action OnOverlayClosed;
+
     [Header("Overlap")]
     [Tooltip("Seconds before the anuario scroll ends when the credits scroll should begin.")]
     public float creditosStartBeforeAnuarioEnd = 2f;
@@ -31,18 +36,24 @@ public class CreditsManager : MonoBehaviour
     {
         // Ao entrar na cena de créditos, parar qualquer música anterior que ainda esteja tocando,
         // exceto a trilha configurada especificamente para os créditos (se houver).
-        var allAudioSources = FindObjectsOfType<AudioSource>();
-        foreach (var src in allAudioSources)
+        if (!isOverlay)
         {
-            if (src == null) continue;
-            if (creditosMusic != null && src == creditosMusic) continue;
-            if (src.isPlaying)
-                src.Stop();
+            var allAudioSources = FindObjectsOfType<AudioSource>();
+            foreach (var src in allAudioSources)
+            {
+                if (src == null) continue;
+                if (creditosMusic != null && src == creditosMusic) continue;
+                if (src.isPlaying)
+                    src.Stop();
+            }
         }
 
         if (imagemAnuario != null) imagemAnuario.SetActive(false);
         if (imagemAnuarioScroll != null) imagemAnuarioScroll.gameObject.SetActive(false);
         if (creditosScroll != null) creditosScroll.gameObject.SetActive(false);
+
+        if (isOverlay && creditosMusic != null)
+            creditosMusic.Play();
 
         IniciarSequenciaDeCreditos();
     }
@@ -122,6 +133,14 @@ public class CreditsManager : MonoBehaviour
     {
         creditosScroll.OnScrollFinished -= IniciarTransicaoParaMenu;
     }
+
+    if (isOverlay)
+    {
+        OnOverlayClosed?.Invoke();
+        gameObject.SetActive(false);
+        return;
+    }
+
     if (fadePrefab != null)
     {
         GameObject fadeObject = Instantiate(fadePrefab);

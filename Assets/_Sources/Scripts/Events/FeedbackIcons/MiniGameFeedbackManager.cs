@@ -81,7 +81,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("[FeedbackManager] Instância criada.");
         }
         else
         {
@@ -89,7 +88,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
             Debug.LogWarning("[FeedbackManager] Instância destruída.");
         }
 
-        Debug.Log("[FeedbackManager] Construindo lookup de NPCs...");
         BuildLookup();
         CacheHeartScales();
         // NÃO inicializamos sprites no Awake aqui caso os balões sejam instanciados depois.
@@ -103,7 +101,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     private void InitializeAllToNeutral()
     {
-        Debug.Log("[FeedbackManager] Inicializando todos os ícones para neutral...");
         foreach (var ui in npcFeedbacks)
         {
             if (ui == null)
@@ -146,7 +143,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     private void BuildLookup()
     {
-        Debug.Log("[FeedbackManager] Construindo dicionário de feedbacks...");
         _feedbackLookup.Clear();
 
         foreach (var fb in npcFeedbacks)
@@ -170,7 +166,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
             }
 
             _feedbackLookup[fb.characterId] = fb;
-            Debug.Log($"[FeedbackManager] Adicionado NPC '{fb.characterId}' ao lookup.");
         }
 
 
@@ -219,9 +214,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
     public void UpdatePreview(string characterId, FeedbackType type)
     {
-
-        // Atualiza o ícone de feedback do NPC específico para positivo, negativo ou neutro
-        Debug.Log($"[FeedbackManager] Atualizando preview do NPC '{characterId}' para '{type}'.");
         if (!_feedbackLookup.TryGetValue(characterId, out var ui))
         {
             Debug.LogWarning($"[FeedbackManager] NPC '{characterId}' não configurado!");
@@ -259,7 +251,6 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
         uiCharacterOrders.Clear();
         uiCharacterOrders.AddRange(found);
-        Debug.Log($"[FeedbackManager] Auto-discovered {uiCharacterOrders.Count} UICharacterOrder(s).");
     }
 
     public void ApplyPreview(ItemsSO[] items) { }
@@ -291,14 +282,12 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
         foreach (var change in rule.changes)
         {
-            Debug.Log($"[FeedbackManager] Aplicando mudança para '{change.characterId}' como '{change.type}'.");
             UpdatePreview(change.characterId, change.type);
         }
     }
 
     public void ResetAll()
     {
-        Debug.Log("[FeedbackManager] Resetando todos os feedbacks para neutro...");
 
         // Para garantir que não fiquem tweens pendentes exibindo hearts depois do reset
         foreach (var tween in _heartTweens.Values)

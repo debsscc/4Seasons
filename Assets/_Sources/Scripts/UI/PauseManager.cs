@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PauseManager : MonoBehaviour
@@ -10,7 +11,13 @@ public class PauseManager : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject mainPausePanel;
 
+    [Header("Credits Overlay")]
+    [Tooltip("Prefab do Test_New_Credits (deve iniciar desativado).")]
+    public GameObject creditsPrefab;
+
     private bool isPaused = false;
+    private GameObject _creditsInstance;
+    private AudioSource[] _pausedForCredits;
 
     private void Start()
     {
@@ -47,8 +54,13 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (settingsPanel != null && creditsPanel != null &&
-            (settingsPanel.activeSelf || creditsPanel.activeSelf))
+        // Se os créditos estão abertos, deixa o botão de fechar deles lidar com o retorno
+        if (_creditsInstance != null) return;
+
+        bool subPanelOpen = (settingsPanel != null && settingsPanel.activeSelf) ||
+                            (creditsPanel != null && creditsPanel.activeSelf);
+
+        if (subPanelOpen)
         {
             GoToMainPause();
             return;
@@ -82,8 +94,70 @@ public class PauseManager : MonoBehaviour
 
     public void OpenCredits()
     {
+        if (creditsPrefab == null) return;
+        if (mainPausePanel != null) mainPausePanel.SetActive(false);
+        if (PAUSE != null) PAUSE.SetActive(false);
+
+        // Restaura o tempo para os scrolls animarem corretamente
         Time.timeScale = 1f;
         AudioListener.pause = false;
-        SceneTransition.Instance.ChangeScene("Credits");
+
+        // Pausa todos os AudioSources ativos ANTES de instanciar os créditos
+        var all = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        System.Collections.Generic.List<AudioSource> paused = new();
+        foreach (var src in all)
+        {
+            if (src.isPlaying)
+            {
+                src.Pause();
+                paused.Add(src);
+            }
+        }
+        _pausedForCredits = paused.ToArray();
+
+        _creditsInstance = Instantiate(creditsPrefab);
+        var mgr = _creditsInstance.GetComponent<CreditsManager>();
+
+        if (mgr != null)
+        {
+            mgr.isOverlay = true;
+            mgr.OnOverlayClosed = OnCreditsClosed;
+        }
+
+        // Fiação do botão de fechar (Button_Menu dentro do prefab)
+        var closeBtn = _creditsInstance.GetComponentInChildren<Button>(includeInactive: true);
+        if (closeBtn != null)
+            closeBtn.onClick.AddListener(CloseCredits);
+
+        _creditsInstance.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        OnCreditsClosed();
+    }
+
+    private void OnCreditsClosed()
+    {
+        if (_creditsInstance != null)
+            Destroy(_creditsInstance);
+        _creditsInstance = null;
+
+        // Restaura os AudioSources que foram pausados para os créditos
+        if (_pausedForCredits != null)
+        {
+            foreach (var src in _pausedForCredits)
+            {
+                if (src != null)
+                    src.UnPause();
+            }
+            _pausedForCredits = null;
+        }
+
+        // Volta ao estado de pause
+        if (PAUSE != null) PAUSE.SetActive(true);
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        GoToMainPause();
     }
 }

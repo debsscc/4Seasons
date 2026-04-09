@@ -39,8 +39,6 @@ public class CharacterData : ScriptableObject
     {
         if (item == null) return false;
 
-        Debug.Log($"[CharacterData] Checking if '{item.name}' is liked by character '{name}'");
-
         if (favoriteItems == null || favoriteItems.Count == 0)
             return false;
 

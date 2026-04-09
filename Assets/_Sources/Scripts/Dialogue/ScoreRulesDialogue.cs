@@ -60,7 +60,6 @@ public class ScoreRulesDialogue : MonoBehaviour
             Debug.LogWarning($"[ScoreRulesManager] Rule not found: '{ruleId}'");
             return;
         }
-        Debug.Log($"[ScoreRulesManager] Applying rule '{ruleId}'");
         ApplyRule(rule);
     }
 
@@ -79,7 +78,6 @@ public class ScoreRulesDialogue : MonoBehaviour
             if (_idToCharacterData.TryGetValue(trimId, out var data) && data != null)
             {
                 data.RelationshipScore += gainAmount;
-                Debug.Log($"[ScoreRulesManager] +{gainAmount} -> {trimId} (now {data.RelationshipScore})");
                 MiniGameFeedbackManager.Instance?.ShowHeart(trimId, true);
                 MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(trimId, 1);
             }
@@ -97,7 +95,6 @@ public class ScoreRulesDialogue : MonoBehaviour
             if (_idToCharacterData.TryGetValue(trimId, out var data) && data != null)
             {
                 data.RelationshipScore -= loseAmount;
-                Debug.Log($"[ScoreRulesManager] -{loseAmount} -> {trimId} (now {data.RelationshipScore})");
                 MiniGameFeedbackManager.Instance?.ShowHeart(trimId, false);
                 MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(trimId, -1);
             }

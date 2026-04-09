@@ -29,7 +29,7 @@ public class UICharacterOrder : MonoBehaviour
         var draggables = miniGameController.draggablePrefabs;
         string order = null;
         var seen = new System.Collections.Generic.HashSet<string>();
-        Debug.Log("Dragganle amount " + draggables.Count);
+
         foreach (var draggable in draggables)
         {
             var itemsHolder = draggable.GetComponent<IItemHolder>();
@@ -106,12 +106,7 @@ public class UICharacterOrder : MonoBehaviour
 
     public void ShowHeart(bool positive)
     {
-        Debug.Log("ShowHeart called for " + (character ? character.name : "null") + " positive: " + positive);
-        if (heartImage == null) 
-        {
-            Debug.Log("heartImage is null for " + (character ? character.name : "null"));
-            return;
-        }
+        if (heartImage == null) return;
         if (positiveHeartSprite == null || negativeHeartSprite == null)
         {
             Debug.Log("Heart sprites not set for " + (character ? character.name : "null"));
