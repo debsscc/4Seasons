@@ -2,13 +2,13 @@
 - Project name: 4Seasons
 - Unity version: Unity 6000.2.10f1
 - Active scene:
-  - Name: Credits
+  - Name: Event3.0
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, HandSprite, DragBounds
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, UI_A, a
 - Active game object:
-  - Name: Audio
+  - Name: UI
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

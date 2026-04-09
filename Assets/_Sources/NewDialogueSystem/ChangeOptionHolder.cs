@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 using Yarn.Unity;
 
@@ -66,11 +67,28 @@ public class ChangeOptionHolder : MonoBehaviour
             if (_emotionController != null)
                 _emotionController.BeginOptionsPreview();
             PreviewOptionEmotion();
+            // Desativa navegação do EventSystem para que as teclas A/D cheguem ao Update()
+            if (EventSystem.current != null)
+                EventSystem.current.sendNavigationEvents = false;
         }
         // se não houver opções ativas, reseta o contador para garantir que a próxima vez que opções forem ativadas, o sistema reconheça a mudança
         else if (activeCount == 0 && _lastOptionCount > 0)
         {
             _lastOptionCount = 0;
+            // Restaura navegação do EventSystem
+            if (EventSystem.current != null)
+                EventSystem.current.sendNavigationEvents = true;
+        }
+
+        // Navegação por teclado
+        if (activeCount > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+                CurrentIndex--;
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+                CurrentIndex++;
+            else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                ConfirmSelection();
         }
     }
 

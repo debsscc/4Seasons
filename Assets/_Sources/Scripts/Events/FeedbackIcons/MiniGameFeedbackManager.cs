@@ -90,6 +90,7 @@ public class MiniGameFeedbackManager : MonoBehaviour
 
         BuildLookup();
         CacheHeartScales();
+        HideAllHearts();
         // NÃO inicializamos sprites no Awake aqui caso os balões sejam instanciados depois.
         // Vamos inicializar no Start para ter mais chance de as refs já estarem prontas.
     }
@@ -138,6 +139,16 @@ public class MiniGameFeedbackManager : MonoBehaviour
         {
             if (ui == null || string.IsNullOrEmpty(ui.characterId) || ui.heartImage == null) continue;
             _heartOriginalScales[ui.characterId] = ui.heartImage.transform.localScale;
+        }
+    }
+
+    private void HideAllHearts()
+    {
+        foreach (var ui in npcFeedbacks)
+        {
+            if (ui == null || ui.heartImage == null) continue;
+            ui.heartImage.enabled = false;
+            ui.heartImage.sprite = null;
         }
     }
 

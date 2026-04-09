@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4333587118543915045, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Sprite
@@ -707,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4333587118543915045, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Sprite
@@ -1083,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4333587118543915045, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Sprite
@@ -1510,7 +1510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4333587118543915045, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Sprite
@@ -2493,6 +2493,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6102347053816423176, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1740944289}
+    - targetCorrespondingSourceObject: {fileID: 4313490817376697131, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1630551602}
   m_SourcePrefab: {fileID: 100100000, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
 --- !u!4 &1500845217 stripped
 Transform:
@@ -2594,6 +2597,56 @@ Transform:
   - {fileID: 1963454819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1630551601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4313490817376697131, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
+  m_PrefabInstance: {fileID: 1500845216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1630551602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630551601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1159642739}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnHoverCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1159642739}
+          m_TargetAssemblyTypeName: UICursorChange, Assembly-CSharp
+          m_MethodName: OnExitCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1740944285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6102347053816423176, guid: a5c85665d060b644b84a16aaf2b78fb5, type: 3}
@@ -3287,7 +3340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649567740134732608, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4333587118543915045, guid: abe4567891b48d643aef469ed4a3673c, type: 3}
       propertyPath: m_Sprite
