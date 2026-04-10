@@ -77,6 +77,19 @@ public class DialogueChoiceFeedbackController : MonoBehaviour
         binding.resetCoroutine = StartCoroutine(ApplyFeedbackDelayed(binding, gained));
     }
 
+    /// <summary>
+    /// Cancela todas as coroutines de feedback ativas.
+    /// Chamado por DialogueEmotionController.BeginOptionsPreview() para evitar
+    /// que um reset para Normal de uma escolha anterior interfira com a preview
+    /// de emoções das novas opções.
+    /// </summary>
+    public void CancelAllFeedback()
+    {
+        StopAllCoroutines();
+        foreach (var b in _bindings)
+            b.resetCoroutine = null;
+    }
+
     private IEnumerator ApplyFeedbackDelayed(RunnerBinding binding, bool gained)
     {
         // Aguarda 1 frame para o DialogueEmotionController.ForceApplyCurrentEmotion rodar antes e n bugar
@@ -130,22 +143,21 @@ public class DialogueChoiceFeedbackController : MonoBehaviour
         // Se o animator usa OverrideController, verifica se o clip daquele estado ta posto ali ou n
         if (animator.runtimeAnimatorController is AnimatorOverrideController overrideCtrl)
         {
-            if (!_emotionToStateName.TryGetValue(emotion, out var stateName))
-                return false;
-
-            var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
-            overrideCtrl.GetOverrides(overrides);
-
-            foreach (var pair in overrides)
+            if (_emotionToStateName.TryGetValue(emotion, out var stateName))
             {
-                if (pair.Key != null && pair.Key.name == stateName)
-                    return pair.Value != null;
+                var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
+                overrideCtrl.GetOverrides(overrides);
+
+                foreach (var pair in overrides)
+                {
+                    if (pair.Key != null && pair.Key.name == stateName)
+                        return pair.Value != null;
+                }
             }
-            // Estado não encontrado na lista de overrides = sem clip sobrescrito
-            return false;
+            // Estado não encontrado/sem clip nas overrides: cai para verificar o trigger no base controller
         }
 
-        // verifica só se o trigger existe como parâmetro
+        // verifica se o trigger existe como parâmetro (funciona p/ AnimatorController base e OverrideController)
         string triggerName = emotion.ToString();
         foreach (var param in animator.parameters)
         {

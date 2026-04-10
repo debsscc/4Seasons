@@ -35,6 +35,12 @@ public class CharacterData : ScriptableObject
         _relationshipScore = _initialRelationshipScore;
     }
 
+    public void ResetScore()
+    {
+        _relationshipScore = _initialRelationshipScore;
+        OnRelationshipChanged?.Invoke(_relationshipScore);
+    }
+
     public bool LikesItem(ItemsSO item)
     {
         if (item == null) return false;

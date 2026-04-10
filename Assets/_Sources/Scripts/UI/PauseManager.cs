@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 
 public class PauseManager : MonoBehaviour
@@ -31,7 +32,7 @@ public class PauseManager : MonoBehaviour
     private void Update()
     {
         if (PAUSE == null) return;
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (isPaused)
                 ResumeGame();
@@ -90,6 +91,12 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         AudioListener.pause = false;
+
+        GameSessionManager.Instance?.ResetSession();
+        if (GameSessionManager.Instance != null) Destroy(GameSessionManager.Instance.gameObject);
+        if (MapSelectionManager.Instance != null) Destroy(MapSelectionManager.Instance.gameObject);
+        if (GameFlowManager.Instance != null) Destroy(GameFlowManager.Instance.gameObject);
+
         SceneTransition.Instance.ChangeScene("MainMenu");
     }
 

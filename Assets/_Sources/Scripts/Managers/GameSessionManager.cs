@@ -77,6 +77,8 @@ public class GameSessionManager : MonoBehaviour
             GameFlowManager.Instance.currentDay = 1;
             GameFlowManager.Instance.currentEventIndex = 0;
         }
+        foreach (var character in Resources.FindObjectsOfTypeAll<CharacterData>())
+            character.ResetScore();
         Debug.Log("GameSessionManager: sessão resetada.");
     }
 

@@ -56,7 +56,7 @@ public class SceneLoaderYarn : MonoBehaviour
             GameSessionManager.Instance.MarkCurrentMapAsCompleted();
 
             int completed = System.Linq.Enumerable.Count(GameSessionManager.Instance.GetCompletedMaps());
-            int needed = GameFlowManager.Instance != null ? GameFlowManager.Instance.mapsCompletedToEndGame : 3;
+            int needed = GameFlowManager.Instance != null ? GameFlowManager.Instance.mapsCompletedToEndGame : 4;
 
             if (completed >= needed)
             {
