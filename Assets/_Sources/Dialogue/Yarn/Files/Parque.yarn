@@ -1,4 +1,4 @@
-﻿title: Roda_Gigante
+title: Roda_Gigante
 ---
 
 <<set $event_part = "Event5.1_Part1">>
@@ -93,20 +93,12 @@ Arabella: Se a Íris e o Ian não tivessem girado o negócio tão rápido. #line
 Iris: Qual a graça dele ir devagarzinho? #line:0cd56b5 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-<<<<<<< HEAD
 ->  Sabrina: Acho que a graça é não vomitar. #emotion:Happy #line:00803fc 
-=======
-->  Sabrina: Acho que a graça é não vomitar. #emotion:Normal
->>>>>>> 1f9a42c7c29255b9bce950f52cf24459da157860
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option3">>
     <<ApplyEventPart Event5.1_option3>>
-<<<<<<< HEAD
 ->  Sabrina: SIM! quanto mais rápido melhor!  #line:0475e0d 
-=======
-->  Sabrina: SIM! quanto mais rápido melhor! #emotion:Happy
->>>>>>> 1f9a42c7c29255b9bce950f52cf24459da157860
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option4">>
