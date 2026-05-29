@@ -1,114 +1,114 @@
-title: Fogos_De_Artificio
+﻿title: Fogos_De_Artificio
 ---
 
 <<set $event_part = "Event4.1">>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-Arabella: Droga!
+Arabella: Droga! #line:0967a47 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-Arabella: A memória da câmera tá cheia.
+Arabella: A memória da câmera tá cheia. #line:0abd557 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-Sabrina: Vish.
+Sabrina: Vish. #line:0552cec 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-Sabrina: Tem espaço pra mais quantas?
+Sabrina: Tem espaço pra mais quantas? #line:00f4824 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Umas duas fotos
+Arabella: Umas duas fotos #line:0c3780b 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Acho que a gente se empolgou hoje.
+Iris: Acho que a gente se empolgou hoje. #line:08abf80 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-Lucas: É tão legal tirar foto.
+Lucas: É tão legal tirar foto. #line:02632ef 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-Lucas: As fotos da Bella são muito bonitas.
+Lucas: As fotos da Bella são muito bonitas. #line:09a2b18 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Verdade, tu é uma ótima fotógrafa.
+Iris: Verdade, tu é uma ótima fotógrafa. #line:0428843 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: E cês são muito sentimentais e bonitinhos.
+Arabella: E cês são muito sentimentais e bonitinhos. #line:02dd9c5 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Cê vai mandar elas pra gente depois né?
+Sabrina: Cê vai mandar elas pra gente depois né? #line:0a76521 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: Lógico, se eu não mando me enchem o saco.
+Arabella: Lógico, se eu não mando me enchem o saco. #line:05586d0 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Shy">>
-Lucas: A gente nem te incomoda tanto assim.
+Lucas: A gente nem te incomoda tanto assim. #line:0329b18 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-Sabrina: Eu incomodo.
+Sabrina: Eu incomodo. #line:0ef76fa 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
-Sabrina: Preciso das fotos pras minhas colagens
+Sabrina: Preciso das fotos pras minhas colagens #line:08e90fd 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Inclusive tu tem que nos mostrar as últimas.
+Iris: Inclusive tu tem que nos mostrar as últimas. #line:02eb81a 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Com as fotos do aniversário do Ian.
+Iris: Com as fotos do aniversário do Ian. #line:0097b62 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-Lucas: Verdade, você sempre fica evitando.
+Lucas: Verdade, você sempre fica evitando. #line:093821a 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Shy">>
-Sabrina: Um dia eu mostro.
+Sabrina: Um dia eu mostro. #line:00fb25a 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: Cheia de migué.
+Arabella: Cheia de migué. #line:0e97cd4 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Não querendo evitar o assunto.
+Sabrina: Não querendo evitar o assunto. #line:0309fc1 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Mas a gente não vai soltar os fogos não?
+Sabrina: Mas a gente não vai soltar os fogos não? #line:047dfb9 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Happy">>
-Arabella: Vamos! É pra isso que a gente veio aqui.
+Arabella: Vamos! É pra isso que a gente veio aqui. #line:0ecb40f 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Aqui, cada um pega um da minha bolsa.
+Iris: Aqui, cada um pega um da minha bolsa. #line:0a23f6a 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-Lucas: Uma penas que eles são barulhentos.
+Lucas: Uma penas que eles são barulhentos. #line:0476230 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: É, o barulho é meio chato mesmo.
+Iris: É, o barulho é meio chato mesmo. #line:09a5543 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Mas vai ser legal ver o céu colorido.
+Iris: Mas vai ser legal ver o céu colorido. #line:054c746 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
--> Sabrina: O estouro não me incomoda tanto. #emotion:Normal
+-> Sabrina: O estouro não me incomoda tanto. #emotion:Normal #line:0702513 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event4.1_option1">>
     <<ApplyEventPart Event4.1_option1>>
--> Sabrina: Pois é, não gosto do barulho alto. #emotion:Sad
+-> Sabrina: Pois é, não gosto do barulho alto. #emotion:Sad #line:01d1899 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Sad">>
     <<set $current_option = "Event4.1_option2">>
     <<ApplyEventPart Event4.1_option2>>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Tapa os ouvidos que fica de boa, Luke.
+Arabella: Tapa os ouvidos que fica de boa, Luke. #line:0a8efef 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Quem vai tirar foto dos fogos?
+Iris: Quem vai tirar foto dos fogos? #line:07bfd05 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Eu tirei fotos demais hoje, passo a câmera pra outro.
+Arabella: Eu tirei fotos demais hoje, passo a câmera pra outro. #line:06a7cf4 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
-Lucas: Ai eu não sei se sou muito bom nisso.
+Lucas: Ai eu não sei se sou muito bom nisso. #line:0712856 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Brina, tu gosta de tirar fotos também, pode ser tu?
+Iris: Brina, tu gosta de tirar fotos também, pode ser tu? #line:026a2c5 
 <<stop>>
 ===

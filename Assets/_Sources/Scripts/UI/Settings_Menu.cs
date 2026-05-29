@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.Localization.Settings;
 using TMPro;
 
 public class Settings_Menu : MonoBehaviour
@@ -23,5 +24,14 @@ public class Settings_Menu : MonoBehaviour
     public void ChangeVoiceVolume()
     {
         mainAudioMixer.SetFloat("VoiceVol", voiceVol.value);
+    }
+
+    public void SetLanguage(string localeCode) // "pt-BR" ou "en"
+    {
+        var locale = LocalizationSettings.AvailableLocales
+            .GetLocale(localeCode);
+
+        if (locale != null)
+            LocalizationSettings.SelectedLocale = locale;
     }
 }

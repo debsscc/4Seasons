@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI_Strings Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: UI_Strings
+  m_TableCollectionNameGuidString: 736d013199bd82e4dab6704e00c34ff6
+  m_Entries:
+  - m_Id: 50615562240
+    m_Key: btn_start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87290556416
+    m_Key: btn_quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90792800256
+    m_Key: btn_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94211158016
+    m_Key: btn_back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97956671488
+    m_Key: lbl_master_vol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268652261376
+    m_Key: lbl_sfx_vol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 300667383808
+    m_Key: lbl_music_vol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333982740480
+    m_Key: lbl_voices_vol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352857108480
+    m_Key: "lbl_gameover\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 361451237376
+    m_Key: cargo
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 667607625658794213
+  references:
+    version: 2
+    RefIds:
+    - rid: 667607625658794213
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1780017792578

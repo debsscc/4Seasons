@@ -1,4 +1,4 @@
-title: Variables_Yarn
+﻿title: Variables_Yarn
 ---
 
 <<declare $current_character = "">>
@@ -10,14 +10,14 @@ title: Variables_Yarn
 // Seta a emoção antes de cada fala
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Oi! Que bom te ver.
+Iris: Oi! Que bom te ver. #line:0ebf180 
 
 <<set $current_emotion = "Happy">>
-Iris: Hoje eu tô muito animada!
+Iris: Hoje eu tô muito animada! #line:0e52c3d 
 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Worried">>
-Ian: Você viu a Melissa por aí?
+Ian: Você viu a Melissa por aí? #line:0151054 
 
 <<jump EscolhaTeste>>
 
@@ -26,21 +26,21 @@ Ian: Você viu a Melissa por aí?
 title: EscolhaTeste
 ---
 
-Iris: E aí, o que você quer fazer?
+Iris: E aí, o que você quer fazer? #line:0031dcb 
 
--> Ir para o shopping.
+-> Ir para o shopping. #line:0cda14d 
     // consequência da opção 0
-    Iris: Boa, vamos gastar um pouco!
+    Iris: Boa, vamos gastar um pouco! #line:04c2890 
     <<jump DepoisDaEscolha>>
 
--> Ficar em casa.
+-> Ficar em casa. #line:0c86689 
     // consequência da opção 1
-    Iris: Tudo bem, às vezes é bom descansar.
+    Iris: Tudo bem, às vezes é bom descansar. #line:0b22ae6 
     <<jump DepoisDaEscolha>>
 
--> Ir pra praça.
+-> Ir pra praça. #line:0f8d30c 
     // consequência da opção 2
-    Iris: Adoro a praça nessa época!
+    Iris: Adoro a praça nessa época! #line:06da872 
     <<jump DepoisDaEscolha>>
 
 ===
@@ -48,6 +48,6 @@ Iris: E aí, o que você quer fazer?
 title: DepoisDaEscolha
 ---
 
-Iris: Então tá combinado!
+Iris: Então tá combinado! #line:0d2cf74 
 
 ===

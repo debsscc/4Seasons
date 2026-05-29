@@ -1,124 +1,124 @@
-title: Praia
+﻿title: Praia
 ---
 
 <<set $event_part = "Event3.1_Part1">>
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Cara, eu adoro a praia, a vibe aqui é muito boa, tu não acha?
+Iris: Cara, eu adoro a praia, a vibe aqui é muito boa, tu não acha? #line:0107e4e 
 <<set $current_character = "Sabrina">>
--> Sabrina: Não sou a maior fã. #emotion:Normal
+-> Sabrina: Não sou a maior fã. #emotion:Normal #line:0cacb49 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event3.1_option1">>
     <<ApplyEventPart Event3.1_option1>>
--> Sabrina: Pior que eu gosto bastante. #emotion:Happy
+-> Sabrina: Pior que eu gosto bastante. #emotion:Happy #line:0d0165e 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event3.1_option2">>
     <<ApplyEventPart Event3.1_option2>>
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Eu sinto que sou uma só com o mar às vezes, bizarro.
+Iris: Eu sinto que sou uma só com o mar às vezes, bizarro. #line:0a96312 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: É meio estranho, mas acho que te entendo.
+Sabrina: É meio estranho, mas acho que te entendo. #line:0f28229 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Tem uma beleza tão grande na natureza.
+Iris: Tem uma beleza tão grande na natureza. #line:05648d0 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Tipo é muito incrível como tudo se conecta e funciona.
+Iris: Tipo é muito incrível como tudo se conecta e funciona. #line:0b0b3b3 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Cê tá bem, Íris? Que papo é esse.
+Sabrina: Cê tá bem, Íris? Que papo é esse. #line:0332b9d 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
-Iris: Tô pensativa nos últimos dias.
+Iris: Tô pensativa nos últimos dias. #line:0c57bb8 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
-Iris: A bruxaria vem me deixando mais introspectiva, sabe?
+Iris: A bruxaria vem me deixando mais introspectiva, sabe? #line:0198448 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
-Iris: É como se eu estivesse mais atenta às coisas ao meu redor também.
+Iris: É como se eu estivesse mais atenta às coisas ao meu redor também. #line:0d47e26 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Faz quanto tempo mesmo que cê tá praticando?
+Sabrina: Faz quanto tempo mesmo que cê tá praticando? #line:0948c90 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Um ano e pouquinho, comecei só de curiosa, mas faz sentido.
+Iris: Um ano e pouquinho, comecei só de curiosa, mas faz sentido. #line:0745045 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Parece que eu finalmente achei meu lugar no mundo.
+Iris: Parece que eu finalmente achei meu lugar no mundo. #line:0ec7059 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Como assim?
+Sabrina: Como assim? #line:0063fc9 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Sad">>
-Iris: Difícil de explicar, mas eu me sinto muito deslocada.
+Iris: Difícil de explicar, mas eu me sinto muito deslocada. #line:0686ca3 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Thoughtful">>
-Iris: Parece que agora eu vejo que o universo é grande demais.
+Iris: Parece que agora eu vejo que o universo é grande demais. #line:0c18282 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Ficou mais leve, sinto que eu posso só existir sem tanta pressão.
+Iris: Ficou mais leve, sinto que eu posso só existir sem tanta pressão. #line:0c2f351 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-Sabrina: Queria conseguir me sentir assim, mas com a vida adulta chegando.
+Sabrina: Queria conseguir me sentir assim, mas com a vida adulta chegando. #line:09b3d39 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-Sabrina: Acho impossível não sentir a pressão.
+Sabrina: Acho impossível não sentir a pressão. #line:05f9951 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-Sabrina: Como cê consegue?
+Sabrina: Como cê consegue? #line:0c797be 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Eu não tô imune de inseguranças, Brina.
+Iris: Eu não tô imune de inseguranças, Brina. #line:04e9a8e 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Só percebi que tem coisas que eu não controlo.
+Iris: Só percebi que tem coisas que eu não controlo. #line:0bf2148 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Que não vale a pena me desgastar a toa.
+Iris: Que não vale a pena me desgastar a toa. #line:0b2ed81 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Sad">>
-Sabrina: Cê fala como se fosse fácil.
+Sabrina: Cê fala como se fosse fácil. #line:0c7e5f3 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Não é, mas a gente precisa ver as coisas mais leves.
+Iris: Não é, mas a gente precisa ver as coisas mais leves. #line:02922c8 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Se a gente levar tudo à sério, fica doido.
-<<set $current_character = "Iris">>
-<<set $current_emotion = "Happy">>
-Iris: Essa fase que a gente tá vivendo é difícil, mas a gente sobrevive.
-<<set $current_character = "Sabrina">>
-<<set $current_emotion = "Normal">>
-Sabrina: Tenho minhas dúvidas.
-<<set $current_character = "Sabrina">>
-<<set $current_emotion = "Normal">>
-Sabrina: Cê não tá com medo não?
+Iris: Se a gente levar tudo à sério, fica doido. #line:035f83a 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Com certeza, mas quero acreditar que vai dar certo.
+Iris: Essa fase que a gente tá vivendo é difícil, mas a gente sobrevive. #line:0b60ddb 
 <<set $current_character = "Sabrina">>
--> Sabrina: É difícil se manter positiva. #emotion:Sad
+<<set $current_emotion = "Normal">>
+Sabrina: Tenho minhas dúvidas. #line:07d127f 
+<<set $current_character = "Sabrina">>
+<<set $current_emotion = "Normal">>
+Sabrina: Cê não tá com medo não? #line:0999853 
+<<set $current_character = "Iris">>
+<<set $current_emotion = "Happy">>
+Iris: Com certeza, mas quero acreditar que vai dar certo. #line:0b1dcc0 
+<<set $current_character = "Sabrina">>
+-> Sabrina: É difícil se manter positiva. #emotion:Sad #line:03ce82d 
     <<set $current_character = "Sabrina">> 
     <<set $current_emotion = "Sad">>
     <<set $current_option = "Event3.1_option3">>
     <<ApplyEventPart Event3.1_option3>>
--> Sabrina: Uma hora tem que dar certo. #emotion:Normal
+-> Sabrina: Uma hora tem que dar certo. #emotion:Normal #line:0e45e79 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event3.1_option4">>
     <<ApplyEventPart Event3.1_option4>>
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Pra tudo se tem um jeito, Brina.
+Iris: Pra tudo se tem um jeito, Brina. #line:00bf853 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Happy">>
-Iris: Por agora, vamo relaxar.
+Iris: Por agora, vamo relaxar. #line:0def8ac 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Quer fumar um?
+Iris: Quer fumar um? #line:0c3c5b3 
 <<stop>>
 ===

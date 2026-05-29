@@ -1,134 +1,134 @@
-title: Start_Shopping
+﻿title: Start_Shopping
 //Contextualização Event2.0
 ---
 <<set $event_part = "Event2.0_Part1">>
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: A gente tem dinheiro pra duas bebidas.
+Sabrina: A gente tem dinheiro pra duas bebidas. #line:05ea1bb 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Ah, tudo bem. A gente sempre pode dividir.
+Melissa: Ah, tudo bem. A gente sempre pode dividir. #line:060184f 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Ou roubar.
+Arabella: Ou roubar. #line:0a0fff0 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-Melissa: Arabella!
+Melissa: Arabella! #line:0b96989 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: O que? É verdade.
+Arabella: O que? É verdade. #line:038c921 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
-Ian: Ela não tá errada.
+Ian: Ela não tá errada. #line:0fd7424 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
-Ian: O mercado é dentro do shopping,
+Ian: O mercado é dentro do shopping, #line:0826400 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
-Ian: Você acha mesmo que eles precisam de dinheiro?
+Ian: Você acha mesmo que eles precisam de dinheiro? #line:0d32fc7 
 <<set $current_character = "Sabrina">>
--> Sabrina: Ainda é errado! #emotion:Angry
+-> Sabrina: Ainda é errado! #emotion:Angry #line:0cdc144 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event2.0_option1">>
     <<ApplyEventPart Event2.0_option1>> 
--> Sabrina: Ele tem um ponto, mas eu não apoio a gente roubar. #emotion:Normal
+-> Sabrina: Ele tem um ponto, mas eu não apoio a gente roubar. #emotion:Normal #line:0b2d59f 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event2.0_option2">>
     <<ApplyEventPart Event2.0_option2>>
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-Melissa: Ninguém vai roubar nada!
+Melissa: Ninguém vai roubar nada! #line:02604fd 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-Melissa: A gente divide as bebidas e é isso!
+Melissa: A gente divide as bebidas e é isso! #line:06856ec 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Pelo menos vamo tomar algo bom, tipo uma cerveja.
+Arabella: Pelo menos vamo tomar algo bom, tipo uma cerveja. #line:069e54a 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Angry">>
-Ian: Ah, não bella! Cerveja é ruim.
+Ian: Ah, não bella! Cerveja é ruim. #line:0b4abf5 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
-Ian: Se a gente vai beber que seja algo bom mesmo, tipo Ice.
+Ian: Se a gente vai beber que seja algo bom mesmo, tipo Ice. #line:0e76d6d 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: Lógico que era isso que cê ia querer.
+Arabella: Lógico que era isso que cê ia querer. #line:0b909b3 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: E como que a gente compraria essas coisas?
+Sabrina: E como que a gente compraria essas coisas? #line:0cf3fbb 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Não sei se cês lembram, mas ainda somos de menor.
+Sabrina: Não sei se cês lembram, mas ainda somos de menor. #line:0118f04 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Eles nunca pedem pra olhar documento.
+Arabella: Eles nunca pedem pra olhar documento. #line:05f0b07 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Se pedirem deixa comigo.
+Arabella: Se pedirem deixa comigo. #line:0c1e3bf 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Surprised">>
-Melissa: Tu ainda tem aquela identidade falsa?
+Melissa: Tu ainda tem aquela identidade falsa? #line:00baa01 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Da última vez deu errado, lembra?
+Melissa: Da última vez deu errado, lembra? #line:01d28dc 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Eu fiz uma nova. Aquela tava um lixo mesmo.
+Arabella: Eu fiz uma nova. Aquela tava um lixo mesmo. #line:0e17d1f 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Sad">>
-Melissa: Eu não acho uma boa ideia de qualquer forma.
+Melissa: Eu não acho uma boa ideia de qualquer forma. #line:0c95f60 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: Não pode beber.
+Ian: Não pode beber. #line:0205095 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: Não pode roubar.
+Ian: Não pode roubar. #line:0faa5d8 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: Não pode nada!
+Ian: Não pode nada! #line:0b6191e 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-Melissa: Para de graça, Ian!
+Melissa: Para de graça, Ian! #line:02be365 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
-Arabella: Se a gente não vai beber o que cê quer tomar?
+Arabella: Se a gente não vai beber o que cê quer tomar? #line:067a788 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Pode ser um suco ou um refri se não tiver.
+Melissa: Pode ser um suco ou um refri se não tiver. #line:09795f9 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Eu apoio um suquinho.
+Sabrina: Eu apoio um suquinho. #line:0b02e17 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: Muito sem graça.
+Arabella: Muito sem graça. #line:06857f2 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: A gente sempre pode pegar algo com álcool e algo sem.
+Sabrina: A gente sempre pode pegar algo com álcool e algo sem. #line:00d77ad 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: Ou roubar
+Ian: Ou roubar #line:0427a15 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: Ou roubar
+Arabella: Ou roubar #line:009cae7 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-Melissa: Parem com essa ideia idiota!
+Melissa: Parem com essa ideia idiota! #line:0616a32 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Normal">>
-Ian: Relaxa Mel.
+Ian: Relaxa Mel. #line:021f361 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
-Ian: É muito punk roubar de grandes corporações!
+Ian: É muito punk roubar de grandes corporações! #line:0e1d3af 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
-Ian: Não tem nada de errado em tirar dinheiro deles.
+Ian: Não tem nada de errado em tirar dinheiro deles. #line:026d030 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Happy">>
-Arabella: Ele tá certo, isso cê não pode negar.
+Arabella: Ele tá certo, isso cê não pode negar. #line:0ca239a 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Tá só vamos entrar e pegar as coisas logo.
+Melissa: Tá só vamos entrar e pegar as coisas logo. #line:0cc368d 
 <<stop>>
 ===
