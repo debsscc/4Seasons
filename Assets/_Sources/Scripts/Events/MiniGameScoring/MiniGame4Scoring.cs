@@ -100,19 +100,6 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
 
         CharacterData positiveCharacter = droppedSlot?.associatedCharacter;
 
-        foreach (var friend in friendCharacters)
-        {
-            if (friend == null) continue;
-            var type = (friend == positiveCharacter) ? FeedbackType.Positive : FeedbackType.Negative;
-            MiniGameFeedbackManager.Instance.UpdatePreviewTemp(friend, (int)type);
-        }
-
-        if (positiveCharacter != null)
-        {
-            var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character == positiveCharacter);
-            uiOrder?.PunchScale();
-        }
-
         if (playerCharacter != null)
         {
             var type = (playerCharacter == positiveCharacter) ? FeedbackType.Positive : FeedbackType.Negative;
@@ -149,6 +136,23 @@ public class MiniGame41Scoring : MonoBehaviour, IMiniGameScoring
         if (confirmButton) confirmButton.SetActive(false);
 
         ApplyScoring(_selectedSlot);
+
+        if (MiniGameFeedbackManager.Instance != null)
+        {
+            CharacterData chosenChar = _selectedSlot.associatedCharacter;
+            foreach (var friend in friendCharacters)
+            {
+                if (friend == null) continue;
+                int expressionID = (friend == chosenChar) ? 1 : -1;
+                MiniGameFeedbackManager.Instance.UpdatePreviewTemp(friend, expressionID);
+            }
+            if (chosenChar != null)
+            {
+                var uiOrder = MiniGameFeedbackManager.Instance.uiCharacterOrders.Find(x => x.Character == chosenChar);
+                uiOrder?.PunchScale();
+            }
+        }
+
         ApplyHeartFeedback(_selectedSlot.associatedCharacter);
 
         StartCoroutine(ShowFeedbackThenModal(_selectedSlot.specialId));

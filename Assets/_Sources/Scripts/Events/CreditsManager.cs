@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,29 +22,42 @@ public class CreditsManager : MonoBehaviour
     [Tooltip("Trilha específica dos créditos (opcional). Se atribuída, ela não será parada ao entrar na cena.")]
     [SerializeField] private AudioSource creditosMusic;
 
+    [Header("Overlay Mode")]
+    [Tooltip("Se true, ao final não troca de cena — apenas fecha o overlay e invoca OnOverlayClosed.")]
+    public bool isOverlay = false;
+    public System.Action OnOverlayClosed;
+    public float overlayFadeOutDuration = 0.4f;
+
     [Header("Overlap")]
     [Tooltip("Seconds before the anuario scroll ends when the credits scroll should begin.")]
     public float creditosStartBeforeAnuarioEnd = 2f;
 
     private FadeController fadeControllerInstance;
     private bool creditosStarted;
+    private bool _transitionStarted;
 
     void Start()
     {
         // Ao entrar na cena de créditos, parar qualquer música anterior que ainda esteja tocando,
         // exceto a trilha configurada especificamente para os créditos (se houver).
-        var allAudioSources = FindObjectsOfType<AudioSource>();
-        foreach (var src in allAudioSources)
+        if (!isOverlay)
         {
-            if (src == null) continue;
-            if (creditosMusic != null && src == creditosMusic) continue;
-            if (src.isPlaying)
-                src.Stop();
+            var allAudioSources = FindObjectsOfType<AudioSource>();
+            foreach (var src in allAudioSources)
+            {
+                if (src == null) continue;
+                if (creditosMusic != null && src == creditosMusic) continue;
+                if (src.isPlaying)
+                    src.Stop();
+            }
         }
 
         if (imagemAnuario != null) imagemAnuario.SetActive(false);
         if (imagemAnuarioScroll != null) imagemAnuarioScroll.gameObject.SetActive(false);
         if (creditosScroll != null) creditosScroll.gameObject.SetActive(false);
+
+        if (isOverlay && creditosMusic != null)
+            creditosMusic.Play();
 
         IniciarSequenciaDeCreditos();
     }
@@ -122,6 +137,14 @@ public class CreditsManager : MonoBehaviour
     {
         creditosScroll.OnScrollFinished -= IniciarTransicaoParaMenu;
     }
+
+    if (isOverlay)
+    {
+        if (_transitionStarted) return;
+        StartCoroutine(FadeOutOverlay());
+        return;
+    }
+
     if (fadePrefab != null)
     {
         GameObject fadeObject = Instantiate(fadePrefab);
@@ -144,6 +167,30 @@ public class CreditsManager : MonoBehaviour
         SceneManager.LoadScene(nomeDaCenaMenu);
     }
 }
+
+    private IEnumerator FadeOutOverlay()
+    {
+        _transitionStarted = true;
+
+        var canvases = GetComponentsInChildren<Canvas>(true);
+        var cgs = new List<CanvasGroup>();
+        foreach (var c in canvases)
+        {
+            var cg = c.GetComponent<CanvasGroup>();
+            if (cg == null) cg = c.gameObject.AddComponent<CanvasGroup>();
+            cgs.Add(cg);
+        }
+
+        if (cgs.Count > 0)
+        {
+            var seq = DOTween.Sequence().SetUpdate(true);
+            foreach (var cg in cgs)
+                seq.Join(cg.DOFade(0f, overlayFadeOutDuration).SetUpdate(true));
+            yield return seq.WaitForCompletion();
+        }
+
+        OnOverlayClosed?.Invoke();
+    }
 
     private IEnumerator TransicionarParaMenu()
     {

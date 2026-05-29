@@ -35,11 +35,15 @@ public class CharacterData : ScriptableObject
         _relationshipScore = _initialRelationshipScore;
     }
 
+    public void ResetScore()
+    {
+        _relationshipScore = _initialRelationshipScore;
+        OnRelationshipChanged?.Invoke(_relationshipScore);
+    }
+
     public bool LikesItem(ItemsSO item)
     {
         if (item == null) return false;
-
-        Debug.Log($"[CharacterData] Checking if '{item.name}' is liked by character '{name}'");
 
         if (favoriteItems == null || favoriteItems.Count == 0)
             return false;

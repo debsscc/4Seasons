@@ -12,7 +12,7 @@ public class GameFlowManager : Singleton<GameFlowManager>
     
     [UnityEngine.Header("End Game Rule")]
     [UnityEngine.Tooltip("Quantos mapas completados são necessários para ir aos créditos.")]
-    public int mapsCompletedToEndGame = 3;
+    public int mapsCompletedToEndGame = 4;
 
     public void StartWeek(List<LocationData> weekSchedule)
     {

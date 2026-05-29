@@ -33,6 +33,9 @@ public class DialogueEmotionController : MonoBehaviour
     public Vector2 bubbleOffset = new Vector2(0, 120);
     public Camera uiCamera;
 
+    [Header("Integrações")]
+    [SerializeField] private DialogueChoiceFeedbackController feedbackController;
+
     private Dictionary<string, GameObject> _idToGO = new();
     private Dictionary<string, CharacterEmotionProfile> _idToProfile = new();
     private Dictionary<string, SpriteRenderer> _idToSpriteRenderer = new();
@@ -40,7 +43,8 @@ public class DialogueEmotionController : MonoBehaviour
     private Dictionary<string, Image> _idToUIImage = new();
 
     private string _lastCharacter = string.Empty;
-    private EmotionType _lastEmotion = EmotionType.Normal;
+    private EmotionType 
+    _lastEmotion = EmotionType.Normal;
     private bool _isShowingOptions = false;
 
     private List<CharacterAnimatorRunner> _animatorRunners = new List<CharacterAnimatorRunner>();
@@ -87,10 +91,50 @@ public class DialogueEmotionController : MonoBehaviour
         }
 
         _lastCharacter = string.Empty;
+
+        if (feedbackController == null)
+            feedbackController = FindFirstObjectByType<DialogueChoiceFeedbackController>();
     }
 
-    public void BeginOptionsPreview() => _isShowingOptions = true;
-    public void EndOptionsPreview() => _isShowingOptions = false;
+    public void BeginOptionsPreview()
+    {
+        StopAllCoroutines();
+        // Cancela coroutines de feedback de score que possam estar rodando.
+        // Sem isso, o reset para Normal do feedback compete com a preview das opções.
+        if (feedbackController != null)
+            feedbackController.CancelAllFeedback();
+        _isShowingOptions = true;
+    }
+
+    public void EndOptionsPreview()
+    {
+        // Não sincroniza do Yarn aqui — o branch ainda não rodou e as variáveis estão desatualizadas.
+        // Mantém _lastEmotion do preview (a opção confirmada), e espera 1 frame para o Yarn
+        // atualizar $current_emotion antes de liberar o Update().
+        // Isso evita que Update() re-dispare SetTrigger na mesma emoção que já está ativa.
+        StartCoroutine(EndOptionsPreviewDelayed());
+    }
+
+    private void SyncLastStateFromYarnWithoutApplying()
+    {
+        if (dialogueRunner == null || dialogueRunner.VariableStorage == null) return;
+        string currentChar = GetYarnStringRobust("current_character");
+        string emotionStr = GetYarnStringRobust("current_emotion");
+        if (!Enum.TryParse(emotionStr, true, out EmotionType emotion))
+            emotion = EmotionType.Normal;
+        _lastCharacter = currentChar;
+        _lastEmotion = emotion;
+    }
+
+    private System.Collections.IEnumerator EndOptionsPreviewDelayed()
+    {
+        yield return null; // aguarda 1 frame para o Yarn processar o branch escolhido
+        // Sincroniza _lastCharacter/_lastEmotion com o que o Yarn já aplicou via ForceApplyCurrentEmotion.
+        // Sem isso, Update() lê o novo $current_emotion do Yarn, compara com o _lastEmotion da preview
+        // (diferente), e re-dispara SetTrigger num estado que já está ativo → flash.
+        SyncLastStateFromYarnWithoutApplying();
+        _isShowingOptions = false;
+    }
 
     void Update()
     {
@@ -140,7 +184,9 @@ public class DialogueEmotionController : MonoBehaviour
         {
             if (runner.GetCharacterId() != characterId) continue;
 
-            runner.PlayAnimation(emotion);
+            // force: true — previews, Update e ForceApply sempre aplicam,
+            // garantindo que a navegação entre opções funcione mesmo com emoções repetidas.
+            runner.PlayAnimation(emotion, force: true);
         }
     }
 

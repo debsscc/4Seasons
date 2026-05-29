@@ -31,11 +31,12 @@ public class ScoreRulesDialogue : MonoBehaviour
         foreach (var b in characterBindings)
         {
             if (b == null) continue;
-            if (string.IsNullOrEmpty(b.characterId) || b.characterData == null) continue;
-            if (!_idToCharacterData.ContainsKey(b.characterId))
-                _idToCharacterData[b.characterId] = b.characterData;
+            var key = b.characterId?.Trim();
+            if (string.IsNullOrEmpty(key) || b.characterData == null) continue;
+            if (!_idToCharacterData.ContainsKey(key))
+                _idToCharacterData[key] = b.characterData;
             else
-                Debug.LogWarning($"ScoreRulesManager: binding duplicate for '{b.characterId}'");
+                Debug.LogWarning($"ScoreRulesManager: binding duplicate for '{key}'");
         }
     }
 
@@ -59,7 +60,6 @@ public class ScoreRulesDialogue : MonoBehaviour
             Debug.LogWarning($"[ScoreRulesManager] Rule not found: '{ruleId}'");
             return;
         }
-        Debug.Log($"[ScoreRulesManager] Applying rule '{ruleId}'");
         ApplyRule(rule);
     }
 
@@ -73,30 +73,34 @@ public class ScoreRulesDialogue : MonoBehaviour
         // Apply gains (use +amount)
         foreach (var id in rule.gain)
         {
-            if (string.IsNullOrEmpty(id)) continue;
-            if (_idToCharacterData.TryGetValue(id, out var data) && data != null)
+            var trimId = id?.Trim();
+            if (string.IsNullOrEmpty(trimId)) continue;
+            if (_idToCharacterData.TryGetValue(trimId, out var data) && data != null)
             {
                 data.RelationshipScore += gainAmount;
-                Debug.Log($"[ScoreRulesManager] +{gainAmount} -> {id} (now {data.RelationshipScore})");
+                MiniGameFeedbackManager.Instance?.ShowHeart(trimId, true);
+                MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(trimId, 1);
             }
             else
             {
-                Debug.LogWarning($"[ScoreRulesManager] gain: character '{id}' not bound");
+                Debug.LogWarning($"[ScoreRulesManager] gain: character '{trimId}' not bound");
             }
         }
 
         // Apply loses (use -amount)
         foreach (var id in rule.lose)
         {
-            if (string.IsNullOrEmpty(id)) continue;
-            if (_idToCharacterData.TryGetValue(id, out var data) && data != null)
+            var trimId = id?.Trim();
+            if (string.IsNullOrEmpty(trimId)) continue;
+            if (_idToCharacterData.TryGetValue(trimId, out var data) && data != null)
             {
                 data.RelationshipScore -= loseAmount;
-                Debug.Log($"[ScoreRulesManager] -{loseAmount} -> {id} (now {data.RelationshipScore})");
+                MiniGameFeedbackManager.Instance?.ShowHeart(trimId, false);
+                MiniGameFeedbackManager.Instance?.UpdatePreviewTemp(trimId, -1);
             }
             else
             {
-                Debug.LogWarning($"[ScoreRulesManager] lose: character '{id}' not bound");
+                Debug.LogWarning($"[ScoreRulesManager] lose: character '{trimId}' not bound");
             }
         }
     }

@@ -11,6 +11,7 @@ public class ChangeOptionHolder : MonoBehaviour
     [SerializeField] private Button _confirmButton;
     [SerializeField] private float _itemSize = 200f;
     [SerializeField] private DialogueEmotionController _emotionController;
+    [SerializeField] private OptionEmotionIcon _emotionIcon;
 
     private DialogueRunner _dialogueRunner;
     private float _currentScrollPosition = 0f;
@@ -51,6 +52,7 @@ public class ChangeOptionHolder : MonoBehaviour
 
     void Update()
     {
+        //Detecta opções ativas e reseta o índice se necessário
         var options = Options;
         int activeCount = 0;
         foreach (var o in options)
@@ -65,9 +67,14 @@ public class ChangeOptionHolder : MonoBehaviour
                 _emotionController.BeginOptionsPreview();
             PreviewOptionEmotion();
         }
+        // se não houver opções ativas, reseta o contador para garantir que a próxima vez que opções forem ativadas, o sistema reconheça a mudança
         else if (activeCount == 0 && _lastOptionCount > 0)
         {
             _lastOptionCount = 0;
+            // Opções desapareceram — garante EndOptionsPreview() mesmo se a seleção
+            // foi feita pelo mouse (que não passa por ConfirmSelection()).
+            if (_emotionController != null)
+                _emotionController.EndOptionsPreview();
         }
     }
 
@@ -115,25 +122,40 @@ public class ChangeOptionHolder : MonoBehaviour
 
     private void PreviewOptionEmotion()
     {
-        if (_emotionController == null) return;
-
         var options = Options;
         if (_currentIndex < 0 || _currentIndex >= options.Length) return;
 
         var option = options[_currentIndex];
-        var characterName = option.Option.Line.CharacterName;
 
         string emotionTag = null;
-        foreach (var tag in option.Option.Line.Metadata)
+        string characterName = null;
+        try
         {
-            if (tag.StartsWith("emotion:"))
+            characterName = option.Option.Line.CharacterName;
+            foreach (var tag in option.Option.Line.Metadata)
             {
-                emotionTag = tag.Substring("emotion:".Length);
-                break;
+                if (tag.StartsWith("emotion:"))
+                {
+                    emotionTag = tag.Substring("emotion:".Length);
+                    break;
+                }
             }
         }
+        catch (System.NullReferenceException)
+        {
+            // Option ainda não foi setado pelo OptionsPresenter neste frame
+            return;
+        }
 
-        if (!string.IsNullOrEmpty(characterName) && !string.IsNullOrEmpty(emotionTag))
+        if (_emotionController != null && !string.IsNullOrEmpty(characterName) && !string.IsNullOrEmpty(emotionTag))
             _emotionController.PreviewEmotion(characterName, emotionTag);
+
+        if (_emotionIcon != null)
+        {
+            if (!string.IsNullOrEmpty(emotionTag))
+                _emotionIcon.Apply(emotionTag);
+            else
+                _emotionIcon.Hide();
+        }
     }
 }

@@ -22,17 +22,21 @@ public class UICharacterOrder : MonoBehaviour
 
         UpdateExpresionBasedOnItem(null);
 
+        if (!string.IsNullOrEmpty(orderText.text))
+            return;
+
         MiniGameController miniGameController = FindFirstObjectByType<MiniGameController>();
         var draggables = miniGameController.draggablePrefabs;
         string order = null;
         var seen = new System.Collections.Generic.HashSet<string>();
-        Debug.Log("Dragganle amount " + draggables.Count);
+
         foreach (var draggable in draggables)
         {
             var itemsHolder = draggable.GetComponent<IItemHolder>();
 
             if (itemsHolder == null) continue;
             if (itemsHolder.Items == null) continue;
+
 
             foreach (var item in itemsHolder.Items)
             {
@@ -102,24 +106,20 @@ public class UICharacterOrder : MonoBehaviour
 
     public void ShowHeart(bool positive)
     {
-        Debug.Log("ShowHeart called for " + (character ? character.name : "null") + " positive: " + positive);
-        if (heartImage == null) 
-        {
-            Debug.Log("heartImage is null for " + (character ? character.name : "null"));
-            return;
-        }
+        if (heartImage == null) return;
         if (positiveHeartSprite == null || negativeHeartSprite == null)
         {
             Debug.Log("Heart sprites not set for " + (character ? character.name : "null"));
             return;
         }
+        
         heartImage.sprite = positive ? positiveHeartSprite : negativeHeartSprite;
         heartImage.gameObject.SetActive(true);
         var color = heartImage.color;
         color.a = 1f;
         heartImage.color = color;
         heartImage.DOKill();
-        heartImage.DOFade(0f, heartDisplayDuration).SetEase(Ease.Linear).OnComplete(() =>
+        heartImage.DOFade(0f, heartDisplayDuration).SetDelay(1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (heartImage != null) heartImage.gameObject.SetActive(false);
         });

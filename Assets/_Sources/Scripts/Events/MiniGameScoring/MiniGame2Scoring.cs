@@ -131,32 +131,8 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
         drink.isInBasket = true;
         Debug.Log($"[MiniGame2] Bebida '{drink.name}' adicionada à cesta.");
         RecalculateBasketState();
-
-        if (MiniGameFeedbackManager.Instance != null)
-        MiniGameFeedbackManager.Instance.ApplyPreview(items);
-        Debug.Log($"[MiniGame2] Aplicando preview para {items.Length} itens.");
-
-        // Update UICharacterOrder expressions and punch scale
-        foreach (var ui in MiniGameFeedbackManager.Instance.uiCharacterOrders)
-        {
-            if (ui == null || ui.Character == null) continue;
-            bool likesAny = false;
-            foreach (var item in items)
-            {
-                if (item != null && ui.CharacterLikesItem(item))
-                {
-                    likesAny = true;
-                    break;
-                }
-            }
-            ui.UpdateExpressionBasedOnCharacter(likesAny ? 1 : -1);
-            if (likesAny)
-            {
-                ui.PunchScale();
-            }
-        }
-
     }
+
     public void OnDrinkRemovedFromBasket(DrinksINFO drink)
     {
         if (drink == null) return;
@@ -229,6 +205,19 @@ public class MiniGame2Scoring : MonoBehaviour, IMiniGameScoring
     {
         Debug.Log("OnActionButtonClicked called");
         ApplyScoring();
+
+        if (MiniGameFeedbackManager.Instance != null)
+        {
+            // Mostra feedback baseado nos itens atualmente na cesta 
+            var basketItems = new System.Collections.Generic.List<ItemsSO>();
+            foreach (var drink in drinkItems)
+            {
+                if (drink != null && drink.isInBasket && drink.drinkTypes != null)
+                    basketItems.AddRange(drink.drinkTypes);
+            }
+            MiniGameFeedbackManager.Instance.ApplyConfirmedReactions(basketItems.ToArray());
+        }
+
         StartCoroutine(DelayedHeartFeedback());
         StartCoroutine(ShowModalAfterDelay());
     }
