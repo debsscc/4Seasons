@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 // Gerencia o idioma do jogo.
@@ -19,6 +20,17 @@ public class LanguageManager : Singleton<LanguageManager>
     {
         base.Awake();
         ApplySavedOrDetectedLanguage();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ApplyDialogueLanguage(CurrentLanguage);
     }
 
     private void ApplySavedOrDetectedLanguage()

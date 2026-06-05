@@ -1635,7 +1635,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9041906129048954355, guid: ad84185de2982f94686b45f95c340269, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 502228423}
   m_SourcePrefab: {fileID: 100100000, guid: ad84185de2982f94686b45f95c340269, type: 3}
 --- !u!224 &502228419 stripped
 RectTransform:
@@ -1653,6 +1656,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &502228421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8023989104644571334, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 502228418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502228422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &502228422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9041906129048954355, guid: ad84185de2982f94686b45f95c340269, type: 3}
+  m_PrefabInstance: {fileID: 502228418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &502228423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502228422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:736d013199bd82e4dab6704e00c34ff6
+    m_TableEntryReference:
+      m_KeyId: 2499050681950208
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 502228421}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &507481024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216289967158977448, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7708108200891403409, guid: 30d4488695ce067498b955e1a5154cf4, type: 3}
       propertyPath: PAUSE
@@ -2582,6 +2641,7 @@ MonoBehaviour:
   bubbleEmotionImage: {fileID: 0}
   bubbleOffset: {x: 0, y: 120}
   uiCamera: {fileID: 0}
+  feedbackController: {fileID: 0}
 --- !u!114 &769406940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4391,6 +4451,7 @@ MonoBehaviour:
   bubbleEmotionImage: {fileID: 0}
   bubbleOffset: {x: 0, y: 120}
   uiCamera: {fileID: 0}
+  feedbackController: {fileID: 0}
 --- !u!114 &1310868422
 MonoBehaviour:
   m_ObjectHideFlags: 0
