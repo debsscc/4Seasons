@@ -135,6 +135,12 @@ public class AudioManager : Singleton<AudioManager>
         currentMusicName = name;
     }
 
+    public void StopMusic()
+    {
+        MusicSource.Stop();
+        currentMusicName = null;
+    }
+
     public void PlaySFX(string name)
     {
         var entry = FindClip(SFXLibrary, name);

@@ -83,12 +83,17 @@ public class LanguageManager : Singleton<LanguageManager>
     // --- YarnSpinner (diálogos) ---
     private static void ApplyDialogueLanguage(string lang)
     {
-        var runner = FindFirstObjectByType<DialogueRunner>();
-        if (runner == null) return;
+        // Inclui inativos: runners de feedback ficam desativados até o minigame terminar.
+        var runners = FindObjectsByType<DialogueRunner>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (var runner in runners)
+        {
+            // Ignora prefabs que estão em memória mas não carregados em cena.
+            if (!runner.gameObject.scene.isLoaded) continue;
 
-        if (runner.LineProvider is LineProviderBehaviour lineProvider)
-            lineProvider.LocaleCode = lang;
-        else
-            Debug.LogWarning("[LanguageManager] DialogueRunner não tem um LineProviderBehaviour configurado.");
+            if (runner.LineProvider is LineProviderBehaviour lineProvider)
+                lineProvider.LocaleCode = lang;
+            else
+                Debug.LogWarning($"[LanguageManager] '{runner.name}' sem LineProviderBehaviour configurado.");
+        }
     }
 }

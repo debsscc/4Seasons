@@ -4,10 +4,10 @@ title: Roda_Gigante
 <<set $event_part = "Event5.1_Part1">>
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
-Ian: Vamo gente vocês são lentos demais! #line:005319e 
+Ian: Vamos, gente, vocês são lentos demais! #line:005319e 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
-Melissa: Se tu cair no chão, Ian. #line:053fb65 
+Melissa: Se tu cair no chão, Ian… #line:053fb65 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Happy">>
 Sabrina: Deixa ele, Mel. #line:0c22699 
@@ -16,10 +16,10 @@ Sabrina: Deixa ele, Mel. #line:0c22699
 Sabrina: A gente ri da cara dele. #line:0497c4f 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: É que não é tu que ele vem chorando depois. #line:0f0baab 
+Melissa: É que não é pra tu que ele vem chorando depois. #line:0f0baab 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-Arabella: Me espera seu cuzão! #line:0c06377 
+Arabella: Me espera, seu cuzão! #line:0c06377 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
 Iris: Por que eles tão correndo? O parque tá vazio hoje. #line:0fdf677 
@@ -34,10 +34,10 @@ Lucas: Eles têm muita energia às vezes. #line:034121c
 Iris: Hoje foi tão legal, uma pena que já fomos em todos os brinquedos. #line:01e22b2 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Happy">>
-Melissa: Pois é, o kamikaze foi incrível! #line:0317590 
+Melissa: Pois é, o Kamikaze foi incrível! #line:0317590 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Happy">>
-Ian: SIM! Eu amo o kamikaze! #line:04140a1 
+Ian: SIM! Eu amo o Kamikaze! #line:04140a1 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
 Lucas: Eu achei que ia passar mal nesse negócio. #line:030ae9a 
@@ -54,19 +54,19 @@ Lucas: Eu achei que ia passar mal nesse negócio. #line:030ae9a
     <<ApplyEventPart Event5.1_option2>>
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
-Arabella: O melhor foi o Lucas se tremendo todo no trem fantasma. #line:073edd4 
+Arabella: O melhor foi o Lucas se tremendo todo no Trem Fantasma. #line:073edd4 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: Nossa verdade, os gritos foram muito bons. #line:0d27271 
+Ian: Nossa, verdade, os gritos foram muito bons. #line:0d27271 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Flirty">>
-Iris: Tu não pode falar muito dele sendo que tu gritou no minhocão, Ian! #line:0156c87 
+Iris: Tu não pode falar muito dele, sendo que tu gritou no Minhocão, Ian! #line:0156c87 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Surprised">>
 Ian: EU?? Nunca fiz isso! #line:0ba3e7d 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-Lucas: Ah você fez sim! #line:01eda45 
+Lucas: Ah, você fez sim! #line:01eda45 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
 Lucas: Não tem como me zuar! #line:0a6f895 
@@ -81,16 +81,16 @@ Arabella: Às vezes cê só é cagão mesmo, pensou nisso? #line:025434b
 Ian: Caba boca, Bella! #line:0b8ab36 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Inclusive tu ainda tá enjoada das xícaras, Bella? #line:0b5fa35 
+Melissa: Inclusive, tu ainda tá enjoada das Xícaras, Bella? #line:0b5fa35 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Normal">>
 Arabella: Tô melhor. #line:0e10851 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Angry">>
-Arabella: Se a Íris e o Ian não tivessem girado o negócio tão rápido. #line:0d6e6a3 
+Arabella: Se a Íris e o Ian não tivessem girado o negócio tão rápido... #line:0d6e6a3 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Normal">>
-Iris: Qual a graça dele ir devagarzinho? #line:0cd56b5 
+Iris: Qual a graça em ele ir devagarzinho? #line:0cd56b5 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 ->  Sabrina: Acho que a graça é não vomitar. #emotion:Happy #line:00803fc 
@@ -98,7 +98,7 @@ Iris: Qual a graça dele ir devagarzinho? #line:0cd56b5
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option3">>
     <<ApplyEventPart Event5.1_option3>>
-->  Sabrina: SIM! quanto mais rápido melhor!  #line:0475e0d 
+->  Sabrina: SIM! Quanto mais rápido melhor!  #line:0475e0d 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Happy">>
     <<set $current_option = "Event5.1_option4">>
@@ -108,31 +108,31 @@ Iris: Qual a graça dele ir devagarzinho? #line:0cd56b5
 Lucas: É o melhor brinquedo e vocês ficam de palhaçada querendo passar mal. #line:07be347 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: É brinquedo de criança gente! #line:0ea1360 
+Ian: É brinquedo de criança, gente! #line:0ea1360 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
 Ian: A graça é poder ficar tonto. #line:0a6eb5e 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Próxima vez me lembrem de trazer remédio de enjoo. #line:0dbe754 
+Melissa: Próxima vez, me lembrem de trazer remédio de enjoo. #line:0dbe754 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
-Sabrina: Olha a roda gigante tá bem ali. #line:094d0c6 
+Sabrina: Olha a roda gigante, tá bem ali. #line:094d0c6 
 <<set $current_character = "Sabrina">>
 <<set $current_emotion = "Normal">>
 Sabrina: Como a gente vai se dividir pra ir? É só dois por carrinho. #line:09724bd 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Pra mim tanto faz. #line:0cafde5 
+Melissa: Pra mim, tanto faz. #line:0cafde5 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Sad">>
 Lucas: Só quero alguém que me deixe tranquilo, a altura me dá agonia. #line:056756b 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Excited">>
-Ian: Só vamo entrando e aí a gente vê. #line:0aaef93 
+Ian: Só vamos entrando, e aí a gente vê. #line:0aaef93 
 <<set $current_character = "Iris">>
 <<set $current_emotion = "Flirty">>
-Iris: Calma apressadinho. #line:0491626 
+Iris: Calma, apressadinho. #line:0491626 
 <<set $current_character = "Arabella">>
 <<set $current_emotion = "Flirty">>
 Arabella: Não tem paciência pra nada esse garoto. #line:0f8377f 

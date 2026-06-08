@@ -17,13 +17,13 @@ Melissa: Ai tá bom Ian, tu sempre diz isso. #line:0fbb18f
 Ian: Não é minha culpa se é verdade e vocês não sabem apreciar o meu ótimo gosto. #line:079a72d 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
-Lucas: Da última que você escolheu a gente assistiu um filme esquistito. #line:0ebeced 
+Lucas: Da última que você escolheu, a gente assistiu um filme esquistito. #line:0ebeced 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
 Lucas: Aquele dos alienígenas que falavam “yatataya” #line:0291c79 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Surprised">>
-Ian: Você disse que gostou do Júpiter ataca! #line:082c775 
+Ian: Você disse que gostou do Júpiter Ataca! #line:082c775 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Normal">>
 Lucas: Não é ruim, só é estranho. #line:075180d 
@@ -40,10 +40,10 @@ Lucas: Não é ruim, só é estranho. #line:075180d
     <<ApplyEventPart Event1.1_option2>>
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Sem filmes de et, por favor. #line:0b37ec2 
+Melissa: Sem filmes de ET, por favor. #line:0b37ec2 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Happy">>
-Melissa: Vamos ver algo com mistério e sei lá um assassino e detetives. #line:0b7e227 
+Melissa: Vamos ver algo com mistério e, sei lá, um assassino e detetives. #line:0b7e227 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Angry">>
 Lucas: Sem essa, Mel! #line:08ae892 
@@ -52,7 +52,7 @@ Lucas: Sem essa, Mel! #line:08ae892
 Lucas: Esses filmes me dão medo. #line:0ea347f 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
-Ian: Ah, fala sério Lucas!  #line:0580a0f 
+Ian: Ah, fala sério, Lucas!  #line:0580a0f 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Angry">>
 Melissa: Ei! Sem zombar do meu namorado! #line:0fb2e6a 
@@ -63,7 +63,7 @@ Melissa: Você não tem medinho de filme mesmo, né? #line:043e6c8
     <<set $current_emotion = "Angry">>
     <<set $current_option = "Event1.1_option3">>
     <<ApplyEventPart Event1.1_option3>>
--> Sabrina: Não sou fã, mas se todo mundo quiser a gente pode ver um assim. #emotion:Normal #line:0ca252b 
+-> Sabrina: Não sou fã mas, se todo mundo quiser, a gente pode ver um assim. #emotion:Normal #line:0ca252b 
     <<set $current_character = "Sabrina">>
     <<set $current_emotion = "Normal">>
     <<set $current_option = "Event1.1_option4">>
@@ -73,7 +73,7 @@ Melissa: Você não tem medinho de filme mesmo, né? #line:043e6c8
 Melissa: Luke, o que tu quer assistir? #line:0cfe6aa 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Happy">>
-Lucas: A gente podia assistir Madre mia! #line:092802b 
+Lucas: A gente podia assistir Madre Mia! #line:092802b 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Surprised">>
 Ian: Nem fodendo! #line:02b05de 
@@ -82,13 +82,13 @@ Ian: Nem fodendo! #line:02b05de
 Ian: A gente já assistiu esse filme um bilhão de vezes! #line:06e56e2 
 <<set $current_character = "Melissa">>
 <<set $current_emotion = "Normal">>
-Melissa: Realmente, quantas vezes tu sozinho já viu esse? #line:0775145 
+Melissa: Realmente, quantas vezes tu já viu esse sozinho? #line:0775145 
 <<set $current_character = "Lucas">>
 <<set $current_emotion = "Shy">>
 Lucas: Não vem ao caso. #line:0439025 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Angry">>
-Ian: Se ficar nessa eu vou escolher um aleatório. #line:0ee77ea 
+Ian: Se ficar nessa, eu vou escolher um aleatório. #line:0ee77ea 
 <<set $current_character = "Ian">>
 <<set $current_emotion = "Flirty">>
 Ian: Pode ser que venha um filme de criancinha! #line:0307821 

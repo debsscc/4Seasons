@@ -42,6 +42,9 @@ public class CreditsManager : MonoBehaviour
         // exceto a trilha configurada especificamente para os créditos (se houver).
         if (!isOverlay)
         {
+            // Para o AudioManager explicitamente primeiro (DontDestroyOnLoad)
+            AudioManager.Instance?.StopMusic();
+
             var allAudioSources = FindObjectsOfType<AudioSource>();
             foreach (var src in allAudioSources)
             {

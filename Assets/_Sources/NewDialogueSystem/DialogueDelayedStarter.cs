@@ -12,11 +12,20 @@ using Yarn.Unity;
 public class DialogueDelayedStarter : MonoBehaviour
 {
     [SerializeField] private DialogueRunner dialogueRunner;
-    [SerializeField] private string startNode = "Start";
+
+    private void Awake()
+    {
+        // Desabilita autoStart no Awake (antes de qualquer Start()) para
+        // garantir que DialogueRunner.Start() não dispare o diálogo
+        // antes que LinePresenter e LineAdvancer terminem seus Start().
+        if (dialogueRunner != null)
+            dialogueRunner.autoStart = false;
+    }
 
     private IEnumerator Start()
     {
         yield return null; // aguarda 1 frame para todos os Start() completarem
-        dialogueRunner.StartDialogue(startNode);
+        if (dialogueRunner != null)
+            dialogueRunner.StartDialogue(dialogueRunner.startNode);
     }
 }

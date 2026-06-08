@@ -121,6 +121,16 @@ public class PauseManager : MonoBehaviour
                 paused.Add(src);
             }
         }
+
+        // Garante que o MusicSource do AudioManager seja pausado (DontDestroyOnLoad pode
+        // não ser coberto pelo FindObjectsByType dependendo do estado da cena)
+        var amSrc = AudioManager.Instance?.MusicSource;
+        if (amSrc != null && amSrc.isPlaying && !paused.Contains(amSrc))
+        {
+            amSrc.Pause();
+            paused.Add(amSrc);
+        }
+
         _pausedForCredits = paused.ToArray();
 
         _creditsInstance = Instantiate(creditsPrefab);
