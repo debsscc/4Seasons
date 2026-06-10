@@ -35,6 +35,8 @@ public class SceneTransition : Singleton<SceneTransition>
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentSceneName = scene.name;
+        // Libera o AudioListener caso tenha sido pausado pelo PauseManager antes da transição.
+        AudioListener.pause = false;
         if (scene.name == "MainMenu")
         {
             if (contentMenu != null) contentMenu.SetActive(true);
@@ -149,7 +151,7 @@ public class SceneTransition : Singleton<SceneTransition>
             Debug.Log("Loading screen deactivated");
         }
 
-        if (sceneName == "MainMenu2")
+        if (sceneName == "MainMenu")
             contentMenu.SetActive(true);
 
         asyncLoad.allowSceneActivation = true;

@@ -89,8 +89,18 @@ public class PauseManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        if (_creditsInstance != null)
+        {
+            Destroy(_creditsInstance);
+            _creditsInstance = null;
+            _creditsManager = null;
+        }
+
+        // Para o MusicSource. AudioListener.pause permanece true durante o fade;
+        // SceneTransition.OnSceneLoaded o libera após a cena carregar.
+        AudioManager.Instance?.StopMusic();
+
         Time.timeScale = 1f;
-        AudioListener.pause = false;
 
         GameSessionManager.Instance?.ResetSession();
         if (GameSessionManager.Instance != null) Destroy(GameSessionManager.Instance.gameObject);
@@ -108,9 +118,9 @@ public class PauseManager : MonoBehaviour
 
         // Restaura o tempo para os scrolls animarem corretamente
         Time.timeScale = 1f;
-        AudioListener.pause = false;
 
-        // Pausa todos os AudioSources ativos ANTES de instanciar os créditos
+        // Pausa todos os AudioSources ativos ANTES de soltar o AudioListener
+        // para evitar qualquer blip de áudio durante a abertura dos créditos.
         var all = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
         System.Collections.Generic.List<AudioSource> paused = new();
         foreach (var src in all)
@@ -132,6 +142,8 @@ public class PauseManager : MonoBehaviour
         }
 
         _pausedForCredits = paused.ToArray();
+
+        AudioListener.pause = false;
 
         _creditsInstance = Instantiate(creditsPrefab);
         var mgr = _creditsInstance.GetComponentInChildren<CreditsManager>(includeInactive: true);

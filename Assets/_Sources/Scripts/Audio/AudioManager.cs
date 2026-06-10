@@ -138,6 +138,7 @@ public class AudioManager : Singleton<AudioManager>
     public void StopMusic()
     {
         MusicSource.Stop();
+        MusicSource.clip = null;
         currentMusicName = null;
     }
 
