@@ -559,6 +559,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353233872493061733, guid: 14c9ce1577df5054da9777b8464cf8bd, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 11eb7e1a8ffc4b249ad5894aeff15064, type: 3}
@@ -9092,7 +9096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusicPlayer
   _musicClip: {fileID: 8300000, guid: 11eb7e1a8ffc4b249ad5894aeff15064, type: 3}
   _loop: 1
-  _volume: 1
+  _volume: 0.2
 --- !u!4 &9900000003
 Transform:
   m_ObjectHideFlags: 0

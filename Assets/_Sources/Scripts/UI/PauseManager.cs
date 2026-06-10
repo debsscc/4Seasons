@@ -119,23 +119,12 @@ public class PauseManager : MonoBehaviour
         // Restaura o tempo para os scrolls animarem corretamente
         Time.timeScale = 1f;
 
-        // Pausa todos os AudioSources ativos ANTES de soltar o AudioListener
-        // para evitar qualquer blip de áudio durante a abertura dos créditos.
-        var all = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        // Quando AudioListener.pause = true, isPlaying retorna false para todas as sources,
+        // então não é possível detectar o que estava tocando via isPlaying.
+        // Pausamos o MusicSource explicitamente antes de soltar o listener.
         System.Collections.Generic.List<AudioSource> paused = new();
-        foreach (var src in all)
-        {
-            if (src.isPlaying)
-            {
-                src.Pause();
-                paused.Add(src);
-            }
-        }
-
-        // Garante que o MusicSource do AudioManager seja pausado (DontDestroyOnLoad pode
-        // não ser coberto pelo FindObjectsByType dependendo do estado da cena)
         var amSrc = AudioManager.Instance?.MusicSource;
-        if (amSrc != null && amSrc.isPlaying && !paused.Contains(amSrc))
+        if (amSrc != null)
         {
             amSrc.Pause();
             paused.Add(amSrc);
