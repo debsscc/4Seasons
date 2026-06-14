@@ -17,6 +17,11 @@ public class SceneTransition : Singleton<SceneTransition>
 
     public GameObject loadingScreen;
     public GameObject contentMenu;
+
+    [Tooltip("Elementos visuais exclusivos do MainMenu (persistem via DontDestroyOnLoad e precisam ser ocultados fora dele).")]
+    public GameObject backgroundImage;
+    public GameObject menuDecoration;
+
     private string currentSceneName;
     
     protected override void Awake()
@@ -35,11 +40,16 @@ public class SceneTransition : Singleton<SceneTransition>
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentSceneName = scene.name;
-        if (scene.name == "MainMenu")
-        {
-            if (contentMenu != null) contentMenu.SetActive(true);
-            if (loadingScreen != null) loadingScreen.SetActive(false);
-        }
+        SetMainMenuVisualsActive(scene.name == "MainMenu");
+        if (scene.name == "MainMenu" && loadingScreen != null)
+            loadingScreen.SetActive(false);
+    }
+
+    void SetMainMenuVisualsActive(bool active)
+    {
+        if (backgroundImage != null) backgroundImage.SetActive(active);
+        if (contentMenu != null) contentMenu.SetActive(active);
+        if (menuDecoration != null) menuDecoration.SetActive(active);
     }
 
     void Start()
@@ -66,7 +76,7 @@ public class SceneTransition : Singleton<SceneTransition>
         {
             Debug.Log("Activating loading screen");
             loadingScreen.SetActive(true);
-            contentMenu.SetActive(false);
+            SetMainMenuVisualsActive(false);
         }
         currentSceneName = sceneName;
         Debug.Log($"Starting scene change to {sceneName}");
@@ -104,7 +114,7 @@ public class SceneTransition : Singleton<SceneTransition>
         }
 
         if (sceneName == "MainMenu")
-            contentMenu.SetActive(true);
+            SetMainMenuVisualsActive(true);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)

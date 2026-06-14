@@ -17,15 +17,21 @@ public class UICharacterOrder : MonoBehaviour
 
     void Start()
     {
-        MiniGameFeedbackManager.Instance.uiCharacterOrders.RemoveAll(x => x == this);
-        MiniGameFeedbackManager.Instance.uiCharacterOrders.Add(this);
+        if (MiniGameFeedbackManager.Instance != null)
+        {
+            MiniGameFeedbackManager.Instance.uiCharacterOrders.RemoveAll(x => x == this);
+            MiniGameFeedbackManager.Instance.uiCharacterOrders.Add(this);
+        }
 
         UpdateExpresionBasedOnItem(null);
 
-        if (!string.IsNullOrEmpty(orderText.text))
+        if (orderText == null || !string.IsNullOrEmpty(orderText.text))
             return;
 
         MiniGameController miniGameController = FindFirstObjectByType<MiniGameController>();
+        if (miniGameController == null || character == null)
+            return;
+
         var draggables = miniGameController.draggablePrefabs;
         string order = null;
         var seen = new System.Collections.Generic.HashSet<string>();
@@ -53,27 +59,37 @@ public class UICharacterOrder : MonoBehaviour
 
     public void UpdateExpresionBasedOnItem(ItemsSO item)
     {
+        if (character == null || characterImage == null)
+            return;
+
         ExpressionFeedbackSprite feedbackSprites = character.ExpressionFeedbackSprite;
+
         if (item == null)
         {
-            characterImage.sprite = feedbackSprites.neutralSprite;
+            if (feedbackSprites.neutralSprite != null)
+                characterImage.sprite = feedbackSprites.neutralSprite;
             return;
         }
 
         Sprite newExpression = character.LikesItem(item) ? feedbackSprites.happySprite : feedbackSprites.sadSprite;
-        characterImage.sprite = newExpression;
+        if (newExpression != null)
+            characterImage.sprite = newExpression;
     }
 
     public void UpdateExpressionBasedOnCharacter(int expressionID)
     {
+        if (character == null || characterImage == null)
+            return;
+
         ExpressionFeedbackSprite feedbackSprites = character.ExpressionFeedbackSprite;
         Sprite newExpression = expressionID switch
         {
-             1=> feedbackSprites.happySprite,
+            1 => feedbackSprites.happySprite,
             -1 => feedbackSprites.sadSprite,
-            0=> feedbackSprites.neutralSprite
+            _ => feedbackSprites.neutralSprite,
         };
-        characterImage.sprite = newExpression;
+        if (newExpression != null)
+            characterImage.sprite = newExpression;
     }
 
     public void DisplayHeartFeedbackBasedOnItem(ItemsSO item)
