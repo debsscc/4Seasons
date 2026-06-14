@@ -89,8 +89,18 @@ public class PauseManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        if (_creditsInstance != null)
+        {
+            Destroy(_creditsInstance);
+            _creditsInstance = null;
+            _creditsManager = null;
+        }
+
+        // Para o MusicSource. AudioListener.pause permanece true durante o fade;
+        // SceneTransition.OnSceneLoaded o libera após a cena carregar.
+        AudioManager.Instance?.StopMusic();
+
         Time.timeScale = 1f;
-        AudioListener.pause = false;
 
         GameSessionManager.Instance?.ResetSession();
         if (GameSessionManager.Instance != null) Destroy(GameSessionManager.Instance.gameObject);
@@ -108,30 +118,21 @@ public class PauseManager : MonoBehaviour
 
         // Restaura o tempo para os scrolls animarem corretamente
         Time.timeScale = 1f;
-        AudioListener.pause = false;
 
-        // Pausa todos os AudioSources ativos ANTES de instanciar os créditos
-        var all = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        // Quando AudioListener.pause = true, isPlaying retorna false para todas as sources,
+        // então não é possível detectar o que estava tocando via isPlaying.
+        // Pausamos o MusicSource explicitamente antes de soltar o listener.
         System.Collections.Generic.List<AudioSource> paused = new();
-        foreach (var src in all)
-        {
-            if (src.isPlaying)
-            {
-                src.Pause();
-                paused.Add(src);
-            }
-        }
-
-        // Garante que o MusicSource do AudioManager seja pausado (DontDestroyOnLoad pode
-        // não ser coberto pelo FindObjectsByType dependendo do estado da cena)
         var amSrc = AudioManager.Instance?.MusicSource;
-        if (amSrc != null && amSrc.isPlaying && !paused.Contains(amSrc))
+        if (amSrc != null)
         {
             amSrc.Pause();
             paused.Add(amSrc);
         }
 
         _pausedForCredits = paused.ToArray();
+
+        AudioListener.pause = false;
 
         _creditsInstance = Instantiate(creditsPrefab);
         var mgr = _creditsInstance.GetComponentInChildren<CreditsManager>(includeInactive: true);

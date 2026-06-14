@@ -16,7 +16,7 @@ public class CreditsManager : MonoBehaviour
 
     [Header("Config")]
     public float duracaoDoFade = 1.5f;
-    public string nomeDaCenaMenu = "MenuPrincipal";
+    public string nomeDaCenaMenu = "MainMenu";
 
     [Header("Audio")]
     [Tooltip("Trilha específica dos créditos (opcional). Se atribuída, ela não será parada ao entrar na cena.")]
@@ -140,6 +140,8 @@ public class CreditsManager : MonoBehaviour
     {
         creditosScroll.OnScrollFinished -= IniciarTransicaoParaMenu;
     }
+
+    creditosMusic?.Stop();
 
     if (isOverlay)
     {

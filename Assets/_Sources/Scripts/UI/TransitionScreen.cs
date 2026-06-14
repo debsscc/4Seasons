@@ -40,6 +40,7 @@ public class SceneTransition : Singleton<SceneTransition>
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentSceneName = scene.name;
+        AudioListener.pause = false;
         SetMainMenuVisualsActive(scene.name == "MainMenu");
         if (scene.name == "MainMenu" && loadingScreen != null)
             loadingScreen.SetActive(false);
@@ -159,8 +160,8 @@ public class SceneTransition : Singleton<SceneTransition>
             Debug.Log("Loading screen deactivated");
         }
 
-        if (sceneName == "MainMenu2")
-            contentMenu.SetActive(true);
+        if (sceneName == "MainMenu")
+            SetMainMenuVisualsActive(true);
 
         asyncLoad.allowSceneActivation = true;
         while (!asyncLoad.isDone)
