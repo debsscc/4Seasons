@@ -80,6 +80,8 @@ public class SceneTransition : Singleton<SceneTransition>
             SetMainMenuVisualsActive(false);
         }
         currentSceneName = sceneName;
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.FadeDuration = fadeTime;
         Debug.Log($"Starting scene change to {sceneName}");
         StartCoroutine(useLoadingScreen ? FadeOutAndLoadScene(sceneName) : SimpleFadeTransition(sceneName));
 

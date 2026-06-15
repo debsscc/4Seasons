@@ -19,7 +19,7 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     private GameObject _creditsInstance;
     private CreditsManager _creditsManager;
-    private AudioSource[] _pausedForCredits;
+    private bool _musicPausedForCredits;
 
     private void Start()
     {
@@ -119,18 +119,13 @@ public class PauseManager : MonoBehaviour
         // Restaura o tempo para os scrolls animarem corretamente
         Time.timeScale = 1f;
 
-        // Quando AudioListener.pause = true, isPlaying retorna false para todas as sources,
-        // então não é possível detectar o que estava tocando via isPlaying.
-        // Pausamos o MusicSource explicitamente antes de soltar o listener.
-        System.Collections.Generic.List<AudioSource> paused = new();
-        var amSrc = AudioManager.Instance?.MusicSource;
-        if (amSrc != null)
+        // Quando AudioListener.pause = true, isPlaying retorna false para todas as sources.
+        // Pausamos as fontes de música explicitamente antes de soltar o listener.
+        if (AudioManager.Instance != null)
         {
-            amSrc.Pause();
-            paused.Add(amSrc);
+            AudioManager.Instance.PauseMusic();
+            _musicPausedForCredits = true;
         }
-
-        _pausedForCredits = paused.ToArray();
 
         AudioListener.pause = false;
 
@@ -168,15 +163,10 @@ public class PauseManager : MonoBehaviour
             Destroy(_creditsInstance);
         _creditsInstance = null;
 
-        // Restaura os AudioSources que foram pausados para os créditos
-        if (_pausedForCredits != null)
+        if (_musicPausedForCredits && AudioManager.Instance != null)
         {
-            foreach (var src in _pausedForCredits)
-            {
-                if (src != null)
-                    src.UnPause();
-            }
-            _pausedForCredits = null;
+            AudioManager.Instance.UnpauseMusic();
+            _musicPausedForCredits = false;
         }
 
         // Volta ao estado de pause
